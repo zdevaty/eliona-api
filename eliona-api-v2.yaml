@@ -24,7 +24,7 @@ externalDocs:
   description: Find out more about Eliona
   url: https://www.eliona.io
 servers:
-  - url: http://localhost:8888/apps/v2
+  - url: http://api.eliona.io/v2
 
 tags:
   - name: App
