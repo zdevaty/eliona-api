@@ -193,6 +193,23 @@ paths:
         200:
           description: Successfully created a new or updated an existing asset type
 
+  /asset-type-attribute:
+    post:
+      tags:
+        - Asset type
+      summary: Create or update an asset type attribute
+      description: Create a new asset type attribute or update an asset type attribute if already exists
+      operationId: postAssetTypeAttribute
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Attribute'
+      responses:
+        200:
+          description: Successfully created a new or updated an existing asset type attribute
+
   /heap:
     post:
       tags:
@@ -434,6 +451,10 @@ components:
         - name
         - subtype
       properties:
+        assetTypeName:
+          type: string
+          description: The unique name for the asset type
+          example: weather_location
         name:
           type: string
           description: Unique key of asset heap data
