@@ -3,7 +3,7 @@ window.onload = function() {
 
   // the following lines will be replaced by docker/configurator, when it runs in a docker-container
   window.ui = SwaggerUIBundle({
-    url: window.location.search ? window.location.search.substring(1) : "https://raw.githubusercontent.com/eliona-smart-building-assistant/eliona-api/main/eliona-api-v2.yaml",
+    url: window.location.search ? window.location.search.substring(1) : "https://raw.githubusercontent.com/eliona-smart-building-assistant/eliona-api/master/eliona-api-v2.yaml",
     dom_id: '#swagger-ui',
     deepLinking: true,
     presets: [
