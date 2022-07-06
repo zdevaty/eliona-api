@@ -25,6 +25,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./mock/db/
-          file: ./Dockerfile
+          file: ./mock/db/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/api-v2-db-mock:${{ github.ref_name }}, ${{ secrets.DOCKER_USERNAME }}/api-v2-db-mock:latest
