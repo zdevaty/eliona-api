@@ -24,7 +24,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
-          context: .
-          file: ./mock/db/Dockerfile
+          context: ./mock/db/
+          file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/api-v2-db-mock:${{ github.ref_name }}, ${{ secrets.DOCKER_USERNAME }}/api-v2-db-mock:latest
