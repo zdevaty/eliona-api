@@ -27,4 +27,4 @@ jobs:
           context: ./mock/db/
           file: ./mock/db/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/api-v2-db-mock:${{ github.ref_name }}, ${{ secrets.DOCKER_USERNAME }}/api-v2-db-mock:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/db-mock:${{ github.ref_name }}, ${{ secrets.DOCKER_USERNAME }}/db-mock:latest

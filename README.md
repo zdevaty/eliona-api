@@ -1,6 +1,6 @@
-# eliona-api #
+# Eliona API #
 
-eliona-api provides an API to access eliona resources.
+The Eliona API provides an API to access resources within an Eliona environment.
 
 ## API specification ##
 
