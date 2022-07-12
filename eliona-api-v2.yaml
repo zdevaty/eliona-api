@@ -16,7 +16,7 @@ openapi: 3.0.3
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 info:
-  version: 2.0.0
+  version: 2.0.1
   title: Eliona API
   description: API to access Eliona Smart Building Assistant
   termsOfService: https://www.eliona.io/v2
@@ -173,7 +173,7 @@ paths:
               schema:
                 type: array
                 items:
-                  type: integer
+                  $ref: '#/components/schemas/AssetRelation'
         404:
           description: Asset with id not found
 
@@ -192,7 +192,7 @@ paths:
           content:
             application/json:
               schema:
-                type: integer
+                $ref: '#/components/schemas/AssetRelation'
         404:
           description: Asset with id not found
     put:
@@ -208,7 +208,7 @@ paths:
         content:
           application/json:
             schema:
-              type: integer
+              $ref: '#/components/schemas/AssetRelation'
       responses:
         200:
           description: Successfully set asset parent
@@ -689,6 +689,24 @@ components:
                 type: object
                 description: individual config parameters depending on category
                 example:  "{ \"variant\": \"todayAndForecast\" }"
+
+    AssetRelation:
+      type: object
+      description: A related asset as child or parent
+      required:
+        - relatedAssetId
+      properties:
+        relatedAssetId:
+          type: integer
+          description: the id of the child or parent asset
+          example: 4712
+        type:
+          type: string
+          description: type of relation
+          default: location
+          enum:
+            - location
+            - function
 
     AssetType:
       type: object
