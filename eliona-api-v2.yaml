@@ -183,7 +183,7 @@ paths:
         - Asset
       summary: Get the parents for an asset
       description: Returns the asset ids which are the parents for an asset
-      operationId: getAssetParent
+      operationId: getAssetParents
       parameters:
         - $ref: '#/components/parameters/AssetId'
       responses:
@@ -202,7 +202,7 @@ paths:
         - Asset
       summary: Set or replace parents for an asset
       description: Sets or replaces the parent asset ids for an asset
-      operationId: setAssetParent
+      operationId: setAssetParents
       parameters:
         - $ref: '#/components/parameters/AssetId'
       requestBody:
