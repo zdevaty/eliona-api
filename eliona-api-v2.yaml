@@ -555,6 +555,35 @@ components:
           description: ID of the user who owns the dashboard
           example: 42
 
+    WidgetData:
+      type: object
+      description: Data for a widget
+      required:
+        - elementSequence
+      properties:
+        elementSequence:
+          type: integer
+          description: Position of the element in widget type
+          example: 1
+        key:
+          type: string
+          description: Key for the data
+          example:
+        assetId:
+          type: integer
+          description: The master asset id of this widget
+          example: 4711
+        subtype:
+          $ref: '#/components/schemas/HeapSubtype'
+        attribute:
+          type: string
+          description: Attribute of the asset type, which heap data should be used
+          example: temperature
+        description:
+          type: string
+          description: Text for frontend
+          example: Temperature
+
     Widget:
       type: object
       description: A widget on a frontend dashboard
@@ -591,30 +620,48 @@ components:
             - elementSequence
             - assetId
           items:
-            type: object
-            properties:
-              elementSequence:
-                type: integer
-                description: Position of the element in widget type
-                example: 1
-              key:
-                type: string
-                description: Key for the data
-                example:
-              assetId:
-                type: integer
-                description: The master asset id of this widget
-                example: 4711
-              subtype:
-                $ref: '#/components/schemas/HeapSubtype'
-              attribute:
-                type: string
-                description: Attribute of the asset type, which heap data should be used
-                example: temperature
-              description:
-                type: string
-                description: Text for frontend
-                example: Temperature
+            $ref: '#/components/schemas/WidgetData'
+
+    WidgetTypeElement:
+      type: object
+      description: An element for widget types
+      required:
+        - category
+        - description
+      properties:
+        category:
+          type: string
+          description: The category for this element
+          example: weather
+          enum:
+            - input
+            - table
+            - image
+            - tickets
+            - map
+            - icon
+            - range
+            - donut
+            - comfort
+            - sankey
+            - progress
+            - tracking
+            - heatmap
+            - radar
+            - value
+            - calendar
+            - trend
+            - alarms
+            - weather
+            - storey
+        description:
+          type: string
+          description: description text for this element
+          example: Weather
+        config:
+          type: object
+          description: individual config parameters depending on category
+          example:  "{ \"variant\": \"todayAndForecast\" }"
 
     WidgetType:
       type: object
@@ -651,44 +698,7 @@ components:
           type: array
           description: A list of elements for this widget
           items:
-            type: object
-            required:
-              - category
-              - description
-            properties:
-              category:
-                type: string
-                description: The category for this element
-                example: weather
-                enum:
-                  - input
-                  - table
-                  - image
-                  - tickets
-                  - map
-                  - icon
-                  - range
-                  - donut
-                  - comfort
-                  - sankey
-                  - progress
-                  - tracking
-                  - heatmap
-                  - radar
-                  - value
-                  - calendar
-                  - trend
-                  - alarms
-                  - weather
-                  - storey
-              description:
-                type: string
-                description: description text for this element
-                example: Weather
-              config:
-                type: object
-                description: individual config parameters depending on category
-                example:  "{ \"variant\": \"todayAndForecast\" }"
+            $ref: '#/components/schemas/WidgetTypeElement'
 
     AssetRelation:
       type: object
