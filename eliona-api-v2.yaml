@@ -145,13 +145,7 @@ paths:
       description: Gets information about an asset.
       operationId: getAssetById
       parameters:
-        - name: asset-id
-          in: path
-          description: The id of the asset
-          example: 4711
-          required: true
-          schema:
-            type: integer
+        - $ref: '#/components/parameters/AssetId'
       responses:
         200:
           description: Successfully returned the asset by id.
@@ -169,6 +163,8 @@ paths:
       summary: Get children for an asset
       description: Returns a list of asset ids which are children for an asset
       operationId: getAssetChildren
+      parameters:
+        - $ref: '#/components/parameters/AssetId'
       responses:
         200:
           description: Successfully returned children
@@ -188,6 +184,8 @@ paths:
       summary: Get parent for an asset
       description: Returns an asset id which are the parent for an asset or nothing, if there is no parent
       operationId: getAssetParent
+      parameters:
+        - $ref: '#/components/parameters/AssetId'
       responses:
         200:
           description: Successfully returned parent
@@ -203,6 +201,8 @@ paths:
       summary: Set or replace parent for an asset
       description: Sets or replaces the parent asset id for an asset
       operationId: setAssetParent
+      parameters:
+        - $ref: '#/components/parameters/AssetId'
       requestBody:
         required: true
         content:
@@ -312,6 +312,8 @@ paths:
       summary: Adds widget to dashboard
       description: Create a new widget an ad this to a dashboard
       operationId: postDashboardWidget
+      parameters:
+        - $ref: '#/components/parameters/DashboardId'
       requestBody:
         required: true
         content:
@@ -341,6 +343,24 @@ paths:
 
 components:
   parameters:
+
+    DashboardId:
+      name: dashboard-id
+      in: path
+      description: The id of the dashboard
+      example: 4711
+      required: true
+      schema:
+        type: integer
+
+    AssetId:
+      name: asset-id
+      in: path
+      description: The id of the asset
+      example: 4711
+      required: true
+      schema:
+        type: integer
 
     AppName:
       name: app-name
