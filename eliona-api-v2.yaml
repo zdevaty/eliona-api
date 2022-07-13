@@ -315,7 +315,7 @@ paths:
         - Dashboard
       summary: Adds widget to dashboard
       description: Create a new widget an ad this to a dashboard
-      operationId: postDashboardWidget
+      operationId: putDashboardWidget
       parameters:
         - $ref: '#/components/parameters/DashboardId'
       requestBody:
