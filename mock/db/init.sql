@@ -105,8 +105,7 @@ create table if not exists public.eliona_app (
 
 create schema if not exists versioning;
 
-create table if not exists versioning.patches
-(
+create table if not exists versioning.patches (
     app_name    text                                   not null,
     patch_name  text                                   not null,
     applied_tsz timestamp with time zone default now() not null,
@@ -116,3 +115,42 @@ create table if not exists versioning.patches
     primary key (app_name, patch_name)
     );
 
+create table if not exists public.widget (
+    id           serial unique,
+    dashboard_id integer not null,
+    type_id      integer not null,
+    seq          smallint,
+    detail       json,
+    asset_id     integer,
+    primary key (dashboard_id, id)
+);
+
+create table if not exists public.widget_data (
+    id                integer not null,
+    widget_element_id integer not null,
+    seq               smallint,
+    key               text,
+    asset_id          integer,
+    subtype           text,
+    attribute         text,
+    description       text
+);
+
+create table if not exists public.widget_type (
+    type_id              serial primary key,
+    name                 text   not null unique,
+    tag                  text,
+    translation          jsonb,
+    icon                 text,
+    custom               boolean default true not null,
+    with_alarm           boolean,
+    with_timespan_select boolean
+);
+
+create table if not exists public.widget_element (
+    id       serial primary key,
+    type_id  integer not null,
+    category text    not null,
+    seq      smallint default 0,
+    config   json
+);
