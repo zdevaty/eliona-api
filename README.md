@@ -6,7 +6,7 @@ The Eliona API provides an API to access resources within an Eliona environment.
 
 The API is defined by an OpenAPI specification file. The file is versioned to handle changes, that are not backward compatible. The current version of the API specification is v2.
 
-## API documentation ##
+## API Documentation ##
 
 There are 2 versions of the API available, a stable release version and a beta version, that is currently in development.
 
