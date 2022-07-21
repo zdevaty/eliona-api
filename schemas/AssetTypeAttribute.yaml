@@ -1,0 +1,89 @@
+type: object
+description: Named attribute to store data of assets
+required:
+  - name
+  - subtype
+properties:
+  assetTypeName:
+    type: string
+    readOnly: true
+    description: The unique name for the asset type
+    example: weather_location
+  name:
+    type: string
+    description: Unique key of asset heap data
+    example: temperature
+  subtype:
+    $ref: 'HeapSubtype.yaml'
+  type:
+    type: string
+    description: Name of the type for this attribute
+    example: temperature
+    enum:
+      - battery-voltage
+      - brightness
+      - co2
+      - current
+      - device-info
+      - device-status
+      - energy
+      - flow
+      - frequency
+      - humidity
+      - inputs-and-switches
+      - level
+      - motion
+      - operating-status
+      - people-count
+      - power
+      - presence
+      - pressure
+      - temperature
+      - vehicle-detector
+      - voltage
+      - watchdog
+      - weather
+  enable:
+    type: boolean
+    default: true
+    description: Is heap data active or not
+  translation:
+    $ref: 'Translation.yaml'
+  unit:
+    type: string
+    description: Physical unit of numeric data
+    example: °C
+  precision:
+    type: integer
+    format: int64
+    minimum: -20
+    maximum: +20
+    example: 1
+    description: Number of decimal places
+  min:
+    type: number
+    format: double
+    description: Lower limit
+    example: null
+  max:
+    type: number
+    format: double
+    example: null
+    description: Upper limit
+  pipeline:
+    $ref: './Pipeline.yaml'
+  viewer:
+    type: boolean
+    default: false
+    description: Should the attribute be displayed in viewer
+  ar:
+    type: boolean
+    default: false
+    description: Should the attribute be displayed in AR
+  sequence:
+    type: integer
+    format: int64
+    description: Sequence in AR display
+  virtual:
+    type: boolean
+    description: Is the attribute virtual or not

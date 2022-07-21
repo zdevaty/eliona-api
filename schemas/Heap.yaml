@@ -1,0 +1,20 @@
+type: object
+description: Heap data
+required:
+  - assetId
+  - subtype
+  - data
+properties:
+  assetId:
+    type: integer
+    description: ID of the corresponding asset
+    example: 4711
+  subtype:
+    $ref: 'HeapSubtype.yaml'
+  timestamp:
+    type: string
+    format: date-time
+    description: Timestamp of the latest data change
+  data:
+    type: object
+    description: Asset payload

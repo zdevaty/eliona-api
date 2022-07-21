@@ -1,0 +1,8 @@
+type: string
+description: Type of asset heap data
+default: input
+enum:
+  - input
+  - info
+  - status
+  - output

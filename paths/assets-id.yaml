@@ -1,0 +1,23 @@
+get:
+  tags:
+    - Assets
+  summary: Information about an asset
+  description: Gets information about an asset.
+  operationId: getAssetById
+  parameters:
+    - $ref: '../parameters/AssetId.yaml'
+    - name: withChildren
+      description: Gets also the the children hierarchy
+      in: query
+      schema:
+        type: boolean
+        default: false
+  responses:
+    200:
+      description: Successfully returned the asset by id.
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Asset.yaml'
+    404:
+      description: Asset with id not found

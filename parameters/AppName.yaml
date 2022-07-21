@@ -1,0 +1,7 @@
+name: app-name
+in: path
+description: The name of the app
+example: weather
+required: true
+schema:
+  type: string

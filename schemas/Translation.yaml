@@ -1,0 +1,19 @@
+type: object
+description: Readable text to display in frontend
+properties:
+  de:
+    type: string
+    description: German text
+    example: Das ist eine deutsche Beschreibung
+  en:
+    type: string
+    description: English text
+    example: This is an english description
+  fr:
+    type: string
+    description: French text
+    example: Ceci est une description français
+  it:
+    type: string
+    description: Italian text
+    example: Questa è una descrizione italiana

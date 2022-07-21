@@ -1,0 +1,28 @@
+type: object
+description: A frontend dashboard
+required:
+  - name
+  - projectId
+  - userId
+properties:
+  Id:
+    type: integer
+    readOnly: true
+    description: The internal Id of dashboard
+    example: 4711
+  name:
+    type: string
+    description: The name for this dashboard
+    example: Weather info
+  projectId:
+    type: string
+    description: ID of the project to which the dashboard belongs
+    example: 99
+  userId:
+    type: string
+    description: ID of the user who owns the dashboard
+    example: 42
+  sequence:
+    type: integer
+    description: The sequence of the. If not defined, the sequence is automatically incremented.
+    example: 42

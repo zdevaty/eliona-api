@@ -1,0 +1,36 @@
+get:
+  tags:
+    - Apps
+  summary: Information about a patch for an app
+  description: Gets information about a patch for an app.
+  operationId: getPatchByName
+  parameters:
+    - $ref: '../parameters/AppName.yaml'
+    - $ref: '../parameters/PatchName.yaml'
+  responses:
+    200:
+      description: Successfully returned information about a patch for an app
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Patch.yaml'
+
+patch:
+  tags:
+    - Apps
+  summary: Updates a patch
+  description: Updates properties of a patch for an app.
+  operationId: patchPatchByName
+  parameters:
+    - $ref: '../parameters/AppName.yaml'
+    - $ref: '../parameters/PatchName.yaml'
+    - name: apply
+      description: "Marks that the patch is now applied. Further request to get patch information returns { \"applied\": true }"
+      in: query
+      required: false
+      schema:
+        type: boolean
+  responses:
+    200:
+      description: Successfully updated the patch for the app
+

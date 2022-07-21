@@ -1,0 +1,39 @@
+get:
+  tags:
+    - Asset types
+  summary: List of asset types
+  description: Returns a list of asset types
+  operationId: getAssetTypes
+  parameters:
+    - name: withAttributes
+      description: Gets also the the list of attributes
+      in: query
+      required: false
+      schema:
+        type: boolean
+        default: false
+  responses:
+    200:
+      description: Successfully returned a list of asset types
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/AssetType.yaml'
+
+put:
+  tags:
+    - Asset types
+  summary: Create or update an asset type
+  description: Create a new asset type or update an asset type if already exists
+  operationId: putAssetType
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AssetType.yaml'
+  responses:
+    200:
+      description: Successfully created a new or updated an existing asset type
