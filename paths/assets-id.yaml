@@ -21,29 +21,3 @@ get:
             $ref: '../schemas/Asset.yaml'
     404:
       description: Asset with id not found
-
-patch:
-  tags:
-    - Assets
-  summary: Updates an asset
-  description: Updates properties of an asset
-  operationId: patchAssetById
-  parameters:
-    - $ref: '../parameters/AssetId.yaml'
-    - name: parentFunctionalAssetId
-      description: The id of an asset which groups this asset as a functional child
-      example: 4712
-      in: query
-      schema:
-        type: integer
-    - name: parentLocationalAssetId
-      description: The id of an asset which groups this asset as a locational child
-      example: 4712
-      in: query
-      schema:
-        type: integer
-  responses:
-    200:
-      description: Successfully update asset
-    404:
-      description: Asset with id not found
