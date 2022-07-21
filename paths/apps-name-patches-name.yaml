@@ -20,7 +20,7 @@ post:
     - Apps
   summary: Updates a patch
   description: Updates properties of a patch for an app.
-  operationId: updatePatchByName
+  operationId: postPatchByName
   parameters:
     - $ref: '../parameters/AppName.yaml'
     - $ref: '../parameters/PatchName.yaml'

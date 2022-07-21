@@ -17,12 +17,12 @@ get:
             items:
               $ref: '../schemas/Asset.yaml'
 
-post:
+put:
   tags:
     - Assets
   summary: Create or update an asset
   description: Creates an asset if no asset with the same projectId and globalAssetIdentifier already exists. If there is such an asset, the asset is updated.
-  operationId: postAsset
+  operationId: putAsset
   requestBody:
     required: true
     content:

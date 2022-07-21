@@ -1,9 +1,9 @@
-post:
+put:
   tags:
     - Heaps
   summary: Create or update heap data
   description: Create new heap data or update data if already exists
-  operationId: postHeap
+  operationId: putHeap
   requestBody:
     required: true
     content:

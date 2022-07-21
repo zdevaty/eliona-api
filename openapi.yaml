@@ -49,7 +49,7 @@ paths:
   /heaps:
     $ref: './paths/heaps.yaml'
 
-  /widget-type:
+  /widget-types:
     $ref: './paths/widget-types.yaml'
 
   /dashboards:

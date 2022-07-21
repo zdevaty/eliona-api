@@ -19,7 +19,7 @@ post:
     - Apps
   summary: Update an app
   description: Update properties of an app.
-  operationId: updateAppByName
+  operationId: postAppByName
   parameters:
     - $ref: '../parameters/AppName.yaml'
     - name: registered

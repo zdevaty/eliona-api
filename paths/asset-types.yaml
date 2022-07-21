@@ -7,6 +7,13 @@ get:
   parameters:
     - $ref: '../parameters/PageLimit.yaml'
     - $ref: '../parameters/PageOffset.yaml'
+    - name: withAttributes
+      description: Gets also the the list of attributes
+      in: query
+      required: false
+      schema:
+        type: boolean
+        default: false
   responses:
     200:
       description: Successfully returned a list of asset types
@@ -16,12 +23,12 @@ get:
             type: array
             items:
               $ref: '../schemas/AssetType.yaml'
-post:
+put:
   tags:
     - Asset types
   summary: Create or update an asset type
   description: Create a new asset type or update an asset type if already exists
-  operationId: postAssetType
+  operationId: putAssetType
   requestBody:
     required: true
     content:

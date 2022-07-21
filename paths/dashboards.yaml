@@ -3,7 +3,7 @@ put:
     - Dashboards
   summary: Creates a new dashboard
   description: Create a new dashboard for frontend
-  operationId: postDashboard
+  operationId: putDashboard
   requestBody:
     required: true
     content:

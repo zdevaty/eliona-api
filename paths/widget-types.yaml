@@ -1,9 +1,9 @@
-post:
+put:
   tags:
     - Dashboards
-  summary: Upsert a widget type
-  description: Create or update a widget type
-  operationId: postWidgetType
+  summary: Create or update a widget type
+  description: Create a widget type if the a type with the name not exists or update a widget type if the name already exists
+  operationId: putWidgetType
   requestBody:
     required: true
     content:

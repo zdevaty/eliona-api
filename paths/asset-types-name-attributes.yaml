@@ -1,9 +1,9 @@
-post:
+put:
   tags:
     - Asset types
   summary: Create or update an asset type attribute
   description: Create a new asset type attribute or update an asset type attribute if already exists
-  operationId: postAssetTypeAttribute
+  operationId: putAssetTypeAttribute
   requestBody:
     required: true
     content:
