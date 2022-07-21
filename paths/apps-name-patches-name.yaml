@@ -29,7 +29,7 @@ post:
       in: query
       required: false
       schema:
-        type: string
+        type: boolean
   responses:
     200:
       description: Successfully updated the patch for the app
