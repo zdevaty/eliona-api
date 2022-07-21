@@ -5,8 +5,6 @@ get:
   description: Returns a list of asset types
   operationId: getAssetTypes
   parameters:
-    - $ref: '../parameters/PageLimit.yaml'
-    - $ref: '../parameters/PageOffset.yaml'
     - name: withAttributes
       description: Gets also the the list of attributes
       in: query

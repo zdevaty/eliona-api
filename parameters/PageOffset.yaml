@@ -1,6 +1,0 @@
-name: offset
-in: query
-example: 1
-description: Specifies the page number to be displayed
-schema:
-  type: integer
