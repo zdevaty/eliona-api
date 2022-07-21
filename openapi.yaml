@@ -64,11 +64,11 @@ tags:
     externalDocs:
       url: https://www.eliona.io
   - name: Assets
-    description: Handle Assets
+    description: Handle assets
     externalDocs:
       url: https://www.eliona.io
   - name: Asset types
-    description: Handle Asset types
+    description: Handle asset types
     externalDocs:
       url: https://www.eliona.io
   - name: Heaps
@@ -76,6 +76,6 @@ tags:
     externalDocs:
       url: https://www.eliona.io
   - name: Dashboards
-    description: Handle frontend dashboards
+    description: Handle dashboards
     externalDocs:
       url: https://www.eliona.io
