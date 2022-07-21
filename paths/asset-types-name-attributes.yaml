@@ -4,6 +4,9 @@ put:
   summary: Create or update an asset type attribute
   description: Create a new asset type attribute or update an asset type attribute if already exists
   operationId: putAssetTypeAttribute
+  parameters:
+    - $ref: '../parameters/AssetTypeName.yaml'
+  type: integer
   requestBody:
     required: true
     content:

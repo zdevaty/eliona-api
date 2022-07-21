@@ -1,0 +1,7 @@
+name: asset-type-name
+in: path
+description: The name of the asset type
+example: weather_location
+required: true
+schema:
+  type: string

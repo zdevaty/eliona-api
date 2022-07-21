@@ -278,6 +278,14 @@ paths:
       description: Create a new asset type attribute or update an asset type attribute
         if already exists
       operationId: putAssetTypeAttribute
+      parameters:
+      - description: The name of the asset type
+        example: weather_location
+        in: path
+        name: asset-type-name
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
