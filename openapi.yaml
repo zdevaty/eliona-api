@@ -53,9 +53,9 @@ paths:
       summary: Information about an app
       tags:
       - Apps
-    post:
+    patch:
       description: Update properties of an app.
-      operationId: postAppByName
+      operationId: patchAppByName
       parameters:
       - description: The name of the app
         example: weather
@@ -106,9 +106,9 @@ paths:
       summary: Information about a patch for an app
       tags:
       - Apps
-    post:
+    patch:
       description: Updates properties of a patch for an app.
-      operationId: postPatchByName
+      operationId: patchPatchByName
       parameters:
       - description: The name of the app
         example: weather
@@ -130,7 +130,7 @@ paths:
         name: apply
         required: false
         schema:
-          type: string
+          type: boolean
       responses:
         "200":
           description: Successfully updated the patch for the app
@@ -203,9 +203,9 @@ paths:
       summary: Information about an asset
       tags:
       - Assets
-    post:
+    patch:
       description: Updates properties of an asset
-      operationId: postAssetById
+      operationId: patchAssetById
       parameters:
       - description: The id of the asset
         example: 4711
@@ -325,9 +325,9 @@ paths:
       tags:
       - Dashboards
   /dashboards:
-    put:
+    post:
       description: Create a new dashboard for frontend
-      operationId: putDashboard
+      operationId: postDashboard
       requestBody:
         content:
           application/json:
@@ -345,9 +345,9 @@ paths:
       tags:
       - Dashboards
   /dashboards/{dashboard-id}/widgets:
-    put:
+    post:
       description: Create a new widget an ad this to a dashboard
-      operationId: putDashboardWidget
+      operationId: postDashboardWidget
       parameters:
       - description: The id of the dashboard
         example: 4711

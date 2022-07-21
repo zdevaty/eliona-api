@@ -1,9 +1,9 @@
-put:
+post:
   tags:
     - Dashboards
   summary: Adds widget to dashboard
   description: Create a new widget an ad this to a dashboard
-  operationId: putDashboardWidget
+  operationId: postDashboardWidget
   parameters:
     - $ref: '../parameters/DashboardId.yaml'
   requestBody:

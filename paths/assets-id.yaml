@@ -22,12 +22,12 @@ get:
     404:
       description: Asset with id not found
 
-post:
+patch:
   tags:
     - Assets
   summary: Updates an asset
   description: Updates properties of an asset
-  operationId: postAssetById
+  operationId: patchAssetById
   parameters:
     - $ref: '../parameters/AssetId.yaml'
     - name: parentFunctionalAssetId

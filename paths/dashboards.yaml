@@ -1,9 +1,9 @@
-put:
+post:
   tags:
     - Dashboards
   summary: Creates a new dashboard
   description: Create a new dashboard for frontend
-  operationId: putDashboard
+  operationId: postDashboard
   requestBody:
     required: true
     content:

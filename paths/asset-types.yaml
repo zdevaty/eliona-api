@@ -21,6 +21,7 @@ get:
             type: array
             items:
               $ref: '../schemas/AssetType.yaml'
+
 put:
   tags:
     - Asset types

@@ -15,12 +15,12 @@ get:
           schema:
             $ref: '../schemas/Patch.yaml'
 
-post:
+patch:
   tags:
     - Apps
   summary: Updates a patch
   description: Updates properties of a patch for an app.
-  operationId: postPatchByName
+  operationId: patchPatchByName
   parameters:
     - $ref: '../parameters/AppName.yaml'
     - $ref: '../parameters/PatchName.yaml'
