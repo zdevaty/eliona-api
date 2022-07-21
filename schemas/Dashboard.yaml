@@ -5,6 +5,11 @@ required:
   - projectId
   - userId
 properties:
+  Id:
+    type: integer
+    readOnly: true
+    description: The internal Id of dashboard
+    example: 4711
   name:
     type: string
     description: The name for this dashboard

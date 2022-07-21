@@ -168,7 +168,7 @@ paths:
           content:
             application/json:
               schema:
-                type: integer
+                $ref: '#/components/schemas/Asset'
           description: Successfully created a new or updated an existing asset
       summary: Create or update an asset
       tags:
@@ -316,7 +316,7 @@ paths:
           content:
             application/json:
               schema:
-                type: integer
+                $ref: '#/components/schemas/Dashboard'
           description: Successfully added a new Dashboard
       summary: Creates a new dashboard
       tags:
@@ -404,6 +404,7 @@ components:
         name: Station Zurich
         description: "Weather station Zurich, Swiss"
         parentFunctionalAssetId: 4712
+        Id: 4711
         projectId: "99"
         assetType: assetType
         longitude: 8.55
@@ -412,6 +413,11 @@ components:
         - weather
         - location
       properties:
+        Id:
+          description: The internal Id of asset
+          example: 4711
+          readOnly: true
+          type: integer
         projectId:
           description: ID of the project to which the asset belongs
           example: "99"
@@ -489,6 +495,7 @@ components:
         - viewer: false
           virtual: true
           max: 6.027456183070403
+          assetTypeName: weather_location
           precision: 1
           type: temperature
           pipeline:
@@ -511,6 +518,7 @@ components:
         - viewer: false
           virtual: true
           max: 6.027456183070403
+          assetTypeName: weather_location
           precision: 1
           type: temperature
           pipeline:
@@ -569,6 +577,7 @@ components:
         viewer: false
         virtual: true
         max: 6.027456183070403
+        assetTypeName: weather_location
         precision: 1
         type: temperature
         pipeline:
@@ -589,6 +598,11 @@ components:
           it: Questa è una descrizione italiana
           fr: Ceci est une description français
       properties:
+        assetTypeName:
+          description: The unique name for the asset type
+          example: weather_location
+          readOnly: true
+          type: string
         name:
           description: Unique key of asset heap data
           example: temperature
@@ -754,9 +768,15 @@ components:
       example:
         sequence: 42
         name: Weather info
+        Id: 4711
         projectId: "99"
         userId: "42"
       properties:
+        Id:
+          description: The internal Id of dashboard
+          example: 4711
+          readOnly: true
+          type: integer
         name:
           description: The name for this dashboard
           example: Weather info

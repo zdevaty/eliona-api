@@ -4,6 +4,11 @@ required:
   - name
   - subtype
 properties:
+  assetTypeName:
+    type: string
+    readOnly: true
+    description: The unique name for the asset type
+    example: weather_location
   name:
     type: string
     description: Unique key of asset heap data

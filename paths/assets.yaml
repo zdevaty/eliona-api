@@ -32,4 +32,4 @@ put:
       content:
         application/json:
           schema:
-            type: integer
+            $ref: '../schemas/Asset.yaml'

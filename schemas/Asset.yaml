@@ -5,6 +5,11 @@ required:
   - globalAssetIdentifier
   - assetType
 properties:
+  Id:
+    type: integer
+    readOnly: true
+    description: The internal Id of asset
+    example: 4711
   projectId:
     type: string
     description: ID of the project to which the asset belongs
