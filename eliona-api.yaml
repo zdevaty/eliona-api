@@ -1,0 +1,81 @@
+openapi: 3.0.3
+
+#  This file is part of the eliona project.
+#  Copyright © 2022 LEICOM iTEC AG. All Rights Reserved.
+#  ______ _ _
+# |  ____| (_)
+# | |__  | |_  ___  _ __   __ _
+# |  __| | | |/ _ \| '_ \ / _` |
+# | |____| | | (_) | | | | (_| |
+# |______|_|_|\___/|_| |_|\__,_|
+#
+#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+#  BUT NOT LIMITED  TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+#  NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+#  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+info:
+  version: 2.0.1
+  title: Eliona API
+  description: API to access Eliona Smart Building Assistant
+  termsOfService: https://www.eliona.io/v2
+externalDocs:
+  description: Find out more about Eliona
+  url: https://www.eliona.io
+servers:
+  - url: http://api.eliona.io/v2
+
+paths:
+
+  /apps/{app-name}:
+    $ref: './paths/apps-name.yaml'
+
+  /apps/{app-name}/patches/{patch-name}:
+    $ref: './paths/apps-name-patches-name.yaml'
+
+  /assets:
+    $ref: './paths/assets.yaml'
+
+  /assets/{asset-id}:
+    $ref: './paths/assets-id.yaml'
+
+  /asset-types:
+    $ref: './paths/asset-types.yaml'
+
+  /asset-types/{asset-type-name}/attributes:
+    $ref: './paths/asset-types-name-attributes.yaml'
+
+  /heaps:
+    $ref: './paths/heaps.yaml'
+
+  /widget-types:
+    $ref: './paths/widget-types.yaml'
+
+  /dashboards:
+    $ref: './paths/dashboards.yaml'
+
+  /dashboards/{dashboard-id}/widgets:
+    $ref: './paths/dashboards-id-widgets.yaml'
+
+tags:
+  - name: Apps
+    description: Handle apps
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Assets
+    description: Handle assets
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Asset types
+    description: Handle asset types
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Heaps
+    description: Handle Heap data
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Dashboards
+    description: Handle dashboards
+    externalDocs:
+      url: https://www.eliona.io

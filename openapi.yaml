@@ -1,81 +1,1029 @@
 openapi: 3.0.3
-
-#  This file is part of the eliona project.
-#  Copyright © 2022 LEICOM iTEC AG. All Rights Reserved.
-#  ______ _ _
-# |  ____| (_)
-# | |__  | |_  ___  _ __   __ _
-# |  __| | | |/ _ \| '_ \ / _` |
-# | |____| | | (_) | | | | (_| |
-# |______|_|_|\___/|_| |_|\__,_|
-#
-#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
-#  BUT NOT LIMITED  TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-#  NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-#  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-#  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
 info:
-  version: 2.0.1
-  title: Eliona API
   description: API to access Eliona Smart Building Assistant
   termsOfService: https://www.eliona.io/v2
+  title: Eliona API
+  version: 2.0.1
 externalDocs:
   description: Find out more about Eliona
   url: https://www.eliona.io
 servers:
-  - url: http://api.eliona.io/v2
-
-paths:
-
-  /apps/{app-name}:
-    $ref: './paths/apps-name.yaml'
-
-  /apps/{app-name}/patches/{patch-name}:
-    $ref: './paths/apps-name-patches-name.yaml'
-
-  /assets:
-    $ref: './paths/assets.yaml'
-
-  /assets/{asset-id}:
-    $ref: './paths/assets-id.yaml'
-
-  /asset-types:
-    $ref: './paths/asset-types.yaml'
-
-  /asset-types/{asset-type-name}/attributes:
-    $ref: './paths/asset-types-name-attributes.yaml'
-
-  /heaps:
-    $ref: './paths/heaps.yaml'
-
-  /widget-types:
-    $ref: './paths/widget-types.yaml'
-
-  /dashboards:
-    $ref: './paths/dashboards.yaml'
-
-  /dashboards/{dashboard-id}/widgets:
-    $ref: './paths/dashboards-id-widgets.yaml'
-
+- url: http://api.eliona.io/v2
 tags:
-  - name: Apps
-    description: Handle apps
-    externalDocs:
-      url: https://www.eliona.io
-  - name: Assets
-    description: Handle assets
-    externalDocs:
-      url: https://www.eliona.io
-  - name: Asset types
-    description: Handle asset types
-    externalDocs:
-      url: https://www.eliona.io
-  - name: Heaps
-    description: Handle Heap data
-    externalDocs:
-      url: https://www.eliona.io
-  - name: Dashboards
-    description: Handle dashboards
-    externalDocs:
-      url: https://www.eliona.io
+- description: Handle apps
+  externalDocs:
+    url: https://www.eliona.io
+  name: Apps
+- description: Handle assets
+  externalDocs:
+    url: https://www.eliona.io
+  name: Assets
+- description: Handle asset types
+  externalDocs:
+    url: https://www.eliona.io
+  name: Asset types
+- description: Handle Heap data
+  externalDocs:
+    url: https://www.eliona.io
+  name: Heaps
+- description: Handle dashboards
+  externalDocs:
+    url: https://www.eliona.io
+  name: Dashboards
+paths:
+  /apps/{app-name}:
+    get:
+      description: Gets information about an app.
+      operationId: getAppByName
+      parameters:
+      - description: The name of the app
+        example: weather
+        in: path
+        name: app-name
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/App'
+          description: Successfully returned information about an app.
+      summary: Information about an app
+      tags:
+      - Apps
+    post:
+      description: Update properties of an app.
+      operationId: postAppByName
+      parameters:
+      - description: The name of the app
+        example: weather
+        in: path
+        name: app-name
+        required: true
+        schema:
+          type: string
+      - description: "Marks that the app is now initialized and installed. Further\
+          \ request to get app information returns { \"registered\": true }"
+        in: query
+        name: registered
+        required: false
+        schema:
+          type: boolean
+      responses:
+        "200":
+          description: Successfully updated the app
+      summary: Update an app
+      tags:
+      - Apps
+  /apps/{app-name}/patches/{patch-name}:
+    get:
+      description: Gets information about a patch for an app.
+      operationId: getPatchByName
+      parameters:
+      - description: The name of the app
+        example: weather
+        in: path
+        name: app-name
+        required: true
+        schema:
+          type: string
+      - description: The name of the patch
+        example: 2.0.0
+        in: path
+        name: patch-name
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patch'
+          description: Successfully returned information about a patch for an app
+      summary: Information about a patch for an app
+      tags:
+      - Apps
+    post:
+      description: Updates properties of a patch for an app.
+      operationId: postPatchByName
+      parameters:
+      - description: The name of the app
+        example: weather
+        in: path
+        name: app-name
+        required: true
+        schema:
+          type: string
+      - description: The name of the patch
+        example: 2.0.0
+        in: path
+        name: patch-name
+        required: true
+        schema:
+          type: string
+      - description: "Marks that the patch is now applied. Further request to get\
+          \ patch information returns { \"applied\": true }"
+        in: query
+        name: apply
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Successfully updated the patch for the app
+      summary: Updates a patch
+      tags:
+      - Apps
+  /assets:
+    get:
+      description: Gets a list of assets
+      operationId: getAssets
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Asset'
+                type: array
+          description: Successfully returned the list of assets
+      summary: Information about assets
+      tags:
+      - Assets
+    put:
+      description: "Creates an asset if no asset with the same projectId and globalAssetIdentifier\
+        \ already exists. If there is such an asset, the asset is updated."
+      operationId: putAsset
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Asset'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: integer
+          description: Successfully created a new or updated an existing asset
+      summary: Create or update an asset
+      tags:
+      - Assets
+  /assets/{asset-id}:
+    get:
+      description: Gets information about an asset.
+      operationId: getAssetById
+      parameters:
+      - description: The id of the asset
+        example: 4711
+        in: path
+        name: asset-id
+        required: true
+        schema:
+          type: integer
+      - description: Gets also the the children hierarchy
+        in: query
+        name: withChildren
+        schema:
+          default: false
+          type: boolean
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+          description: Successfully returned the asset by id.
+        "404":
+          description: Asset with id not found
+      summary: Information about an asset
+      tags:
+      - Assets
+    post:
+      description: Updates properties of an asset
+      operationId: postAssetById
+      parameters:
+      - description: The id of the asset
+        example: 4711
+        in: path
+        name: asset-id
+        required: true
+        schema:
+          type: integer
+      - description: The id of an asset which groups this asset as a functional child
+        example: 4712
+        in: query
+        name: parentFunctionalAssetId
+        schema:
+          type: integer
+      - description: The id of an asset which groups this asset as a locational child
+        example: 4712
+        in: query
+        name: parentLocationalAssetId
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Successfully update asset
+        "404":
+          description: Asset with id not found
+      summary: Updates an asset
+      tags:
+      - Assets
+  /asset-types:
+    get:
+      description: Returns a list of asset types
+      operationId: getAssetTypes
+      parameters:
+      - description: Gets also the the list of attributes
+        in: query
+        name: withAttributes
+        required: false
+        schema:
+          default: false
+          type: boolean
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AssetType'
+                type: array
+          description: Successfully returned a list of asset types
+      summary: List of asset types
+      tags:
+      - Asset types
+    put:
+      description: Create a new asset type or update an asset type if already exists
+      operationId: putAssetType
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetType'
+        required: true
+      responses:
+        "200":
+          description: Successfully created a new or updated an existing asset type
+      summary: Create or update an asset type
+      tags:
+      - Asset types
+  /asset-types/{asset-type-name}/attributes:
+    put:
+      description: Create a new asset type attribute or update an asset type attribute
+        if already exists
+      operationId: putAssetTypeAttribute
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetTypeAttribute'
+        required: true
+      responses:
+        "200":
+          description: Successfully created a new or updated an existing asset type
+            attribute
+      summary: Create or update an asset type attribute
+      tags:
+      - Asset types
+  /heaps:
+    put:
+      description: Create new heap data or update data if already exists
+      operationId: putHeap
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Heap'
+        required: true
+      responses:
+        "200":
+          description: Successfully created a new or updated existing heap data
+      summary: Create or update heap data
+      tags:
+      - Heaps
+  /widget-types:
+    put:
+      description: Create a widget type if the a type with the name not exists or
+        update a widget type if the name already exists
+      operationId: putWidgetType
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WidgetType'
+        required: true
+      responses:
+        "200":
+          description: Successfully added widget type
+      summary: Create or update a widget type
+      tags:
+      - Dashboards
+  /dashboards:
+    put:
+      description: Create a new dashboard for frontend
+      operationId: putDashboard
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dashboard'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: integer
+          description: Successfully added a new Dashboard
+      summary: Creates a new dashboard
+      tags:
+      - Dashboards
+  /dashboards/{dashboard-id}/widgets:
+    put:
+      description: Create a new widget an ad this to a dashboard
+      operationId: putDashboardWidget
+      parameters:
+      - description: The id of the dashboard
+        example: 4711
+        in: path
+        name: dashboard-id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Widget'
+        required: true
+      responses:
+        "200":
+          description: Successfully added widget
+      summary: Adds widget to dashboard
+      tags:
+      - Dashboards
+components:
+  schemas:
+    App:
+      description: An app
+      example:
+        name: weather
+        active: true
+        registered: true
+      properties:
+        name:
+          description: Name of the app
+          example: weather
+          type: string
+        active:
+          description: Is the app active or inactive
+          type: boolean
+        registered:
+          description: Is the app already registered or not
+          type: boolean
+      required:
+      - name
+      type: object
+    Patch:
+      description: A patch for an app
+      example:
+        applied: true
+        appName: weather
+        name: 2.0.0
+        active: true
+      properties:
+        appName:
+          description: Name of the app
+          example: weather
+          type: string
+        name:
+          description: Name of the patch
+          example: 2.0.0
+          type: string
+        active:
+          description: Is the app active or inactive
+          type: boolean
+        applied:
+          description: Is the app already applied or not
+          type: boolean
+      required:
+      - appName
+      - name
+      type: object
+    Asset:
+      description: An asset
+      example:
+        globalAssetIdentifier: zurich_swiss
+        children:
+        - null
+        - null
+        latitude: 47.3667
+        name: Station Zurich
+        description: "Weather station Zurich, Swiss"
+        parentFunctionalAssetId: 4712
+        projectId: "99"
+        assetType: assetType
+        longitude: 8.55
+        parentLocationalAssetId: 4712
+        tags:
+        - weather
+        - location
+      properties:
+        projectId:
+          description: ID of the project to which the asset belongs
+          example: "99"
+          type: string
+        globalAssetIdentifier:
+          description: Unique identifier for the asset
+          example: zurich_swiss
+          type: string
+        name:
+          description: Alternate text for the asset to display in frontend
+          example: Station Zurich
+          type: string
+        assetType:
+          description: Reference to asset type by name
+          type: string
+        latitude:
+          description: Latitude coordinate (GPS) of the asset
+          example: 47.3667
+          format: double
+          type: number
+        longitude:
+          description: Longitude coordinate (GPS) of the asset
+          example: 8.55
+          format: double
+          type: number
+        description:
+          description: Textual description for this asset
+          example: "Weather station Zurich, Swiss"
+          type: string
+        parentFunctionalAssetId:
+          description: The id of an asset which groups this asset as a functional
+            child
+          example: 4712
+          type: integer
+        parentLocationalAssetId:
+          description: The id of an asset which groups this asset as a locational
+            child
+          example: 4712
+          type: integer
+        tags:
+          description: List of tags associated with asset
+          example:
+          - weather
+          - location
+          items:
+            type: string
+          type: array
+        children:
+          description: List of children for this asset. This list is filled when the
+            `withChildren` parameter is set.
+          items:
+            $ref: '#/components/schemas/Asset'
+          readOnly: true
+          type: array
+      required:
+      - assetType
+      - globalAssetIdentifier
+      - projectId
+      type: object
+    AssetType:
+      description: A type of assets
+      example:
+        vendor: vendor
+        custom: true
+        name: weather_location
+        translation:
+          de: Das ist eine deutsche Beschreibung
+          en: This is an english description
+          it: Questa è una descrizione italiana
+          fr: Ceci est une description français
+        icon: weather
+        urldoc: urldoc
+        model: model
+        attributes:
+        - viewer: false
+          virtual: true
+          max: 6.027456183070403
+          precision: 1
+          type: temperature
+          pipeline:
+            mode: avg
+            raster:
+            - S1
+            - S1
+          ar: false
+          sequence: 1
+          unit: °C
+          min: 0.8008281904610115
+          subtype: null
+          enable: true
+          name: temperature
+          translation:
+            de: Das ist eine deutsche Beschreibung
+            en: This is an english description
+            it: Questa è una descrizione italiana
+            fr: Ceci est une description français
+        - viewer: false
+          virtual: true
+          max: 6.027456183070403
+          precision: 1
+          type: temperature
+          pipeline:
+            mode: avg
+            raster:
+            - S1
+            - S1
+          ar: false
+          sequence: 1
+          unit: °C
+          min: 0.8008281904610115
+          subtype: null
+          enable: true
+          name: temperature
+          translation:
+            de: Das ist eine deutsche Beschreibung
+            en: This is an english description
+            it: Questa è una descrizione italiana
+            fr: Ceci est une description français
+      properties:
+        name:
+          description: The unique name for this asset type
+          example: weather_location
+          type: string
+        custom:
+          default: true
+          description: Is this a customer created type or not
+          type: boolean
+        vendor:
+          description: The vendor providing assets of this type
+          type: string
+        model:
+          description: The specific model of assets of this type
+          type: string
+        translation:
+          $ref: '#/components/schemas/Translation'
+        urldoc:
+          description: The url describing assets of this type
+          type: string
+        icon:
+          description: Icon name corresponding to assets of this type
+          example: weather
+          type: string
+        attributes:
+          description: List of named attributes
+          items:
+            $ref: '#/components/schemas/AssetTypeAttribute'
+          type: array
+      required:
+      - custom
+      - name
+      type: object
+    AssetTypeAttribute:
+      description: Named attribute to store data of assets
+      example:
+        viewer: false
+        virtual: true
+        max: 6.027456183070403
+        precision: 1
+        type: temperature
+        pipeline:
+          mode: avg
+          raster:
+          - S1
+          - S1
+        ar: false
+        sequence: 1
+        unit: °C
+        min: 0.8008281904610115
+        subtype: null
+        enable: true
+        name: temperature
+        translation:
+          de: Das ist eine deutsche Beschreibung
+          en: This is an english description
+          it: Questa è una descrizione italiana
+          fr: Ceci est une description français
+      properties:
+        name:
+          description: Unique key of asset heap data
+          example: temperature
+          type: string
+        subtype:
+          $ref: '#/components/schemas/HeapSubtype'
+        type:
+          description: Name of the type for this attribute
+          enum:
+          - battery-voltage
+          - brightness
+          - co2
+          - current
+          - device-info
+          - device-status
+          - energy
+          - flow
+          - frequency
+          - humidity
+          - inputs-and-switches
+          - level
+          - motion
+          - operating-status
+          - people-count
+          - power
+          - presence
+          - pressure
+          - temperature
+          - vehicle-detector
+          - voltage
+          - watchdog
+          - weather
+          example: temperature
+          type: string
+        enable:
+          default: true
+          description: Is heap data active or not
+          type: boolean
+        translation:
+          $ref: '#/components/schemas/Translation'
+        unit:
+          description: Physical unit of numeric data
+          example: °C
+          type: string
+        precision:
+          description: Number of decimal places
+          example: 1
+          format: int64
+          maximum: 20
+          minimum: -20
+          type: integer
+        min:
+          description: Lower limit
+          format: double
+          type: number
+        max:
+          description: Upper limit
+          format: double
+          type: number
+        pipeline:
+          $ref: '#/components/schemas/AssetTypeAttribute_pipeline'
+        viewer:
+          default: false
+          description: Should the attribute be displayed in viewer
+          type: boolean
+        ar:
+          default: false
+          description: Should the attribute be displayed in AR
+          type: boolean
+        sequence:
+          description: Sequence in AR display
+          format: int64
+          type: integer
+        virtual:
+          description: Is the attribute virtual or not
+          type: boolean
+      required:
+      - name
+      - subtype
+      type: object
+    Heap:
+      description: Heap data
+      example:
+        data: "{}"
+        subtype: null
+        assetId: 4711
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          type: integer
+        subtype:
+          $ref: '#/components/schemas/HeapSubtype'
+        timestamp:
+          description: Timestamp of the latest data change
+          format: date-time
+          type: string
+        data:
+          description: Asset payload
+          type: object
+      required:
+      - assetId
+      - data
+      - subtype
+      type: object
+    WidgetType:
+      description: A frontend widget
+      example:
+        withTimespan: false
+        custom: true
+        withAlarm: false
+        elements:
+        - description: Weather
+          category: weather
+          config: "{ \"variant\": \"todayAndForecast\" }"
+        - description: Weather
+          category: weather
+          config: "{ \"variant\": \"todayAndForecast\" }"
+        name: weather
+        translation:
+          de: Das ist eine deutsche Beschreibung
+          en: This is an english description
+          it: Questa è una descrizione italiana
+          fr: Ceci est une description français
+        icon: weather
+      properties:
+        name:
+          description: The unique name for this widget type
+          example: weather
+          type: string
+        custom:
+          default: true
+          description: Is this a customer created type or not
+          type: boolean
+        translation:
+          $ref: '#/components/schemas/Translation'
+        icon:
+          description: Icon name corresponding to assets used in this widget
+          example: weather
+          type: string
+        withAlarm:
+          default: false
+          description: Show alarms in widget
+          type: boolean
+        withTimespan:
+          default: false
+          description: Show selection for timespan in widget
+          type: boolean
+        elements:
+          description: A list of elements for this widget
+          items:
+            $ref: '#/components/schemas/WidgetTypeElement'
+          type: array
+      required:
+      - custom
+      - elements
+      - name
+      - translation
+      type: object
+    Dashboard:
+      description: A frontend dashboard
+      example:
+        sequence: 42
+        name: Weather info
+        projectId: "99"
+        userId: "42"
+      properties:
+        name:
+          description: The name for this dashboard
+          example: Weather info
+          type: string
+        projectId:
+          description: ID of the project to which the dashboard belongs
+          example: "99"
+          type: string
+        userId:
+          description: ID of the user who owns the dashboard
+          example: "42"
+          type: string
+        sequence:
+          description: "The sequence of the. If not defined, the sequence is automatically\
+            \ incremented."
+          example: 42
+          type: integer
+      required:
+      - name
+      - projectId
+      - userId
+      type: object
+    Widget:
+      description: A widget on a frontend dashboard
+      example:
+        data:
+        - elementSequence: 1
+          subtype: null
+          assetId: 4711
+          description: Temperature
+          attribute: temperature
+          key: key
+        - elementSequence: 1
+          subtype: null
+          assetId: 4711
+          description: Temperature
+          attribute: temperature
+          key: key
+        assetId: 4711
+        width: normal
+        details: "{}"
+        widgetTypeName: Weather
+        timespan: 7
+      properties:
+        widgetTypeName:
+          description: The name for the type of this widget
+          example: Weather
+          type: string
+        width:
+          description: The width of this widget on dashboard
+          enum:
+          - normal
+          - double
+          - full
+          type: string
+        timespan:
+          description: The number of days if the widget type uses timespan
+          example: 7
+          type: integer
+        details:
+          description: Detailed configuration depending on the widget type
+          type: object
+        assetId:
+          description: The master asset id of this widget
+          example: 4711
+          type: integer
+        data:
+          description: List of data for the elements of widget
+          items:
+            $ref: '#/components/schemas/WidgetData'
+          required:
+          - assetId
+          - elementSequence
+          type: array
+      required:
+      - widgetType
+      - width
+      type: object
+    Translation:
+      description: Readable text to display in frontend
+      example:
+        de: Das ist eine deutsche Beschreibung
+        en: This is an english description
+        it: Questa è una descrizione italiana
+        fr: Ceci est une description français
+      properties:
+        de:
+          description: German text
+          example: Das ist eine deutsche Beschreibung
+          type: string
+        en:
+          description: English text
+          example: This is an english description
+          type: string
+        fr:
+          description: French text
+          example: Ceci est une description français
+          type: string
+        it:
+          description: Italian text
+          example: Questa è una descrizione italiana
+          type: string
+      type: object
+    HeapSubtype:
+      default: input
+      description: Type of asset heap data
+      enum:
+      - input
+      - info
+      - status
+      - output
+      type: string
+    WidgetTypeElement:
+      description: An element for widget types
+      example:
+        description: Weather
+        category: weather
+        config: "{ \"variant\": \"todayAndForecast\" }"
+      properties:
+        category:
+          description: The category for this element
+          enum:
+          - input
+          - table
+          - image
+          - tickets
+          - map
+          - icon
+          - range
+          - donut
+          - comfort
+          - sankey
+          - progress
+          - tracking
+          - heatmap
+          - radar
+          - value
+          - calendar
+          - trend
+          - alarms
+          - weather
+          - storey
+          example: weather
+          type: string
+        description:
+          description: description text for this element
+          example: Weather
+          type: string
+        config:
+          description: individual config parameters depending on category
+          example: "{ \"variant\": \"todayAndForecast\" }"
+          type: object
+      required:
+      - category
+      - description
+      type: object
+    WidgetData:
+      description: Data for a widget
+      example:
+        elementSequence: 1
+        subtype: null
+        assetId: 4711
+        description: Temperature
+        attribute: temperature
+        key: key
+      properties:
+        elementSequence:
+          description: Position of the element in widget type
+          example: 1
+          type: integer
+        key:
+          description: Key for the data
+          type: string
+        assetId:
+          description: The master asset id of this widget
+          example: 4711
+          type: integer
+        subtype:
+          $ref: '#/components/schemas/HeapSubtype'
+        attribute:
+          description: "Attribute of the asset type, which heap data should be used"
+          example: temperature
+          type: string
+        description:
+          description: Text for frontend
+          example: Temperature
+          type: string
+      required:
+      - elementSequence
+      type: object
+    AssetTypeAttribute_pipeline:
+      example:
+        mode: avg
+        raster:
+        - S1
+        - S1
+      properties:
+        mode:
+          description: Pipeline calculation mode
+          enum:
+          - avg
+          - sum
+          - cusum
+          type: string
+        raster:
+          description: Pipeline calculation intervals
+          items:
+            enum:
+            - S1
+            - S2
+            - S3
+            - S4
+            - S5
+            - S6
+            - S10
+            - S12
+            - S15
+            - S20
+            - S30
+            - M1
+            - M2
+            - M3
+            - M4
+            - M5
+            - M6
+            - M10
+            - M12
+            - M15
+            - M20
+            - M30
+            - H1
+            - H2
+            - H3
+            - H4
+            - H6
+            - H8
+            - H12
+            - DAY
+            - WEEK
+            - MONTH
+            - QUARTER
+            - YEAR
+            - DECADE
+            - CENTURY
+            type: string
+          type: array
+      type: object
