@@ -4,12 +4,10 @@ get:
   summary: Information about an app
   description: Gets information about an app. Can used to determine if an app is already registered or not.
   operationId: getAppByName
-  parameters:
-    - $ref: '#/components/parameters/AppName'
   responses:
     200:
       description: Successfully returned information about an app.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/App'
+            type: string
