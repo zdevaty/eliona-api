@@ -203,37 +203,6 @@ paths:
       summary: Information about an asset
       tags:
       - Assets
-    patch:
-      description: Updates properties of an asset
-      operationId: patchAssetById
-      parameters:
-      - description: The id of the asset
-        example: 4711
-        in: path
-        name: asset-id
-        required: true
-        schema:
-          type: integer
-      - description: The id of an asset which groups this asset as a functional child
-        example: 4712
-        in: query
-        name: parentFunctionalAssetId
-        schema:
-          type: integer
-      - description: The id of an asset which groups this asset as a locational child
-        example: 4712
-        in: query
-        name: parentLocationalAssetId
-        schema:
-          type: integer
-      responses:
-        "200":
-          description: Successfully update asset
-        "404":
-          description: Asset with id not found
-      summary: Updates an asset
-      tags:
-      - Assets
   /asset-types:
     get:
       description: Returns a list of asset types
