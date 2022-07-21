@@ -334,3 +334,5 @@ components:
       schema:
         type: integer
 
+  schemas:
+    $ref: './v2/schemas.yaml'

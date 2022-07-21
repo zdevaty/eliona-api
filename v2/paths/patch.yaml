@@ -13,4 +13,4 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../schemas/Patch.yaml'
+            $ref: '../schemas.yaml#Patch'

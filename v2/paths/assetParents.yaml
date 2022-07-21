@@ -14,7 +14,7 @@ get:
           schema:
             type: array
             items:
-              $ref: '../schemas/AssetRelation.yaml'
+              $ref: '../schemas.yaml#AssetRelation'
     404:
       description: Asset with id not found
 put:
@@ -32,7 +32,7 @@ put:
         schema:
           type: array
           items:
-            $ref: '../schemas/AssetRelation.yaml'
+            $ref: '../schemas.yaml#AssetRelation'
   responses:
     200:
       description: Successfully set asset parent
