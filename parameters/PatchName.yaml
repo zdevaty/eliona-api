@@ -1,0 +1,7 @@
+name: patch-name
+in: path
+description: The name of the patch
+example: 2.0.0
+required: true
+schema:
+  type: string

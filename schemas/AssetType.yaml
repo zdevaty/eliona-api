@@ -31,4 +31,4 @@ properties:
     type: array
     description: List of named attributes
     items:
-      $ref: 'Attribute.yaml'
+      $ref: 'AssetTypeAttribute.yaml'

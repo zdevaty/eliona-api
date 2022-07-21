@@ -5,10 +5,6 @@ required:
   - projectId
   - userId
 properties:
-  id:
-    type: integer
-    description: The internal Id of dashboard
-    example: 4711
   name:
     type: string
     description: The name for this dashboard
@@ -20,4 +16,8 @@ properties:
   userId:
     type: string
     description: ID of the user who owns the dashboard
+    example: 42
+  sequence:
+    type: integer
+    description: The sequence of the. If not defined, the sequence is automatically incremented.
     example: 42

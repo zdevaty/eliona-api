@@ -1,0 +1,15 @@
+post:
+  tags:
+    - Dashboards
+  summary: Upsert a widget type
+  description: Create or update a widget type
+  operationId: postWidgetType
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/WidgetType.yaml'
+  responses:
+    200:
+      description: Successfully added widget type

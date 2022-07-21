@@ -1,0 +1,48 @@
+get:
+  tags:
+    - Assets
+  summary: Information about an asset
+  description: Gets information about an asset.
+  operationId: getAssetById
+  parameters:
+    - $ref: '../parameters/AssetId.yaml'
+    - name: withChildren
+      description: Fills also the the children hierarchy
+      in: query
+      schema:
+        type: boolean
+  responses:
+    200:
+      description: Successfully returned the asset by id.
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Asset.yaml'
+    404:
+      description: Asset with id not found
+
+post:
+  tags:
+    - Assets
+  summary: Updates an asset
+  description: Updates properties of an asset
+  operationId: updateAssetById
+  parameters:
+    - $ref: '../parameters/AssetId.yaml'
+    - name: parentFunctionalAssetId
+      description: The id of an asset which groups this asset as a functional child
+      example: 4712
+      in: query
+      schema:
+        type: integer
+    - name: parentLocationalAssetId
+      description: The id of an asset which groups this asset as a locational child
+      example: 4712
+      in: query
+      schema:
+        type: integer
+  responses:
+    200:
+      description: Successfully update asset
+    404:
+      description: Asset with id not found

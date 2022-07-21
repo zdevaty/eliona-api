@@ -1,0 +1,17 @@
+put:
+  tags:
+    - Dashboards
+  summary: Adds widget to dashboard
+  description: Create a new widget an ad this to a dashboard
+  operationId: putDashboardWidget
+  parameters:
+    - $ref: '../parameters/DashboardId.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Widget.yaml'
+  responses:
+    200:
+      description: Successfully added widget

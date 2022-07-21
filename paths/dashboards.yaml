@@ -1,0 +1,19 @@
+put:
+  tags:
+    - Dashboards
+  summary: Creates a new dashboard
+  description: Create a new dashboard for frontend
+  operationId: postDashboard
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Dashboard.yaml'
+  responses:
+    200:
+      description: Successfully added a new Dashboard
+      content:
+        application/json:
+          schema:
+            type: integer

@@ -1,0 +1,33 @@
+get:
+  tags:
+    - Apps
+  summary: Information about an app
+  description: Gets information about an app.
+  operationId: getAppByName
+  parameters:
+    - $ref: '../parameters/AppName.yaml'
+  responses:
+    200:
+      description: Successfully returned information about an app.
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/App.yaml'
+
+post:
+  tags:
+    - Apps
+  summary: Update an app
+  description: Update properties of an app.
+  operationId: updateAppByName
+  parameters:
+    - $ref: '../parameters/AppName.yaml'
+    - name: registered
+      in: query
+      required: false
+      description: "Marks that the app is now initialized and installed. Further request to get app information returns { \"registered\": true }"
+      schema:
+        type: boolean
+  responses:
+    200:
+      description: Successfully updated the app

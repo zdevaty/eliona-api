@@ -5,10 +5,6 @@ required:
   - globalAssetIdentifier
   - assetType
 properties:
-  id:
-    type: integer
-    description: The internal Id of asset
-    example: 4711
   projectId:
     type: string
     description: ID of the project to which the asset belongs
@@ -38,6 +34,14 @@ properties:
     type: string
     description: Textual description for this asset
     example: Weather station Zurich, Swiss
+  parentFunctionalAssetId:
+    type: integer
+    description: The id of an asset which groups this asset as a functional child
+    example: 4712
+  parentLocationalAssetId:
+    type: integer
+    description: The id of an asset which groups this asset as a locational child
+    example: 4712
   tags:
     type: array
     description: List of tags associated with asset
@@ -46,3 +50,9 @@ properties:
     example:
       - weather
       - location
+  children:
+    type: array
+    readOnly: true
+    description: List of children for this asset. This list is filled when the `withChildren` parameter is set.
+    items:
+      $ref: 'Asset.yaml'
