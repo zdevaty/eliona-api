@@ -672,7 +672,7 @@ components:
           format: double
           type: number
         pipeline:
-          $ref: '#/components/schemas/AssetTypeAttribute_pipeline'
+          $ref: '#/components/schemas/Pipeline'
         viewer:
           default: false
           description: Should the attribute be displayed in viewer
@@ -892,6 +892,63 @@ components:
       - status
       - output
       type: string
+    Pipeline:
+      example:
+        mode: avg
+        raster:
+        - S1
+        - S1
+      properties:
+        mode:
+          description: Pipeline calculation mode
+          enum:
+          - avg
+          - sum
+          - cusum
+          type: string
+        raster:
+          description: Pipeline calculation intervals
+          items:
+            enum:
+            - S1
+            - S2
+            - S3
+            - S4
+            - S5
+            - S6
+            - S10
+            - S12
+            - S15
+            - S20
+            - S30
+            - M1
+            - M2
+            - M3
+            - M4
+            - M5
+            - M6
+            - M10
+            - M12
+            - M15
+            - M20
+            - M30
+            - H1
+            - H2
+            - H3
+            - H4
+            - H6
+            - H8
+            - H12
+            - DAY
+            - WEEK
+            - MONTH
+            - QUARTER
+            - YEAR
+            - DECADE
+            - CENTURY
+            type: string
+          type: array
+      type: object
     WidgetTypeElement:
       description: An element for widget types
       example:
@@ -969,61 +1026,4 @@ components:
           type: string
       required:
       - elementSequence
-      type: object
-    AssetTypeAttribute_pipeline:
-      example:
-        mode: avg
-        raster:
-        - S1
-        - S1
-      properties:
-        mode:
-          description: Pipeline calculation mode
-          enum:
-          - avg
-          - sum
-          - cusum
-          type: string
-        raster:
-          description: Pipeline calculation intervals
-          items:
-            enum:
-            - S1
-            - S2
-            - S3
-            - S4
-            - S5
-            - S6
-            - S10
-            - S12
-            - S15
-            - S20
-            - S30
-            - M1
-            - M2
-            - M3
-            - M4
-            - M5
-            - M6
-            - M10
-            - M12
-            - M15
-            - M20
-            - M30
-            - H1
-            - H2
-            - H3
-            - H4
-            - H6
-            - H8
-            - H12
-            - DAY
-            - WEEK
-            - MONTH
-            - QUARTER
-            - YEAR
-            - DECADE
-            - CENTURY
-            type: string
-          type: array
       type: object
