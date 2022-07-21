@@ -1,0 +1,39 @@
+type: object
+description: An element for widget types
+required:
+  - category
+  - description
+properties:
+  category:
+    type: string
+    description: The category for this element
+    example: weather
+    enum:
+      - input
+      - table
+      - image
+      - tickets
+      - map
+      - icon
+      - range
+      - donut
+      - comfort
+      - sankey
+      - progress
+      - tracking
+      - heatmap
+      - radar
+      - value
+      - calendar
+      - trend
+      - alarms
+      - weather
+      - storey
+  description:
+    type: string
+    description: description text for this element
+    example: Weather
+  config:
+    type: object
+    description: individual config parameters depending on category
+    example:  "{ \"variant\": \"todayAndForecast\" }"

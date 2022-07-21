@@ -1,0 +1,28 @@
+App:
+  $ref: "./v2/schemas/App.yaml"
+Patch:
+  $ref: "./v2/schemas/Patch.yaml"
+Translation:
+  $ref: "./v2/schemas/Translation.yaml"
+Heap:
+  $ref: "./v2/schemas/Heap.yaml"
+Asset:
+  $ref: "./v2/schemas/Asset.yaml"
+Dashboard:
+  $ref: "./v2/schemas/Dashboard.yaml"
+WidgetData:
+  $ref: "./v2/schemas/WidgetData.yaml"
+Widget:
+  $ref: "./v2/schemas/Widget.yaml"
+WidgetTypeElement:
+  $ref: "./v2/schemas/WidgetTypeElement.yaml"
+WidgetType:
+  $ref: "./v2/schemas/WidgetType.yaml"
+AssetRelation:
+  $ref: "./v2/schemas/AssetRelation.yaml"
+AssetType:
+  $ref: "./v2/schemas/AssetType.yaml"
+Attribute:
+  $ref: "./v2/schemas/Attribute.yaml"
+HeapSubtype:
+  $ref: "./v2/schemas/HeapSubtype.yaml"

@@ -1,0 +1,20 @@
+type: object
+description: A patch for an app
+required:
+  - appName
+  - name
+properties:
+  appName:
+    type: string
+    description: Name of the app
+    example: weather
+  name:
+    type: string
+    description: Name of the patch
+    example: 2.0.0
+  active:
+    type: boolean
+    description: Is the app active or inactive
+  applied:
+    type: boolean
+    description: Is the app already applied or not

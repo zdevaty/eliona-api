@@ -51,285 +51,233 @@ tags:
 paths:
 
   /app/{app-name}:
-    $ref: "./paths/apps.yaml"
+    $ref: './v2/paths/apps.yaml'
 
   /patch/{app-name}/{patch-name}:
-    get:
-      tags:
-        - App
-      summary: Information about a patch for an app
-      description: Gets information about a patch for an app. Can used to determine if the patch is already applied or not.
-      operationId: getPatchByName
-      parameters:
-        - $ref: '#/components/parameters/AppName'
-        - $ref: '#/components/parameters/PatchName'
-      responses:
-        200:
-          description: Successfully returned information about a patch for an app
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Patch'
-
-  /app/{app-name}/register:
-    put:
-      tags:
-        - App
-      summary: Marks an app in eliona as registered
-      description: "Marks that the app is now initialized and installed. Further request to get app information returns { \"registered\": true }"
-      operationId: registerAppByName
-      parameters:
-        - $ref: '#/components/parameters/AppName'
-      responses:
-        200:
-          description: Successfully registered the app in eliona
-        400:
-          description: Unable to register app
-
-  /patch/{app-name}/{patch-name}/apply:
-    put:
-      tags:
-        - App
-      summary: Marks a patch in eliona as applied
-      description: "Marks that the patch is now applied. Further request to get patch information returns { \"applied\": true }"
-      operationId: applyPatchByName
-      parameters:
-        - $ref: '#/components/parameters/AppName'
-        - $ref: '#/components/parameters/PatchName'
-      responses:
-        200:
-          description: Successfully applied the patch for the app in eliona
-        400:
-          description: Unable to apply patch
-
-  /asset:
-    post:
-      tags:
-        - Asset
-      summary: Create or update an asset
-      description: Creates an asset if no asset with the same projectId and globalAssetIdentifier already exists. If there is such an asset, the asset is updated.
-      operationId: postAsset
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Asset'
-      responses:
-        200:
-          description: Successfully created a new or updated an existing asset
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Asset'
-
-  /asset/{asset-id}:
-    get:
-      tags:
-        - Asset
-      summary: Information about an Asset
-      description: Gets information about an asset.
-      operationId: getAssetById
-      parameters:
-        - $ref: '#/components/parameters/AssetId'
-      responses:
-        200:
-          description: Successfully returned the asset by id.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Asset'
-        404:
-          description: Asset with id not found
-
-  /asset/{asset-id}/children:
-    get:
-      tags:
-        - Asset
-      summary: Get children for an asset
-      description: Returns a list of asset ids which are children for an asset
-      operationId: getAssetChildren
-      parameters:
-        - $ref: '#/components/parameters/AssetId'
-      responses:
-        200:
-          description: Successfully returned children
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AssetRelation'
-        404:
-          description: Asset with id not found
+    $ref: './v2/paths/patch.yaml'
 
   /asset/{asset-id}/parents:
-    get:
-      tags:
-        - Asset
-      summary: Get the parents for an asset
-      description: Returns the asset ids which are the parents for an asset
-      operationId: getAssetParents
-      parameters:
-        - $ref: '#/components/parameters/AssetId'
-      responses:
-        200:
-          description: Successfully returned parent
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AssetRelation'
-        404:
-          description: Asset with id not found
-    put:
-      tags:
-        - Asset
-      summary: Set or replace parents for an asset
-      description: Sets or replaces the parent asset ids for an asset
-      operationId: setAssetParents
-      parameters:
-        - $ref: '#/components/parameters/AssetId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/AssetRelation'
-      responses:
-        200:
-          description: Successfully set asset parent
-        404:
-          description: Asset with id not found
+    $ref: './v2/paths/assetParents.yaml'
 
-  /asset-type:
-    get:
-      tags:
-        - Asset type
-      summary: List of asset types
-      description: Returns a list of asset types
-      operationId: getAssetTypes
-      parameters:
-        - $ref: '#/components/parameters/PageLimit'
-        - $ref: '#/components/parameters/PageOffset'
-      responses:
-        200:
-          description: Successfully returned a list of asset types
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AssetType'
-    post:
-      tags:
-        - Asset type
-      summary: Create or update an asset type
-      description: Create a new asset type or update an asset type if already exists
-      operationId: postAssetType
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AssetType'
-      responses:
-        200:
-          description: Successfully created a new or updated an existing asset type
+#  /app/{app-name}/register:
+#    put:
+#      tags:
+#        - App
+#      summary: Marks an app in eliona as registered
+#      description: "Marks that the app is now initialized and installed. Further request to get app information returns { \"registered\": true }"
+#      operationId: registerAppByName
+#      parameters:
+#        - $ref: '#/components/parameters/AppName'
+#      responses:
+#        200:
+#          description: Successfully registered the app in eliona
+#        400:
+#          description: Unable to register app
+#
+#  /patch/{app-name}/{patch-name}/apply:
+#    put:
+#      tags:
+#        - App
+#      summary: Marks a patch in eliona as applied
+#      description: "Marks that the patch is now applied. Further request to get patch information returns { \"applied\": true }"
+#      operationId: applyPatchByName
+#      parameters:
+#        - $ref: '#/components/parameters/AppName'
+#        - $ref: '#/components/parameters/PatchName'
+#      responses:
+#        200:
+#          description: Successfully applied the patch for the app in eliona
+#        400:
+#          description: Unable to apply patch
+#
+#  /asset:
+#    post:
+#      tags:
+#        - Asset
+#      summary: Create or update an asset
+#      description: Creates an asset if no asset with the same projectId and globalAssetIdentifier already exists. If there is such an asset, the asset is updated.
+#      operationId: postAsset
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/Asset'
+#      responses:
+#        200:
+#          description: Successfully created a new or updated an existing asset
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Asset'
+#
+#  /asset/{asset-id}:
+#    get:
+#      tags:
+#        - Asset
+#      summary: Information about an Asset
+#      description: Gets information about an asset.
+#      operationId: getAssetById
+#      parameters:
+#        - $ref: '#/components/parameters/AssetId'
+#      responses:
+#        200:
+#          description: Successfully returned the asset by id.
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Asset'
+#        404:
+#          description: Asset with id not found
+#
+#  /asset/{asset-id}/children:
+#    get:
+#      tags:
+#        - Asset
+#      summary: Get children for an asset
+#      description: Returns a list of asset ids which are children for an asset
+#      operationId: getAssetChildren
+#      parameters:
+#        - $ref: '#/components/parameters/AssetId'
+#      responses:
+#        200:
+#          description: Successfully returned children
+#          content:
+#            application/json:
+#              schema:
+#                type: array
+#                items:
+#                  $ref: '#/components/schemas/AssetRelation'
+#        404:
+#          description: Asset with id not found
+#
 
-  /asset-type-attribute:
-    post:
-      tags:
-        - Asset type
-      summary: Create or update an asset type attribute
-      description: Create a new asset type attribute or update an asset type attribute if already exists
-      operationId: postAssetTypeAttribute
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Attribute'
-      responses:
-        200:
-          description: Successfully created a new or updated an existing asset type attribute
-
-  /heap:
-    post:
-      tags:
-        - Heap
-      summary: Create or update heap data
-      description: Create new heap data or update data if already exists
-      operationId: postHeap
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Heap'
-      responses:
-        200:
-          description: Successfully created a new or updated existing heap data
-
-  /dashboard:
-    post:
-      tags:
-        - Dashboard
-      summary: Creates a new dashboard
-      description: Create a new dashboard for frontend
-      operationId: postDashboard
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Dashboard'
-      responses:
-        200:
-          description: Successfully added a new Dashboard
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Dashboard'
-
-  /dashboard/{dashboard-id}/widget:
-    put:
-      tags:
-        - Dashboard
-      summary: Adds widget to dashboard
-      description: Create a new widget an ad this to a dashboard
-      operationId: putDashboardWidget
-      parameters:
-        - $ref: '#/components/parameters/DashboardId'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Widget'
-      responses:
-        200:
-          description: Successfully added widget
-
-  /widget-type:
-    post:
-      tags:
-        - Dashboard
-      summary: Adds a new widget type
-      description: Create a new widget type
-      operationId: postWidgetType
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/WidgetType'
-      responses:
-        200:
-          description: Successfully added widget type
+#
+#  /asset-type:
+#    get:
+#      tags:
+#        - Asset type
+#      summary: List of asset types
+#      description: Returns a list of asset types
+#      operationId: getAssetTypes
+#      parameters:
+#        - $ref: '#/components/parameters/PageLimit'
+#        - $ref: '#/components/parameters/PageOffset'
+#      responses:
+#        200:
+#          description: Successfully returned a list of asset types
+#          content:
+#            application/json:
+#              schema:
+#                type: array
+#                items:
+#                  $ref: '#/components/schemas/AssetType'
+#    post:
+#      tags:
+#        - Asset type
+#      summary: Create or update an asset type
+#      description: Create a new asset type or update an asset type if already exists
+#      operationId: postAssetType
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/AssetType'
+#      responses:
+#        200:
+#          description: Successfully created a new or updated an existing asset type
+#
+#  /asset-type-attribute:
+#    post:
+#      tags:
+#        - Asset type
+#      summary: Create or update an asset type attribute
+#      description: Create a new asset type attribute or update an asset type attribute if already exists
+#      operationId: postAssetTypeAttribute
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/Attribute'
+#      responses:
+#        200:
+#          description: Successfully created a new or updated an existing asset type attribute
+#
+#  /heap:
+#    post:
+#      tags:
+#        - Heap
+#      summary: Create or update heap data
+#      description: Create new heap data or update data if already exists
+#      operationId: postHeap
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/Heap'
+#      responses:
+#        200:
+#          description: Successfully created a new or updated existing heap data
+#
+#  /dashboard:
+#    post:
+#      tags:
+#        - Dashboard
+#      summary: Creates a new dashboard
+#      description: Create a new dashboard for frontend
+#      operationId: postDashboard
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/Dashboard'
+#      responses:
+#        200:
+#          description: Successfully added a new Dashboard
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Dashboard'
+#
+#  /dashboard/{dashboard-id}/widget:
+#    put:
+#      tags:
+#        - Dashboard
+#      summary: Adds widget to dashboard
+#      description: Create a new widget an ad this to a dashboard
+#      operationId: putDashboardWidget
+#      parameters:
+#        - $ref: '#/components/parameters/DashboardId'
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/Widget'
+#      responses:
+#        200:
+#          description: Successfully added widget
+#
+#  /widget-type:
+#    post:
+#      tags:
+#        - Dashboard
+#      summary: Adds a new widget type
+#      description: Create a new widget type
+#      operationId: postWidgetType
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/WidgetType'
+#      responses:
+#        200:
+#          description: Successfully added widget type
 
 components:
   parameters:
@@ -386,511 +334,3 @@ components:
       schema:
         type: integer
 
-  schemas:
-
-    App:
-      type: object
-      description: An app
-      required:
-        - name
-      properties:
-        name:
-          type: string
-          description: Name of the app
-          example: weather
-        active:
-          type: boolean
-          description: Is the app active or inactive
-        registered:
-          type: boolean
-          description: Is the app already registered or not
-
-    Patch:
-      type: object
-      description: A patch for an app
-      required:
-        - appName
-        - name
-      properties:
-        appName:
-          type: string
-          description: Name of the app
-          example: weather
-        name:
-          type: string
-          description: Name of the patch
-          example: 2.0.0
-        active:
-          type: boolean
-          description: Is the app active or inactive
-        applied:
-          type: boolean
-          description: Is the app already applied or not
-
-    Translation:
-      type: object
-      description: Readable text to display in frontend
-      properties:
-        de:
-          type: string
-          description: German text
-          example: Das ist eine deutsche Beschreibung
-        en:
-          type: string
-          description: English text
-          example: This is an english description
-        fr:
-          type: string
-          description: French text
-          example: Ceci est une description français
-        it:
-          type: string
-          description: Italian text
-          example: Questa è una descrizione italiana
-
-    Heap:
-      type: object
-      description: Heap data
-      required:
-        - assetId
-        - subtype
-        - data
-      properties:
-        assetId:
-          type: integer
-          description: ID of the corresponding asset
-          example: 4711
-        subtype:
-          $ref: '#/components/schemas/HeapSubtype'
-        timestamp:
-          type: string
-          format: date-time
-          description: Timestamp of the latest data change
-        data:
-          type: object
-          description: Asset payload
-
-    Asset:
-      type: object
-      description: An asset
-      required:
-        - projectId
-        - globalAssetIdentifier
-        - assetType
-      properties:
-        id:
-          type: integer
-          description: The internal Id of asset
-          example: 4711
-        projectId:
-          type: string
-          description: ID of the project to which the asset belongs
-          example: 99
-        globalAssetIdentifier:
-          type: string
-          description: Unique identifier for the asset
-          example: zurich_swiss
-        name:
-          type: string
-          description: Alternate text for the asset to display in frontend
-          example: Station Zurich
-        assetType:
-          type: string
-          description: Reference to asset type by name
-        latitude:
-          type: number
-          format: double
-          description: Latitude coordinate (GPS) of the asset
-          example: 47.3667
-        longitude:
-          type: number
-          format: double
-          description: Longitude coordinate (GPS) of the asset
-          example: 8.5500
-        description:
-          type: string
-          description: Textual description for this asset
-          example: Weather station Zurich, Swiss
-        tags:
-          type: array
-          description: List of tags associated with asset
-          items:
-            type: string
-          example:
-            - weather
-            - location
-
-    Dashboard:
-      type: object
-      description: A frontend dashboard
-      required:
-        - name
-        - projectId
-        - userId
-      properties:
-        id:
-          type: integer
-          description: The internal Id of dashboard
-          example: 4711
-        name:
-          type: string
-          description: The name for this dashboard
-          example: Weather info
-        projectId:
-          type: string
-          description: ID of the project to which the dashboard belongs
-          example: 99
-        userId:
-          type: string
-          description: ID of the user who owns the dashboard
-          example: 42
-
-    WidgetData:
-      type: object
-      description: Data for a widget
-      required:
-        - elementSequence
-      properties:
-        elementSequence:
-          type: integer
-          description: Position of the element in widget type
-          example: 1
-        key:
-          type: string
-          description: Key for the data
-          example:
-        assetId:
-          type: integer
-          description: The master asset id of this widget
-          example: 4711
-        subtype:
-          $ref: '#/components/schemas/HeapSubtype'
-        attribute:
-          type: string
-          description: Attribute of the asset type, which heap data should be used
-          example: temperature
-        description:
-          type: string
-          description: Text for frontend
-          example: Temperature
-
-    Widget:
-      type: object
-      description: A widget on a frontend dashboard
-      required:
-        - widgetType
-        - width
-      properties:
-        widgetTypeName:
-          type: string
-          description: The name for the type of this widget
-          example: Weather
-        width:
-          type: string
-          description: The width of this widget on dashboard
-          enum:
-            - normal
-            - double
-            - full
-        timespan:
-          type: integer
-          description: The number of days if the widget type uses timespan
-          example: 7
-        details:
-          type: object
-          description: Detailed configuration depending on the widget type
-        assetId:
-          type: integer
-          description: The master asset id of this widget
-          example: 4711
-        data:
-          type: array
-          description: List of data for the elements of widget
-          required:
-            - elementSequence
-            - assetId
-          items:
-            $ref: '#/components/schemas/WidgetData'
-
-    WidgetTypeElement:
-      type: object
-      description: An element for widget types
-      required:
-        - category
-        - description
-      properties:
-        category:
-          type: string
-          description: The category for this element
-          example: weather
-          enum:
-            - input
-            - table
-            - image
-            - tickets
-            - map
-            - icon
-            - range
-            - donut
-            - comfort
-            - sankey
-            - progress
-            - tracking
-            - heatmap
-            - radar
-            - value
-            - calendar
-            - trend
-            - alarms
-            - weather
-            - storey
-        description:
-          type: string
-          description: description text for this element
-          example: Weather
-        config:
-          type: object
-          description: individual config parameters depending on category
-          example:  "{ \"variant\": \"todayAndForecast\" }"
-
-    WidgetType:
-      type: object
-      description: A frontend widget
-      required:
-        - name
-        - custom
-        - translation
-        - elements
-      properties:
-        name:
-          type: string
-          description: The unique name for this widget type
-          example: weather
-        custom:
-          type: boolean
-          default: true
-          description: Is this a customer created type or not
-        translation:
-          $ref: '#/components/schemas/Translation'
-        icon:
-          type: string
-          description: Icon name corresponding to assets used in this widget
-          example: weather
-        withAlarm:
-          type: boolean
-          default: false
-          description: Show alarms in widget
-        withTimespan:
-          type: boolean
-          default: false
-          description: Show selection for timespan in widget
-        elements:
-          type: array
-          description: A list of elements for this widget
-          items:
-            $ref: '#/components/schemas/WidgetTypeElement'
-
-    AssetRelation:
-      type: object
-      description: A related asset as child or parent
-      required:
-        - relatedAssetId
-      properties:
-        relatedAssetId:
-          type: integer
-          description: the id of the child or parent asset
-          example: 4712
-        type:
-          type: string
-          description: type of relation
-          default: location
-          enum:
-            - location
-            - function
-
-    AssetType:
-      type: object
-      description: A type of assets
-      required:
-        - name
-        - custom
-      properties:
-        name:
-          type: string
-          description: The unique name for this asset type
-          example: weather_location
-        custom:
-          type: boolean
-          default: true
-          description: Is this a customer created type or not
-        vendor:
-          type: string
-          description: The vendor providing assets of this type
-        model:
-          type: string
-          description: The specific model of assets of this type
-        translation:
-          $ref: '#/components/schemas/Translation'
-        urldoc:
-          type: string
-          description: The url describing assets of this type
-        icon:
-          type: string
-          description: Icon name corresponding to assets of this type
-          example: weather
-        attributes:
-          type: array
-          description: List of named attributes
-          items:
-            $ref: '#/components/schemas/Attribute'
-
-    Attribute:
-      type: object
-      description: Named attribute to store data of assets
-      required:
-        - name
-        - subtype
-      properties:
-        assetTypeName:
-          type: string
-          description: The unique name for the asset type
-          example: weather_location
-        name:
-          type: string
-          description: Unique key of asset heap data
-          example: temperature
-        subtype:
-          $ref: '#/components/schemas/HeapSubtype'
-        type:
-          type: string
-          description: Name of the type for this attribute
-          example: temperature
-          enum:
-            - battery-voltage
-            - brightness
-            - co2
-            - current
-            - device-info
-            - device-status
-            - energy
-            - flow
-            - frequency
-            - humidity
-            - inputs-and-switches
-            - level
-            - motion
-            - operating-status
-            - people-count
-            - power
-            - presence
-            - pressure
-            - temperature
-            - vehicle-detector
-            - voltage
-            - watchdog
-            - weather
-        enable:
-          type: boolean
-          default: true
-          description: Is heap data active or not
-        translation:
-          $ref: '#/components/schemas/Translation'
-        unit:
-          type: string
-          description: Physical unit of numeric data
-          example: °C
-        precision:
-          type: integer
-          format: int64
-          minimum: -20
-          maximum: +20
-          example: 1
-          description: Number of decimal places
-        min:
-          type: number
-          format: double
-          description: Lower limit
-          example: null
-        max:
-          type: number
-          format: double
-          example: null
-          description: Upper limit
-        pipeline:
-          type: object
-          example: null
-          properties:
-            mode:
-              type: string
-              enum:
-                - avg
-                - sum
-                - cusum
-              description: Pipeline calculation mode
-            raster:
-              type: array
-              items:
-                type: string
-                enum:
-                  - S1
-                  - S2
-                  - S3
-                  - S4
-                  - S5
-                  - S6
-                  - S10
-                  - S12
-                  - S15
-                  - S20
-                  - S30
-                  - M1
-                  - M2
-                  - M3
-                  - M4
-                  - M5
-                  - M6
-                  - M10
-                  - M12
-                  - M15
-                  - M20
-                  - M30
-                  - H1
-                  - H2
-                  - H3
-                  - H4
-                  - H6
-                  - H8
-                  - H12
-                  - DAY
-                  - WEEK
-                  - MONTH
-                  - QUARTER
-                  - YEAR
-                  - DECADE
-                  - CENTURY
-              description: Pipeline calculation intervals
-        viewer:
-          type: boolean
-          default: false
-          description: Should the attribute be displayed in viewer
-        ar:
-          type: boolean
-          default: false
-          description: Should the attribute be displayed in AR
-        sequence:
-          type: integer
-          format: int64
-          description: Sequence in AR display
-        virtual:
-          type: boolean
-          description: Is the attribute virtual or not
-
-    HeapSubtype:
-      type: string
-      description: Type of asset heap data
-      default: input
-      enum:
-        - input
-        - info
-        - status
-        - output

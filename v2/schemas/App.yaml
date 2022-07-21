@@ -1,0 +1,16 @@
+# /app/{app-name}
+type: object
+description: An app
+required:
+  - name
+properties:
+  name:
+    type: string
+    description: Name of the app
+    example: weather
+  active:
+    type: boolean
+    description: Is the app active or inactive
+  registered:
+    type: boolean
+    description: Is the app already registered or not

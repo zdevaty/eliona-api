@@ -1,0 +1,35 @@
+type: object
+description: A frontend widget
+required:
+  - name
+  - custom
+  - translation
+  - elements
+properties:
+  name:
+    type: string
+    description: The unique name for this widget type
+    example: weather
+  custom:
+    type: boolean
+    default: true
+    description: Is this a customer created type or not
+  translation:
+    $ref: 'Translation.yaml'
+  icon:
+    type: string
+    description: Icon name corresponding to assets used in this widget
+    example: weather
+  withAlarm:
+    type: boolean
+    default: false
+    description: Show alarms in widget
+  withTimespan:
+    type: boolean
+    default: false
+    description: Show selection for timespan in widget
+  elements:
+    type: array
+    description: A list of elements for this widget
+    items:
+      $ref: 'WidgetTypeElement.yaml'
