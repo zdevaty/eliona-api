@@ -360,9 +360,11 @@ components:
           type: string
         active:
           description: Is the app active or inactive
+          nullable: true
           type: boolean
         registered:
           description: Is the app already registered or not
+          nullable: true
           type: boolean
       required:
       - name
