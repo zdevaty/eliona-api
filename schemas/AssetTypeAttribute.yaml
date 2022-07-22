@@ -9,6 +9,7 @@ properties:
     readOnly: true
     description: The unique name for the asset type
     example: weather_location
+    nullable: true
   name:
     type: string
     description: Unique key of asset heap data
@@ -18,6 +19,7 @@ properties:
   type:
     type: string
     description: Name of the type for this attribute
+    nullable: true
     example: temperature
     enum:
       - battery-voltage
@@ -47,12 +49,14 @@ properties:
     type: boolean
     default: true
     description: Is heap data active or not
+    nullable: true
   translation:
     $ref: 'Translation.yaml'
   unit:
     type: string
     description: Physical unit of numeric data
     example: °C
+    nullable: true
   precision:
     type: integer
     format: int64
@@ -60,30 +64,37 @@ properties:
     maximum: +20
     example: 1
     description: Number of decimal places
+    nullable: true
   min:
     type: number
     format: double
     description: Lower limit
     example: null
+    nullable: true
   max:
     type: number
     format: double
     example: null
     description: Upper limit
+    nullable: true
   pipeline:
     $ref: './Pipeline.yaml'
   viewer:
     type: boolean
     default: false
     description: Should the attribute be displayed in viewer
+    nullable: true
   ar:
     type: boolean
     default: false
     description: Should the attribute be displayed in AR
+    nullable: true
   sequence:
     type: integer
     format: int64
     description: Sequence in AR display
+    nullable: true
   virtual:
     type: boolean
     description: Is the attribute virtual or not
+    nullable: true

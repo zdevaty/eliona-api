@@ -10,6 +10,7 @@ properties:
     readOnly: true
     description: The internal Id of dashboard
     example: 4711
+    nullable: true
   name:
     type: string
     description: The name for this dashboard
@@ -26,3 +27,4 @@ properties:
     type: integer
     description: The sequence of the. If not defined, the sequence is automatically incremented.
     example: 42
+    nullable: true

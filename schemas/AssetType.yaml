@@ -15,20 +15,25 @@ properties:
   vendor:
     type: string
     description: The vendor providing assets of this type
+    nullable: true
   model:
     type: string
     description: The specific model of assets of this type
+    nullable: true
   translation:
     $ref: 'Translation.yaml'
   urldoc:
     type: string
     description: The url describing assets of this type
+    nullable: true
   icon:
     type: string
     description: Icon name corresponding to assets of this type
     example: weather
+    nullable: true
   attributes:
     type: array
     description: List of named attributes
+    nullable: true
     items:
       $ref: 'AssetTypeAttribute.yaml'

@@ -15,6 +15,7 @@ properties:
     type: string
     format: date-time
     description: Timestamp of the latest data change
+    nullable: true
   data:
     type: object
     description: Asset payload

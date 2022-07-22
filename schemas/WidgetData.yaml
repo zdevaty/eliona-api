@@ -11,17 +11,21 @@ properties:
     type: string
     description: Key for the data
     example:
+    nullable: true
   assetId:
     type: integer
     description: The master asset id of this widget
     example: 4711
+    nullable: true
   subtype:
     $ref: 'HeapSubtype.yaml'
   attribute:
     type: string
     description: Attribute of the asset type, which heap data should be used
     example: temperature
+    nullable: true
   description:
     type: string
     description: Text for frontend
     example: Temperature
+    nullable: true

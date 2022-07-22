@@ -387,9 +387,11 @@ components:
           type: string
         active:
           description: Is the app active or inactive
+          nullable: true
           type: boolean
         applied:
           description: Is the app already applied or not
+          nullable: true
           type: boolean
       required:
       - appName
@@ -418,6 +420,7 @@ components:
         Id:
           description: The internal Id of asset
           example: 4711
+          nullable: true
           readOnly: true
           type: integer
         projectId:
@@ -431,6 +434,7 @@ components:
         name:
           description: Alternate text for the asset to display in frontend
           example: Station Zurich
+          nullable: true
           type: string
         assetType:
           description: Reference to asset type by name
@@ -439,25 +443,30 @@ components:
           description: Latitude coordinate (GPS) of the asset
           example: 47.3667
           format: double
+          nullable: true
           type: number
         longitude:
           description: Longitude coordinate (GPS) of the asset
           example: 8.55
           format: double
+          nullable: true
           type: number
         description:
           description: Textual description for this asset
           example: "Weather station Zurich, Swiss"
+          nullable: true
           type: string
         parentFunctionalAssetId:
           description: The id of an asset which groups this asset as a functional
             child
           example: 4712
+          nullable: true
           type: integer
         parentLocationalAssetId:
           description: The id of an asset which groups this asset as a locational
             child
           example: 4712
+          nullable: true
           type: integer
         tags:
           description: List of tags associated with asset
@@ -466,12 +475,14 @@ components:
           - location
           items:
             type: string
+          nullable: true
           type: array
         children:
           description: List of children for this asset. This list is filled when the
             `withChildren` parameter is set.
           items:
             $ref: '#/components/schemas/Asset'
+          nullable: true
           readOnly: true
           type: array
       required:
@@ -551,23 +562,28 @@ components:
           type: boolean
         vendor:
           description: The vendor providing assets of this type
+          nullable: true
           type: string
         model:
           description: The specific model of assets of this type
+          nullable: true
           type: string
         translation:
           $ref: '#/components/schemas/Translation'
         urldoc:
           description: The url describing assets of this type
+          nullable: true
           type: string
         icon:
           description: Icon name corresponding to assets of this type
           example: weather
+          nullable: true
           type: string
         attributes:
           description: List of named attributes
           items:
             $ref: '#/components/schemas/AssetTypeAttribute'
+          nullable: true
           type: array
       required:
       - custom
@@ -603,6 +619,7 @@ components:
         assetTypeName:
           description: The unique name for the asset type
           example: weather_location
+          nullable: true
           readOnly: true
           type: string
         name:
@@ -638,16 +655,19 @@ components:
           - watchdog
           - weather
           example: temperature
+          nullable: true
           type: string
         enable:
           default: true
           description: Is heap data active or not
+          nullable: true
           type: boolean
         translation:
           $ref: '#/components/schemas/Translation'
         unit:
           description: Physical unit of numeric data
           example: °C
+          nullable: true
           type: string
         precision:
           description: Number of decimal places
@@ -655,31 +675,38 @@ components:
           format: int64
           maximum: 20
           minimum: -20
+          nullable: true
           type: integer
         min:
           description: Lower limit
           format: double
+          nullable: true
           type: number
         max:
           description: Upper limit
           format: double
+          nullable: true
           type: number
         pipeline:
           $ref: '#/components/schemas/Pipeline'
         viewer:
           default: false
           description: Should the attribute be displayed in viewer
+          nullable: true
           type: boolean
         ar:
           default: false
           description: Should the attribute be displayed in AR
+          nullable: true
           type: boolean
         sequence:
           description: Sequence in AR display
           format: int64
+          nullable: true
           type: integer
         virtual:
           description: Is the attribute virtual or not
+          nullable: true
           type: boolean
       required:
       - name
@@ -702,6 +729,7 @@ components:
         timestamp:
           description: Timestamp of the latest data change
           format: date-time
+          nullable: true
           type: string
         data:
           description: Asset payload
@@ -745,14 +773,17 @@ components:
         icon:
           description: Icon name corresponding to assets used in this widget
           example: weather
+          nullable: true
           type: string
         withAlarm:
           default: false
           description: Show alarms in widget
+          nullable: true
           type: boolean
         withTimespan:
           default: false
           description: Show selection for timespan in widget
+          nullable: true
           type: boolean
         elements:
           description: A list of elements for this widget
@@ -777,6 +808,7 @@ components:
         Id:
           description: The internal Id of dashboard
           example: 4711
+          nullable: true
           readOnly: true
           type: integer
         name:
@@ -795,6 +827,7 @@ components:
           description: "The sequence of the. If not defined, the sequence is automatically\
             \ incremented."
           example: 42
+          nullable: true
           type: integer
       required:
       - name
@@ -837,24 +870,28 @@ components:
         timespan:
           description: The number of days if the widget type uses timespan
           example: 7
+          nullable: true
           type: integer
         details:
           description: Detailed configuration depending on the widget type
+          nullable: true
           type: object
         assetId:
           description: The master asset id of this widget
           example: 4711
+          nullable: true
           type: integer
         data:
           description: List of data for the elements of widget
           items:
             $ref: '#/components/schemas/WidgetData'
+          nullable: true
           required:
           - assetId
           - elementSequence
           type: array
       required:
-      - widgetType
+      - widgetTypeName
       - width
       type: object
     Translation:
@@ -864,6 +901,7 @@ components:
         en: This is an english description
         it: Questa è una descrizione italiana
         fr: Ceci est une description français
+      nullable: true
       properties:
         de:
           description: German text
@@ -897,6 +935,7 @@ components:
         raster:
         - S1
         - S1
+      nullable: true
       properties:
         mode:
           description: Pipeline calculation mode
@@ -987,6 +1026,7 @@ components:
         config:
           description: individual config parameters depending on category
           example: "{ \"variant\": \"todayAndForecast\" }"
+          nullable: true
           type: object
       required:
       - category
@@ -1008,20 +1048,24 @@ components:
           type: integer
         key:
           description: Key for the data
+          nullable: true
           type: string
         assetId:
           description: The master asset id of this widget
           example: 4711
+          nullable: true
           type: integer
         subtype:
           $ref: '#/components/schemas/HeapSubtype'
         attribute:
           description: "Attribute of the asset type, which heap data should be used"
           example: temperature
+          nullable: true
           type: string
         description:
           description: Text for frontend
           example: Temperature
+          nullable: true
           type: string
       required:
       - elementSequence

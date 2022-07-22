@@ -1,7 +1,7 @@
 type: object
 description: A widget on a frontend dashboard
 required:
-  - widgetType
+  - widgetTypeName
   - width
 properties:
   widgetTypeName:
@@ -19,16 +19,20 @@ properties:
     type: integer
     description: The number of days if the widget type uses timespan
     example: 7
+    nullable: true
   details:
     type: object
     description: Detailed configuration depending on the widget type
+    nullable: true
   assetId:
     type: integer
     description: The master asset id of this widget
     example: 4711
+    nullable: true
   data:
     type: array
     description: List of data for the elements of widget
+    nullable: true
     required:
       - elementSequence
       - assetId

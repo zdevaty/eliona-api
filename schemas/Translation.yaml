@@ -1,5 +1,6 @@
 type: object
 description: Readable text to display in frontend
+nullable: true
 properties:
   de:
     type: string
