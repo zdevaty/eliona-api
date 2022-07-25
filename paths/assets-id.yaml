@@ -9,6 +9,7 @@ get:
     - name: withChildren
       description: Gets also the the children hierarchy
       in: query
+      required: true
       schema:
         type: boolean
         default: false

@@ -188,6 +188,7 @@ paths:
       - description: Gets also the the children hierarchy
         in: query
         name: withChildren
+        required: true
         schema:
           default: false
           type: boolean
