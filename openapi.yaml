@@ -943,6 +943,7 @@ components:
           - avg
           - sum
           - cusum
+          nullable: true
           type: string
         raster:
           description: Pipeline calculation intervals
