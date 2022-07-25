@@ -25,6 +25,7 @@ properties:
     example: 42
   sequence:
     type: integer
-    description: The sequence of the. If not defined, the sequence is automatically incremented.
-    example: 42
+    description: The sequence of the dashboard
+    example: 1
+    default: 0
     nullable: true

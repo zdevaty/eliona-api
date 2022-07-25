@@ -799,7 +799,7 @@ components:
     Dashboard:
       description: A frontend dashboard
       example:
-        sequence: 42
+        sequence: 1
         name: Weather info
         Id: 4711
         projectId: "99"
@@ -824,9 +824,9 @@ components:
           example: "42"
           type: string
         sequence:
-          description: "The sequence of the. If not defined, the sequence is automatically\
-            \ incremented."
-          example: 42
+          default: 0
+          description: The sequence of the dashboard
+          example: 1
           nullable: true
           type: integer
       required:
