@@ -8,6 +8,7 @@ properties:
       - avg
       - sum
       - cusum
+    nullable: true
     description: Pipeline calculation mode
   raster:
     type: array
