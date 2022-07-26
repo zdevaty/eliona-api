@@ -1,0 +1,30 @@
+#  ______ _ _
+# |  ____| (_)
+# | |__  | |_  ___  _ __   __ _
+# |  __| | | |/ _ \| '_ \ / _` |
+# | |____| | | (_) | | | | (_| |
+# |______|_|_|\___/|_| |_|\__,_|
+#
+name: $(Build.DefinitionName)_$(Build.SourceBranchName)_$(Date:yyyyMMdd)
+
+trigger:
+  batch: true
+  tags:
+    include:
+      - 'v*'
+  branches:
+    include:
+      - develop
+
+resources:
+  repositories:
+    - repository: pipeline
+      type: git
+      name: utils/pipeline
+jobs:
+- job: Build_and_push
+  steps:
+  - template: "steps/docker-build-push-docker-hub.yml@pipeline"
+    parameters:
+      repository: db-mock
+      file: ./mock/db/Dockerfile
