@@ -353,7 +353,7 @@ paths:
   /alarms/{alarm-ids}:
     get:
       description: Gets information about an asset.
-      operationId: getAssetById
+      operationId: getAlarmsByIds
       parameters:
       - description: The id of the asset
         example: 4711
