@@ -5,7 +5,7 @@ post:
   description: Create a new widget an ad this to a dashboard
   operationId: postDashboardWidget
   parameters:
-    - $ref: '../parameters/DashboardId.yaml'
+    - $ref: '../parameters/dashboard-id.yaml'
   requestBody:
     required: true
     content:

@@ -1,0 +1,33 @@
+get:
+  tags:
+    - Alarms
+  summary: Information about alarm rules
+  description: Gets information about alarm rules.
+  operationId: getAlarmRules
+  parameters:
+    - $ref: '../parameters/withAsset.yaml'
+  responses:
+    200:
+      description: Successfully returned a list of alarms
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/Alarm.yaml'
+
+put:
+  tags:
+    - Alarms
+  summary: Create or update an alarm rule
+  description: Create a new alarm rule or update an alarm rule if already exists
+  operationId: putAlarmRule
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Alarm.yaml'
+  responses:
+    200:
+      description: Successfully created a new or updated an existing alarm rule

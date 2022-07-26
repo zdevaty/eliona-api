@@ -5,8 +5,8 @@ get:
   description: Gets information about a patch for an app.
   operationId: getPatchByName
   parameters:
-    - $ref: '../parameters/AppName.yaml'
-    - $ref: '../parameters/PatchName.yaml'
+    - $ref: '../parameters/app-name.yaml'
+    - $ref: '../parameters/patch-name.yaml'
   responses:
     200:
       description: Successfully returned information about a patch for an app
@@ -22,8 +22,8 @@ patch:
   description: Updates properties of a patch for an app.
   operationId: patchPatchByName
   parameters:
-    - $ref: '../parameters/AppName.yaml'
-    - $ref: '../parameters/PatchName.yaml'
+    - $ref: '../parameters/app-name.yaml'
+    - $ref: '../parameters/patch-name.yaml'
     - name: apply
       description: "Marks that the patch is now applied. Further request to get patch information returns { \"applied\": true }"
       in: query

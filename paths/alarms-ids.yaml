@@ -1,11 +1,14 @@
 get:
   tags:
     - Alarms
-  summary: Information about an asset
-  description: Gets information about an asset.
+  summary: Information about alarms
+  description: Gets information about alarms for given ids.
   operationId: getAlarmsByIds
   parameters:
-    - $ref: '../parameters/AlarmIds.yaml'
+    - $ref: '../parameters/alarm-rule-ids.yaml'
+    - $ref: '../parameters/historic.yaml'
+    - $ref: '../parameters/withAsset.yaml'
+    - $ref: '../parameters/withAlarmRule.yaml'
   responses:
     200:
       description: Successfully returned a list of alarms
@@ -15,3 +18,29 @@ get:
             type: array
             items:
               $ref: '../schemas/Alarm.yaml'
+
+patch:
+  tags:
+    - Alarms
+  summary: Update alarms
+  description: Update properties of alarms for given ids.
+  operationId: patchAlarmsByIds
+  parameters:
+    - $ref: '../parameters/alarm-rule-ids.yaml'
+    - name: acknowledged
+      in: query
+      required: false
+      description: Marks the alarm as acknowledged by setting the acknowledge timestamp to now.
+      schema:
+        type: boolean
+        enum:
+          - true
+    - name: acknowledgeText
+      in: query
+      required: false
+      description: Sets the text for acknowledgement
+      schema:
+        type: string
+  responses:
+    200:
+      description: Successfully updated the alarms

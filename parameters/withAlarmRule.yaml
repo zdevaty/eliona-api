@@ -1,0 +1,6 @@
+name: withAlarmRule
+description: Gets also the the rule associated with an alarm
+in: query
+schema:
+  type: boolean
+  default: false

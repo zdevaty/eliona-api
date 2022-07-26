@@ -1,18 +1,18 @@
 type: object
 description: An alarm
 required:
-  - asset_id
+  - ruleId
+  - assetId
   - subtype
   - priority
-  - acknowledged
+  - requiresAcknowledge
   - timestamp
   - occurrences
 properties:
-  id:
+  ruleId:
     type: integer
-    description: The id of the alarm
+    description: The id of the corresponding rule
     example: 123
-    nullable: true
   assetId:
     type: integer
     description: ID of the corresponding asset
@@ -28,16 +28,16 @@ properties:
     type: integer
     description: The priority of the alarm
     example: 2
+  requiresAcknowledge:
+    type: boolean
+    description: Requires the alarm an acknowledgment
+    default: false
   value:
     type: number
     format: double
     description: The value which triggers the alarm
     example: 38.7
     nullable: true
-  acknowledged:
-    type: boolean
-    description: Is the alarm acknowledged or not
-    default: false
   timestamp:
     type: string
     format: date-time
@@ -56,6 +56,10 @@ properties:
     type: integer
     description: How often this alarm is triggered
     example: 1
+  acknowledgeText:
+    type: string
+    description: Text of acknowledgement
+    nullable: true
   acknowledgeUserId:
     type: string
     format: date-time
@@ -65,3 +69,5 @@ properties:
     $ref: 'Translation.yaml'
   asset:
     $ref: 'Asset.yaml'
+  rule:
+    $ref: 'AlarmRule.yaml'

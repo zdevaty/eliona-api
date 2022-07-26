@@ -5,14 +5,8 @@ get:
   description: Gets information about an asset.
   operationId: getAssetById
   parameters:
-    - $ref: '../parameters/AssetId.yaml'
-    - name: withChildren
-      description: Gets also the the children hierarchy
-      in: query
-      required: true
-      schema:
-        type: boolean
-        default: false
+    - $ref: '../parameters/asset-id.yaml'
+    - $ref: '../parameters/withChildren.yaml'
   responses:
     200:
       description: Successfully returned the asset by id.

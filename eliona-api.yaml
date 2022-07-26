@@ -58,7 +58,19 @@ paths:
   /dashboards/{dashboard-id}/widgets:
     $ref: './paths/dashboards-id-widgets.yaml'
 
-  /alarms/{alarm-ids}:
+  /alarm-rules:
+    $ref: './paths/alarm-rules.yaml'
+
+  /alarm-rules/{rule-id}:
+    $ref: './paths/alarm-rules-id.yaml'
+
+  /alarms:
+    $ref: './paths/alarms.yaml'
+
+  /alarms/highest:
+    $ref: './paths/alarms-highest.yaml'
+
+  /alarms/{rule-ids}:
     $ref: './paths/alarms-ids.yaml'
 
 tags:

@@ -1,6 +1,6 @@
-name: alarm-ids
+name: alarm-rule-ids
 in: path
-description: The id of the asset
+description: The ids of alarm rules
 example: 4711
 required: true
 schema:

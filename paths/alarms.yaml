@@ -1,0 +1,20 @@
+get:
+  tags:
+    - Alarms
+  summary: Information about alarms
+  description: Gets information about alarms
+  operationId: getAlarms
+  parameters:
+    - $ref: '../parameters/projectId.yaml'
+    - $ref: '../parameters/historic.yaml'
+    - $ref: '../parameters/withAsset.yaml'
+    - $ref: '../parameters/withAlarmRule.yaml'
+  responses:
+    200:
+      description: Successfully returned a list of alarms
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/Alarm.yaml'

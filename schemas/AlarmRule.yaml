@@ -1,0 +1,88 @@
+type: object
+description: Rule for an alarm
+nullable: true
+required:
+  - assetId
+  - subtype
+  - attribute
+  - enable
+  - priority
+  - requiresAcknowledge
+properties:
+  id:
+    type: integer
+    description: The id of the rule
+    example: 123
+    nullable: true
+  assetId:
+    type: integer
+    description: ID of the corresponding asset
+    example: 4711
+  subtype:
+    $ref: 'HeapSubtype.yaml'
+  attribute:
+    type: string
+    description: Name of the attribute of the asset type
+    example: temperature
+    nullable: true
+  enable:
+    type: boolean
+    description: Rule enabled or not
+    default: true
+  priority:
+    type: integer
+    description: The priority of the alarm. The higher this value the higher the priority.
+    example: 2
+    enum:
+      - 1
+      - 2
+      - 3
+  requiresAcknowledge:
+    type: boolean
+    description: Requires the alarm an acknowledgment
+    default: false
+  equal:
+    type: number
+    format: double
+    description: Triggers alarm if attribute value equals this value
+    example: 38.7
+    nullable: true
+  low:
+    type: number
+    format: double
+    description: Triggers alarm if attribute value is less than value
+    example: 38.7
+    nullable: true
+  high:
+    type: number
+    format: double
+    description: Triggers alarm if attribute value is greater than value
+    example: 38.7
+    nullable: true
+  message:
+    $ref: 'Translation.yaml'
+  tags:
+    type: array
+    description: List of associated tags
+    nullable: true
+    items:
+      type: string
+  subject:
+    type: string
+    description: The subject for the alarm
+    nullable: true
+  urldoc:
+    type: string
+    description: The url describing the alarm
+    nullable: true
+  notifyOn:
+    type: string
+    description: Notification
+    nullable: true
+  dontMask:
+    type: boolean
+    description: Do not mask
+    default: false
+    nullable: true
+  asset:
+    $ref: 'Asset.yaml'

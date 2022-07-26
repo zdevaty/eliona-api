@@ -1,0 +1,18 @@
+get:
+  tags:
+    - Alarms
+  summary: Information about an alarm rule
+  description: Gets information about an alarm rule.
+  operationId: getAlarmRuleById
+  parameters:
+    - $ref: '../parameters/alarm-rule-id.yaml'
+    - $ref: '../parameters/withAsset.yaml'
+  responses:
+    200:
+      description: Successfully returned an alarm rule
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Alarm.yaml'
+    404:
+      description: Alarm rule with id not found
