@@ -3,7 +3,7 @@ get:
     - Alarms
   summary: Information about an asset
   description: Gets information about an asset.
-  operationId: getAssetById
+  operationId: getAlarmsByIds
   parameters:
     - $ref: '../parameters/AlarmIds.yaml'
   responses:
