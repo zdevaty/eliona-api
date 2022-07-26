@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Alarms
+  summary: Information about an asset
+  description: Gets information about an asset.
+  operationId: getAssetById
+  parameters:
+    - $ref: '../parameters/AlarmIds.yaml'
+  responses:
+    200:
+      description: Successfully returned a list of alarms
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/Alarm.yaml'

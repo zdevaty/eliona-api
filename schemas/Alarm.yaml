@@ -1,0 +1,67 @@
+type: object
+description: An alarm
+required:
+  - asset_id
+  - subtype
+  - priority
+  - acknowledged
+  - timestamp
+  - occurrences
+properties:
+  id:
+    type: integer
+    description: The id of the alarm
+    example: 123
+    nullable: true
+  assetId:
+    type: integer
+    description: ID of the corresponding asset
+    example: 4711
+  subtype:
+    $ref: 'HeapSubtype.yaml'
+  attribute:
+    type: string
+    description: Name of the attribute of the asset type
+    example: temperature
+    nullable: true
+  priority:
+    type: integer
+    description: The priority of the alarm
+    example: 2
+  value:
+    type: number
+    format: double
+    description: The value which triggers the alarm
+    example: 38.7
+    nullable: true
+  acknowledged:
+    type: boolean
+    description: Is the alarm acknowledged or not
+    default: false
+  timestamp:
+    type: string
+    format: date-time
+    description: Timestamp of the latest data change
+  goneTimestamp:
+    type: string
+    format: date-time
+    description: Timestamp of the latest data change
+    nullable: true
+  acknowledgeTimestamp:
+    type: string
+    format: date-time
+    description: Timestamp of the latest data change
+    nullable: true
+  occurrences:
+    type: integer
+    description: How often this alarm is triggered
+    example: 1
+  acknowledgeUserId:
+    type: string
+    format: date-time
+    description: Timestamp of the latest data change
+    nullable: true
+  message:
+    $ref: 'Translation.yaml'
+  asset:
+    $ref: 'Asset.yaml'

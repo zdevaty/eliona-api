@@ -1,5 +1,6 @@
 type: object
 description: An asset
+nullable: true
 required:
   - projectId
   - globalAssetIdentifier

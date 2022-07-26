@@ -58,7 +58,14 @@ paths:
   /dashboards/{dashboard-id}/widgets:
     $ref: './paths/dashboards-id-widgets.yaml'
 
+  /alarms/{alarm-ids}:
+    $ref: './paths/alarms-ids.yaml'
+
 tags:
+  - name: Alarms
+    description: Handle alarms
+    externalDocs:
+      url: https://www.eliona.io
   - name: Apps
     description: Handle apps
     externalDocs:

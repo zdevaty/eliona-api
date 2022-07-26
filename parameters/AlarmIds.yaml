@@ -1,0 +1,9 @@
+name: alarm-ids
+in: path
+description: The id of the asset
+example: 4711
+required: true
+schema:
+  type: array
+  items:
+    type: integer

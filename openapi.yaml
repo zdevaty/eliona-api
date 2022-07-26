@@ -10,6 +10,10 @@ externalDocs:
 servers:
 - url: http://api.eliona.io/v2
 tags:
+- description: Handle alarms
+  externalDocs:
+    url: https://www.eliona.io
+  name: Alarms
 - description: Handle apps
   externalDocs:
     url: https://www.eliona.io
@@ -346,6 +350,32 @@ paths:
       summary: Adds widget to dashboard
       tags:
       - Dashboards
+  /alarms/{alarm-ids}:
+    get:
+      description: Gets information about an asset.
+      operationId: getAssetById
+      parameters:
+      - description: The id of the asset
+        example: 4711
+        in: path
+        name: alarm-ids
+        required: true
+        schema:
+          items:
+            type: integer
+          type: array
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Alarm'
+                type: array
+          description: Successfully returned a list of alarms
+      summary: Information about an asset
+      tags:
+      - Alarms
 components:
   schemas:
     App:
@@ -417,6 +447,7 @@ components:
         tags:
         - weather
         - location
+      nullable: true
       properties:
         Id:
           description: The internal Id of asset
@@ -895,6 +926,109 @@ components:
       - widgetTypeName
       - width
       type: object
+    Alarm:
+      description: An alarm
+      example:
+        occurrences: 1
+        acknowledged: false
+        priority: 2
+        message:
+          de: Das ist eine deutsche Beschreibung
+          en: This is an english description
+          it: Questa è una descrizione italiana
+          fr: Ceci est une description français
+        goneTimestamp: 2000-01-23T04:56:07.000+00:00
+        acknowledgeTimestamp: 2000-01-23T04:56:07.000+00:00
+        subtype: null
+        assetId: 4711
+        acknowledgeUserId: 2000-01-23T04:56:07.000+00:00
+        id: 123
+        attribute: temperature
+        asset:
+          globalAssetIdentifier: zurich_swiss
+          children:
+          - null
+          - null
+          latitude: 47.3667
+          name: Station Zurich
+          description: "Weather station Zurich, Swiss"
+          parentFunctionalAssetId: 4712
+          Id: 4711
+          projectId: "99"
+          assetType: assetType
+          longitude: 8.55
+          parentLocationalAssetId: 4712
+          tags:
+          - weather
+          - location
+        value: 38.7
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: The id of the alarm
+          example: 123
+          nullable: true
+          type: integer
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          type: integer
+        subtype:
+          $ref: '#/components/schemas/HeapSubtype'
+        attribute:
+          description: Name of the attribute of the asset type
+          example: temperature
+          nullable: true
+          type: string
+        priority:
+          description: The priority of the alarm
+          example: 2
+          type: integer
+        value:
+          description: The value which triggers the alarm
+          example: 38.7
+          format: double
+          nullable: true
+          type: number
+        acknowledged:
+          default: false
+          description: Is the alarm acknowledged or not
+          type: boolean
+        timestamp:
+          description: Timestamp of the latest data change
+          format: date-time
+          type: string
+        goneTimestamp:
+          description: Timestamp of the latest data change
+          format: date-time
+          nullable: true
+          type: string
+        acknowledgeTimestamp:
+          description: Timestamp of the latest data change
+          format: date-time
+          nullable: true
+          type: string
+        occurrences:
+          description: How often this alarm is triggered
+          example: 1
+          type: integer
+        acknowledgeUserId:
+          description: Timestamp of the latest data change
+          format: date-time
+          nullable: true
+          type: string
+        message:
+          $ref: '#/components/schemas/Translation'
+        asset:
+          $ref: '#/components/schemas/Asset'
+      required:
+      - acknowledged
+      - asset_id
+      - occurrences
+      - priority
+      - subtype
+      - timestamp
+      type: object
     Translation:
       description: Readable text to display in frontend
       example:
@@ -1060,7 +1194,7 @@ components:
         subtype:
           $ref: '#/components/schemas/HeapSubtype'
         attribute:
-          description: "Attribute of the asset type, which heap data should be used"
+          description: Name of the attribute of the asset type
           example: temperature
           nullable: true
           type: string

@@ -21,7 +21,7 @@ properties:
     $ref: 'HeapSubtype.yaml'
   attribute:
     type: string
-    description: Attribute of the asset type, which heap data should be used
+    description: Name of the attribute of the asset type
     example: temperature
     nullable: true
   description:

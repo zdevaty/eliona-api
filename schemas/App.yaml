@@ -1,4 +1,3 @@
-# /app/{app-name}
 type: object
 description: An app
 required:
