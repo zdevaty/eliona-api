@@ -1,7 +1,7 @@
 get:
   tags:
     - Alarms
-  summary: Information about alarms
+  summary: Information about alarms history
   description: Gets information about alarms over the entire time. This includes current alarms and alarms, which are already processed.
   operationId: getAlarmsHistory
   parameters:

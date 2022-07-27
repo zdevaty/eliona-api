@@ -527,7 +527,7 @@ paths:
                   $ref: '#/components/schemas/Alarm'
                 type: array
           description: Successfully returned a list of alarms
-      summary: Information about alarms
+      summary: Information about alarms history
       tags:
       - Alarms
   /alarms/{rule-ids}:
