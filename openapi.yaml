@@ -195,7 +195,7 @@ paths:
           type: integer
       - description: List of referenced data to load. Each entry defines the full
           qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
-        explode: true
+        explode: false
         in: query
         name: expansions
         schema:
@@ -222,7 +222,7 @@ paths:
       parameters:
       - description: List of referenced data to load. Each entry defines the full
           qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
-        explode: true
+        explode: false
         in: query
         name: expansions
         schema:
@@ -367,7 +367,7 @@ paths:
       parameters:
       - description: List of referenced data to load. Each entry defines the full
           qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
-        explode: true
+        explode: false
         in: query
         name: expansions
         schema:
@@ -416,7 +416,7 @@ paths:
           type: integer
       - description: List of referenced data to load. Each entry defines the full
           qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
-        explode: true
+        explode: false
         in: query
         name: expansions
         schema:
@@ -449,7 +449,7 @@ paths:
           type: string
       - description: List of referenced data to load. Each entry defines the full
           qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
-        explode: true
+        explode: false
         in: query
         name: expansions
         schema:
@@ -483,7 +483,7 @@ paths:
           type: string
       - description: List of referenced data to load. Each entry defines the full
           qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
-        explode: true
+        explode: false
         in: query
         name: expansions
         schema:
@@ -517,7 +517,7 @@ paths:
           type: string
       - description: List of referenced data to load. Each entry defines the full
           qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
-        explode: true
+        explode: false
         in: query
         name: expansions
         schema:
@@ -551,7 +551,7 @@ paths:
           type: integer
       - description: List of referenced data to load. Each entry defines the full
           qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
-        explode: true
+        explode: false
         in: query
         name: expansions
         schema:
