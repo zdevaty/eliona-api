@@ -6,4 +6,6 @@ required: true
 schema:
   type: array
   items:
-    type: integer
+    # Using string instead of integer, because go server code generation has a bug:
+    # https://github.com/OpenAPITools/openapi-generator/issues/13029
+    type: string

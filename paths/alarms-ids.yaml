@@ -27,7 +27,7 @@ patch:
     - $ref: '../parameters/alarm-rule-ids.yaml'
     - name: acknowledged
       in: query
-      required: false
+      required: true
       description: Marks the alarm as acknowledged by setting the acknowledge timestamp to now.
       schema:
         type: boolean

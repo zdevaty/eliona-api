@@ -16,7 +16,7 @@ openapi: 3.0.3
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 info:
-  version: 2.0.1
+  version: 2.1.0
   title: Eliona API
   description: API to access Eliona Smart Building Assistant
   termsOfService: https://www.eliona.io/v2

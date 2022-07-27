@@ -3,7 +3,7 @@ info:
   description: API to access Eliona Smart Building Assistant
   termsOfService: https://www.eliona.io/v2
   title: Eliona API
-  version: 2.0.1
+  version: 2.1.0
 externalDocs:
   description: Find out more about Eliona
   url: https://www.eliona.io
@@ -549,7 +549,7 @@ paths:
         required: true
         schema:
           items:
-            type: integer
+            type: string
           type: array
       - description: List of referenced data to load. Each entry defines the full
           qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
@@ -584,13 +584,13 @@ paths:
         required: true
         schema:
           items:
-            type: integer
+            type: string
           type: array
       - description: Marks the alarm as acknowledged by setting the acknowledge timestamp
           to now.
         in: query
         name: acknowledged
-        required: false
+        required: true
         schema:
           enum:
           - true
