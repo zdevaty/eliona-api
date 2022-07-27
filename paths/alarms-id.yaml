@@ -3,7 +3,7 @@ get:
     - Alarms
   summary: Information about alarm
   description: Gets information about alarm.
-  operationId: getAlarmsById
+  operationId: getAlarmById
   parameters:
     - $ref: '../parameters/alarm-rule-id.yaml'
     - $ref: '../parameters/expansions.yaml'
@@ -20,7 +20,7 @@ patch:
     - Alarms
   summary: Update alarm
   description: Update properties of alarm for given id.
-  operationId: patchAlarmsById
+  operationId: patchAlarmById
   parameters:
     - $ref: '../parameters/alarm-rule-id.yaml'
     - name: acknowledged
