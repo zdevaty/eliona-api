@@ -6,7 +6,6 @@ required:
   - assetId
   - subtype
   - priority
-  - requiresAcknowledge
   - timestamp
   - occurrences
 properties:

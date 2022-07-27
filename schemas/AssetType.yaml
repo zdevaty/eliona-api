@@ -2,7 +2,6 @@ type: object
 description: A type of assets
 required:
   - name
-  - custom
 properties:
   name:
     type: string

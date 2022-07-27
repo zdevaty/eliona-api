@@ -5,9 +5,7 @@ required:
   - assetId
   - subtype
   - attribute
-  - enable
   - priority
-  - requiresAcknowledge
 properties:
   id:
     type: integer
