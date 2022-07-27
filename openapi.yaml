@@ -381,7 +381,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/Alarm'
+                  $ref: '#/components/schemas/AlarmRule'
                 type: array
           description: Successfully returned a list of alarms
       summary: Information about alarm rules
@@ -394,7 +394,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Alarm'
+              $ref: '#/components/schemas/AlarmRule'
         required: true
       responses:
         "200":
@@ -429,7 +429,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Alarm'
+                $ref: '#/components/schemas/AlarmRule'
           description: Successfully returned an alarm rule
         "404":
           description: Alarm rule with id not found
@@ -1150,6 +1150,136 @@ components:
       - widgetTypeName
       - width
       type: object
+    AlarmRule:
+      description: Rule for an alarm
+      example:
+        requiresAcknowledge: false
+        subject: subject
+        urldoc: urldoc
+        priority: 2
+        message:
+          de: Das ist eine deutsche Beschreibung
+          en: This is an english description
+          it: Questa è una descrizione italiana
+          fr: Ceci est une description français
+        tags:
+        - tags
+        - tags
+        equal: 38.7
+        high: 38.7
+        subtype: null
+        low: 38.7
+        assetId: 4711
+        enable: true
+        notifyOn: notifyOn
+        dontMask: false
+        id: 123
+        attribute: temperature
+        assetInfo:
+          globalAssetIdentifier: zurich_swiss
+          latitude: 47.3667
+          name: Station Zurich
+          description: "Weather station Zurich, Swiss"
+          parentFunctionalAssetId: 4712
+          Id: 4711
+          projectId: "99"
+          childrenInfo:
+          - null
+          - null
+          assetType: assetType
+          longitude: 8.55
+          parentLocationalAssetId: 4712
+          tags:
+          - weather
+          - location
+      nullable: true
+      properties:
+        id:
+          description: The id of the rule
+          example: 123
+          nullable: true
+          type: integer
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          type: integer
+        subtype:
+          $ref: '#/components/schemas/HeapSubtype'
+        attribute:
+          description: Name of the attribute of the asset type
+          example: temperature
+          nullable: true
+          type: string
+        enable:
+          default: true
+          description: Rule enabled or not
+          type: boolean
+        priority:
+          description: The priority of the alarm. The higher this value the higher
+            the priority.
+          enum:
+          - 1
+          - 2
+          - 3
+          example: 2
+          type: integer
+        requiresAcknowledge:
+          default: false
+          description: Requires the alarm an acknowledgment
+          type: boolean
+        equal:
+          description: Triggers alarm if attribute value equals this value
+          example: 38.7
+          format: double
+          nullable: true
+          type: number
+        low:
+          description: Triggers alarm if attribute value is less than value
+          example: 38.7
+          format: double
+          nullable: true
+          type: number
+        high:
+          description: Triggers alarm if attribute value is greater than value
+          example: 38.7
+          format: double
+          nullable: true
+          type: number
+        message:
+          $ref: '#/components/schemas/Translation'
+        tags:
+          description: List of associated tags
+          items:
+            type: string
+          nullable: true
+          type: array
+        subject:
+          description: The subject for the alarm
+          nullable: true
+          type: string
+        urldoc:
+          description: The url describing the alarm
+          nullable: true
+          type: string
+        notifyOn:
+          description: Notification
+          nullable: true
+          type: string
+        dontMask:
+          default: false
+          description: Do not mask
+          nullable: true
+          type: boolean
+        assetInfo:
+          $ref: '#/components/schemas/Asset'
+      required:
+      - assetId
+      - attribute
+      - enable
+      - priority
+      - requiresAcknowledge
+      - subtype
+      type: object
     Alarm:
       description: An alarm
       example:
@@ -1477,134 +1607,4 @@ components:
           type: string
       required:
       - elementSequence
-      type: object
-    AlarmRule:
-      description: Rule for an alarm
-      example:
-        requiresAcknowledge: false
-        subject: subject
-        urldoc: urldoc
-        priority: 2
-        message:
-          de: Das ist eine deutsche Beschreibung
-          en: This is an english description
-          it: Questa è una descrizione italiana
-          fr: Ceci est une description français
-        tags:
-        - tags
-        - tags
-        equal: 38.7
-        high: 38.7
-        subtype: null
-        low: 38.7
-        assetId: 4711
-        enable: true
-        notifyOn: notifyOn
-        dontMask: false
-        id: 123
-        attribute: temperature
-        assetInfo:
-          globalAssetIdentifier: zurich_swiss
-          latitude: 47.3667
-          name: Station Zurich
-          description: "Weather station Zurich, Swiss"
-          parentFunctionalAssetId: 4712
-          Id: 4711
-          projectId: "99"
-          childrenInfo:
-          - null
-          - null
-          assetType: assetType
-          longitude: 8.55
-          parentLocationalAssetId: 4712
-          tags:
-          - weather
-          - location
-      nullable: true
-      properties:
-        id:
-          description: The id of the rule
-          example: 123
-          nullable: true
-          type: integer
-        assetId:
-          description: ID of the corresponding asset
-          example: 4711
-          type: integer
-        subtype:
-          $ref: '#/components/schemas/HeapSubtype'
-        attribute:
-          description: Name of the attribute of the asset type
-          example: temperature
-          nullable: true
-          type: string
-        enable:
-          default: true
-          description: Rule enabled or not
-          type: boolean
-        priority:
-          description: The priority of the alarm. The higher this value the higher
-            the priority.
-          enum:
-          - 1
-          - 2
-          - 3
-          example: 2
-          type: integer
-        requiresAcknowledge:
-          default: false
-          description: Requires the alarm an acknowledgment
-          type: boolean
-        equal:
-          description: Triggers alarm if attribute value equals this value
-          example: 38.7
-          format: double
-          nullable: true
-          type: number
-        low:
-          description: Triggers alarm if attribute value is less than value
-          example: 38.7
-          format: double
-          nullable: true
-          type: number
-        high:
-          description: Triggers alarm if attribute value is greater than value
-          example: 38.7
-          format: double
-          nullable: true
-          type: number
-        message:
-          $ref: '#/components/schemas/Translation'
-        tags:
-          description: List of associated tags
-          items:
-            type: string
-          nullable: true
-          type: array
-        subject:
-          description: The subject for the alarm
-          nullable: true
-          type: string
-        urldoc:
-          description: The url describing the alarm
-          nullable: true
-          type: string
-        notifyOn:
-          description: Notification
-          nullable: true
-          type: string
-        dontMask:
-          default: false
-          description: Do not mask
-          nullable: true
-          type: boolean
-        assetInfo:
-          $ref: '#/components/schemas/Asset'
-      required:
-      - assetId
-      - attribute
-      - enable
-      - priority
-      - requiresAcknowledge
-      - subtype
       type: object

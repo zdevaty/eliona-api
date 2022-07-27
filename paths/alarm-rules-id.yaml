@@ -13,6 +13,6 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../schemas/Alarm.yaml'
+            $ref: '../schemas/AlarmRule.yaml'
     404:
       description: Alarm rule with id not found

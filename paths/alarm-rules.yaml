@@ -14,7 +14,7 @@ get:
           schema:
             type: array
             items:
-              $ref: '../schemas/Alarm.yaml'
+              $ref: '../schemas/AlarmRule.yaml'
 
 put:
   tags:
@@ -27,7 +27,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: '../schemas/Alarm.yaml'
+          $ref: '../schemas/AlarmRule.yaml'
   responses:
     200:
       description: Successfully created a new or updated an existing alarm rule
