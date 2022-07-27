@@ -84,5 +84,5 @@ properties:
     description: Do not mask
     default: false
     nullable: true
-  asset:
+  assetInfo:
     $ref: 'Asset.yaml'

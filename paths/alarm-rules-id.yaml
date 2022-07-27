@@ -6,7 +6,7 @@ get:
   operationId: getAlarmRuleById
   parameters:
     - $ref: '../parameters/alarm-rule-id.yaml'
-    - $ref: '../parameters/withAsset.yaml'
+    - $ref: '../parameters/expansions.yaml'
   responses:
     200:
       description: Successfully returned an alarm rule

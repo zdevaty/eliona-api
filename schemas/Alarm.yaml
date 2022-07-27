@@ -1,5 +1,6 @@
 type: object
 description: An alarm
+nullable: true
 required:
   - ruleId
   - assetId
@@ -67,7 +68,14 @@ properties:
     nullable: true
   message:
     $ref: 'Translation.yaml'
-  asset:
+  assetInfo:
     $ref: 'Asset.yaml'
-  rule:
+  ruleInfo:
     $ref: 'AlarmRule.yaml'
+  historyInfo:
+    type: array
+    readOnly: true
+    nullable: true
+    description: List of all alarms
+    items:
+

@@ -70,6 +70,9 @@ paths:
   /alarms/highest:
     $ref: './paths/alarms-highest.yaml'
 
+  /alarms/history:
+    $ref: './paths/alarms-history.yaml'
+
   /alarms/{rule-ids}:
     $ref: './paths/alarms-ids.yaml'
 

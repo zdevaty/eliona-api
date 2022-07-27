@@ -1,7 +1,0 @@
-name: historic
-description: Include historical data in result or not
-in: query
-required: false
-schema:
-  type: boolean
-  default: false

@@ -6,7 +6,7 @@ get:
   operationId: getAssetById
   parameters:
     - $ref: '../parameters/asset-id.yaml'
-    - $ref: '../parameters/withChildren.yaml'
+    - $ref: '../parameters/expansions.yaml'
   responses:
     200:
       description: Successfully returned the asset by id.

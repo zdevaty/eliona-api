@@ -1,6 +1,0 @@
-name: withChildren
-description: Gets also the the children hierarchy for assets
-in: query
-schema:
-  type: boolean
-  default: false

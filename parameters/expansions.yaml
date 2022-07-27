@@ -1,0 +1,9 @@
+name: expansions
+description: List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
+in: query
+style: form
+explode: true
+schema:
+  type: array
+  items:
+    type: string

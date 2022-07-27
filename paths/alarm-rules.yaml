@@ -5,7 +5,7 @@ get:
   description: Gets information about alarm rules.
   operationId: getAlarmRules
   parameters:
-    - $ref: '../parameters/withAsset.yaml'
+    - $ref: '../parameters/expansions.yaml'
   responses:
     200:
       description: Successfully returned a list of alarms

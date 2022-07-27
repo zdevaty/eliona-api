@@ -6,9 +6,7 @@ get:
   operationId: getHighestAlarms
   parameters:
     - $ref: '../parameters/projectId.yaml'
-    - $ref: '../parameters/historic.yaml'
-    - $ref: '../parameters/withAsset.yaml'
-    - $ref: '../parameters/withAlarmRule.yaml'
+    - $ref: '../parameters/expansions.yaml'
   responses:
     200:
       description: Successfully returned a list of most prioritized alarms

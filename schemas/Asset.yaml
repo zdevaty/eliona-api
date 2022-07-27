@@ -64,10 +64,10 @@ properties:
     example:
       - weather
       - location
-  children:
+  childrenInfo:
     type: array
     readOnly: true
     nullable: true
-    description: List of children for this asset. This list is filled when the `withChildren` parameter is set.
+    description: List of children for this asset.
     items:
       $ref: 'Asset.yaml'

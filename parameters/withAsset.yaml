@@ -1,6 +1,0 @@
-name: withAsset
-description: Gets also the associated asset for an alarm or alarm rule
-in: query
-schema:
-  type: boolean
-  default: false
