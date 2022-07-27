@@ -216,13 +216,16 @@ paths:
       description: Returns a list of asset types
       operationId: getAssetTypes
       parameters:
-      - description: Gets also the the list of attributes
+      - description: List of referenced data to load. Each entry defines the full
+          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
+        explode: true
         in: query
-        name: withAttributes
-        required: false
+        name: expansions
         schema:
-          default: false
-          type: boolean
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
