@@ -853,7 +853,6 @@ components:
           nullable: true
           type: array
       required:
-      - custom
       - name
       type: object
     AssetTypeAttribute:
@@ -1058,7 +1057,6 @@ components:
             $ref: '#/components/schemas/WidgetTypeElement'
           type: array
       required:
-      - custom
       - elements
       - name
       - translation
@@ -1286,9 +1284,7 @@ components:
       required:
       - assetId
       - attribute
-      - enable
       - priority
-      - requiresAcknowledge
       - subtype
       type: object
     Alarm:
@@ -1437,7 +1433,6 @@ components:
       - assetId
       - occurrences
       - priority
-      - requiresAcknowledge
       - ruleId
       - subtype
       - timestamp

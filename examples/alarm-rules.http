@@ -1,0 +1,28 @@
+### Insert new alarm rule
+PUT http://localhost:8082/v2/alarm-rules
+Content-Type: application/json
+
+{
+  "assetId": 4711,
+  "subtype": "input",
+  "attribute": "temperature",
+  "enable": true,
+  "priority": 2,
+  "requiresAcknowledge": false,
+  "equal": 38.7,
+  "low": 38.7,
+  "high": 38.7,
+  "message": {
+    "de": "Das ist eine deutsche Beschreibung",
+    "en": "This is an english description",
+    "fr": "Ceci est une description français",
+    "it": "Questa è una descrizione italiana"
+  },
+  "tags": [
+    "string"
+  ],
+  "subject": "string",
+  "urldoc": "string",
+  "notifyOn": "string",
+  "dontMask": false
+}
