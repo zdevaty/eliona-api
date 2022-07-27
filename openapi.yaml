@@ -540,7 +540,7 @@ paths:
   /alarms/{alarm-rule-id}:
     get:
       description: Gets information about alarm.
-      operationId: getAlarmsById
+      operationId: getAlarmById
       parameters:
       - description: The id of the alarm rule
         example: 4711
@@ -571,7 +571,7 @@ paths:
       - Alarms
     patch:
       description: Update properties of alarm for given id.
-      operationId: patchAlarmsById
+      operationId: patchAlarmById
       parameters:
       - description: The id of the alarm rule
         example: 4711
