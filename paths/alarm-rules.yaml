@@ -1,6 +1,6 @@
 get:
   tags:
-    - Alarms
+    - Alarm rules
   summary: Information about alarm rules
   description: Gets information about alarm rules.
   operationId: getAlarmRules
@@ -18,7 +18,7 @@ get:
 
 put:
   tags:
-    - Alarms
+    - Alarm rules
   summary: Create or update an alarm rule
   description: Create a new alarm rule or update an alarm rule if already exists
   operationId: putAlarmRule

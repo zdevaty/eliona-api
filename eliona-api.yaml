@@ -81,6 +81,10 @@ tags:
     description: Handle alarms
     externalDocs:
       url: https://www.eliona.io
+  - name: Alarm rules
+    description: Handle alarm rules
+    externalDocs:
+      url: https://www.eliona.io
   - name: Apps
     description: Handle apps
     externalDocs:

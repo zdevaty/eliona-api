@@ -1,6 +1,6 @@
 get:
   tags:
-    - Alarms
+    - Alarm rules
   summary: Information about an alarm rule
   description: Gets information about an alarm rule.
   operationId: getAlarmRuleById
