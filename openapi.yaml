@@ -14,6 +14,10 @@ tags:
   externalDocs:
     url: https://www.eliona.io
   name: Alarms
+- description: Handle alarm rules
+  externalDocs:
+    url: https://www.eliona.io
+  name: Alarm rules
 - description: Handle apps
   externalDocs:
     url: https://www.eliona.io
@@ -382,7 +386,7 @@ paths:
           description: Successfully returned a list of alarms
       summary: Information about alarm rules
       tags:
-      - Alarms
+      - Alarm rules
     put:
       description: Create a new alarm rule or update an alarm rule if already exists
       operationId: putAlarmRule
@@ -397,7 +401,7 @@ paths:
           description: Successfully created a new or updated an existing alarm rule
       summary: Create or update an alarm rule
       tags:
-      - Alarms
+      - Alarm rules
   /alarm-rules/{rule-id}:
     get:
       description: Gets information about an alarm rule.
@@ -431,7 +435,7 @@ paths:
           description: Alarm rule with id not found
       summary: Information about an alarm rule
       tags:
-      - Alarms
+      - Alarm rules
   /alarms:
     get:
       description: Gets information about alarms
