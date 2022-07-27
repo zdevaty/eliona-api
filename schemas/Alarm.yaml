@@ -72,10 +72,3 @@ properties:
     $ref: 'Asset.yaml'
   ruleInfo:
     $ref: 'AlarmRule.yaml'
-  historyInfo:
-    type: array
-    readOnly: true
-    nullable: true
-    description: List of all alarms
-    items:
-
