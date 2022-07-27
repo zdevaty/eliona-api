@@ -4,4 +4,7 @@ description: The id of the alarm rule
 example: 4711
 required: true
 schema:
+  # Currently there is no option to use integer array as in path parameter, because go server code generation has a bug:
+  # https://github.com/OpenAPITools/openapi-generator/issues/13029
+  # Until the bug is not fixed only simple parameters can be used for rule ids.
   type: integer

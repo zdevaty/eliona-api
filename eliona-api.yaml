@@ -61,7 +61,7 @@ paths:
   /alarm-rules:
     $ref: './paths/alarm-rules.yaml'
 
-  /alarm-rules/{rule-id}:
+  /alarm-rules/{alarm-rule-id}:
     $ref: './paths/alarm-rules-id.yaml'
 
   /alarms:
@@ -73,8 +73,8 @@ paths:
   /alarms/history:
     $ref: './paths/alarms-history.yaml'
 
-  /alarms/{rule-ids}:
-    $ref: './paths/alarms-ids.yaml'
+  /alarms/{alarm-rule-id}:
+    $ref: './paths/alarms-id.yaml'
 
 tags:
   - name: Alarms

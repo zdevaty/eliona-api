@@ -402,7 +402,7 @@ paths:
       summary: Create or update an alarm rule
       tags:
       - Alarm rules
-  /alarm-rules/{rule-id}:
+  /alarm-rules/{alarm-rule-id}:
     get:
       description: Gets information about an alarm rule.
       operationId: getAlarmRuleById
@@ -537,20 +537,18 @@ paths:
       summary: Information about alarms history
       tags:
       - Alarms
-  /alarms/{rule-ids}:
+  /alarms/{alarm-rule-id}:
     get:
-      description: Gets information about alarms for given ids.
-      operationId: getAlarmsByIds
+      description: Gets information about alarm.
+      operationId: getAlarmsById
       parameters:
-      - description: The ids of alarm rules
+      - description: The id of the alarm rule
         example: 4711
         in: path
-        name: alarm-rule-ids
+        name: alarm-rule-id
         required: true
         schema:
-          items:
-            type: string
-          type: array
+          type: integer
       - description: List of referenced data to load. Each entry defines the full
           qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
         explode: true
@@ -566,26 +564,22 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/Alarm'
-                type: array
-          description: Successfully returned a list of alarms
-      summary: Information about alarms
+                $ref: '#/components/schemas/Alarm'
+          description: Successfully returned an alarm
+      summary: Information about alarm
       tags:
       - Alarms
     patch:
-      description: Update properties of alarms for given ids.
-      operationId: patchAlarmsByIds
+      description: Update properties of alarm for given id.
+      operationId: patchAlarmsById
       parameters:
-      - description: The ids of alarm rules
+      - description: The id of the alarm rule
         example: 4711
         in: path
-        name: alarm-rule-ids
+        name: alarm-rule-id
         required: true
         schema:
-          items:
-            type: string
-          type: array
+          type: integer
       - description: Marks the alarm as acknowledged by setting the acknowledge timestamp
           to now.
         in: query
@@ -603,8 +597,8 @@ paths:
           type: string
       responses:
         "200":
-          description: Successfully updated the alarms
-      summary: Update alarms
+          description: Successfully updated the alarm
+      summary: Update alarm
       tags:
       - Alarms
 components:

@@ -1,30 +1,28 @@
 get:
   tags:
     - Alarms
-  summary: Information about alarms
-  description: Gets information about alarms for given ids.
-  operationId: getAlarmsByIds
+  summary: Information about alarm
+  description: Gets information about alarm.
+  operationId: getAlarmsById
   parameters:
-    - $ref: '../parameters/alarm-rule-ids.yaml'
+    - $ref: '../parameters/alarm-rule-id.yaml'
     - $ref: '../parameters/expansions.yaml'
   responses:
     200:
-      description: Successfully returned a list of alarms
+      description: Successfully returned an alarm
       content:
         application/json:
           schema:
-            type: array
-            items:
-              $ref: '../schemas/Alarm.yaml'
+            $ref: '../schemas/Alarm.yaml'
 
 patch:
   tags:
     - Alarms
-  summary: Update alarms
-  description: Update properties of alarms for given ids.
-  operationId: patchAlarmsByIds
+  summary: Update alarm
+  description: Update properties of alarm for given id.
+  operationId: patchAlarmsById
   parameters:
-    - $ref: '../parameters/alarm-rule-ids.yaml'
+    - $ref: '../parameters/alarm-rule-id.yaml'
     - name: acknowledged
       in: query
       required: true
@@ -41,4 +39,4 @@ patch:
         type: string
   responses:
     200:
-      description: Successfully updated the alarms
+      description: Successfully updated the alarm
