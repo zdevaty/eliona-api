@@ -5,13 +5,7 @@ get:
   description: Returns a list of asset types
   operationId: getAssetTypes
   parameters:
-    - name: withAttributes
-      description: Gets also the the list of attributes
-      in: query
-      required: false
-      schema:
-        type: boolean
-        default: false
+    - $ref: '../parameters/expansions.yaml'
   responses:
     200:
       description: Successfully returned a list of asset types
