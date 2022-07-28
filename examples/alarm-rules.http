@@ -2,27 +2,4 @@
 PUT http://localhost:8084/v2/alarm-rules
 Content-Type: application/json
 
-{
-  "assetId": 4711,
-  "subtype": "input",
-  "attribute": "temperature",
-  "enable": true,
-  "priority": 2,
-  "requiresAcknowledge": false,
-  "equal": 38.7,
-  "low": 38.7,
-  "high": 38.7,
-  "message": {
-    "de": "Das ist eine deutsche Beschreibung",
-    "en": "This is an english description",
-    "fr": "Ceci est une description français",
-    "it": "Questa è una descrizione italiana"
-  },
-  "tags": [
-    "string"
-  ],
-  "subject": "string",
-  "urldoc": "string",
-  "notifyOn": "string",
-  "dontMask": false
-}
+{"assetId":4884,"subtype":"output","attribute":"temperature_setpoint","enable":true,"priority":1,"requiresAcknowledge":true,"high":2,"message":{"come":"Test Andreas Göbel","gone":null},"tags":null,"notifyOn":"R","dontMask":false}

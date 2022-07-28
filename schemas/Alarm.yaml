@@ -60,8 +60,8 @@ properties:
     nullable: true
   acknowledgeUserId:
     type: string
-    format: date-time
-    description: Timestamp of the latest data change
+    format: text
+    description: User who acknowledged the alarm
     nullable: true
   message:
     type: object
