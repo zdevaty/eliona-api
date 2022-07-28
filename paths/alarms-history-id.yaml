@@ -1,11 +1,11 @@
 get:
   tags:
     - Alarms
-  summary: Information about alarms history
-  description: Gets information about alarms over the entire time. This includes current alarms and alarms, which are already processed.
-  operationId: getAlarmsHistory
+  summary: Information about alarm history
+  description: Gets information about alarm over the entire time. This includes current alarm and history.
+  operationId: getAlarmHistoryById
   parameters:
-    - $ref: '../parameters/projectId.yaml'
+    - $ref: '../parameters/alarm-rule-id.yaml'
   responses:
     200:
       description: Successfully returned a list of alarms

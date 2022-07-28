@@ -69,14 +69,17 @@ paths:
   /alarms:
     $ref: './paths/alarms.yaml'
 
-  /alarms-highest:
-    $ref: './paths/alarms-highest.yaml'
+  /alarms/{alarm-rule-id}:
+    $ref: './paths/alarms-id.yaml'
 
   /alarms-history:
     $ref: './paths/alarms-history.yaml'
 
-  /alarms/{alarm-rule-id}:
-    $ref: './paths/alarms-id.yaml'
+  /alarms-history/{alarm-rule-id}:
+    $ref: './paths/alarms-history-id.yaml'
+
+  /alarms-highest:
+    $ref: './paths/alarms-highest.yaml'
 
 tags:
   - name: Alarms

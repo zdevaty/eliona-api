@@ -475,78 +475,6 @@ paths:
       summary: Information about alarms
       tags:
       - Alarms
-  /alarms-highest:
-    get:
-      description: Gets information about an alarms with the highest priority for
-        each asset.
-      operationId: getHighestAlarms
-      parameters:
-      - description: Filters for a specific project
-        in: query
-        name: projectId
-        required: false
-        schema:
-          nullable: true
-          type: string
-      - description: List of referenced data to load. Each entry defines the full
-          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
-        explode: false
-        in: query
-        name: expansions
-        schema:
-          items:
-            type: string
-          nullable: true
-          type: array
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Alarm'
-                type: array
-          description: Successfully returned a list of most prioritized alarms
-      summary: Information about most prioritized alarms
-      tags:
-      - Alarms
-  /alarms-history:
-    get:
-      description: "Gets information about alarms over the entire time. This includes\
-        \ current alarms and alarms, which are already processed."
-      operationId: getAlarmsHistory
-      parameters:
-      - description: Filters for a specific project
-        in: query
-        name: projectId
-        required: false
-        schema:
-          nullable: true
-          type: string
-      - description: List of referenced data to load. Each entry defines the full
-          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
-        explode: false
-        in: query
-        name: expansions
-        schema:
-          items:
-            type: string
-          nullable: true
-          type: array
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Alarm'
-                type: array
-          description: Successfully returned a list of alarms
-      summary: Information about alarms history
-      tags:
-      - Alarms
   /alarms/{alarm-rule-id}:
     get:
       description: Gets information about alarm.
@@ -610,6 +538,92 @@ paths:
         "200":
           description: Successfully updated the alarm
       summary: Update alarm
+      tags:
+      - Alarms
+  /alarms-history:
+    get:
+      description: "Gets information about alarms over the entire time. This includes\
+        \ current alarms and alarms, which are already processed."
+      operationId: getAlarmsHistory
+      parameters:
+      - description: Filters for a specific project
+        in: query
+        name: projectId
+        required: false
+        schema:
+          nullable: true
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Alarm'
+                type: array
+          description: Successfully returned a list of alarms
+      summary: Information about alarms history
+      tags:
+      - Alarms
+  /alarms-history/{alarm-rule-id}:
+    get:
+      description: Gets information about alarm over the entire time. This includes
+        current alarm and history.
+      operationId: getAlarmHistoryById
+      parameters:
+      - description: The id of the alarm rule
+        example: 4711
+        in: path
+        name: alarm-rule-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Alarm'
+                type: array
+          description: Successfully returned a list of alarms
+      summary: Information about alarm history
+      tags:
+      - Alarms
+  /alarms-highest:
+    get:
+      description: Gets information about an alarms with the highest priority for
+        each asset.
+      operationId: getHighestAlarms
+      parameters:
+      - description: Filters for a specific project
+        in: query
+        name: projectId
+        required: false
+        schema:
+          nullable: true
+          type: string
+      - description: List of referenced data to load. Each entry defines the full
+          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Alarm'
+                type: array
+          description: Successfully returned a list of most prioritized alarms
+      summary: Information about most prioritized alarms
       tags:
       - Alarms
 components:
