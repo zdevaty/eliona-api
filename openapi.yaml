@@ -1325,7 +1325,7 @@ components:
             tags:
             - weather
             - location
-        acknowledgeUserId: 2000-01-23T04:56:07.000+00:00
+        acknowledgeUserId: acknowledgeUserId
         attribute: temperature
         ruleId: 123
         value: 38.7
@@ -1399,8 +1399,8 @@ components:
           nullable: true
           type: string
         acknowledgeUserId:
-          description: Timestamp of the latest data change
-          format: date-time
+          description: User who acknowledged the alarm
+          format: text
           nullable: true
           type: string
         message:
