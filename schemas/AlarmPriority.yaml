@@ -6,6 +6,6 @@ enum:
   - 2
   - 3
 x-enum-varnames:
-  - alarm_priority_low
-  - alarm_priority_medium
-  - alarm_priority_height
+  - ALARM_PRIORITY_LOW
+  - ALARM_PRIORITY_MEDIUM
+  - ALARM_PRIORITY_HEIGHT

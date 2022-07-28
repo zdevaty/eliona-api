@@ -12,7 +12,7 @@ x-enum-descriptions:
   - Status subtype for heap values
   - Output subtype for heap values
 x-enum-varnames:
-  - subtype_input
-  - subtype_info
-  - subtype_status
-  - subtype_output
+  - SUBTYPE_INPUT
+  - SUBTYPE_INFO
+  - SUBTYPE_STATUS
+  - SUBTYPE_OUTPUT
