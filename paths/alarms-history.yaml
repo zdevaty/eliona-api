@@ -6,6 +6,7 @@ get:
   operationId: getAlarmsHistory
   parameters:
     - $ref: '../parameters/projectId.yaml'
+    - $ref: '../parameters/expansions.yaml'
   responses:
     200:
       description: Successfully returned a list of alarms

@@ -553,6 +553,17 @@ paths:
         schema:
           nullable: true
           type: string
+      - description: List of referenced data to load. Each entry defines the full
+          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -578,6 +589,17 @@ paths:
         required: true
         schema:
           type: integer
+      - description: List of referenced data to load. Each entry defines the full
+          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       responses:
         "200":
           content:
