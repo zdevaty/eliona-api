@@ -1468,10 +1468,10 @@ components:
       - Status subtype for heap values
       - Output subtype for heap values
       x-enum-varnames:
-      - subtype_input
-      - subtype_info
-      - subtype_status
-      - subtype_output
+      - SUBTYPE_INPUT
+      - SUBTYPE_INFO
+      - SUBTYPE_STATUS
+      - SUBTYPE_OUTPUT
     Pipeline:
       example:
         mode: avg
@@ -1624,6 +1624,6 @@ components:
       example: 2
       type: integer
       x-enum-varnames:
-      - alarm_priority_low
-      - alarm_priority_medium
-      - alarm_priority_height
+      - ALARM_PRIORITY_LOW
+      - ALARM_PRIORITY_MEDIUM
+      - ALARM_PRIORITY_HEIGHT
