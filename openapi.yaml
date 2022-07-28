@@ -1217,21 +1217,13 @@ components:
         attribute:
           description: Name of the attribute of the asset type
           example: temperature
-          nullable: true
           type: string
         enable:
           default: true
           description: Rule enabled or not
           type: boolean
         priority:
-          description: The priority of the alarm. The higher this value the higher
-            the priority.
-          enum:
-          - 1
-          - 2
-          - 3
-          example: 2
-          type: integer
+          $ref: '#/components/schemas/AlarmPriority'
         requiresAcknowledge:
           default: false
           description: Requires the alarm an acknowledgment
@@ -1383,9 +1375,7 @@ components:
           nullable: true
           type: string
         priority:
-          description: The priority of the alarm
-          example: 2
-          type: integer
+          $ref: '#/components/schemas/AlarmPriority'
         requiresAcknowledge:
           default: false
           description: Requires the alarm an acknowledgment
@@ -1472,6 +1462,16 @@ components:
       - status
       - output
       type: string
+      x-enum-descriptions:
+      - Input subtype for heap values
+      - Info subtype for heap values
+      - Status subtype for heap values
+      - Output subtype for heap values
+      x-enum-varnames:
+      - subtype_input
+      - subtype_info
+      - subtype_status
+      - subtype_output
     Pipeline:
       example:
         mode: avg
@@ -1614,3 +1614,16 @@ components:
       required:
       - elementSequence
       type: object
+    AlarmPriority:
+      description: The priority of the alarm. The higher this value the higher the
+        priority.
+      enum:
+      - 1
+      - 2
+      - 3
+      example: 2
+      type: integer
+      x-enum-varnames:
+      - alarm_priority_low
+      - alarm_priority_medium
+      - alarm_priority_height
