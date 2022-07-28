@@ -22,19 +22,12 @@ properties:
     type: string
     description: Name of the attribute of the asset type
     example: temperature
-    nullable: true
   enable:
     type: boolean
     description: Rule enabled or not
     default: true
   priority:
-    type: integer
-    description: The priority of the alarm. The higher this value the higher the priority.
-    example: 2
-    enum:
-      - 1
-      - 2
-      - 3
+    $ref: 'AlarmPriority.yaml'
   requiresAcknowledge:
     type: boolean
     description: Requires the alarm an acknowledgment

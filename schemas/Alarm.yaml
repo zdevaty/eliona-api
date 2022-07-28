@@ -25,9 +25,7 @@ properties:
     example: temperature
     nullable: true
   priority:
-    type: integer
-    description: The priority of the alarm
-    example: 2
+    $ref: 'AlarmPriority.yaml'
   requiresAcknowledge:
     type: boolean
     description: Requires the alarm an acknowledgment

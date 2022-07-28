@@ -6,3 +6,13 @@ enum:
   - info
   - status
   - output
+x-enum-descriptions:
+  - Input subtype for heap values
+  - Info subtype for heap values
+  - Status subtype for heap values
+  - Output subtype for heap values
+x-enum-varnames:
+  - subtype_input
+  - subtype_info
+  - subtype_status
+  - subtype_output
