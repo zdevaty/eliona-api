@@ -1,5 +1,5 @@
 ### Insert new alarm rule
-PUT http://localhost:8082/v2/alarm-rules
+PUT http://localhost:8084/v2/alarm-rules
 Content-Type: application/json
 
 {

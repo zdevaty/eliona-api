@@ -25,6 +25,8 @@ externalDocs:
   url: https://www.eliona.io
 servers:
   - url: http://api.eliona.io/v2
+#security:
+#  - apiKey: []
 
 paths:
 
@@ -105,3 +107,9 @@ tags:
     description: Handle dashboards
     externalDocs:
       url: https://www.eliona.io
+
+#components:
+#  securitySchemes:
+#    apiKey:
+#      type: http
+#      scheme: bearer
