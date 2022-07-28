@@ -2,7 +2,6 @@ type: object
 description: An alarm
 nullable: true
 required:
-  - ruleId
   - assetId
   - subtype
   - priority
@@ -13,6 +12,7 @@ properties:
     type: integer
     description: The id of the corresponding rule
     example: 123
+    nullable: true
   assetId:
     type: integer
     description: ID of the corresponding asset
