@@ -1166,11 +1166,7 @@ components:
         subject: subject
         urldoc: urldoc
         priority: 2
-        message:
-          de: Das ist eine deutsche Beschreibung
-          en: This is an english description
-          it: Questa è una descrizione italiana
-          fr: Ceci est une description français
+        message: "{}"
         tags:
         - tags
         - tags
@@ -1247,7 +1243,9 @@ components:
           nullable: true
           type: number
         message:
-          $ref: '#/components/schemas/Translation'
+          description: Message texts for alarm
+          nullable: true
+          type: object
         tags:
           description: List of associated tags
           items:
@@ -1286,11 +1284,7 @@ components:
         requiresAcknowledge: false
         acknowledgeText: acknowledgeText
         priority: 2
-        message:
-          de: Das ist eine deutsche Beschreibung
-          en: This is an english description
-          it: Questa è una descrizione italiana
-          fr: Ceci est une description français
+        message: "{}"
         goneTimestamp: 2000-01-23T04:56:07.000+00:00
         acknowledgeTimestamp: 2000-01-23T04:56:07.000+00:00
         subtype: null
@@ -1300,11 +1294,7 @@ components:
           subject: subject
           urldoc: urldoc
           priority: 2
-          message:
-            de: Das ist eine deutsche Beschreibung
-            en: This is an english description
-            it: Questa è una descrizione italiana
-            fr: Ceci est une description français
+          message: "{}"
           tags:
           - tags
           - tags
@@ -1414,7 +1404,9 @@ components:
           nullable: true
           type: string
         message:
-          $ref: '#/components/schemas/Translation'
+          description: Message texts for alarm
+          nullable: true
+          type: object
         assetInfo:
           $ref: '#/components/schemas/Asset'
         ruleInfo:
