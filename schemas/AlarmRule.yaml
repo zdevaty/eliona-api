@@ -51,7 +51,9 @@ properties:
     example: 38.7
     nullable: true
   message:
-    $ref: 'Translation.yaml'
+    type: object
+    description: Message texts for alarm
+    nullable: true
   tags:
     type: array
     description: List of associated tags

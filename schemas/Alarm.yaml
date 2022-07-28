@@ -64,7 +64,9 @@ properties:
     description: Timestamp of the latest data change
     nullable: true
   message:
-    $ref: 'Translation.yaml'
+    type: object
+    description: Message texts for alarm
+    nullable: true
   assetInfo:
     $ref: 'Asset.yaml'
   ruleInfo:
