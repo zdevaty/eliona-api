@@ -1388,6 +1388,7 @@ components:
         ruleId:
           description: The id of the corresponding rule
           example: 123
+          nullable: true
           type: integer
         assetId:
           description: ID of the corresponding asset
@@ -1451,7 +1452,6 @@ components:
       - assetId
       - occurrences
       - priority
-      - ruleId
       - subtype
       - timestamp
       type: object
