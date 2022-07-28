@@ -475,7 +475,7 @@ paths:
       summary: Information about alarms
       tags:
       - Alarms
-  /alarms/highest:
+  /alarms-highest:
     get:
       description: Gets information about an alarms with the highest priority for
         each asset.
@@ -511,7 +511,7 @@ paths:
       summary: Information about most prioritized alarms
       tags:
       - Alarms
-  /alarms/history:
+  /alarms-history:
     get:
       description: "Gets information about alarms over the entire time. This includes\
         \ current alarms and alarms, which are already processed."
