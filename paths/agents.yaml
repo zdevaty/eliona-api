@@ -3,7 +3,7 @@ get:
     - Agents
   summary: Information about agents
   description: Gets information about agents.
-  operationId: getNodes
+  operationId: getAgents
   responses:
     200:
       description: Successfully returned a list of agents
@@ -19,7 +19,7 @@ put:
     - Agents
   summary: Create or update a agent
   description: Create a new agent or update a agent if already exists
-  operationId: putNode
+  operationId: putAgent
   requestBody:
     required: true
     content:
