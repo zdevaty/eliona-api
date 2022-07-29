@@ -1,8 +1,6 @@
 type: object
 description: A general mapping of attributes for an agent
 nullable: true
-discriminator:
-  propertyName: class
 required:
   - class
   - agentId

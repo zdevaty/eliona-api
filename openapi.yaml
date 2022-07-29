@@ -1693,10 +1693,14 @@ components:
       anyOf:
       - $ref: '#/components/schemas/IosysAgentDevice'
       - $ref: '#/components/schemas/MbusAgentDevice'
+      discriminator:
+        propertyName: class
     AgentMapping:
       anyOf:
       - $ref: '#/components/schemas/IosysAgentMapping'
       - $ref: '#/components/schemas/MbusAgentMapping'
+      discriminator:
+        propertyName: class
     Translation:
       description: Readable text to display in frontend
       example:
@@ -1952,8 +1956,6 @@ components:
       x-all-of-name: MbusAgentMapping
     AgentDeviceGeneral:
       description: A general device for an agent
-      discriminator:
-        propertyName: class
       nullable: true
       properties:
         class:
@@ -1979,8 +1981,6 @@ components:
       type: object
     AgentMappingGeneral:
       description: A general mapping of attributes for an agent
-      discriminator:
-        propertyName: class
       nullable: true
       properties:
         class:

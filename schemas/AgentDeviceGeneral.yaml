@@ -1,8 +1,6 @@
 type: object
 description: A general device for an agent
 nullable: true
-discriminator:
-  propertyName: class
 required:
   - class
   - agentId

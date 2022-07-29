@@ -1,3 +1,5 @@
 anyOf:
   - $ref: 'IosysAgentMapping.yaml'
   - $ref: 'MbusAgentMapping.yaml'
+discriminator:
+  propertyName: class
