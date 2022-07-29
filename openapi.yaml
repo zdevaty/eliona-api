@@ -1957,7 +1957,7 @@ components:
       nullable: true
       properties:
         class:
-          type: string
+          $ref: '#/components/schemas/AgentClass'
         id:
           description: Unique id for the device
           example: "1234"
@@ -1984,7 +1984,7 @@ components:
       nullable: true
       properties:
         class:
-          type: string
+          $ref: '#/components/schemas/AgentClass'
         id:
           description: Unique id for the mapping
           example: "1234"

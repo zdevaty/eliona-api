@@ -10,7 +10,7 @@ required:
   - assetId
 properties:
   class:
-    type: string
+    $ref: 'AgentClass.yaml'
   id:
     type: string
     description: Unique id for the mapping
