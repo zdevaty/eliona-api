@@ -1,0 +1,32 @@
+type: string
+description: The class of an agent
+enum:
+  - mqtt
+  - webhook
+  - iosys
+  - modbus
+  - gwmp
+  - bacnet
+  - kafka
+  - opcua
+  - sbus
+  - url
+  - knx
+  - ttn
+  - mbus
+  - trk
+x-enum-varnames:
+  - AGENT_CLASS_MQTT
+  - AGENT_CLASS_WEBHOOK
+  - AGENT_CLASS_IOSYS
+  - AGENT_CLASS_MODBUS
+  - AGENT_CLASS_GWMP
+  - AGENT_CLASS_BACNET
+  - AGENT_CLASS_KAFKA
+  - AGENT_CLASS_OPCUA
+  - AGENT_CLASS_SBUS
+  - AGENT_CLASS_URL
+  - AGENT_CLASS_KNX
+  - AGENT_CLASS_TTN
+  - AGENT_CLASS_MBUS
+  - AGENT_CLASS_TRK

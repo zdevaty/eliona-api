@@ -1,0 +1,58 @@
+allOf:
+  - $ref: 'AgentMapping.yaml'
+  - type: object
+    title: IosysAgentMappingSpecific
+    description: Specific mapping for IOSYS agents
+    nullable: true
+    required:
+      - down
+    properties:
+      iosVar:
+        type: string
+        nullable: true
+      iosType:
+        type: string
+        enum:
+          - INT
+          - REAL
+          - STRING
+        nullable: true
+      down:
+        type: boolean
+        default: false
+      scale:
+        type: number
+        format: double
+        nullable: true
+      zero:
+        type: number
+        format: double
+        nullable: true
+      mask:
+        type: array
+        items:
+          type: integer
+        nullable: true
+      maskAttributes:
+        type: array
+        items:
+          type: string
+        nullable: true
+      deadTime:
+        type: integer
+        nullable: true
+      deadBand:
+        type: number
+        format: double
+        nullable: true
+      filter:
+        type: string
+        enum:
+          - LPF1
+          - LPF2
+          - MOVA
+        nullable: true
+      tau:
+        type: number
+        format: double
+        nullable: true

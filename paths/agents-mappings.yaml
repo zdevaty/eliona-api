@@ -1,0 +1,31 @@
+get:
+  tags:
+    - Agents
+  summary: Information about agent mappings
+  description: Gets information about mappings between agent and eliona.
+  operationId: getAgentMappings
+  responses:
+    200:
+      description: Successfully returned a list of agent mappings
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/AgentMappings.yaml'
+
+put:
+  tags:
+    - Agents
+  summary: Create or update an agent mapping
+  description: Create a new agent mapping or update an agent mapping if already exists
+  operationId: putAgentMapping
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AgentMappings.yaml'
+  responses:
+    200:
+      description: Successfully created a new or updated an existing agent mapping

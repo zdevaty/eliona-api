@@ -1,0 +1,8 @@
+oneOf:
+  - $ref: '../schemas/IosysAgentDevice.yaml'
+  - $ref: '../schemas/MbusAgentDevice.yaml'
+discriminator:
+  propertyName: class
+  mapping:
+    iosys: '../schemas/IosysAgentDevice.yaml'
+    mbus: '../schemas/MbusAgentDevice.yaml'

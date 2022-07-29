@@ -1,0 +1,31 @@
+get:
+  tags:
+    - Agents
+  summary: Information about agents
+  description: Gets information about agents.
+  operationId: getNodes
+  responses:
+    200:
+      description: Successfully returned a list of agents
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/Agent.yaml'
+
+put:
+  tags:
+    - Agents
+  summary: Create or update a agent
+  description: Create a new agent or update a agent if already exists
+  operationId: putNode
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Agent.yaml'
+  responses:
+    200:
+      description: Successfully created a new or updated an existing agent

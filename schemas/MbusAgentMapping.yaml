@@ -1,0 +1,19 @@
+allOf:
+  - $ref: 'AgentMapping.yaml'
+  - type: object
+    title: MbusAgentMappingSpecific
+    description: Specific mapping for MBUS agents
+    nullable: true
+    required:
+      - field
+    properties:
+      field:
+        type: integer
+      scale:
+        type: number
+        format: double
+        nullable: true
+      zero:
+        type: number
+        format: double
+        nullable: true

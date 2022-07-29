@@ -6,7 +6,6 @@ required:
 properties:
   assetTypeName:
     type: string
-    readOnly: true
     description: The unique name for the asset type
     example: weather_location
     nullable: true

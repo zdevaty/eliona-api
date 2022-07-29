@@ -1,0 +1,45 @@
+type: object
+description: An edge node
+nullable: true
+required:
+  - enable
+properties:
+  id:
+    type: string
+    description: Unique id for the edge node
+    nullable: true
+    readOnly: true
+    example: 1234
+  ident:
+    type: string
+    description: UUID to identify the edge node
+    nullable: true
+    readOnly: true
+    example: fef0a0d3-acad-4611-ac03-1fd842d72505
+  password:
+    type: string
+    description: Password with which the node identifies itself
+    nullable: true
+  assetId:
+    type: integer
+    description: ID of the corresponding asset
+    example: 4711
+    nullable: true
+  vendor:
+    type: string
+    description: Vendor name
+    nullable: true
+  model:
+    type: string
+    description: Model name
+    nullable: true
+  description:
+    type: string
+    description: Descriptive text fpr the edge node
+    nullable: true
+    example: Node east plant
+  enable:
+    type: boolean
+    description: Is the node enabled or not
+    default: false
+

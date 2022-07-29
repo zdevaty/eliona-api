@@ -12,6 +12,7 @@ properties:
     description: The id of the rule
     example: 123
     nullable: true
+    readOnly: true
   assetId:
     type: integer
     description: ID of the corresponding asset

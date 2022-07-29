@@ -10,6 +10,14 @@ externalDocs:
 servers:
 - url: http://api.eliona.io/v2
 tags:
+- description: Handle nodes
+  externalDocs:
+    url: https://www.eliona.io
+  name: Nodes
+- description: Handle agents
+  externalDocs:
+    url: https://www.eliona.io
+  name: Agents
 - description: Handle alarms
   externalDocs:
     url: https://www.eliona.io
@@ -648,6 +656,132 @@ paths:
       summary: Information about most prioritized alarms
       tags:
       - Alarms
+  /nodes:
+    get:
+      description: Gets information about nodes.
+      operationId: getNodes
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Node'
+                type: array
+          description: Successfully returned a list of nodes
+      summary: Information about nodes
+      tags:
+      - Nodes
+    put:
+      description: Create a new node or update a node rule if already exists
+      operationId: putNode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Node'
+        required: true
+      responses:
+        "200":
+          description: Successfully created a new or updated an existing node
+      summary: Create or update a node
+      tags:
+      - Nodes
+  /agents:
+    get:
+      description: Gets information about agents.
+      operationId: getNodes
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Agent'
+                type: array
+          description: Successfully returned a list of agents
+      summary: Information about agents
+      tags:
+      - Agents
+    put:
+      description: Create a new agent or update a agent if already exists
+      operationId: putNode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Agent'
+        required: true
+      responses:
+        "200":
+          description: Successfully created a new or updated an existing agent
+      summary: Create or update a agent
+      tags:
+      - Agents
+  /agents-devices/{agent-class}:
+    get:
+      description: Gets information about agent devices.
+      operationId: getAgentDevices
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AgentDevices'
+                type: array
+          description: Successfully returned a list of devices
+      summary: Information about agent devices
+      tags:
+      - Agents
+    put:
+      description: Create a new agent device or update an agent device if already
+        exists
+      operationId: putAgentDevice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentDevices'
+        required: true
+      responses:
+        "200":
+          description: Successfully created a new or updated an existing agent device
+      summary: Create or update an agent device
+      tags:
+      - Agents
+  /agents-mappings/{agent-class}:
+    get:
+      description: Gets information about mappings between agent and eliona.
+      operationId: getAgentMappings
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AgentMappings'
+                type: array
+          description: Successfully returned a list of agent mappings
+      summary: Information about agent mappings
+      tags:
+      - Agents
+    put:
+      description: Create a new agent mapping or update an agent mapping if already
+        exists
+      operationId: putAgentMapping
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentMappings'
+        required: true
+      responses:
+        "200":
+          description: Successfully created a new or updated an existing agent mapping
+      summary: Create or update an agent mapping
+      tags:
+      - Agents
 components:
   schemas:
     App:
@@ -922,7 +1056,6 @@ components:
           description: The unique name for the asset type
           example: weather_location
           nullable: true
-          readOnly: true
           type: string
         name:
           description: Unique key of asset heap data
@@ -1239,6 +1372,7 @@ components:
           description: The id of the rule
           example: 123
           nullable: true
+          readOnly: true
           type: integer
         assetId:
           description: ID of the corresponding asset
@@ -1455,6 +1589,124 @@ components:
       - subtype
       - timestamp
       type: object
+    Node:
+      description: An edge node
+      example:
+        password: password
+        ident: fef0a0d3-acad-4611-ac03-1fd842d72505
+        assetId: 4711
+        vendor: vendor
+        enable: false
+        description: Node east plant
+        model: model
+        id: "1234"
+      nullable: true
+      properties:
+        id:
+          description: Unique id for the edge node
+          example: "1234"
+          nullable: true
+          readOnly: true
+          type: string
+        ident:
+          description: UUID to identify the edge node
+          example: fef0a0d3-acad-4611-ac03-1fd842d72505
+          nullable: true
+          readOnly: true
+          type: string
+        password:
+          description: Password with which the node identifies itself
+          nullable: true
+          type: string
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          nullable: true
+          type: integer
+        vendor:
+          description: Vendor name
+          nullable: true
+          type: string
+        model:
+          description: Model name
+          nullable: true
+          type: string
+        description:
+          description: Descriptive text fpr the edge node
+          example: Node east plant
+          nullable: true
+          type: string
+        enable:
+          default: false
+          description: Is the node enabled or not
+          type: boolean
+      required:
+      - enable
+      type: object
+    Agent:
+      description: An agent installed on an edge node
+      example:
+        assetId: 4711
+        enable: false
+        description: IOSYS Agent east plant
+        id: 4711
+        nodeId: "1234"
+        class: null
+        config: "{}"
+      nullable: true
+      properties:
+        id:
+          description: Unique id for the agent
+          example: 4711
+          nullable: true
+          readOnly: true
+          type: integer
+        nodeId:
+          description: Id of the node where the agent is installed
+          example: "1234"
+          nullable: true
+          type: string
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          nullable: true
+          type: integer
+        class:
+          $ref: '#/components/schemas/AgentClass'
+        description:
+          description: Descriptive text for the agent
+          example: IOSYS Agent east plant
+          nullable: true
+          type: string
+        enable:
+          default: false
+          description: Is the agent enabled or not
+          type: boolean
+        config:
+          description: Individual configuration depending on agent class
+          nullable: true
+          type: object
+      required:
+      - enable
+      type: object
+    AgentDevices:
+      discriminator:
+        mapping:
+          iosys: '#/components/schemas/IosysAgentDevice'
+          mbus: '#/components/schemas/MbusAgentDevice'
+        propertyName: class
+      oneOf:
+      - $ref: '#/components/schemas/IosysAgentDevice'
+      - $ref: '#/components/schemas/MbusAgentDevice'
+    AgentMappings:
+      discriminator:
+        mapping:
+          iosys: '#/components/schemas/IosysAgentMapping'
+          mbus: '#/components/schemas/MbusAgentMapping'
+        propertyName: class
+      oneOf:
+      - $ref: '#/components/schemas/IosysAgentMapping'
+      - $ref: '#/components/schemas/MbusAgentMapping'
     Translation:
       description: Readable text to display in frontend
       example:
@@ -1655,3 +1907,255 @@ components:
       - ALARM_PRIORITY_LOW
       - ALARM_PRIORITY_MEDIUM
       - ALARM_PRIORITY_HEIGHT
+    AgentClass:
+      description: The class of an agent
+      enum:
+      - mqtt
+      - webhook
+      - iosys
+      - modbus
+      - gwmp
+      - bacnet
+      - kafka
+      - opcua
+      - sbus
+      - url
+      - knx
+      - ttn
+      - mbus
+      - trk
+      type: string
+      x-enum-varnames:
+      - AGENT_CLASS_MQTT
+      - AGENT_CLASS_WEBHOOK
+      - AGENT_CLASS_IOSYS
+      - AGENT_CLASS_MODBUS
+      - AGENT_CLASS_GWMP
+      - AGENT_CLASS_BACNET
+      - AGENT_CLASS_KAFKA
+      - AGENT_CLASS_OPCUA
+      - AGENT_CLASS_SBUS
+      - AGENT_CLASS_URL
+      - AGENT_CLASS_KNX
+      - AGENT_CLASS_TTN
+      - AGENT_CLASS_MBUS
+      - AGENT_CLASS_TRK
+    IosysAgentDevice:
+      allOf:
+      - $ref: '#/components/schemas/AgentDevice'
+      - $ref: '#/components/schemas/IosysAgentDeviceSpecific'
+    MbusAgentDevice:
+      allOf:
+      - $ref: '#/components/schemas/AgentDevice'
+      - $ref: '#/components/schemas/MbusAgentDeviceSpecific'
+    IosysAgentMapping:
+      allOf:
+      - $ref: '#/components/schemas/AgentMapping'
+      - $ref: '#/components/schemas/IosysAgentMappingSpecific'
+    MbusAgentMapping:
+      allOf:
+      - $ref: '#/components/schemas/AgentMapping'
+      - $ref: '#/components/schemas/MbusAgentMappingSpecific'
+    AgentDevice:
+      description: A general device for an agent
+      nullable: true
+      properties:
+        class:
+          $ref: '#/components/schemas/AgentClass'
+        id:
+          description: Unique id for the device
+          example: "1234"
+          nullable: true
+          readOnly: true
+          type: string
+        agentId:
+          description: The id of the agent the device belongs to
+          example: 4711
+          type: integer
+        enable:
+          default: false
+          description: Is the device enabled or not
+          type: boolean
+      required:
+      - agentId
+      - class
+      - enable
+      type: object
+    AgentMapping:
+      description: A general mapping of attributes for an agent
+      nullable: true
+      properties:
+        class:
+          $ref: '#/components/schemas/AgentClass'
+        id:
+          description: Unique id for the mapping
+          example: "1234"
+          nullable: true
+          readOnly: true
+          type: string
+        agentId:
+          description: The id of the agent the mapping belongs to
+          example: 4711
+          type: integer
+        enable:
+          default: true
+          description: Is the mapping enabled or not
+          type: boolean
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          type: integer
+        subtype:
+          $ref: '#/components/schemas/HeapSubtype'
+        attribute:
+          description: Name of the attribute to map
+          example: temperature
+          nullable: true
+          type: string
+      required:
+      - agentId
+      - assetId
+      - class
+      - enable
+      type: object
+    IosysAgentDeviceSpecific:
+      description: Specific device for IOSYS agents
+      nullable: true
+      properties:
+        port:
+          description: Port of device
+          nullable: true
+          type: integer
+        certificate:
+          description: Certificate of device
+          nullable: true
+          type: string
+        key:
+          description: Key for device
+          nullable: true
+          type: string
+        timeout:
+          description: Time in seconds
+          nullable: true
+          type: integer
+        reconnect:
+          description: Reconnect
+          nullable: true
+          type: integer
+      title: IosysAgentDeviceSpecific
+      type: object
+    MbusAgentDeviceSpecific:
+      description: Specific device for MBUS agents
+      nullable: true
+      properties:
+        manufacturer:
+          nullable: true
+          type: string
+        model:
+          nullable: true
+          type: string
+        address:
+          nullable: true
+          type: integer
+        secAddress:
+          nullable: true
+          type: string
+        raster:
+          nullable: true
+          type: string
+        maxFail:
+          default: 4
+          nullable: true
+          type: integer
+        maxRetry:
+          default: 3
+          nullable: true
+          type: integer
+        sendNke:
+          default: false
+          nullable: true
+          type: boolean
+        appResetSubcode:
+          nullable: true
+          type: integer
+        multiFrames:
+          default: 0
+          nullable: true
+          type: integer
+      title: MbusAgentDeviceSpecific
+      type: object
+    IosysAgentMappingSpecific:
+      description: Specific mapping for IOSYS agents
+      nullable: true
+      properties:
+        iosVar:
+          nullable: true
+          type: string
+        iosType:
+          enum:
+          - INT
+          - REAL
+          - STRING
+          nullable: true
+          type: string
+        down:
+          default: false
+          type: boolean
+        scale:
+          format: double
+          nullable: true
+          type: number
+        zero:
+          format: double
+          nullable: true
+          type: number
+        mask:
+          items:
+            type: integer
+          nullable: true
+          type: array
+        maskAttributes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        deadTime:
+          nullable: true
+          type: integer
+        deadBand:
+          format: double
+          nullable: true
+          type: number
+        filter:
+          enum:
+          - LPF1
+          - LPF2
+          - MOVA
+          nullable: true
+          type: string
+        tau:
+          format: double
+          nullable: true
+          type: number
+      required:
+      - down
+      title: IosysAgentMappingSpecific
+      type: object
+    MbusAgentMappingSpecific:
+      description: Specific mapping for MBUS agents
+      nullable: true
+      properties:
+        field:
+          type: integer
+        scale:
+          format: double
+          nullable: true
+          type: number
+        zero:
+          format: double
+          nullable: true
+          type: number
+      required:
+      - field
+      title: MbusAgentMappingSpecific
+      type: object
