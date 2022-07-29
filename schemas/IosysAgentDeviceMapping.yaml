@@ -1,8 +1,8 @@
-x-all-of-name: IosysAgentMapping
+x-all-of-name: IosysAgentDeviceMapping
 allOf:
-  - $ref: 'AgentMappingGeneral.yaml'
+  - $ref: 'AgentDeviceMappingGeneral.yaml'
   - type: object
-    title: IosysAgentMappingSpecific
+    title: IosysAgentDeviceMappingSpecific
     description: Specific mapping for IOSYS agents
     nullable: true
     required:

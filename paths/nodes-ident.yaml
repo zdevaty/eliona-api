@@ -1,0 +1,15 @@
+get:
+  tags:
+    - Nodes
+  summary: Information about a node
+  description: Gets information about a node.
+  parameters:
+    - $ref: '../parameters/node-ident.yaml'
+  operationId: getNodesByIdent
+  responses:
+    200:
+      description: Successfully returned a list of node
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Node.yaml'

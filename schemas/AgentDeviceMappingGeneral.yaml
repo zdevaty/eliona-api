@@ -2,22 +2,20 @@ type: object
 description: A general mapping of attributes for an agent
 nullable: true
 required:
-  - class
-  - agentId
   - enable
-  - assetId
 properties:
-  class:
-    $ref: 'AgentClass.yaml'
+
   id:
     type: string
     description: Unique id for the mapping
     nullable: true
     readOnly: true
     example: 1234
-  agentId:
+  deviceId:
     type: integer
-    description: The id of the agent the mapping belongs to
+    description: The id of the device the mapping belongs to
+    nullable: true
+    readOnly: true
     example: 4711
   enable:
     type: boolean
@@ -27,6 +25,7 @@ properties:
     type: integer
     description: ID of the corresponding asset
     example: 4711
+    nullable: true
   subtype:
     $ref: 'HeapSubtype.yaml'
   attribute:

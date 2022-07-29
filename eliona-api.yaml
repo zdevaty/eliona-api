@@ -84,20 +84,26 @@ paths:
   /nodes:
     $ref: './paths/nodes.yaml'
 
-#  /nodes/{node-ident}:
-#    $ref: './paths/nodes-ident.yaml'
+  /nodes/{node-ident}:
+    $ref: './paths/nodes-ident.yaml'
 
   /agents:
     $ref: './paths/agents.yaml'
 
-#  /agents/{agent-id}:
-#    $ref: './paths/agents-id.yaml'
+  /agents/{agent-id}:
+    $ref: './paths/agents-id.yaml'
 
-  /agents-devices/{agent-class}:
-    $ref: './paths/agents-devices.yaml'
+  /agents/{agent-id}/devices:
+    $ref: './paths/agents-id-devices.yaml'
 
-  /agents-mappings/{agent-class}:
-    $ref: './paths/agents-mappings.yaml'
+  /agents/{agent-id}/devices/{agent-device-id}:
+    $ref: './paths/agents-id-devices-id.yaml'
+
+  /agents/{agent-id}/devices/{agent-device-id}/mappings:
+    $ref: './paths/agents-id-devices-id-mappings.yaml'
+
+  /agents/{agent-id}/devices/{agent-device-id}/mappings/{agent-device-mapping-id}:
+    $ref: './paths/agents-id-devices-id-mappings-id.yaml'
 
 tags:
   - name: Nodes

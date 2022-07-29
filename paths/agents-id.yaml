@@ -1,0 +1,15 @@
+get:
+  tags:
+    - Agents
+  summary: Information about an agent
+  description: Gets information about agent.
+  parameters:
+    - $ref: '../parameters/agent-id.yaml'
+  operationId: getAgentById
+  responses:
+    200:
+      description: Successfully returned an agent
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Agent.yaml'

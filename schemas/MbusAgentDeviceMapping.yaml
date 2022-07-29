@@ -1,8 +1,8 @@
-x-all-of-name: MbusAgentMapping
+x-all-of-name: MbusAgentDeviceMapping
 allOf:
-  - $ref: 'AgentMappingGeneral.yaml'
+  - $ref: 'AgentDeviceMappingGeneral.yaml'
   - type: object
-    title: MbusAgentMappingSpecific
+    title: MbusAgentDeviceMappingSpecific
     description: Specific mapping for MBUS agents
     nullable: true
     required:

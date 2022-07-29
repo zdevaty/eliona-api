@@ -687,6 +687,29 @@ paths:
       summary: Create or update a node
       tags:
       - Nodes
+  /nodes/{node-ident}:
+    get:
+      description: Gets information about a node.
+      operationId: getNodesByIdent
+      parameters:
+      - description: The UUID identifier of the node
+        example: 4711
+        in: path
+        name: node-id
+        required: true
+        schema:
+          example: fef0a0d3-acad-4611-ac03-1fd842d72505
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+          description: Successfully returned a list of node
+      summary: Information about a node
+      tags:
+      - Nodes
   /agents:
     get:
       description: Gets information about agents.
@@ -718,10 +741,40 @@ paths:
       summary: Create or update a agent
       tags:
       - Agents
-  /agents-devices/{agent-class}:
+  /agents/{agent-id}:
+    get:
+      description: Gets information about agent.
+      operationId: getAgentById
+      parameters:
+      - description: The id of the agent
+        example: 4711
+        in: path
+        name: agent-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+          description: Successfully returned an agent
+      summary: Information about an agent
+      tags:
+      - Agents
+  /agents/{agent-id}/devices:
     get:
       description: Gets information about agent devices.
       operationId: getAgentDevices
+      parameters:
+      - description: The id of the agent
+        example: 4711
+        in: path
+        name: agent-id
+        required: true
+        schema:
+          type: integer
       responses:
         "200":
           content:
@@ -750,17 +803,61 @@ paths:
       summary: Create or update an agent device
       tags:
       - Agents
-  /agents-mappings/{agent-class}:
+  /agents/{agent-id}/devices/{agent-device-id}:
+    get:
+      description: Gets information about agent device.
+      operationId: getAgentDeviceById
+      parameters:
+      - description: The id of the agent
+        example: 4711
+        in: path
+        name: agent-id
+        required: true
+        schema:
+          type: integer
+      - description: The id of the device
+        example: 4711
+        in: path
+        name: agent-device-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDevice'
+          description: Successfully returned a device
+      summary: Information about agent device
+      tags:
+      - Agents
+  /agents/{agent-id}/devices/{agent-device-id}/mappings:
     get:
       description: Gets information about mappings between agent and eliona.
       operationId: getAgentMappings
+      parameters:
+      - description: The id of the agent
+        example: 4711
+        in: path
+        name: agent-id
+        required: true
+        schema:
+          type: integer
+      - description: The id of the device
+        example: 4711
+        in: path
+        name: agent-device-id
+        required: true
+        schema:
+          type: integer
       responses:
         "200":
           content:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/AgentMapping'
+                  $ref: '#/components/schemas/AgentDeviceMapping'
                 type: array
           description: Successfully returned a list of agent mappings
       summary: Information about agent mappings
@@ -774,12 +871,48 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AgentMapping'
+              $ref: '#/components/schemas/AgentDeviceMapping'
         required: true
       responses:
         "200":
           description: Successfully created a new or updated an existing agent mapping
       summary: Create or update an agent mapping
+      tags:
+      - Agents
+  /agents/{agent-id}/devices/{agent-device-id}/mappings/{agent-device-mapping-id}:
+    get:
+      description: Gets information about mapping between agent and eliona.
+      operationId: getAgentMappingById
+      parameters:
+      - description: The id of the agent
+        example: 4711
+        in: path
+        name: agent-id
+        required: true
+        schema:
+          type: integer
+      - description: The id of the device
+        example: 4711
+        in: path
+        name: agent-device-id
+        required: true
+        schema:
+          type: integer
+      - description: The id of the device mapping
+        example: 4711
+        in: path
+        name: agent-device-mapping-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDeviceMapping'
+          description: Successfully returned a mapping
+      summary: Information about agent an mapping
       tags:
       - Agents
 components:
@@ -1693,14 +1826,10 @@ components:
       anyOf:
       - $ref: '#/components/schemas/IosysAgentDevice'
       - $ref: '#/components/schemas/MbusAgentDevice'
-      discriminator:
-        propertyName: class
-    AgentMapping:
+    AgentDeviceMapping:
       anyOf:
-      - $ref: '#/components/schemas/IosysAgentMapping'
-      - $ref: '#/components/schemas/MbusAgentMapping'
-      discriminator:
-        propertyName: class
+      - $ref: '#/components/schemas/IosysAgentDeviceMapping'
+      - $ref: '#/components/schemas/MbusAgentDeviceMapping'
     Translation:
       description: Readable text to display in frontend
       example:
@@ -1944,16 +2073,16 @@ components:
       - $ref: '#/components/schemas/AgentDeviceGeneral'
       - $ref: '#/components/schemas/MbusAgentDeviceSpecific'
       x-all-of-name: MbusAgentDevice
-    IosysAgentMapping:
+    IosysAgentDeviceMapping:
       allOf:
-      - $ref: '#/components/schemas/AgentMappingGeneral'
-      - $ref: '#/components/schemas/IosysAgentMappingSpecific'
-      x-all-of-name: IosysAgentMapping
-    MbusAgentMapping:
+      - $ref: '#/components/schemas/AgentDeviceMappingGeneral'
+      - $ref: '#/components/schemas/IosysAgentDeviceMappingSpecific'
+      x-all-of-name: IosysAgentDeviceMapping
+    MbusAgentDeviceMapping:
       allOf:
-      - $ref: '#/components/schemas/AgentMappingGeneral'
-      - $ref: '#/components/schemas/MbusAgentMappingSpecific'
-      x-all-of-name: MbusAgentMapping
+      - $ref: '#/components/schemas/AgentDeviceMappingGeneral'
+      - $ref: '#/components/schemas/MbusAgentDeviceMappingSpecific'
+      x-all-of-name: MbusAgentDeviceMapping
     AgentDeviceGeneral:
       description: A general device for an agent
       nullable: true
@@ -1969,31 +2098,31 @@ components:
         agentId:
           description: The id of the agent the device belongs to
           example: 4711
+          nullable: true
+          readOnly: true
           type: integer
         enable:
           default: false
           description: Is the device enabled or not
           type: boolean
       required:
-      - agentId
-      - class
       - enable
       type: object
-    AgentMappingGeneral:
+    AgentDeviceMappingGeneral:
       description: A general mapping of attributes for an agent
       nullable: true
       properties:
-        class:
-          $ref: '#/components/schemas/AgentClass'
         id:
           description: Unique id for the mapping
           example: "1234"
           nullable: true
           readOnly: true
           type: string
-        agentId:
-          description: The id of the agent the mapping belongs to
+        deviceId:
+          description: The id of the device the mapping belongs to
           example: 4711
+          nullable: true
+          readOnly: true
           type: integer
         enable:
           default: true
@@ -2002,6 +2131,7 @@ components:
         assetId:
           description: ID of the corresponding asset
           example: 4711
+          nullable: true
           type: integer
         subtype:
           $ref: '#/components/schemas/HeapSubtype'
@@ -2011,9 +2141,6 @@ components:
           nullable: true
           type: string
       required:
-      - agentId
-      - assetId
-      - class
       - enable
       type: object
     IosysAgentDeviceSpecific:
@@ -2082,7 +2209,7 @@ components:
           type: integer
       title: MbusAgentDeviceSpecific
       type: object
-    IosysAgentMappingSpecific:
+    IosysAgentDeviceMappingSpecific:
       description: Specific mapping for IOSYS agents
       nullable: true
       properties:
@@ -2137,9 +2264,9 @@ components:
           type: number
       required:
       - down
-      title: IosysAgentMappingSpecific
+      title: IosysAgentDeviceMappingSpecific
       type: object
-    MbusAgentMappingSpecific:
+    MbusAgentDeviceMappingSpecific:
       description: Specific mapping for MBUS agents
       nullable: true
       properties:
@@ -2155,5 +2282,5 @@ components:
           type: number
       required:
       - field
-      title: MbusAgentMappingSpecific
+      title: MbusAgentDeviceMappingSpecific
       type: object

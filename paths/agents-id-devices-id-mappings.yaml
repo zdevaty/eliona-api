@@ -3,6 +3,9 @@ get:
     - Agents
   summary: Information about agent mappings
   description: Gets information about mappings between agent and eliona.
+  parameters:
+    - $ref: '../parameters/agent-id.yaml'
+    - $ref: '../parameters/agent-device-id.yaml'
   operationId: getAgentMappings
   responses:
     200:
@@ -12,7 +15,7 @@ get:
           schema:
             type: array
             items:
-              $ref: '../schemas/AgentMapping.yaml'
+              $ref: '../schemas/AgentDeviceMapping.yaml'
 
 put:
   tags:
@@ -25,7 +28,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: '../schemas/AgentMapping.yaml'
+          $ref: '../schemas/AgentDeviceMapping.yaml'
   responses:
     200:
       description: Successfully created a new or updated an existing agent mapping

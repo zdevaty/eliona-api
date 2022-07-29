@@ -2,8 +2,6 @@ type: object
 description: A general device for an agent
 nullable: true
 required:
-  - class
-  - agentId
   - enable
 properties:
   class:
@@ -18,6 +16,8 @@ properties:
     type: integer
     description: The id of the agent the device belongs to
     example: 4711
+    nullable: true
+    readOnly: true
   enable:
     type: boolean
     description: Is the device enabled or not
