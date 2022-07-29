@@ -1,5 +1,6 @@
+x-all-of-name: IosysAgentDevice
 allOf:
-  - $ref: 'AgentDevice.yaml'
+  - $ref: 'AgentDeviceGeneral.yaml'
   - type: object
     title: IosysAgentDeviceSpecific
     description: Specific device for IOSYS agents

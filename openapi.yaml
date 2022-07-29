@@ -728,7 +728,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/AgentDevices'
+                  $ref: '#/components/schemas/AgentDevice'
                 type: array
           description: Successfully returned a list of devices
       summary: Information about agent devices
@@ -742,7 +742,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AgentDevices'
+              $ref: '#/components/schemas/AgentDevice'
         required: true
       responses:
         "200":
@@ -760,7 +760,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/AgentMappings'
+                  $ref: '#/components/schemas/AgentMapping'
                 type: array
           description: Successfully returned a list of agent mappings
       summary: Information about agent mappings
@@ -774,7 +774,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AgentMappings'
+              $ref: '#/components/schemas/AgentMapping'
         required: true
       responses:
         "200":
@@ -1689,22 +1689,12 @@ components:
       required:
       - enable
       type: object
-    AgentDevices:
-      discriminator:
-        mapping:
-          iosys: '#/components/schemas/IosysAgentDevice'
-          mbus: '#/components/schemas/MbusAgentDevice'
-        propertyName: class
-      oneOf:
+    AgentDevice:
+      anyOf:
       - $ref: '#/components/schemas/IosysAgentDevice'
       - $ref: '#/components/schemas/MbusAgentDevice'
-    AgentMappings:
-      discriminator:
-        mapping:
-          iosys: '#/components/schemas/IosysAgentMapping'
-          mbus: '#/components/schemas/MbusAgentMapping'
-        propertyName: class
-      oneOf:
+    AgentMapping:
+      anyOf:
       - $ref: '#/components/schemas/IosysAgentMapping'
       - $ref: '#/components/schemas/MbusAgentMapping'
     Translation:
@@ -1942,26 +1932,32 @@ components:
       - AGENT_CLASS_TRK
     IosysAgentDevice:
       allOf:
-      - $ref: '#/components/schemas/AgentDevice'
+      - $ref: '#/components/schemas/AgentDeviceGeneral'
       - $ref: '#/components/schemas/IosysAgentDeviceSpecific'
+      x-all-of-name: IosysAgentDevice
     MbusAgentDevice:
       allOf:
-      - $ref: '#/components/schemas/AgentDevice'
+      - $ref: '#/components/schemas/AgentDeviceGeneral'
       - $ref: '#/components/schemas/MbusAgentDeviceSpecific'
+      x-all-of-name: MbusAgentDevice
     IosysAgentMapping:
       allOf:
-      - $ref: '#/components/schemas/AgentMapping'
+      - $ref: '#/components/schemas/AgentMappingGeneral'
       - $ref: '#/components/schemas/IosysAgentMappingSpecific'
+      x-all-of-name: IosysAgentMapping
     MbusAgentMapping:
       allOf:
-      - $ref: '#/components/schemas/AgentMapping'
+      - $ref: '#/components/schemas/AgentMappingGeneral'
       - $ref: '#/components/schemas/MbusAgentMappingSpecific'
-    AgentDevice:
+      x-all-of-name: MbusAgentMapping
+    AgentDeviceGeneral:
       description: A general device for an agent
+      discriminator:
+        propertyName: class
       nullable: true
       properties:
         class:
-          $ref: '#/components/schemas/AgentClass'
+          type: string
         id:
           description: Unique id for the device
           example: "1234"
@@ -1981,12 +1977,14 @@ components:
       - class
       - enable
       type: object
-    AgentMapping:
+    AgentMappingGeneral:
       description: A general mapping of attributes for an agent
+      discriminator:
+        propertyName: class
       nullable: true
       properties:
         class:
-          $ref: '#/components/schemas/AgentClass'
+          type: string
         id:
           description: Unique id for the mapping
           example: "1234"

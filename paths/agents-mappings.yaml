@@ -12,7 +12,7 @@ get:
           schema:
             type: array
             items:
-              $ref: '../schemas/AgentMappings.yaml'
+              $ref: '../schemas/AgentMapping.yaml'
 
 put:
   tags:
@@ -25,7 +25,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: '../schemas/AgentMappings.yaml'
+          $ref: '../schemas/AgentMapping.yaml'
   responses:
     200:
       description: Successfully created a new or updated an existing agent mapping

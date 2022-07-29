@@ -1,5 +1,6 @@
+x-all-of-name: IosysAgentMapping
 allOf:
-  - $ref: 'AgentMapping.yaml'
+  - $ref: 'AgentMappingGeneral.yaml'
   - type: object
     title: IosysAgentMappingSpecific
     description: Specific mapping for IOSYS agents

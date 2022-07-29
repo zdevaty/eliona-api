@@ -1,0 +1,26 @@
+type: object
+description: A general device for an agent
+nullable: true
+discriminator:
+  propertyName: class
+required:
+  - class
+  - agentId
+  - enable
+properties:
+  class:
+    type: string
+  id:
+    type: string
+    description: Unique id for the device
+    nullable: true
+    readOnly: true
+    example: 1234
+  agentId:
+    type: integer
+    description: The id of the agent the device belongs to
+    example: 4711
+  enable:
+    type: boolean
+    description: Is the device enabled or not
+    default: false

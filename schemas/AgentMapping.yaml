@@ -1,36 +1,3 @@
-type: object
-description: A general mapping of attributes for an agent
-nullable: true
-required:
-  - class
-  - agentId
-  - enable
-  - assetId
-properties:
-  class:
-    $ref: 'AgentClass.yaml'
-  id:
-    type: string
-    description: Unique id for the mapping
-    nullable: true
-    readOnly: true
-    example: 1234
-  agentId:
-    type: integer
-    description: The id of the agent the mapping belongs to
-    example: 4711
-  enable:
-    type: boolean
-    description: Is the mapping enabled or not
-    default: true
-  assetId:
-    type: integer
-    description: ID of the corresponding asset
-    example: 4711
-  subtype:
-    $ref: 'HeapSubtype.yaml'
-  attribute:
-    type: string
-    description: Name of the attribute to map
-    example: temperature
-    nullable: true
+anyOf:
+  - $ref: 'IosysAgentMapping.yaml'
+  - $ref: 'MbusAgentMapping.yaml'

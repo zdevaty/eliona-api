@@ -1,5 +1,6 @@
+x-all-of-name: MbusAgentDevice
 allOf:
-  - $ref: 'AgentDevice.yaml'
+  - $ref: 'AgentDeviceGeneral.yaml'
   - type: object
     title: MbusAgentDeviceSpecific
     description: Specific device for MBUS agents

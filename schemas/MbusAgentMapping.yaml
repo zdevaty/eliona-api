@@ -1,5 +1,6 @@
+x-all-of-name: MbusAgentMapping
 allOf:
-  - $ref: 'AgentMapping.yaml'
+  - $ref: 'AgentMappingGeneral.yaml'
   - type: object
     title: MbusAgentMappingSpecific
     description: Specific mapping for MBUS agents
