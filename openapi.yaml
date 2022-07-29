@@ -690,7 +690,7 @@ paths:
   /agents:
     get:
       description: Gets information about agents.
-      operationId: getNodes
+      operationId: getAgents
       responses:
         "200":
           content:
@@ -705,7 +705,7 @@ paths:
       - Agents
     put:
       description: Create a new agent or update a agent if already exists
-      operationId: putNode
+      operationId: putAgent
       requestBody:
         content:
           application/json:
