@@ -4,4 +4,7 @@ description: The class of an agent
 example: iosys
 required: true
 schema:
-  $ref: '../schemas/AgentClass.yaml'
+  type: string
+  enum:
+    - iosys
+    - mbus

@@ -741,7 +741,10 @@ paths:
         name: agent-class
         required: true
         schema:
-          $ref: '#/components/schemas/AgentClass'
+          enum:
+          - iosys
+          - mbus
+          type: string
       responses:
         "200":
           content:
@@ -764,7 +767,10 @@ paths:
         name: agent-class
         required: true
         schema:
-          $ref: '#/components/schemas/AgentClass'
+          enum:
+          - iosys
+          - mbus
+          type: string
       requestBody:
         content:
           application/json:
@@ -788,7 +794,10 @@ paths:
         name: agent-class
         required: true
         schema:
-          $ref: '#/components/schemas/AgentClass'
+          enum:
+          - iosys
+          - mbus
+          type: string
       - description: The id of the agent
         example: 4711
         in: path
@@ -819,7 +828,10 @@ paths:
         name: agent-class
         required: true
         schema:
-          $ref: '#/components/schemas/AgentClass'
+          enum:
+          - iosys
+          - mbus
+          type: string
       - description: The id of the agent
         example: 4711
         in: path
@@ -850,7 +862,10 @@ paths:
         name: agent-class
         required: true
         schema:
-          $ref: '#/components/schemas/AgentClass'
+          enum:
+          - iosys
+          - mbus
+          type: string
       - description: The id of the device
         example: 4711
         in: path
@@ -881,7 +896,10 @@ paths:
         name: agent-class
         required: true
         schema:
-          $ref: '#/components/schemas/AgentClass'
+          enum:
+          - iosys
+          - mbus
+          type: string
       - description: The id of the device
         example: 4711
         in: path
@@ -1813,17 +1831,6 @@ components:
       required:
       - enable
       type: object
-    AgentClass:
-      description: The class of an agent
-      enum:
-      - iosys
-      - mbus
-      nullable: true
-      readOnly: true
-      type: string
-      x-enum-varnames:
-      - AGENT_CLASS_IOSYS
-      - AGENT_CLASS_MBUS
     AgentDevice:
       anyOf:
       - $ref: '#/components/schemas/IosysAgentDevice'
@@ -2032,6 +2039,17 @@ components:
       - ALARM_PRIORITY_LOW
       - ALARM_PRIORITY_MEDIUM
       - ALARM_PRIORITY_HEIGHT
+    AgentClass:
+      description: The class of an agent
+      enum:
+      - iosys
+      - mbus
+      nullable: true
+      readOnly: true
+      type: string
+      x-enum-varnames:
+      - AGENT_CLASS_IOSYS
+      - AGENT_CLASS_MBUS
     IosysAgentDevice:
       allOf:
       - $ref: '#/components/schemas/AgentDeviceGeneral'
