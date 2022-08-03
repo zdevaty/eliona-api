@@ -1819,6 +1819,7 @@ components:
       - iosys
       - mbus
       nullable: true
+      readOnly: true
       type: string
       x-enum-varnames:
       - AGENT_CLASS_IOSYS
@@ -2059,10 +2060,10 @@ components:
           $ref: '#/components/schemas/AgentClass'
         id:
           description: Unique id for the device
-          example: "1234"
+          example: 1234
           nullable: true
           readOnly: true
-          type: string
+          type: integer
         agentId:
           description: The id of the agent the device belongs to
           example: 4711
@@ -2080,12 +2081,14 @@ components:
       description: A general mapping of attributes for an agent
       nullable: true
       properties:
+        class:
+          $ref: '#/components/schemas/AgentClass'
         id:
           description: Unique id for the mapping
-          example: "1234"
+          example: 1234
           nullable: true
           readOnly: true
-          type: string
+          type: integer
         deviceId:
           description: The id of the device the mapping belongs to
           example: 4711

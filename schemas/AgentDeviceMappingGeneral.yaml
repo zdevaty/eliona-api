@@ -4,6 +4,8 @@ nullable: true
 required:
   - enable
 properties:
+  class:
+    $ref: 'AgentClass.yaml'
   id:
     type: integer
     description: Unique id for the mapping

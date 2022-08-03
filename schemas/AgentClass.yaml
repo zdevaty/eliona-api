@@ -1,6 +1,7 @@
 type: string
 description: The class of an agent
 nullable: true
+readOnly: true
 enum:
   - iosys
   - mbus
