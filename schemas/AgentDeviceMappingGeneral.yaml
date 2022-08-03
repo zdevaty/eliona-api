@@ -4,9 +4,8 @@ nullable: true
 required:
   - enable
 properties:
-
   id:
-    type: string
+    type: integer
     description: Unique id for the mapping
     nullable: true
     readOnly: true

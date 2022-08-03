@@ -7,7 +7,7 @@ properties:
   class:
     $ref: 'AgentClass.yaml'
   id:
-    type: string
+    type: integer
     description: Unique id for the device
     nullable: true
     readOnly: true
