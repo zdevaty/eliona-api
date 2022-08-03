@@ -1,0 +1,35 @@
+get:
+  tags:
+    - Agents
+  summary: Information about agents for a specific class
+  description: Gets information about agents.
+  operationId: getAgentsByClass
+  parameters:
+    - $ref: '../parameters/agent-class.yaml'
+  responses:
+    200:
+      description: Successfully returned a list of agents
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/Agent.yaml'
+
+put:
+  tags:
+    - Agents
+  summary: Create or update an agent for a specific class
+  description: Create a new agent or update an agent if already exists
+  operationId: putAgentByClass
+  parameters:
+    - $ref: '../parameters/agent-class.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Agent.yaml'
+  responses:
+    200:
+      description: Successfully created a new or updated an existing agent

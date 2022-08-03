@@ -730,9 +730,41 @@ paths:
       summary: Information about agents
       tags:
       - Agents
+  /agents/{agent-class}:
+    get:
+      description: Gets information about agents.
+      operationId: getAgentsByClass
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentClass'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Agent'
+                type: array
+          description: Successfully returned a list of agents
+      summary: Information about agents for a specific class
+      tags:
+      - Agents
     put:
-      description: Create a new agent or update a agent if already exists
-      operationId: putAgent
+      description: Create a new agent or update an agent if already exists
+      operationId: putAgentByClass
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentClass'
       requestBody:
         content:
           application/json:
@@ -742,36 +774,21 @@ paths:
       responses:
         "200":
           description: Successfully created a new or updated an existing agent
-      summary: Create or update a agent
+      summary: Create or update an agent for a specific class
       tags:
       - Agents
-  /agents/{agent-id}:
-    get:
-      description: Gets information about agent.
-      operationId: getAgentById
-      parameters:
-      - description: The id of the agent
-        example: 4711
-        in: path
-        name: agent-id
-        required: true
-        schema:
-          type: integer
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Agent'
-          description: Successfully returned an agent
-      summary: Information about an agent
-      tags:
-      - Agents
-  /agents/{agent-id}/devices:
+  /agents/{agent-class}/{agent-id}/devices:
     get:
       description: Gets information about agent devices.
-      operationId: getAgentDevices
+      operationId: getAgentDevicesById
       parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentClass'
       - description: The id of the agent
         example: 4711
         in: path
@@ -794,7 +811,22 @@ paths:
     put:
       description: Create a new agent device or update an agent device if already
         exists
-      operationId: putAgentDevice
+      operationId: putAgentDeviceById
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentClass'
+      - description: The id of the agent
+        example: 4711
+        in: path
+        name: agent-id
+        required: true
+        schema:
+          type: integer
       requestBody:
         content:
           application/json:
@@ -807,47 +839,18 @@ paths:
       summary: Create or update an agent device
       tags:
       - Agents
-  /agents/{agent-id}/devices/{agent-device-id}:
-    get:
-      description: Gets information about agent device.
-      operationId: getAgentDeviceById
-      parameters:
-      - description: The id of the agent
-        example: 4711
-        in: path
-        name: agent-id
-        required: true
-        schema:
-          type: integer
-      - description: The id of the device
-        example: 4711
-        in: path
-        name: agent-device-id
-        required: true
-        schema:
-          type: integer
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AgentDevice'
-          description: Successfully returned a device
-      summary: Information about agent device
-      tags:
-      - Agents
-  /agents/{agent-id}/devices/{agent-device-id}/mappings:
+  /agent-devices/{agent-class}/{agent-device-id}/mappings:
     get:
       description: Gets information about mappings between agent and eliona.
-      operationId: getAgentMappings
+      operationId: getAgentDeviceMappingsById
       parameters:
-      - description: The id of the agent
-        example: 4711
+      - description: The class of an agent
+        example: iosys
         in: path
-        name: agent-id
+        name: agent-class
         required: true
         schema:
-          type: integer
+          $ref: '#/components/schemas/AgentClass'
       - description: The id of the device
         example: 4711
         in: path
@@ -863,14 +866,29 @@ paths:
                 items:
                   $ref: '#/components/schemas/AgentDeviceMapping'
                 type: array
-          description: Successfully returned a list of agent mappings
-      summary: Information about agent mappings
+          description: Successfully returned a mapping
+      summary: Information about agent device mappings
       tags:
       - Agents
     put:
-      description: Create a new agent mapping or update an agent mapping if already
-        exists
-      operationId: putAgentMapping
+      description: Create a new agent device mapping or update an agent device mapping
+        if already exists
+      operationId: putAgentDeviceMappingById
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          $ref: '#/components/schemas/AgentClass'
+      - description: The id of the device
+        example: 4711
+        in: path
+        name: agent-device-id
+        required: true
+        schema:
+          type: integer
       requestBody:
         content:
           application/json:
@@ -879,44 +897,13 @@ paths:
         required: true
       responses:
         "200":
-          description: Successfully created a new or updated an existing agent mapping
-      summary: Create or update an agent mapping
-      tags:
-      - Agents
-  /agents/{agent-id}/devices/{agent-device-id}/mappings/{agent-device-mapping-id}:
-    get:
-      description: Gets information about mapping between agent and eliona.
-      operationId: getAgentMappingById
-      parameters:
-      - description: The id of the agent
-        example: 4711
-        in: path
-        name: agent-id
-        required: true
-        schema:
-          type: integer
-      - description: The id of the device
-        example: 4711
-        in: path
-        name: agent-device-id
-        required: true
-        schema:
-          type: integer
-      - description: The id of the device mapping
-        example: 4711
-        in: path
-        name: agent-device-mapping-id
-        required: true
-        schema:
-          type: integer
-      responses:
-        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AgentDeviceMapping'
-          description: Successfully returned a mapping
-      summary: Information about agent an mapping
+          description: Successfully created a new or updated an existing agent device
+            mapping
+      summary: Create or update an agent device mapping
       tags:
       - Agents
 components:
@@ -1826,6 +1813,16 @@ components:
       required:
       - enable
       type: object
+    AgentClass:
+      description: The class of an agent
+      enum:
+      - iosys
+      - mbus
+      nullable: true
+      type: string
+      x-enum-varnames:
+      - AGENT_CLASS_IOSYS
+      - AGENT_CLASS_MBUS
     AgentDevice:
       anyOf:
       - $ref: '#/components/schemas/IosysAgentDevice'
@@ -2034,39 +2031,6 @@ components:
       - ALARM_PRIORITY_LOW
       - ALARM_PRIORITY_MEDIUM
       - ALARM_PRIORITY_HEIGHT
-    AgentClass:
-      description: The class of an agent
-      enum:
-      - mqtt
-      - webhook
-      - iosys
-      - modbus
-      - gwmp
-      - bacnet
-      - kafka
-      - opcua
-      - sbus
-      - url
-      - knx
-      - ttn
-      - mbus
-      - trk
-      type: string
-      x-enum-varnames:
-      - AGENT_CLASS_MQTT
-      - AGENT_CLASS_WEBHOOK
-      - AGENT_CLASS_IOSYS
-      - AGENT_CLASS_MODBUS
-      - AGENT_CLASS_GWMP
-      - AGENT_CLASS_BACNET
-      - AGENT_CLASS_KAFKA
-      - AGENT_CLASS_OPCUA
-      - AGENT_CLASS_SBUS
-      - AGENT_CLASS_URL
-      - AGENT_CLASS_KNX
-      - AGENT_CLASS_TTN
-      - AGENT_CLASS_MBUS
-      - AGENT_CLASS_TRK
     IosysAgentDevice:
       allOf:
       - $ref: '#/components/schemas/AgentDeviceGeneral'

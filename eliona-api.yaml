@@ -90,20 +90,34 @@ paths:
   /agents:
     $ref: './paths/agents.yaml'
 
-  /agents/{agent-id}:
-    $ref: './paths/agents-id.yaml'
+  /agents/{agent-class}:
+    $ref: './paths/agents-class.yaml'
 
-  /agents/{agent-id}/devices:
-    $ref: './paths/agents-id-devices.yaml'
+  # Not yet implemented
+  # /agents/{agent-class}/{agent-id}:
+  #   $ref: './paths/agents-class-id.yaml'
 
-  /agents/{agent-id}/devices/{agent-device-id}:
-    $ref: './paths/agents-id-devices-id.yaml'
+  /agents/{agent-class}/{agent-id}/devices:
+    $ref: './paths/agents-class-id-devices.yaml'
 
-  /agents/{agent-id}/devices/{agent-device-id}/mappings:
-    $ref: './paths/agents-id-devices-id-mappings.yaml'
+  # Not yet implemented
+  # /agent-devices/{agent-class}:
+  #   $ref: './paths/agent-devices-class.yaml'
 
-  /agents/{agent-id}/devices/{agent-device-id}/mappings/{agent-device-mapping-id}:
-    $ref: './paths/agents-id-devices-id-mappings-id.yaml'
+  # Not yet implemented
+  # /agent-devices/{agent-class}/{agent-device-id}:
+  #   $ref: './paths/agent-devices-class-id.yaml'
+
+  /agent-devices/{agent-class}/{agent-device-id}/mappings:
+    $ref: './paths/agent-devices-class-id-mappings.yaml'
+
+  # Not yet implemented
+  # /agent-device-mappings/{agent-class}:
+  #   $ref: './paths/agent-device-mappings-class.yaml'
+
+  # Not yet implemented
+  # /agent-device-mappings/{agent-class}/{agent-device-mapping-id}:
+  #   $ref: './paths/agent-device-mappings-class-id.yaml'
 
 tags:
   - name: Nodes

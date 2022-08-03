@@ -4,4 +4,4 @@ description: The class of an agent
 example: iosys
 required: true
 schema:
-  $ref: '../AgentClass.yaml'
+  $ref: '../schemas/AgentClass.yaml'
