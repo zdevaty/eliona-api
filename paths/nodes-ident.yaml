@@ -5,7 +5,7 @@ get:
   description: Gets information about a node.
   parameters:
     - $ref: '../parameters/node-ident.yaml'
-  operationId: getNodesByIdent
+  operationId: getNodeByIdent
   responses:
     200:
       description: Successfully returned a list of node
