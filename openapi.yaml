@@ -683,6 +683,10 @@ paths:
         required: true
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
           description: Successfully created a new or updated an existing node
       summary: Create or update a node
       tags:
@@ -690,7 +694,7 @@ paths:
   /nodes/{node-ident}:
     get:
       description: Gets information about a node.
-      operationId: getNodesByIdent
+      operationId: getNodeByIdent
       parameters:
       - description: The UUID identifier of the node
         example: 4711
