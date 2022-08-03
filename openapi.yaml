@@ -2109,10 +2109,11 @@ components:
         attribute:
           description: Name of the attribute to map
           example: temperature
-          nullable: true
           type: string
       required:
+      - attribute
       - enable
+      - subtype
       type: object
     IosysAgentDeviceSpecific:
       description: Specific device for IOSYS agents
@@ -2185,7 +2186,6 @@ components:
       nullable: true
       properties:
         iosVar:
-          nullable: true
           type: string
         iosType:
           enum:
@@ -2207,6 +2207,7 @@ components:
           type: number
         mask:
           items:
+            format: int64
             type: integer
           nullable: true
           type: array
@@ -2235,6 +2236,7 @@ components:
           type: number
       required:
       - down
+      - iosVar
       title: IosysAgentDeviceMappingSpecific
       type: object
     MbusAgentDeviceMappingSpecific:
