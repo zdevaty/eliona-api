@@ -29,3 +29,7 @@ put:
   responses:
     200:
       description: Successfully created a new or updated an existing node
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Node.yaml'
