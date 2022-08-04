@@ -1,0 +1,30 @@
+### Get all nodes
+GET http://localhost:8084/v2/nodes
+
+### Get node by ident
+GET http://localhost:8084/v2/nodes/7b6b2ac7-f4bd-474f-bc51-a9bd004f6604
+
+### Insert new node
+PUT http://localhost:8084/v2/nodes
+Content-Type: application/json
+
+{
+  "password": "string",
+  "vendor": "string",
+  "model": "string",
+  "description": "Node east plant",
+  "enable": false
+}
+
+### Update new node
+PUT http://localhost:8084/v2/nodes
+Content-Type: application/json
+
+{
+  "ident": "f0da68cf-468f-44d9-b460-18682c864b12",
+"password": "string",
+"vendor": "string",
+"model": "string",
+"description": "Node east plant (updated)",
+"enable": false
+}

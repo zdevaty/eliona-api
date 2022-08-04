@@ -2,4 +2,19 @@
 PUT http://localhost:8084/v2/alarm-rules
 Content-Type: application/json
 
-{"assetId":4884,"subtype":"output","attribute":"temperature_setpoint","enable":true,"priority":1,"requiresAcknowledge":true,"high":2,"message":{"come":"Test Andreas Göbel","gone":null},"tags":null,"notifyOn":"R","dontMask":false}
+{
+  "assetId": 4884,
+  "subtype": "output",
+  "attribute": "temperature_setpoint",
+  "enable": true,
+  "priority": 1,
+  "requiresAcknowledge": true,
+  "high": 2,
+  "message": {
+    "come": "Test Andreas Göbel",
+    "gone": null
+  },
+  "tags": null,
+  "notifyOn": "R",
+  "dontMask": false
+}

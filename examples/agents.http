@@ -1,0 +1,70 @@
+### Get all agents
+GET http://localhost:8084/v2/agents
+
+### Get all agents of class
+GET http://localhost:8084/v2/agents/iosys
+
+### Insert new agent for class
+PUT http://localhost:8084/v2/agents/iosys
+Content-Type: application/json
+
+{
+  "description": "IOSYS Agent east plant",
+  "enable": false,
+  "config": {}
+}
+
+### Update new agent for class
+PUT http://localhost:8084/v2/agents/iosys
+Content-Type: application/json
+
+{
+  "id": 4106,
+  "description": "IOSYS Agent east plant (updated)",
+  "enable": false,
+  "config": {}
+}
+
+### Select devices
+GET http://localhost:8084/v2/agents/iosys/558/devices
+
+### Insert devices
+PUT http://localhost:8084/v2/agents/iosys/558/devices
+Content-Type: application/json
+
+{
+  "enable": false,
+  "port": 0,
+  "certificate": "XXX",
+  "key": "YYY",
+  "timeout": 0,
+  "reconnect": 20
+}
+
+### Select mappings
+GET http://localhost:8084/v2/agent-devices/iosys/304/mappings
+
+### Insert mapping
+PUT http://localhost:8084/v2/agent-devices/iosys/304/mappings
+Content-Type: application/json
+
+{
+  "enable": true,
+  "subtype": "input",
+  "attribute": "temperature",
+  "iosVar": "string",
+  "iosType": "INT",
+  "down": false,
+  "scale": 0,
+  "zero": 0,
+  "mask": [
+    0
+  ],
+  "maskAttributes": [
+    "string"
+  ],
+  "deadTime": 0,
+  "deadBand": 0,
+  "filter": "LPF1",
+  "tau": 0
+}
