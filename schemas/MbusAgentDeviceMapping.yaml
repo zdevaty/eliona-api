@@ -8,6 +8,7 @@ allOf:
     properties:
       field:
         type: integer
+        nullable: true
       scale:
         type: number
         format: double

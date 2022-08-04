@@ -2197,6 +2197,7 @@ components:
       nullable: true
       properties:
         iosVar:
+          nullable: true
           type: string
         iosType:
           enum:
@@ -2207,6 +2208,7 @@ components:
           type: string
         down:
           default: false
+          nullable: true
           type: boolean
         scale:
           format: double
@@ -2252,6 +2254,7 @@ components:
       nullable: true
       properties:
         field:
+          nullable: true
           type: integer
         scale:
           format: double
