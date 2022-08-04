@@ -2147,6 +2147,7 @@ components:
           type: integer
         reconnect:
           description: Reconnect
+          example: 10
           nullable: true
           type: integer
       title: IosysAgentDeviceSpecific
@@ -2245,7 +2246,6 @@ components:
           nullable: true
           type: number
       required:
-      - down
       - iosVar
       title: IosysAgentDeviceMappingSpecific
       type: object
