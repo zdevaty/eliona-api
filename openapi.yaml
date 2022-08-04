@@ -1237,7 +1237,6 @@ components:
         enable:
           default: true
           description: Is heap data active or not
-          nullable: true
           type: boolean
         translation:
           $ref: '#/components/schemas/Translation'
@@ -1782,8 +1781,6 @@ components:
           default: false
           description: Is the node enabled or not
           type: boolean
-      required:
-      - enable
       type: object
     Agent:
       description: An agent installed on an edge node
@@ -1828,8 +1825,6 @@ components:
           description: Individual configuration depending on agent class
           nullable: true
           type: object
-      required:
-      - enable
       type: object
     AgentDevice:
       anyOf:
@@ -2092,8 +2087,6 @@ components:
           default: false
           description: Is the device enabled or not
           type: boolean
-      required:
-      - enable
       type: object
     AgentDeviceMappingGeneral:
       description: A general mapping of attributes for an agent
@@ -2130,7 +2123,6 @@ components:
           type: string
       required:
       - attribute
-      - enable
       - subtype
       type: object
     IosysAgentDeviceSpecific:

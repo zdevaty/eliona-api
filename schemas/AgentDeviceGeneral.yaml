@@ -1,8 +1,6 @@
 type: object
 description: A general device for an agent
 nullable: true
-required:
-  - enable
 properties:
   class:
     $ref: 'AgentClass.yaml'

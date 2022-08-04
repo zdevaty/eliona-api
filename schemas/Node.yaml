@@ -1,8 +1,6 @@
 type: object
 description: An edge node
 nullable: true
-required:
-  - enable
 properties:
   id:
     type: string
@@ -42,4 +40,3 @@ properties:
     type: boolean
     description: Is the node enabled or not
     default: false
-

@@ -1,8 +1,6 @@
 type: object
 description: An agent installed on an edge node
 nullable: true
-required:
-  - enable
 properties:
   id:
     type: integer

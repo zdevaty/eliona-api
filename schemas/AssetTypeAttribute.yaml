@@ -48,7 +48,6 @@ properties:
     type: boolean
     default: true
     description: Is heap data active or not
-    nullable: true
   translation:
     $ref: 'Translation.yaml'
   unit:

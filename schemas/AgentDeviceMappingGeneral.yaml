@@ -2,7 +2,6 @@ type: object
 description: A general mapping of attributes for an agent
 nullable: true
 required:
-  - enable
   - subtype
   - attribute
 properties:
