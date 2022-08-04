@@ -699,7 +699,7 @@ paths:
       - description: The UUID identifier of the node
         example: 4711
         in: path
-        name: node-id
+        name: node-ident
         required: true
         schema:
           example: fef0a0d3-acad-4611-ac03-1fd842d72505
