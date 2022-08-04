@@ -26,5 +26,7 @@ allOf:
         type: integer
         description: Reconnect
         nullable: true
+        example: 10
+        min: 10
 
 
