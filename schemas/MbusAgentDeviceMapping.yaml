@@ -5,8 +5,6 @@ allOf:
     title: MbusAgentDeviceMappingSpecific
     description: Specific mapping for MBUS agents
     nullable: true
-    required:
-      - field
     properties:
       field:
         type: integer

@@ -2245,8 +2245,6 @@ components:
           format: double
           nullable: true
           type: number
-      required:
-      - iosVar
       title: IosysAgentDeviceMappingSpecific
       type: object
     MbusAgentDeviceMappingSpecific:
@@ -2263,7 +2261,5 @@ components:
           format: double
           nullable: true
           type: number
-      required:
-      - field
       title: MbusAgentDeviceMappingSpecific
       type: object

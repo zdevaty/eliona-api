@@ -5,8 +5,6 @@ allOf:
     title: IosysAgentDeviceMappingSpecific
     description: Specific mapping for IOSYS agents
     nullable: true
-    required:
-      - iosVar
     properties:
       iosVar:
         type: string
