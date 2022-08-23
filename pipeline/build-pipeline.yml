@@ -22,9 +22,8 @@ resources:
       type: git
       name: utils/pipeline
 jobs:
-- job: Build_and_push
-  steps:
-  - template: "steps/docker-build-push-docker-hub.yml@pipeline"
-    parameters:
-      repository: db-mock
-      file: ./mock/db/Dockerfile
+- template: "jobs/docker-with-cache.yml@pipeline"
+  parameters:
+    registry: public
+    repository: db-mock
+    file: ./mock/db/Dockerfile
