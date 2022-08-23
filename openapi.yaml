@@ -3,12 +3,14 @@ info:
   description: API to access Eliona Smart Building Assistant
   termsOfService: https://www.eliona.io/v2
   title: Eliona API
-  version: 2.1.0
+  version: 2.2.0
 externalDocs:
   description: Find out more about Eliona
   url: https://www.eliona.io
 servers:
 - url: http://api.eliona.io/v2
+security:
+- ApiKeyAuth: []
 tags:
 - description: Handle nodes
   externalDocs:
@@ -2266,3 +2268,10 @@ components:
           type: number
       title: MbusAgentDeviceMappingSpecific
       type: object
+  securitySchemes:
+    ApiKeyAuth:
+      description: Use the API key as a secret for authorizing and identifying an
+        app or agent
+      in: header
+      name: x-api-key
+      type: apiKey
