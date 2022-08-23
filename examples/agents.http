@@ -3,6 +3,8 @@ GET http://localhost:8084/v2/agents
 
 ### Get all agents of class
 GET http://localhost:8084/v2/agents/iosys
+X-Api-Key: 123
+
 
 ### Insert new agent for class
 PUT http://localhost:8084/v2/agents/iosys

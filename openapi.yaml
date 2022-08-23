@@ -2273,5 +2273,5 @@ components:
       description: Use the API key as a secret for authorizing and identifying an
         app or agent
       in: header
-      name: x-api-key
+      name: X-API-Key
       type: apiKey
