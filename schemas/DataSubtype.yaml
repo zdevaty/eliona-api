@@ -1,5 +1,5 @@
 type: string
-description: Type of asset heap data
+description: Type of asset data
 default: input
 enum:
   - input
@@ -7,10 +7,10 @@ enum:
   - status
   - output
 x-enum-descriptions:
-  - Input subtype for heap values
-  - Info subtype for heap values
-  - Status subtype for heap values
-  - Output subtype for heap values
+  - Input subtype for data values
+  - Info subtype for data values
+  - Status subtype for data values
+  - Output subtype for data values
 x-enum-varnames:
   - SUBTYPE_INPUT
   - SUBTYPE_INFO

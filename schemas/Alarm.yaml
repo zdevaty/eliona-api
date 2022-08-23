@@ -18,7 +18,7 @@ properties:
     description: ID of the corresponding asset
     example: 4711
   subtype:
-    $ref: 'HeapSubtype.yaml'
+    $ref: 'DataSubtype.yaml'
   attribute:
     type: string
     description: Name of the attribute of the asset type

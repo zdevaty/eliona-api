@@ -40,10 +40,10 @@ tags:
   externalDocs:
     url: https://www.eliona.io
   name: Asset types
-- description: Handle Heap data
+- description: Handle asset data
   externalDocs:
     url: https://www.eliona.io
-  name: Heaps
+  name: Data
 - description: Handle dashboards
   externalDocs:
     url: https://www.eliona.io
@@ -295,22 +295,22 @@ paths:
       summary: Create or update an asset type attribute
       tags:
       - Asset types
-  /heaps:
+  /data:
     put:
-      description: Create new heap data or update data if already exists
-      operationId: putHeap
+      description: Create new asset data or update data if already exists
+      operationId: putData
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Heap'
+              $ref: '#/components/schemas/Data'
         required: true
       responses:
         "200":
-          description: Successfully created a new or updated existing heap data
-      summary: Create or update heap data
+          description: Successfully created a new or updated existing asset data
+      summary: Create or update asset data
       tags:
-      - Heaps
+      - Data
   /widget-types:
     put:
       description: Create a widget type if the a type with the name not exists or
@@ -1202,11 +1202,11 @@ components:
           nullable: true
           type: string
         name:
-          description: Unique key of asset heap data
+          description: Unique key of asset data
           example: temperature
           type: string
         subtype:
-          $ref: '#/components/schemas/HeapSubtype'
+          $ref: '#/components/schemas/DataSubtype'
         type:
           description: Name of the type for this attribute
           enum:
@@ -1238,7 +1238,7 @@ components:
           type: string
         enable:
           default: true
-          description: Is heap data active or not
+          description: Is data active or not
           type: boolean
         translation:
           $ref: '#/components/schemas/Translation'
@@ -1290,8 +1290,8 @@ components:
       - name
       - subtype
       type: object
-    Heap:
-      description: Heap data
+    Data:
+      description: Data for assets
       example:
         data: "{}"
         subtype: null
@@ -1303,7 +1303,7 @@ components:
           example: 4711
           type: integer
         subtype:
-          $ref: '#/components/schemas/HeapSubtype'
+          $ref: '#/components/schemas/DataSubtype'
         timestamp:
           description: Timestamp of the latest data change
           format: date-time
@@ -1522,7 +1522,7 @@ components:
           example: 4711
           type: integer
         subtype:
-          $ref: '#/components/schemas/HeapSubtype'
+          $ref: '#/components/schemas/DataSubtype'
         attribute:
           description: Name of the attribute of the asset type
           example: temperature
@@ -1672,7 +1672,7 @@ components:
           example: 4711
           type: integer
         subtype:
-          $ref: '#/components/schemas/HeapSubtype'
+          $ref: '#/components/schemas/DataSubtype'
         attribute:
           description: Name of the attribute of the asset type
           example: temperature
@@ -1862,9 +1862,9 @@ components:
           example: Questa è una descrizione italiana
           type: string
       type: object
-    HeapSubtype:
+    DataSubtype:
       default: input
-      description: Type of asset heap data
+      description: Type of asset data
       enum:
       - input
       - info
@@ -1872,10 +1872,10 @@ components:
       - output
       type: string
       x-enum-descriptions:
-      - Input subtype for heap values
-      - Info subtype for heap values
-      - Status subtype for heap values
-      - Output subtype for heap values
+      - Input subtype for data values
+      - Info subtype for data values
+      - Status subtype for data values
+      - Output subtype for data values
       x-enum-varnames:
       - SUBTYPE_INPUT
       - SUBTYPE_INFO
@@ -2009,7 +2009,7 @@ components:
           nullable: true
           type: integer
         subtype:
-          $ref: '#/components/schemas/HeapSubtype'
+          $ref: '#/components/schemas/DataSubtype'
         attribute:
           description: Name of the attribute of the asset type
           example: temperature
@@ -2118,7 +2118,7 @@ components:
           nullable: true
           type: integer
         subtype:
-          $ref: '#/components/schemas/HeapSubtype'
+          $ref: '#/components/schemas/DataSubtype'
         attribute:
           description: Name of the attribute to map
           example: temperature

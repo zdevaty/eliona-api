@@ -11,10 +11,10 @@ properties:
     nullable: true
   name:
     type: string
-    description: Unique key of asset heap data
+    description: Unique key of asset data
     example: temperature
   subtype:
-    $ref: 'HeapSubtype.yaml'
+    $ref: 'DataSubtype.yaml'
   type:
     type: string
     description: Name of the type for this attribute
@@ -47,7 +47,7 @@ properties:
   enable:
     type: boolean
     default: true
-    description: Is heap data active or not
+    description: Is data active or not
   translation:
     $ref: 'Translation.yaml'
   unit:

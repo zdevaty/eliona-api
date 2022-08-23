@@ -1,5 +1,5 @@
 type: object
-description: Heap data
+description: Data for assets
 required:
   - assetId
   - subtype
@@ -10,7 +10,7 @@ properties:
     description: ID of the corresponding asset
     example: 4711
   subtype:
-    $ref: 'HeapSubtype.yaml'
+    $ref: 'DataSubtype.yaml'
   timestamp:
     type: string
     format: date-time

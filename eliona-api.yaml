@@ -48,8 +48,8 @@ paths:
   /asset-types/{asset-type-name}/attributes:
     $ref: './paths/asset-types-name-attributes.yaml'
 
-  /heaps:
-    $ref: './paths/heaps.yaml'
+  /data:
+    $ref: './paths/data.yaml'
 
   /widget-types:
     $ref: './paths/widget-types.yaml'
@@ -148,8 +148,8 @@ tags:
     description: Handle asset types
     externalDocs:
       url: https://www.eliona.io
-  - name: Heaps
-    description: Handle Heap data
+  - name: Data
+    description: Handle asset data
     externalDocs:
       url: https://www.eliona.io
   - name: Dashboards

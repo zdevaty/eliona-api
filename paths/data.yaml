@@ -1,0 +1,15 @@
+put:
+  tags:
+    - Data
+  summary: Create or update asset data
+  description: Create new asset data or update data if already exists
+  operationId: putData
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Data.yaml'
+  responses:
+    200:
+      description: Successfully created a new or updated existing asset data

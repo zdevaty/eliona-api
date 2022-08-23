@@ -29,7 +29,7 @@ properties:
     example: 4711
     nullable: true
   subtype:
-    $ref: 'HeapSubtype.yaml'
+    $ref: 'DataSubtype.yaml'
   attribute:
     type: string
     description: Name of the attribute to map
