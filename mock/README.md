@@ -4,9 +4,8 @@ The Eliona API mock is a simple mock for development and testing purposes. Is pr
 
 ## Installation ##
 
-You need an Eliona database mock and an Eliona API server. Both are available as docker images in Docker Hub.
+You need an database initialized with mock objects and an Eliona API server. The API server is available as a docker image in Docker Hub.
 
-- [Eliona database mock](https://hub.docker.com/repository/docker/eliona/db-mock)
 - [Eliona API v2 server](https://hub.docker.com/repository/docker/eliona/api-v2)
 
 It is best to start these images with Docker compose. You can use this [docker-compose.yml](mock/docker-compose.yml) as template. 
