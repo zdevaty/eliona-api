@@ -29,13 +29,15 @@ services:
   # The database can be connected with: CONNECTION_STRING=postgres://postgres:postgres@localhost:5432
   database:
     container_name: database-mock
-    image: eliona/db-mock:latest
+    image: debezium/postgres:12
     environment:
       POSTGRES_PASSWORD: secret
       PGPORT: 5432
       TZ: Europe/Zurich
     networks:
       api-v2-mock-network:
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
     ports:
       - "5432:5432"
