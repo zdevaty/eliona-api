@@ -36,20 +36,29 @@ paths:
   /apps/{app-name}/patches/{patch-name}:
     $ref: './paths/apps-name-patches-name.yaml'
 
-  /assets:
-    $ref: './paths/assets.yaml'
-
-  /assets/{asset-id}:
-    $ref: './paths/assets-id.yaml'
-
   /asset-types:
     $ref: './paths/asset-types.yaml'
 
   /asset-types/{asset-type-name}/attributes:
     $ref: './paths/asset-types-name-attributes.yaml'
 
+  /assets:
+    $ref: './paths/assets.yaml'
+
+  /assets/{asset-id}:
+    $ref: './paths/assets-id.yaml'
+
   /data:
     $ref: './paths/data.yaml'
+
+  /data-listener:
+    $ref: './paths/data-listener.yaml'
+
+  /assets/{asset-id}/data:
+    $ref: './paths/assets-id-data.yaml'
+
+  /assets/{asset-id}/data/{subtype}:
+    $ref: './paths/assets-id-data-subtype.yaml'
 
   /widget-types:
     $ref: './paths/widget-types.yaml'
@@ -140,12 +149,12 @@ tags:
     description: Handle apps
     externalDocs:
       url: https://www.eliona.io
-  - name: Assets
-    description: Handle assets
-    externalDocs:
-      url: https://www.eliona.io
   - name: Asset types
     description: Handle asset types
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Assets
+    description: Handle assets
     externalDocs:
       url: https://www.eliona.io
   - name: Data

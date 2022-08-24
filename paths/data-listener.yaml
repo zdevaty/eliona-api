@@ -1,0 +1,15 @@
+get:
+  tags:
+    - Data
+  summary: WebSocket connection for asset data changes
+  description: Open a WebSocket connection to get informed when new asset data is written or anything changes.
+  operationId: listenData
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Data.yaml'
+  responses:
+    200:
+      description: Successfully opened a connection to asset data WebSocket

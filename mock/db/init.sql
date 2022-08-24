@@ -210,3 +210,94 @@ create table if not exists alarm_history (
     ack_user_id text,
     primary key (ts, asset_id, subtype)
 );
+
+create table if not exists edge_bridge
+(
+    bridge_id   integer primary key,
+    node_id     text,
+    asset_id    integer,
+    class       text                  not null,
+    description text,
+    enable      boolean default false not null,
+    config      json
+);
+
+create extension if not exists "uuid-ossp";
+
+create table if not exists eliona_node
+(
+    node_id     text    primary key,
+    ident       uuid    default uuid_generate_v4()                                   not null        unique,
+    password    text,
+    asset_id    integer        unique,
+    vendor      text,
+    model       text,
+    description text,
+    enable      boolean default false                                                not null
+);
+
+create table if not exists iosys_access
+(
+    id              integer primary key,
+    device_id       integer               not null,
+    iosvar          text                  not null,
+    iostype         text,
+    down            boolean default false not null,
+    enable          boolean default true  not null,
+    asset_id        integer,
+    subtype         text                  not null,
+    attribute       text                  not null,
+    scale           double precision,
+    zero            double precision,
+    mask            integer[],
+    mask_attributes text[],
+    dead_time       integer,
+    dead_band       double precision,
+    filter          text,
+    tau             double precision,
+    unique (device_id, iosvar)
+);
+
+create table if not exists iosys_device
+(
+    device_id   integer primary key,
+    bridge_id   integer                not null,
+    enable      boolean  default false not null,
+    port        integer,
+    certificate text,
+    key         text,
+    timeout     smallint default 0,
+    reconnect   smallint default 30
+);
+
+create table if not exists mbus_access
+(
+    id        integer primary key,
+    device_id integer              not null,
+    field     smallint             not null,
+    enable    boolean default true not null,
+    asset_id  integer,
+    subtype   text,
+    attribute text,
+    scale     double precision,
+    zero      double precision,
+    unique (device_id, field),
+    unique (asset_id, subtype, attribute)
+);
+
+create table if not exists mbus_device
+(
+    device_id         integer primary key,
+    bridge_id         integer                not null,
+    manufacturer      text,
+    model             text,
+    address           smallint,
+    sec_address       text,
+    enable            boolean  default false not null,
+    raster            text,
+    max_fail          integer  default 4,
+    max_retry         integer  default 3,
+    send_nke          boolean  default false,
+    app_reset_subcode smallint,
+    multi_frames      smallint default 0
+);

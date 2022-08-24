@@ -32,14 +32,14 @@ tags:
   externalDocs:
     url: https://www.eliona.io
   name: Apps
-- description: Handle assets
-  externalDocs:
-    url: https://www.eliona.io
-  name: Assets
 - description: Handle asset types
   externalDocs:
     url: https://www.eliona.io
   name: Asset types
+- description: Handle assets
+  externalDocs:
+    url: https://www.eliona.io
+  name: Assets
 - description: Handle asset data
   externalDocs:
     url: https://www.eliona.io
@@ -155,6 +155,75 @@ paths:
       summary: Updates a patch
       tags:
       - Apps
+  /asset-types:
+    get:
+      description: Returns a list of asset types
+      operationId: getAssetTypes
+      parameters:
+      - description: List of referenced data to load. Each entry defines the full
+          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AssetType'
+                type: array
+          description: Successfully returned a list of asset types
+      summary: List of asset types
+      tags:
+      - Asset types
+    put:
+      description: Create a new asset type or update an asset type if already exists
+      operationId: putAssetType
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetType'
+        required: true
+      responses:
+        "200":
+          description: Successfully created a new or updated an existing asset type
+      summary: Create or update an asset type
+      tags:
+      - Asset types
+  /asset-types/{asset-type-name}/attributes:
+    put:
+      description: Create a new asset type attribute or update an asset type attribute
+        if already exists
+      operationId: putAssetTypeAttribute
+      parameters:
+      - description: The name of the asset type
+        example: weather_location
+        in: path
+        name: asset-type-name
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetTypeAttribute'
+        required: true
+      responses:
+        "200":
+          description: Successfully created a new or updated an existing asset type
+            attribute
+      summary: Create or update an asset type attribute
+      tags:
+      - Asset types
   /assets:
     get:
       description: Gets a list of assets
@@ -226,78 +295,9 @@ paths:
       summary: Information about an asset
       tags:
       - Assets
-  /asset-types:
-    get:
-      description: Returns a list of asset types
-      operationId: getAssetTypes
-      parameters:
-      - description: List of referenced data to load. Each entry defines the full
-          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
-        explode: false
-        in: query
-        name: expansions
-        schema:
-          items:
-            type: string
-          nullable: true
-          type: array
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/AssetType'
-                type: array
-          description: Successfully returned a list of asset types
-      summary: List of asset types
-      tags:
-      - Asset types
-    put:
-      description: Create a new asset type or update an asset type if already exists
-      operationId: putAssetType
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AssetType'
-        required: true
-      responses:
-        "200":
-          description: Successfully created a new or updated an existing asset type
-      summary: Create or update an asset type
-      tags:
-      - Asset types
-  /asset-types/{asset-type-name}/attributes:
-    put:
-      description: Create a new asset type attribute or update an asset type attribute
-        if already exists
-      operationId: putAssetTypeAttribute
-      parameters:
-      - description: The name of the asset type
-        example: weather_location
-        in: path
-        name: asset-type-name
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AssetTypeAttribute'
-        required: true
-      responses:
-        "200":
-          description: Successfully created a new or updated an existing asset type
-            attribute
-      summary: Create or update an asset type attribute
-      tags:
-      - Asset types
   /data:
     put:
-      description: Create new asset data or update data if already exists
+      description: Create new asset data or update data if already exists.
       operationId: putData
       requestBody:
         content:
@@ -309,6 +309,105 @@ paths:
         "200":
           description: Successfully created a new or updated existing asset data
       summary: Create or update asset data
+      tags:
+      - Data
+  /data-listener:
+    get:
+      description: Open a WebSocket connection to get informed when new asset data
+        is written or anything changes.
+      operationId: listenData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Data'
+        required: true
+      responses:
+        "200":
+          description: Successfully opened a connection to asset data WebSocket
+      summary: WebSocket connection for asset data changes
+      tags:
+      - Data
+  /assets/{asset-id}/data:
+    get:
+      description: Gets information about data for an asset.
+      operationId: getDataById
+      parameters:
+      - description: The id of the asset
+        example: 4711
+        in: path
+        name: asset-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Data'
+                type: array
+          description: Successfully returned data for an asset
+      summary: Gets all data each subtype for an asset
+      tags:
+      - Data
+    put:
+      description: Create new asset data or update data if already exists.
+      operationId: putDataById
+      parameters:
+      - description: The id of the asset
+        example: 4711
+        in: path
+        name: asset-id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Data'
+        required: true
+      responses:
+        "200":
+          description: Successfully created a new or updated existing data for an
+            asset
+      summary: Create or update data for an asset
+      tags:
+      - Data
+  /assets/{asset-id}/data/{subtype}:
+    get:
+      description: Gets information about subtype data for an asset.
+      operationId: getDataByIdAndSubtype
+      parameters:
+      - description: The id of the asset
+        example: 4711
+        in: path
+        name: asset-id
+        required: true
+        schema:
+          type: integer
+      - description: Type of asset data
+        example: input
+        in: path
+        name: data-subtype
+        required: true
+        schema:
+          enum:
+          - input
+          - info
+          - status
+          - output
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Data'
+          description: Successfully returned subtype data for an asset
+      summary: Gets subtype data for an asset
       tags:
       - Data
   /widget-types:
@@ -978,99 +1077,6 @@ components:
       - appName
       - name
       type: object
-    Asset:
-      description: An asset
-      example:
-        globalAssetIdentifier: zurich_swiss
-        latitude: 47.3667
-        name: Station Zurich
-        description: "Weather station Zurich, Swiss"
-        parentFunctionalAssetId: 4712
-        Id: 4711
-        projectId: "99"
-        childrenInfo:
-        - null
-        - null
-        assetType: assetType
-        longitude: 8.55
-        parentLocationalAssetId: 4712
-        tags:
-        - weather
-        - location
-      nullable: true
-      properties:
-        Id:
-          description: The internal Id of asset
-          example: 4711
-          nullable: true
-          readOnly: true
-          type: integer
-        projectId:
-          description: ID of the project to which the asset belongs
-          example: "99"
-          type: string
-        globalAssetIdentifier:
-          description: Unique identifier for the asset
-          example: zurich_swiss
-          type: string
-        name:
-          description: Alternate text for the asset to display in frontend
-          example: Station Zurich
-          nullable: true
-          type: string
-        assetType:
-          description: Reference to asset type by name
-          type: string
-        latitude:
-          description: Latitude coordinate (GPS) of the asset
-          example: 47.3667
-          format: double
-          nullable: true
-          type: number
-        longitude:
-          description: Longitude coordinate (GPS) of the asset
-          example: 8.55
-          format: double
-          nullable: true
-          type: number
-        description:
-          description: Textual description for this asset
-          example: "Weather station Zurich, Swiss"
-          nullable: true
-          type: string
-        parentFunctionalAssetId:
-          description: The id of an asset which groups this asset as a functional
-            child
-          example: 4712
-          nullable: true
-          type: integer
-        parentLocationalAssetId:
-          description: The id of an asset which groups this asset as a locational
-            child
-          example: 4712
-          nullable: true
-          type: integer
-        tags:
-          description: List of associated tags
-          example:
-          - weather
-          - location
-          items:
-            type: string
-          nullable: true
-          type: array
-        childrenInfo:
-          description: List of children for this asset.
-          items:
-            $ref: '#/components/schemas/Asset'
-          nullable: true
-          readOnly: true
-          type: array
-      required:
-      - assetType
-      - globalAssetIdentifier
-      - projectId
-      type: object
     AssetType:
       description: A type of assets
       example:
@@ -1101,7 +1107,7 @@ components:
           sequence: 1
           unit: °C
           min: 0.8008281904610115
-          subtype: null
+          subtype: input
           enable: true
           name: temperature
           translation:
@@ -1124,7 +1130,7 @@ components:
           sequence: 1
           unit: °C
           min: 0.8008281904610115
-          subtype: null
+          subtype: input
           enable: true
           name: temperature
           translation:
@@ -1187,7 +1193,7 @@ components:
         sequence: 1
         unit: °C
         min: 0.8008281904610115
-        subtype: null
+        subtype: input
         enable: true
         name: temperature
         translation:
@@ -1290,17 +1296,112 @@ components:
       - name
       - subtype
       type: object
+    Asset:
+      description: An asset
+      example:
+        globalAssetIdentifier: zurich_swiss
+        latitude: 47.3667
+        name: Station Zurich
+        description: "Weather station Zurich, Swiss"
+        parentFunctionalAssetId: 4712
+        Id: 4711
+        projectId: "99"
+        childrenInfo:
+        - null
+        - null
+        assetType: assetType
+        longitude: 8.55
+        parentLocationalAssetId: 4712
+        tags:
+        - weather
+        - location
+      nullable: true
+      properties:
+        Id:
+          description: The internal Id of asset
+          example: 4711
+          nullable: true
+          readOnly: true
+          type: integer
+        projectId:
+          description: ID of the project to which the asset belongs
+          example: "99"
+          type: string
+        globalAssetIdentifier:
+          description: Unique identifier for the asset
+          example: zurich_swiss
+          type: string
+        name:
+          description: Alternate text for the asset to display in frontend
+          example: Station Zurich
+          nullable: true
+          type: string
+        assetType:
+          description: Reference to asset type by name
+          type: string
+        latitude:
+          description: Latitude coordinate (GPS) of the asset
+          example: 47.3667
+          format: double
+          nullable: true
+          type: number
+        longitude:
+          description: Longitude coordinate (GPS) of the asset
+          example: 8.55
+          format: double
+          nullable: true
+          type: number
+        description:
+          description: Textual description for this asset
+          example: "Weather station Zurich, Swiss"
+          nullable: true
+          type: string
+        parentFunctionalAssetId:
+          description: The id of an asset which groups this asset as a functional
+            child
+          example: 4712
+          nullable: true
+          type: integer
+        parentLocationalAssetId:
+          description: The id of an asset which groups this asset as a locational
+            child
+          example: 4712
+          nullable: true
+          type: integer
+        tags:
+          description: List of associated tags
+          example:
+          - weather
+          - location
+          items:
+            type: string
+          nullable: true
+          type: array
+        childrenInfo:
+          description: List of children for this asset.
+          items:
+            $ref: '#/components/schemas/Asset'
+          nullable: true
+          readOnly: true
+          type: array
+      required:
+      - assetType
+      - globalAssetIdentifier
+      - projectId
+      type: object
     Data:
       description: Data for assets
       example:
         data: "{}"
-        subtype: null
+        subtype: input
         assetId: 4711
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         assetId:
           description: ID of the corresponding asset
           example: 4711
+          nullable: true
+          readOnly: true
           type: integer
         subtype:
           $ref: '#/components/schemas/DataSubtype'
@@ -1313,9 +1414,7 @@ components:
           description: Asset payload
           type: object
       required:
-      - assetId
       - data
-      - subtype
       type: object
     WidgetType:
       description: A frontend widget
@@ -1416,13 +1515,13 @@ components:
       example:
         data:
         - elementSequence: 1
-          subtype: null
+          subtype: input
           assetId: 4711
           description: Temperature
           attribute: temperature
           key: key
         - elementSequence: 1
-          subtype: null
+          subtype: input
           assetId: 4711
           description: Temperature
           attribute: temperature
@@ -1484,7 +1583,7 @@ components:
         - tags
         equal: 38.7
         high: 38.7
-        subtype: null
+        subtype: input
         low: 38.7
         assetId: 4711
         enable: true
@@ -1600,7 +1699,7 @@ components:
         message: "{}"
         goneTimestamp: 2000-01-23T04:56:07.000+00:00
         acknowledgeTimestamp: 2000-01-23T04:56:07.000+00:00
-        subtype: null
+        subtype: input
         assetId: 4711
         ruleInfo:
           requiresAcknowledge: false
@@ -1613,7 +1712,7 @@ components:
           - tags
           equal: 38.7
           high: 38.7
-          subtype: null
+          subtype: input
           low: 38.7
           assetId: 4711
           enable: true
@@ -1870,6 +1969,7 @@ components:
       - info
       - status
       - output
+      example: input
       type: string
       x-enum-descriptions:
       - Input subtype for data values
@@ -1989,7 +2089,7 @@ components:
       description: Data for a widget
       example:
         elementSequence: 1
-        subtype: null
+        subtype: input
         assetId: 4711
         description: Temperature
         attribute: temperature

@@ -2,7 +2,7 @@ put:
   tags:
     - Data
   summary: Create or update asset data
-  description: Create new asset data or update data if already exists
+  description: Create new asset data or update data if already exists.
   operationId: putData
   requestBody:
     required: true

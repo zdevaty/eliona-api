@@ -1,0 +1,12 @@
+name: data-subtype
+in: path
+description: Type of asset data
+example: input
+required: true
+schema:
+  type: string
+  enum:
+    - input
+    - info
+    - status
+    - output

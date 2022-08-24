@@ -6,6 +6,8 @@ enum:
   - info
   - status
   - output
+example:
+  input
 x-enum-descriptions:
   - Input subtype for data values
   - Info subtype for data values

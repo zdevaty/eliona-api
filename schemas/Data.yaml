@@ -1,7 +1,6 @@
 type: object
 description: Data for assets
 required:
-  - assetId
   - subtype
   - data
 properties:
@@ -9,6 +8,8 @@ properties:
     type: integer
     description: ID of the corresponding asset
     example: 4711
+    readOnly: true
+    nullable: true
   subtype:
     $ref: 'DataSubtype.yaml'
   timestamp:
