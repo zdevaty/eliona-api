@@ -7,7 +7,6 @@ get:
   parameters:
     - $ref: '../parameters/assetId.yaml'
     - $ref: '../parameters/dataSubtype.yaml'
-    - $ref: '../parameters/assetTypeName.yaml'
   responses:
     200:
       description: Successfully opened a connection to asset data WebSocket

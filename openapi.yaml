@@ -378,13 +378,6 @@ paths:
           - status
           - output
           type: string
-      - description: Filter the name of the asset type
-        example: weather_location
-        in: query
-        name: assetTypeName
-        required: false
-        schema:
-          type: string
       responses:
         "200":
           content:
