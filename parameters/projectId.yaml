@@ -1,5 +1,5 @@
 name: projectId
-description: Filters for a specific project
+description: Filter for a specific project
 in: query
 required: false
 schema:

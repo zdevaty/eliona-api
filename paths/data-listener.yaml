@@ -4,6 +4,10 @@ get:
   summary: WebSocket connection for asset data changes
   description: Open a WebSocket connection to get informed when new asset data is written or anything changes.
   operationId: listenData
+  parameters:
+    - $ref: '../parameters/assetId.yaml'
+    - $ref: '../parameters/dataSubtype.yaml'
+    - $ref: '../parameters/assetTypeName.yaml'
   requestBody:
     required: true
     content:

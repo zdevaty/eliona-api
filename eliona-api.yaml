@@ -54,12 +54,6 @@ paths:
   /data-listener:
     $ref: './paths/data-listener.yaml'
 
-  /assets/{asset-id}/data:
-    $ref: './paths/assets-id-data.yaml'
-
-  /assets/{asset-id}/data/{subtype}:
-    $ref: './paths/assets-id-data-subtype.yaml'
-
   /widget-types:
     $ref: './paths/widget-types.yaml'
 

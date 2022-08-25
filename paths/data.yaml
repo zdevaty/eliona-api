@@ -1,3 +1,23 @@
+get:
+  tags:
+    - Data
+  summary: Gets all data
+  description: Gets information about data for assets.
+  operationId: getData
+  parameters:
+    - $ref: '../parameters/assetId.yaml'
+    - $ref: '../parameters/dataSubtype.yaml'
+    - $ref: '../parameters/assetTypeName.yaml'
+  responses:
+    200:
+      description: Successfully returned data for assets
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/Data.yaml'
+
 put:
   tags:
     - Data

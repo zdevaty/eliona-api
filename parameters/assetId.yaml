@@ -1,0 +1,7 @@
+name: assetId
+description: Filter for a specific asset id
+in: query
+required: false
+example: 4711
+schema:
+  type: integer

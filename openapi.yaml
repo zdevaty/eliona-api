@@ -296,6 +296,48 @@ paths:
       tags:
       - Assets
   /data:
+    get:
+      description: Gets information about data for assets.
+      operationId: getData
+      parameters:
+      - description: Filter for a specific asset id
+        example: 4711
+        in: query
+        name: assetId
+        required: false
+        schema:
+          type: integer
+      - description: Filter for a specific type of asset data
+        example: input
+        in: query
+        name: dataSubtype
+        required: false
+        schema:
+          enum:
+          - input
+          - info
+          - status
+          - output
+          type: string
+      - description: Filter the name of the asset type
+        example: weather_location
+        in: query
+        name: assetTypeName
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Data'
+                type: array
+          description: Successfully returned data for assets
+      summary: Gets all data
+      tags:
+      - Data
     put:
       description: Create new asset data or update data if already exists.
       operationId: putData
@@ -316,6 +358,33 @@ paths:
       description: Open a WebSocket connection to get informed when new asset data
         is written or anything changes.
       operationId: listenData
+      parameters:
+      - description: Filter for a specific asset id
+        example: 4711
+        in: query
+        name: assetId
+        required: false
+        schema:
+          type: integer
+      - description: Filter for a specific type of asset data
+        example: input
+        in: query
+        name: dataSubtype
+        required: false
+        schema:
+          enum:
+          - input
+          - info
+          - status
+          - output
+          type: string
+      - description: Filter the name of the asset type
+        example: weather_location
+        in: query
+        name: assetTypeName
+        required: false
+        schema:
+          type: string
       requestBody:
         content:
           application/json:
@@ -326,88 +395,6 @@ paths:
         "200":
           description: Successfully opened a connection to asset data WebSocket
       summary: WebSocket connection for asset data changes
-      tags:
-      - Data
-  /assets/{asset-id}/data:
-    get:
-      description: Gets information about data for an asset.
-      operationId: getDataById
-      parameters:
-      - description: The id of the asset
-        example: 4711
-        in: path
-        name: asset-id
-        required: true
-        schema:
-          type: integer
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Data'
-                type: array
-          description: Successfully returned data for an asset
-      summary: Gets all data each subtype for an asset
-      tags:
-      - Data
-    put:
-      description: Create new asset data or update data if already exists.
-      operationId: putDataById
-      parameters:
-      - description: The id of the asset
-        example: 4711
-        in: path
-        name: asset-id
-        required: true
-        schema:
-          type: integer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Data'
-        required: true
-      responses:
-        "200":
-          description: Successfully created a new or updated existing data for an
-            asset
-      summary: Create or update data for an asset
-      tags:
-      - Data
-  /assets/{asset-id}/data/{subtype}:
-    get:
-      description: Gets information about subtype data for an asset.
-      operationId: getDataByIdAndSubtype
-      parameters:
-      - description: The id of the asset
-        example: 4711
-        in: path
-        name: asset-id
-        required: true
-        schema:
-          type: integer
-      - description: Type of asset data
-        example: input
-        in: path
-        name: data-subtype
-        required: true
-        schema:
-          enum:
-          - input
-          - info
-          - status
-          - output
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Data'
-          description: Successfully returned subtype data for an asset
-      summary: Gets subtype data for an asset
       tags:
       - Data
   /widget-types:
@@ -554,7 +541,7 @@ paths:
       description: Gets information about alarms
       operationId: getAlarms
       parameters:
-      - description: Filters for a specific project
+      - description: Filter for a specific project
         in: query
         name: projectId
         required: false
@@ -655,7 +642,7 @@ paths:
         \ current alarms and alarms, which are already processed."
       operationId: getAlarmsHistory
       parameters:
-      - description: Filters for a specific project
+      - description: Filter for a specific project
         in: query
         name: projectId
         required: false
@@ -727,7 +714,7 @@ paths:
         each asset.
       operationId: getHighestAlarms
       parameters:
-      - description: Filters for a specific project
+      - description: Filter for a specific project
         in: query
         name: projectId
         required: false
@@ -1400,8 +1387,6 @@ components:
         assetId:
           description: ID of the corresponding asset
           example: 4711
-          nullable: true
-          readOnly: true
           type: integer
         subtype:
           $ref: '#/components/schemas/DataSubtype'
@@ -1414,7 +1399,9 @@ components:
           description: Asset payload
           type: object
       required:
+      - assetId
       - data
+      - subtype
       type: object
     WidgetType:
       description: A frontend widget
