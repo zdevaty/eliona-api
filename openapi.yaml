@@ -385,14 +385,12 @@ paths:
         required: false
         schema:
           type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Data'
-        required: true
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Data'
           description: Successfully opened a connection to asset data WebSocket
       summary: WebSocket connection for asset data changes
       tags:
