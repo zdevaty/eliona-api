@@ -160,8 +160,9 @@ paths:
       description: Returns a list of asset types
       operationId: getAssetTypes
       parameters:
-      - description: List of referenced data to load. Each entry defines the full
-          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
         explode: false
         in: query
         name: expansions
@@ -186,6 +187,19 @@ paths:
     put:
       description: Create a new asset type or update an asset type if already exists
       operationId: putAssetType
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -196,6 +210,24 @@ paths:
         "200":
           description: Successfully created a new or updated an existing asset type
       summary: Create or update an asset type
+      tags:
+      - Asset types
+  /asset-types/{asset-type-name}:
+    delete:
+      description: Deletes an asset type and the attributes for this asset type
+      operationId: deleteAssetType
+      parameters:
+      - description: The name of the asset type
+        example: weather_location
+        in: path
+        name: asset-type-name
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Successfully deleted an asset type
+      summary: Delete an asset type
       tags:
       - Asset types
   /asset-types/{asset-type-name}/attributes:
@@ -272,8 +304,9 @@ paths:
         required: true
         schema:
           type: integer
-      - description: List of referenced data to load. Each entry defines the full
-          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
         explode: false
         in: query
         name: expansions
@@ -454,8 +487,9 @@ paths:
       description: Gets information about alarm rules.
       operationId: getAlarmRules
       parameters:
-      - description: List of referenced data to load. Each entry defines the full
-          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
         explode: false
         in: query
         name: expansions
@@ -504,8 +538,9 @@ paths:
         required: true
         schema:
           type: integer
-      - description: List of referenced data to load. Each entry defines the full
-          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
         explode: false
         in: query
         name: expansions
@@ -539,8 +574,9 @@ paths:
         schema:
           nullable: true
           type: string
-      - description: List of referenced data to load. Each entry defines the full
-          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
         explode: false
         in: query
         name: expansions
@@ -574,8 +610,9 @@ paths:
         required: true
         schema:
           type: integer
-      - description: List of referenced data to load. Each entry defines the full
-          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
         explode: false
         in: query
         name: expansions
@@ -640,8 +677,9 @@ paths:
         schema:
           nullable: true
           type: string
-      - description: List of referenced data to load. Each entry defines the full
-          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
         explode: false
         in: query
         name: expansions
@@ -676,8 +714,9 @@ paths:
         required: true
         schema:
           type: integer
-      - description: List of referenced data to load. Each entry defines the full
-          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
         explode: false
         in: query
         name: expansions
@@ -712,8 +751,9 @@ paths:
         schema:
           nullable: true
           type: string
-      - description: List of referenced data to load. Each entry defines the full
-          qualified name of the field to be expanded as follows 'ObjectName.fieldName'.
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
         explode: false
         in: query
         name: expansions

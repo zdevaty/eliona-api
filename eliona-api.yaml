@@ -39,6 +39,9 @@ paths:
   /asset-types:
     $ref: './paths/asset-types.yaml'
 
+  /asset-types/{asset-type-name}:
+    $ref: './paths/asset-types-name.yaml'
+
   /asset-types/{asset-type-name}/attributes:
     $ref: './paths/asset-types-name-attributes.yaml'
 

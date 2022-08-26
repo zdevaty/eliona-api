@@ -1,0 +1,11 @@
+delete:
+  tags:
+    - Asset types
+  summary: Delete an asset type
+  description: Deletes an asset type and the attributes for this asset type
+  operationId: deleteAssetType
+  parameters:
+    - $ref: '../parameters/asset-type-name.yaml'
+  responses:
+    200:
+      description: Successfully deleted an asset type

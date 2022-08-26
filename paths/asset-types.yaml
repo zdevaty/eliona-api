@@ -22,6 +22,8 @@ put:
   summary: Create or update an asset type
   description: Create a new asset type or update an asset type if already exists
   operationId: putAssetType
+  parameters:
+    - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true
     content:
