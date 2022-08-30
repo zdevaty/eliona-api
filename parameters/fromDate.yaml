@@ -1,8 +1,9 @@
 name: fromDate
-description: Filter by lower date time limit inclusive
+description: Filter by lower date time (RFC3339) limit inclusive
 in: query
 required: false
 example: 2020-01-01T09:00:00.000Z
 schema:
   type: string
-  format: date-time
+  # Cannot use format data-time, because code generators supports string parameter only
+  # format: date-time

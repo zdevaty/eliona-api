@@ -391,21 +391,19 @@ paths:
       description: Gets trend information about historical data for assets.
       operationId: getDataTrends
       parameters:
-      - description: Filter by lower date time limit inclusive
+      - description: Filter by lower date time (RFC3339) limit inclusive
         example: 2020-01-01T09:00:00.000Z
         in: query
         name: fromDate
         required: false
         schema:
-          format: date-time
           type: string
-      - description: Filter by upper date time limit exclusive
+      - description: Filter by upper date time (RFC3339) limit exclusive
         example: 2021-12-31T23:00:00.000Z
         in: query
         name: toDate
         required: false
         schema:
-          format: date-time
           type: string
       - description: Filter for a specific asset id
         example: 4711
@@ -486,21 +484,19 @@ paths:
         a defined periodical raster
       operationId: getAggregatedData
       parameters:
-      - description: Filter by lower date time limit inclusive
+      - description: Filter by lower date time (RFC3339) limit inclusive
         example: 2020-01-01T09:00:00.000Z
         in: query
         name: fromDate
         required: false
         schema:
-          format: date-time
           type: string
-      - description: Filter by upper date time limit exclusive
+      - description: Filter by upper date time (RFC3339) limit exclusive
         example: 2021-12-31T23:00:00.000Z
         in: query
         name: toDate
         required: false
         schema:
-          format: date-time
           type: string
       - description: Filter for a specific asset id
         example: 4711
