@@ -1,4 +1,4 @@
-name: fromData
+name: fromDate
 description: Filter by lower date time limit inclusive
 in: query
 required: false
