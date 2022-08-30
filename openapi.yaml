@@ -394,7 +394,7 @@ paths:
       - description: Filter by lower date time limit inclusive
         example: 2020-01-01T09:00:00.000Z
         in: query
-        name: fromData
+        name: fromDate
         required: false
         schema:
           format: date-time
@@ -489,7 +489,7 @@ paths:
       - description: Filter by lower date time limit inclusive
         example: 2020-01-01T09:00:00.000Z
         in: query
-        name: fromData
+        name: fromDate
         required: false
         schema:
           format: date-time
