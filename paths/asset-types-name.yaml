@@ -1,3 +1,20 @@
+get:
+  tags:
+    - Asset types
+  summary: Information about an asset type
+  description: Gets information about an asset type.
+  operationId: getAssetTypeByName
+  parameters:
+    - $ref: '../parameters/asset-type-name.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  responses:
+    200:
+      description: Successfully returned an asset type by name.
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AssetType.yaml'
+
 delete:
   tags:
     - Asset types

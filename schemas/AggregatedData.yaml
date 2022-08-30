@@ -21,7 +21,9 @@ properties:
     description: Name of the attribute which holds the data points
     example: temperature
   raster:
-    $ref: 'PipelineRaster.yaml'
+    type: string
+    description: Pipeline calculation intervals.
+    example: DAY
   timestamp:
     type: string
     format: date-time

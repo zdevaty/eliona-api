@@ -208,6 +208,10 @@ paths:
         required: true
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetType'
           description: Successfully created a new or updated an existing asset type
       summary: Create or update an asset type
       tags:
@@ -228,6 +232,39 @@ paths:
         "200":
           description: Successfully deleted an asset type
       summary: Delete an asset type
+      tags:
+      - Asset types
+    get:
+      description: Gets information about an asset type.
+      operationId: getAssetTypeByName
+      parameters:
+      - description: The name of the asset type
+        example: weather_location
+        in: path
+        name: asset-type-name
+        required: true
+        schema:
+          type: string
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetType'
+          description: Successfully returned an asset type by name.
+      summary: Information about an asset type
       tags:
       - Asset types
   /asset-types/{asset-type-name}/attributes:
@@ -1591,7 +1628,9 @@ components:
           example: temperature
           type: string
         raster:
-          $ref: '#/components/schemas/PipelineRaster'
+          description: Pipeline calculation intervals.
+          example: DAY
+          type: string
         timestamp:
           description: Timestamp of this aggregated data set
           format: date-time
@@ -2241,87 +2280,48 @@ components:
           type: string
         raster:
           items:
-            $ref: '#/components/schemas/PipelineRaster'
+            description: Pipeline calculation intervals.
+            enum:
+            - S1
+            - S2
+            - S3
+            - S4
+            - S5
+            - S6
+            - S10
+            - S12
+            - S15
+            - S20
+            - S30
+            - M1
+            - M2
+            - M3
+            - M4
+            - M5
+            - M6
+            - M10
+            - M12
+            - M15
+            - M20
+            - M30
+            - H1
+            - H2
+            - H3
+            - H4
+            - H6
+            - H8
+            - H12
+            - DAY
+            - WEEK
+            - MONTH
+            - QUARTER
+            - YEAR
+            - DECADE
+            - CENTURY
+            example: DAY
+            type: string
           type: array
       type: object
-    PipelineRaster:
-      description: Pipeline calculation intervals.
-      enum:
-      - S1
-      - S2
-      - S3
-      - S4
-      - S5
-      - S6
-      - S10
-      - S12
-      - S15
-      - S20
-      - S30
-      - M1
-      - M2
-      - M3
-      - M4
-      - M5
-      - M6
-      - M10
-      - M12
-      - M15
-      - M20
-      - M30
-      - H1
-      - H2
-      - H3
-      - H4
-      - H6
-      - H8
-      - H12
-      - DAY
-      - WEEK
-      - MONTH
-      - QUARTER
-      - YEAR
-      - DECADE
-      - CENTURY
-      example: DAY
-      type: string
-      x-enum-varnames:
-      - PIPELINE_RASTER_S1
-      - PIPELINE_RASTER_S2
-      - PIPELINE_RASTER_S3
-      - PIPELINE_RASTER_S4
-      - PIPELINE_RASTER_S5
-      - PIPELINE_RASTER_S6
-      - PIPELINE_RASTER_S10
-      - PIPELINE_RASTER_S12
-      - PIPELINE_RASTER_S15
-      - PIPELINE_RASTER_S20
-      - PIPELINE_RASTER_S30
-      - PIPELINE_RASTER_M1
-      - PIPELINE_RASTER_M2
-      - PIPELINE_RASTER_M3
-      - PIPELINE_RASTER_M4
-      - PIPELINE_RASTER_M5
-      - PIPELINE_RASTER_M6
-      - PIPELINE_RASTER_M10
-      - PIPELINE_RASTER_M12
-      - PIPELINE_RASTER_M15
-      - PIPELINE_RASTER_M20
-      - PIPELINE_RASTER_M30
-      - PIPELINE_RASTER_H1
-      - PIPELINE_RASTER_H2
-      - PIPELINE_RASTER_H3
-      - PIPELINE_RASTER_H4
-      - PIPELINE_RASTER_H6
-      - PIPELINE_RASTER_H8
-      - PIPELINE_RASTER_H12
-      - PIPELINE_RASTER_DAY
-      - PIPELINE_RASTER_WEEK
-      - PIPELINE_RASTER_MONTH
-      - PIPELINE_RASTER_QUARTER
-      - PIPELINE_RASTER_YEAR
-      - PIPELINE_RASTER_DECADE
-      - PIPELINE_RASTER_CENTURY
     WidgetTypeElement:
       description: An element for widget types
       example:
