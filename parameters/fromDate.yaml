@@ -1,5 +1,5 @@
-name: from
-description: Filter by lower date time limit
+name: fromData
+description: Filter by lower date time limit inclusive
 in: query
 required: false
 example: 2020-01-01T09:00:00.000Z

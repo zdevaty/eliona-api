@@ -1,5 +1,5 @@
-name: until
-description: Filter by upper date time limit
+name: toDate
+description: Filter by upper date time limit exclusive
 in: query
 required: false
 example: 2021-12-31T23:00:00.000Z

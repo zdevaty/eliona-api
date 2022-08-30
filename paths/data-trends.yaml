@@ -5,8 +5,8 @@ get:
   description: Gets trend information about historical data for assets.
   operationId: getDataTrends
   parameters:
-    - $ref: '../parameters/from.yaml'
-    - $ref: '../parameters/until.yaml'
+    - $ref: '../parameters/fromDate.yaml'
+    - $ref: '../parameters/toDate.yaml'
     - $ref: '../parameters/assetId.yaml'
     - $ref: '../parameters/dataSubtype.yaml'
     - $ref: '../parameters/assetTypeName.yaml'
