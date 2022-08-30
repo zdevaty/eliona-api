@@ -1,0 +1,8 @@
+name: until
+description: Filter by upper date time limit
+in: query
+required: false
+example: 2021-12-31T23:00:00.000Z
+schema:
+  type: string
+  format: date-time

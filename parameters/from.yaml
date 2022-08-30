@@ -1,0 +1,8 @@
+name: from
+description: Filter by lower date time limit
+in: query
+required: false
+example: 2020-01-01T09:00:00.000Z
+schema:
+  type: string
+  format: date-time

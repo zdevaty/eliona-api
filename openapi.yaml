@@ -386,6 +386,65 @@ paths:
       summary: Create or update asset data
       tags:
       - Data
+  /data-trends:
+    get:
+      description: Gets trend information about historical data for assets.
+      operationId: getDataTrends
+      parameters:
+      - description: Filter by lower date time limit
+        example: 2020-01-01T09:00:00.000Z
+        in: query
+        name: from
+        required: false
+        schema:
+          format: date-time
+          type: string
+      - description: Filter by upper date time limit
+        example: 2021-12-31T23:00:00.000Z
+        in: query
+        name: until
+        required: false
+        schema:
+          format: date-time
+          type: string
+      - description: Filter for a specific asset id
+        example: 4711
+        in: query
+        name: assetId
+        required: false
+        schema:
+          type: integer
+      - description: Filter for a specific type of asset data
+        example: input
+        in: query
+        name: dataSubtype
+        required: false
+        schema:
+          enum:
+          - input
+          - info
+          - status
+          - output
+          type: string
+      - description: Filter the name of the asset type
+        example: weather_location
+        in: query
+        name: assetTypeName
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Data'
+                type: array
+          description: Successfully returned historical data for assets
+      summary: Get trend of historical data
+      tags:
+      - Data
   /data-listener:
     get:
       description: Open a WebSocket connection to get informed when new asset data
@@ -419,6 +478,66 @@ paths:
                 $ref: '#/components/schemas/Data'
           description: Successfully opened a connection to asset data WebSocket
       summary: WebSocket connection for asset data changes
+      tags:
+      - Data
+  /aggregated-data:
+    get:
+      description: Gets aggregated data sets which combines a set of data points for
+        a defined periodical raster
+      operationId: getAggregatedData
+      parameters:
+      - description: Filter by lower date time limit
+        example: 2020-01-01T09:00:00.000Z
+        in: query
+        name: from
+        required: false
+        schema:
+          format: date-time
+          type: string
+      - description: Filter by upper date time limit
+        example: 2021-12-31T23:00:00.000Z
+        in: query
+        name: until
+        required: false
+        schema:
+          format: date-time
+          type: string
+      - description: Filter for a specific asset id
+        example: 4711
+        in: query
+        name: assetId
+        required: false
+        schema:
+          type: integer
+      - description: Filter for a specific type of asset data
+        example: input
+        in: query
+        name: dataSubtype
+        required: false
+        schema:
+          enum:
+          - input
+          - info
+          - status
+          - output
+          type: string
+      - description: Filter the name of the asset type
+        example: weather_location
+        in: query
+        name: assetTypeName
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AggregatedData'
+                type: array
+          description: Successfully returned aggregated data sets
+      summary: Get aggregated data
       tags:
       - Data
   /widget-types:
@@ -1119,8 +1238,8 @@ components:
           pipeline:
             mode: avg
             raster:
-            - S1
-            - S1
+            - DAY
+            - DAY
           ar: false
           sequence: 1
           unit: °C
@@ -1142,8 +1261,8 @@ components:
           pipeline:
             mode: avg
             raster:
-            - S1
-            - S1
+            - DAY
+            - DAY
           ar: false
           sequence: 1
           unit: °C
@@ -1205,8 +1324,8 @@ components:
         pipeline:
           mode: avg
           raster:
-          - S1
-          - S1
+          - DAY
+          - DAY
         ar: false
         sequence: 1
         unit: °C
@@ -1413,6 +1532,7 @@ components:
         data: "{}"
         subtype: input
         assetId: 4711
+        assetTypeName: weather_location
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         assetId:
@@ -1429,9 +1549,117 @@ components:
         data:
           description: Asset payload
           type: object
+        assetTypeName:
+          description: The name of the corresponding asset type
+          example: weather_location
+          nullable: true
+          readOnly: true
+          type: string
       required:
       - assetId
       - data
+      - subtype
+      type: object
+    AggregatedData:
+      description: Aggregated data combines multiple data points for a periodical
+        raster
+      example:
+        average: 4.3
+        last: 3.0
+        max: 11.4
+        assetTypeName: weather_location
+        raster: DAY
+        count: 100
+        sum: 430
+        min: 1.2
+        subtype: input
+        lastTimestamp: 2000-01-23T04:56:07.000+00:00
+        assetId: 4711
+        id: 815
+        attribute: temperature
+        first: 9.3
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: ID of this aggregated data set
+          example: 815
+          type: integer
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          type: integer
+        subtype:
+          $ref: '#/components/schemas/DataSubtype'
+        attribute:
+          description: Name of the attribute which holds the data points
+          example: temperature
+          type: string
+        raster:
+          $ref: '#/components/schemas/PipelineRaster'
+        timestamp:
+          description: Timestamp of this aggregated data set
+          format: date-time
+          nullable: true
+          type: string
+        count:
+          description: Count of data points in this aggregated data set
+          example: 100
+          format: double
+          nullable: true
+          type: number
+        average:
+          description: Average of all data points for this aggregated data set
+          example: 4.3
+          format: double
+          nullable: true
+          type: number
+        sum:
+          description: Sum of all data points for this aggregated data set
+          example: 430
+          format: double
+          nullable: true
+          type: number
+        first:
+          description: First data point in this aggregated data set
+          example: 9.3
+          format: double
+          nullable: true
+          type: number
+        min:
+          description: Data point with the most minimal value in this aggregated data
+            set
+          example: 1.2
+          format: double
+          nullable: true
+          type: number
+        max:
+          description: Data point with the most maximal value in this aggregated data
+            set
+          example: 11.4
+          format: double
+          nullable: true
+          type: number
+        last:
+          description: Latest data point in this aggregated data set
+          example: 3.0
+          format: double
+          nullable: true
+          type: number
+        lastTimestamp:
+          description: Timestamp of the latest data point
+          format: date-time
+          nullable: true
+          type: string
+        assetTypeName:
+          description: The name of the corresponding asset type
+          example: weather_location
+          nullable: true
+          readOnly: true
+          type: string
+      required:
+      - assetId
+      - id
+      - raster
       - subtype
       type: object
     WidgetType:
@@ -2003,8 +2231,8 @@ components:
       example:
         mode: avg
         raster:
-        - S1
-        - S1
+        - DAY
+        - DAY
       nullable: true
       properties:
         mode:
@@ -2016,48 +2244,88 @@ components:
           nullable: true
           type: string
         raster:
-          description: Pipeline calculation intervals
           items:
-            enum:
-            - S1
-            - S2
-            - S3
-            - S4
-            - S5
-            - S6
-            - S10
-            - S12
-            - S15
-            - S20
-            - S30
-            - M1
-            - M2
-            - M3
-            - M4
-            - M5
-            - M6
-            - M10
-            - M12
-            - M15
-            - M20
-            - M30
-            - H1
-            - H2
-            - H3
-            - H4
-            - H6
-            - H8
-            - H12
-            - DAY
-            - WEEK
-            - MONTH
-            - QUARTER
-            - YEAR
-            - DECADE
-            - CENTURY
-            type: string
+            $ref: '#/components/schemas/PipelineRaster'
           type: array
       type: object
+    PipelineRaster:
+      description: Pipeline calculation intervals.
+      enum:
+      - S1
+      - S2
+      - S3
+      - S4
+      - S5
+      - S6
+      - S10
+      - S12
+      - S15
+      - S20
+      - S30
+      - M1
+      - M2
+      - M3
+      - M4
+      - M5
+      - M6
+      - M10
+      - M12
+      - M15
+      - M20
+      - M30
+      - H1
+      - H2
+      - H3
+      - H4
+      - H6
+      - H8
+      - H12
+      - DAY
+      - WEEK
+      - MONTH
+      - QUARTER
+      - YEAR
+      - DECADE
+      - CENTURY
+      example: DAY
+      type: string
+      x-enum-varnames:
+      - PIPELINE_RASTER_S1
+      - PIPELINE_RASTER_S2
+      - PIPELINE_RASTER_S3
+      - PIPELINE_RASTER_S4
+      - PIPELINE_RASTER_S5
+      - PIPELINE_RASTER_S6
+      - PIPELINE_RASTER_S10
+      - PIPELINE_RASTER_S12
+      - PIPELINE_RASTER_S15
+      - PIPELINE_RASTER_S20
+      - PIPELINE_RASTER_S30
+      - PIPELINE_RASTER_M1
+      - PIPELINE_RASTER_M2
+      - PIPELINE_RASTER_M3
+      - PIPELINE_RASTER_M4
+      - PIPELINE_RASTER_M5
+      - PIPELINE_RASTER_M6
+      - PIPELINE_RASTER_M10
+      - PIPELINE_RASTER_M12
+      - PIPELINE_RASTER_M15
+      - PIPELINE_RASTER_M20
+      - PIPELINE_RASTER_M30
+      - PIPELINE_RASTER_H1
+      - PIPELINE_RASTER_H2
+      - PIPELINE_RASTER_H3
+      - PIPELINE_RASTER_H4
+      - PIPELINE_RASTER_H6
+      - PIPELINE_RASTER_H8
+      - PIPELINE_RASTER_H12
+      - PIPELINE_RASTER_DAY
+      - PIPELINE_RASTER_WEEK
+      - PIPELINE_RASTER_MONTH
+      - PIPELINE_RASTER_QUARTER
+      - PIPELINE_RASTER_YEAR
+      - PIPELINE_RASTER_DECADE
+      - PIPELINE_RASTER_CENTURY
     WidgetTypeElement:
       description: An element for widget types
       example:

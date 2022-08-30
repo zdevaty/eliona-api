@@ -54,8 +54,14 @@ paths:
   /data:
     $ref: './paths/data.yaml'
 
+  /data-trends:
+    $ref: './paths/data-trends.yaml'
+
   /data-listener:
     $ref: './paths/data-listener.yaml'
+
+  /aggregated-data:
+    $ref: './paths/aggregated-data.yaml'
 
   /widget-types:
     $ref: './paths/widget-types.yaml'
