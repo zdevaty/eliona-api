@@ -1,2 +1,24 @@
 ### Get all data
 DELETE http://localhost:8084/v2/asset-types/XXX
+
+### Insert new asse type
+GET http://localhost:8084/v2/asset-types/weather_location
+
+### Insert new asse type
+PUT http://localhost:8084/v2/asset-types
+Content-Type: application/json
+
+{
+"vendor": "vendor",
+"custom": true,
+"name": "weather_location",
+"translation": {
+"de": "Das ist eine deutsche Beschreibung",
+"en": "This is an english description",
+"it": "Questa è una descrizione italiana",
+"fr": "Ceci est une description français"
+},
+"icon": "weather",
+"urldoc": "urldoc",
+"model": "model"
+}

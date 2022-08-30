@@ -29,5 +29,5 @@ put:
         schema:
           $ref: '../schemas/AlarmRule.yaml'
   responses:
-    200:
+    201:
       description: Successfully created a new or updated an existing alarm rule

@@ -13,5 +13,5 @@ post:
         schema:
           $ref: '../schemas/Widget.yaml'
   responses:
-    200:
+    201:
       description: Successfully added widget

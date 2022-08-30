@@ -14,6 +14,8 @@ get:
         application/json:
           schema:
             $ref: '../schemas/AssetType.yaml'
+    404:
+      description: Asset type with name not found
 
 delete:
   tags:
@@ -24,5 +26,5 @@ delete:
   parameters:
     - $ref: '../parameters/asset-type-name.yaml'
   responses:
-    200:
+    204:
       description: Successfully deleted an asset type

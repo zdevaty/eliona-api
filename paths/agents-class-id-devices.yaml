@@ -33,5 +33,5 @@ put:
         schema:
           $ref: '../schemas/AgentDevice.yaml'
   responses:
-    200:
+    201:
       description: Successfully created a new or updated an existing agent device

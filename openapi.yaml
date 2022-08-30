@@ -207,7 +207,7 @@ paths:
               $ref: '#/components/schemas/AssetType'
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
@@ -229,7 +229,7 @@ paths:
         schema:
           type: string
       responses:
-        "200":
+        "204":
           description: Successfully deleted an asset type
       summary: Delete an asset type
       tags:
@@ -264,6 +264,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/AssetType'
           description: Successfully returned an asset type by name.
+        "404":
+          description: Asset type with name not found
       summary: Information about an asset type
       tags:
       - Asset types
@@ -287,7 +289,7 @@ paths:
               $ref: '#/components/schemas/AssetTypeAttribute'
         required: true
       responses:
-        "200":
+        "201":
           description: Successfully created a new or updated an existing asset type
             attribute
       summary: Create or update an asset type attribute
@@ -320,7 +322,7 @@ paths:
               $ref: '#/components/schemas/Asset'
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
@@ -418,7 +420,7 @@ paths:
               $ref: '#/components/schemas/Data'
         required: true
       responses:
-        "200":
+        "201":
           description: Successfully created a new or updated existing asset data
       summary: Create or update asset data
       tags:
@@ -585,7 +587,7 @@ paths:
               $ref: '#/components/schemas/WidgetType'
         required: true
       responses:
-        "200":
+        "201":
           description: Successfully added widget type
       summary: Create or update a widget type
       tags:
@@ -601,7 +603,7 @@ paths:
               $ref: '#/components/schemas/Dashboard'
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
@@ -629,7 +631,7 @@ paths:
               $ref: '#/components/schemas/Widget'
         required: true
       responses:
-        "200":
+        "201":
           description: Successfully added widget
       summary: Adds widget to dashboard
       tags:
@@ -673,7 +675,7 @@ paths:
               $ref: '#/components/schemas/AlarmRule'
         required: true
       responses:
-        "200":
+        "201":
           description: Successfully created a new or updated an existing alarm rule
       summary: Create or update an alarm rule
       tags:
@@ -781,6 +783,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Alarm'
           description: Successfully returned an alarm
+        "404":
+          description: Alarm with id not found
       summary: Information about alarm
       tags:
       - Alarms
@@ -953,7 +957,7 @@ paths:
               $ref: '#/components/schemas/Node'
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
@@ -1049,7 +1053,7 @@ paths:
               $ref: '#/components/schemas/Agent'
         required: true
       responses:
-        "200":
+        "201":
           description: Successfully created a new or updated an existing agent
       summary: Create or update an agent for a specific class
       tags:
@@ -1117,7 +1121,7 @@ paths:
               $ref: '#/components/schemas/AgentDevice'
         required: true
       responses:
-        "200":
+        "201":
           description: Successfully created a new or updated an existing agent device
       summary: Create or update an agent device
       tags:
@@ -1185,7 +1189,7 @@ paths:
               $ref: '#/components/schemas/AgentDeviceMapping'
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:

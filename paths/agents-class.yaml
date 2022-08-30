@@ -31,5 +31,5 @@ put:
         schema:
           $ref: '../schemas/Agent.yaml'
   responses:
-    200:
+    201:
       description: Successfully created a new or updated an existing agent

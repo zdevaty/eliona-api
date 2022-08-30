@@ -14,6 +14,8 @@ get:
         application/json:
           schema:
             $ref: '../schemas/Alarm.yaml'
+    404:
+      description: Alarm with id not found
 
 patch:
   tags:

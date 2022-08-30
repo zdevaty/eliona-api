@@ -11,5 +11,5 @@ put:
         schema:
           $ref: '../schemas/WidgetType.yaml'
   responses:
-    200:
+    201:
       description: Successfully added widget type

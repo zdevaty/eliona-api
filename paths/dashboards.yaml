@@ -11,7 +11,7 @@ post:
         schema:
           $ref: '../schemas/Dashboard.yaml'
   responses:
-    200:
+    201:
       description: Successfully added a new Dashboard
       content:
         application/json:
