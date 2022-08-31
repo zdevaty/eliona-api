@@ -1901,7 +1901,6 @@ components:
           - sum
           - cusum
           example: avg
-          nullable: true
           type: string
         raster:
           description: calculation interval
@@ -1943,10 +1942,11 @@ components:
           - DECADE
           - CENTURY
           example: DAY
+          nullable: true
           type: string
       required:
       - assetId
-      - raster
+      - mode
       - subtype
       type: object
     WidgetType:

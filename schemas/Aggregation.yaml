@@ -3,7 +3,7 @@ description: Defines the aggregation of data points
 required:
   - assetId
   - subtype
-  - raster
+  - mode
 properties:
   id:
     type: integer
@@ -27,13 +27,13 @@ properties:
       - avg
       - sum
       - cusum
-    nullable: true
     description: Calculation mode
     example: avg
   raster:
     type: string
     description: calculation interval
     example: DAY
+    nullable: true
     enum:
       - S1
       - S2
