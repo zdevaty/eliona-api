@@ -16,7 +16,7 @@ get:
 
 put:
   tags:
-    -       Aggregations
+    - Aggregations
   summary: Creates or updates an aggregation
   description: Creates an aggregation or updates if already exists
   operationId: putAggregation
