@@ -22,7 +22,7 @@ properties:
     example: temperature
   raster:
     type: string
-    description: Pipeline calculation intervals.
+    description: Calculation intervals.
     example: DAY
     enum:
       - S1

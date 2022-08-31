@@ -1762,7 +1762,7 @@ components:
           example: temperature
           type: string
         raster:
-          description: Pipeline calculation intervals.
+          description: Calculation intervals.
           enum:
           - S1
           - S2
