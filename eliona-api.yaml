@@ -60,8 +60,14 @@ paths:
   /data-listener:
     $ref: './paths/data-listener.yaml'
 
-  /aggregated-data:
-    $ref: './paths/aggregated-data.yaml'
+  /data-aggregated:
+    $ref: './paths/data-aggregated.yaml'
+
+  /aggregations:
+    $ref: './paths/aggregations.yaml'
+
+  /aggregations/{aggregation-id}:
+    $ref: './paths/aggregations-id.yaml'
 
   /widget-types:
     $ref: './paths/widget-types.yaml'
@@ -158,6 +164,10 @@ tags:
       url: https://www.eliona.io
   - name: Assets
     description: Handle assets
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Aggregations
+    description: Handle data aggregations
     externalDocs:
       url: https://www.eliona.io
   - name: Data

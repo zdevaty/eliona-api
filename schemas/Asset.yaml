@@ -6,7 +6,7 @@ required:
   - globalAssetIdentifier
   - assetType
 properties:
-  Id:
+  id:
     type: integer
     readOnly: true
     description: The internal Id of asset

@@ -40,6 +40,10 @@ tags:
   externalDocs:
     url: https://www.eliona.io
   name: Assets
+- description: Handle data aggregations
+  externalDocs:
+    url: https://www.eliona.io
+  name: Aggregations
 - description: Handle asset data
   externalDocs:
     url: https://www.eliona.io
@@ -218,8 +222,8 @@ paths:
       - Asset types
   /asset-types/{asset-type-name}:
     delete:
-      description: Deletes an asset type and the attributes for this asset type
-      operationId: deleteAssetType
+      description: Deletes an asset type and the attributes for this asset type.
+      operationId: deleteAssetTypeByName
       parameters:
       - description: The name of the asset type
         example: weather_location
@@ -230,7 +234,9 @@ paths:
           type: string
       responses:
         "204":
-          description: Successfully deleted an asset type
+          description: Successfully deleted the asset type
+        "404":
+          description: Asset type with name not found
       summary: Delete an asset type
       tags:
       - Asset types
@@ -517,11 +523,11 @@ paths:
       summary: WebSocket connection for asset data changes
       tags:
       - Data
-  /aggregated-data:
+  /data-aggregated:
     get:
       description: Gets aggregated data sets which combines a set of data points for
         a defined periodical raster
-      operationId: getAggregatedData
+      operationId: getDataAggregated
       parameters:
       - description: Filter by lower date time (RFC3339) limit inclusive
         example: 2020-01-01T09:00:00.000Z
@@ -569,12 +575,90 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/AggregatedData'
+                  $ref: '#/components/schemas/DataAggregated'
                 type: array
           description: Successfully returned aggregated data sets
       summary: Get aggregated data
       tags:
       - Data
+  /aggregations:
+    get:
+      description: Gets a list of aggregations
+      operationId: getAggregations
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Aggregation'
+                type: array
+          description: Successfully returned the list of aggregations
+      summary: Information about aggregations
+      tags:
+      - Aggregations
+    post:
+      description: Creates an aggregation
+      operationId: postAggregation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Aggregation'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aggregation'
+          description: Successfully created an aggregation
+      summary: Creates an aggregation
+      tags:
+      - Aggregations
+  /aggregations/{aggregation-id}:
+    delete:
+      description: Deletes an aggregation by the given id.
+      operationId: deleteAggregationById
+      parameters:
+      - description: The id of the aggregation
+        example: 4711
+        in: path
+        name: aggregation-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: Successfully deleted the aggregation by id.
+        "404":
+          description: Aggregation with id not found
+      summary: Delete an aggregation
+      tags:
+      - Aggregations
+    get:
+      description: Gets information about an aggregation by the given id.
+      operationId: getAggregationById
+      parameters:
+      - description: The id of the aggregation
+        example: 4711
+        in: path
+        name: aggregation-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aggregation'
+          description: Successfully returned an aggregation by id.
+        "404":
+          description: Aggregation with id not found
+      summary: Information about an aggregation
+      tags:
+      - Aggregations
   /widget-types:
     put:
       description: Create a widget type if the a type with the name not exists or
@@ -1272,11 +1356,6 @@ components:
           assetTypeName: weather_location
           precision: 1
           type: temperature
-          pipeline:
-            mode: avg
-            raster:
-            - DAY
-            - DAY
           ar: false
           sequence: 1
           unit: °C
@@ -1289,17 +1368,16 @@ components:
             en: This is an english description
             it: Questa è una descrizione italiana
             fr: Ceci est une description français
+          aggregationMode: avg
+          aggregationRasters:
+          - DAY
+          - DAY
         - viewer: false
           virtual: true
           max: 6.027456183070403
           assetTypeName: weather_location
           precision: 1
           type: temperature
-          pipeline:
-            mode: avg
-            raster:
-            - DAY
-            - DAY
           ar: false
           sequence: 1
           unit: °C
@@ -1312,6 +1390,10 @@ components:
             en: This is an english description
             it: Questa è una descrizione italiana
             fr: Ceci est une description français
+          aggregationMode: avg
+          aggregationRasters:
+          - DAY
+          - DAY
       properties:
         name:
           description: The unique name for this asset type
@@ -1358,11 +1440,6 @@ components:
         assetTypeName: weather_location
         precision: 1
         type: temperature
-        pipeline:
-          mode: avg
-          raster:
-          - DAY
-          - DAY
         ar: false
         sequence: 1
         unit: °C
@@ -1375,6 +1452,10 @@ components:
           en: This is an english description
           it: Questa è una descrizione italiana
           fr: Ceci est une description français
+        aggregationMode: avg
+        aggregationRasters:
+        - DAY
+        - DAY
       properties:
         assetTypeName:
           description: The unique name for the asset type
@@ -1445,8 +1526,57 @@ components:
           format: double
           nullable: true
           type: number
-        pipeline:
-          $ref: '#/components/schemas/Pipeline'
+        aggregationMode:
+          description: Aggregation calculation mode
+          enum:
+          - avg
+          - sum
+          - cusum
+          nullable: true
+          type: string
+        aggregationRasters:
+          items:
+            description: Aggregation calculation intervals
+            enum:
+            - S1
+            - S2
+            - S3
+            - S4
+            - S5
+            - S6
+            - S10
+            - S12
+            - S15
+            - S20
+            - S30
+            - M1
+            - M2
+            - M3
+            - M4
+            - M5
+            - M6
+            - M10
+            - M12
+            - M15
+            - M20
+            - M30
+            - H1
+            - H2
+            - H3
+            - H4
+            - H6
+            - H8
+            - H12
+            - DAY
+            - WEEK
+            - MONTH
+            - QUARTER
+            - YEAR
+            - DECADE
+            - CENTURY
+            example: DAY
+            type: string
+          type: array
         viewer:
           default: false
           description: Should the attribute be displayed in viewer
@@ -1478,7 +1608,7 @@ components:
         name: Station Zurich
         description: "Weather station Zurich, Swiss"
         parentFunctionalAssetId: 4712
-        Id: 4711
+        id: 4711
         projectId: "99"
         childrenInfo:
         - null
@@ -1491,7 +1621,7 @@ components:
         - location
       nullable: true
       properties:
-        Id:
+        id:
           description: The internal Id of asset
           example: 4711
           nullable: true
@@ -1597,13 +1727,14 @@ components:
       - data
       - subtype
       type: object
-    AggregatedData:
+    DataAggregated:
       description: Aggregated data combines multiple data points for a periodical
         raster
       example:
         average: 4.3
         last: 3.0
         max: 11.4
+        aggregationId: 815
         assetTypeName: weather_location
         raster: DAY
         count: 100
@@ -1612,13 +1743,12 @@ components:
         subtype: input
         lastTimestamp: 2000-01-23T04:56:07.000+00:00
         assetId: 4711
-        id: 815
         attribute: temperature
         first: 9.3
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
-        id:
-          description: ID of this aggregated data set
+        aggregationId:
+          description: ID of the aggregation
           example: 815
           type: integer
         assetId:
@@ -1633,6 +1763,43 @@ components:
           type: string
         raster:
           description: Pipeline calculation intervals.
+          enum:
+          - S1
+          - S2
+          - S3
+          - S4
+          - S5
+          - S6
+          - S10
+          - S12
+          - S15
+          - S20
+          - S30
+          - M1
+          - M2
+          - M3
+          - M4
+          - M5
+          - M6
+          - M10
+          - M12
+          - M15
+          - M20
+          - M30
+          - H1
+          - H2
+          - H3
+          - H4
+          - H6
+          - H8
+          - H12
+          - DAY
+          - WEEK
+          - MONTH
+          - QUARTER
+          - YEAR
+          - DECADE
+          - CENTURY
           example: DAY
           type: string
         timestamp:
@@ -1698,6 +1865,87 @@ components:
       required:
       - assetId
       - id
+      - raster
+      - subtype
+      type: object
+    Aggregation:
+      description: Defines the aggregation of data points
+      example:
+        mode: avg
+        subtype: input
+        assetId: 4711
+        raster: DAY
+        id: 815
+        attribute: temperature
+      properties:
+        id:
+          description: ID of the aggregation
+          example: 815
+          nullable: true
+          readOnly: true
+          type: integer
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          type: integer
+        subtype:
+          $ref: '#/components/schemas/DataSubtype'
+        attribute:
+          description: Name of the attribute which holds the data points
+          example: temperature
+          type: string
+        mode:
+          description: Calculation mode
+          enum:
+          - avg
+          - sum
+          - cusum
+          example: avg
+          nullable: true
+          type: string
+        raster:
+          description: calculation interval
+          enum:
+          - S1
+          - S2
+          - S3
+          - S4
+          - S5
+          - S6
+          - S10
+          - S12
+          - S15
+          - S20
+          - S30
+          - M1
+          - M2
+          - M3
+          - M4
+          - M5
+          - M6
+          - M10
+          - M12
+          - M15
+          - M20
+          - M30
+          - H1
+          - H2
+          - H3
+          - H4
+          - H6
+          - H8
+          - H12
+          - DAY
+          - WEEK
+          - MONTH
+          - QUARTER
+          - YEAR
+          - DECADE
+          - CENTURY
+          example: DAY
+          type: string
+      required:
+      - assetId
       - raster
       - subtype
       type: object
@@ -1882,7 +2130,7 @@ components:
           name: Station Zurich
           description: "Weather station Zurich, Swiss"
           parentFunctionalAssetId: 4712
-          Id: 4711
+          id: 4711
           projectId: "99"
           childrenInfo:
           - null
@@ -2011,7 +2259,7 @@ components:
             name: Station Zurich
             description: "Weather station Zurich, Swiss"
             parentFunctionalAssetId: 4712
-            Id: 4711
+            id: 4711
             projectId: "99"
             childrenInfo:
             - null
@@ -2032,7 +2280,7 @@ components:
           name: Station Zurich
           description: "Weather station Zurich, Swiss"
           parentFunctionalAssetId: 4712
-          Id: 4711
+          id: 4711
           projectId: "99"
           childrenInfo:
           - null
@@ -2266,66 +2514,6 @@ components:
       - SUBTYPE_INFO
       - SUBTYPE_STATUS
       - SUBTYPE_OUTPUT
-    Pipeline:
-      example:
-        mode: avg
-        raster:
-        - DAY
-        - DAY
-      nullable: true
-      properties:
-        mode:
-          description: Pipeline calculation mode
-          enum:
-          - avg
-          - sum
-          - cusum
-          nullable: true
-          type: string
-        raster:
-          items:
-            description: Pipeline calculation intervals.
-            enum:
-            - S1
-            - S2
-            - S3
-            - S4
-            - S5
-            - S6
-            - S10
-            - S12
-            - S15
-            - S20
-            - S30
-            - M1
-            - M2
-            - M3
-            - M4
-            - M5
-            - M6
-            - M10
-            - M12
-            - M15
-            - M20
-            - M30
-            - H1
-            - H2
-            - H3
-            - H4
-            - H6
-            - H8
-            - H12
-            - DAY
-            - WEEK
-            - MONTH
-            - QUARTER
-            - YEAR
-            - DECADE
-            - CENTURY
-            example: DAY
-            type: string
-          type: array
-      type: object
     WidgetTypeElement:
       description: An element for widget types
       example:

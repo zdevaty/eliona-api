@@ -1,5 +1,5 @@
 ### Get all data
-DELETE http://localhost:8084/v2/asset-types/XXX
+DELETE http://localhost:8084/v2/asset-types/weather_location
 
 ### Insert new asse type
 GET http://localhost:8084/v2/asset-types/weather_location

@@ -3,7 +3,7 @@ get:
     - Data
   summary: Get aggregated data
   description: Gets aggregated data sets which combines a set of data points for a defined periodical raster
-  operationId: getAggregatedData
+  operationId: getDataAggregated
   parameters:
     - $ref: '../parameters/fromDate.yaml'
     - $ref: '../parameters/toDate.yaml'
@@ -18,4 +18,4 @@ get:
           schema:
             type: array
             items:
-              $ref: '../schemas/AggregatedData.yaml'
+              $ref: '../schemas/DataAggregated.yaml'

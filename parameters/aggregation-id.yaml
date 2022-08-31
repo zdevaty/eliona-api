@@ -1,0 +1,7 @@
+name: aggregation-id
+in: path
+description: The id of the aggregation
+example: 4711
+required: true
+schema:
+  type: integer
