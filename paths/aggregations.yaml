@@ -14,12 +14,12 @@ get:
             items:
               $ref: '../schemas/Aggregation.yaml'
 
-post:
+put:
   tags:
     -       Aggregations
-  summary: Creates an aggregation
-  description: Creates an aggregation
-  operationId: postAggregation
+  summary: Creates or updates an aggregation
+  description: Creates an aggregation or updates if already exists
+  operationId: putAggregation
   requestBody:
     required: true
     content:
@@ -28,7 +28,7 @@ post:
           $ref: '../schemas/Aggregation.yaml'
   responses:
     201:
-      description: Successfully created an aggregation
+      description: Successfully created or updated an aggregation
       content:
         application/json:
           schema:

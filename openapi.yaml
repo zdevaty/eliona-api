@@ -597,9 +597,9 @@ paths:
       summary: Information about aggregations
       tags:
       - Aggregations
-    post:
-      description: Creates an aggregation
-      operationId: postAggregation
+    put:
+      description: Creates an aggregation or updates if already exists
+      operationId: putAggregation
       requestBody:
         content:
           application/json:
@@ -612,8 +612,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Aggregation'
-          description: Successfully created an aggregation
-      summary: Creates an aggregation
+          description: Successfully created or updated an aggregation
+      summary: Creates or updates an aggregation
       tags:
       - Aggregations
   /aggregations/{aggregation-id}:
