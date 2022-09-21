@@ -6,11 +6,6 @@ properties:
     description: Position of the element in widget type
     example: 1
     nullable: true
-  key:
-    type: string
-    description: Key for the data
-    example:
-    nullable: true
   assetId:
     type: integer
     description: The master asset id of this widget
@@ -28,3 +23,8 @@ properties:
     description: Text for frontend
     example: Temperature
     nullable: true
+  data:
+    type: object
+    description: individual config parameters depending on category
+    nullable: true
+    example:  "{ \"key\": \"humidity\" }"

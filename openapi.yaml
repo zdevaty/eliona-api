@@ -2245,33 +2245,33 @@ components:
         widgets:
         - data:
           - elementSequence: 1
+            data: "{ \"key\": \"humidity\" }"
             subtype: input
             assetId: 4711
             description: Temperature
             attribute: temperature
-            key: key
           - elementSequence: 1
+            data: "{ \"key\": \"humidity\" }"
             subtype: input
             assetId: 4711
             description: Temperature
             attribute: temperature
-            key: key
           assetId: 4711
           details: "{}"
           widgetTypeName: Weather
         - data:
           - elementSequence: 1
+            data: "{ \"key\": \"humidity\" }"
             subtype: input
             assetId: 4711
             description: Temperature
             attribute: temperature
-            key: key
           - elementSequence: 1
+            data: "{ \"key\": \"humidity\" }"
             subtype: input
             assetId: 4711
             description: Temperature
             attribute: temperature
-            key: key
           assetId: 4711
           details: "{}"
           widgetTypeName: Weather
@@ -2319,17 +2319,17 @@ components:
       example:
         data:
         - elementSequence: 1
+          data: "{ \"key\": \"humidity\" }"
           subtype: input
           assetId: 4711
           description: Temperature
           attribute: temperature
-          key: key
         - elementSequence: 1
+          data: "{ \"key\": \"humidity\" }"
           subtype: input
           assetId: 4711
           description: Temperature
           attribute: temperature
-          key: key
         assetId: 4711
         details: "{}"
         widgetTypeName: Weather
@@ -2817,21 +2817,17 @@ components:
       description: Data for a widget
       example:
         elementSequence: 1
+        data: "{ \"key\": \"humidity\" }"
         subtype: input
         assetId: 4711
         description: Temperature
         attribute: temperature
-        key: key
       properties:
         elementSequence:
           description: Position of the element in widget type
           example: 1
           nullable: true
           type: integer
-        key:
-          description: Key for the data
-          nullable: true
-          type: string
         assetId:
           description: The master asset id of this widget
           example: 4711
@@ -2849,6 +2845,11 @@ components:
           example: Temperature
           nullable: true
           type: string
+        data:
+          description: individual config parameters depending on category
+          example: "{ \"key\": \"humidity\" }"
+          nullable: true
+          type: object
       type: object
     AlarmPriority:
       description: The priority of the alarm. The higher this value the higher the
