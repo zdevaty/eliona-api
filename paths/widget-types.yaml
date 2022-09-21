@@ -1,6 +1,6 @@
 get:
   tags:
-    - Widgets
+    - Widgets types
   summary: List of widget types
   description: Returns a list of widget types
   operationId: getWidgetTypes
@@ -17,7 +17,7 @@ get:
               $ref: '../schemas/WidgetType.yaml'
 put:
   tags:
-    - Widgets
+    - Widgets types
   summary: Create or update a widget type
   description: Create a widget type if the a type with the name not exists or update a widget type if the name already exists
   parameters:

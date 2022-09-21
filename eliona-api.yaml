@@ -184,6 +184,10 @@ tags:
     description: Handle dashboards
     externalDocs:
       url: https://www.eliona.io
+  - name: Widgets types
+    description: Handle widgets types for dashboards
+    externalDocs:
+      url: https://www.eliona.io
   - name: Widgets
     description: Handle widgets for dashboards
     externalDocs:

@@ -1,6 +1,6 @@
 get:
   tags:
-    - Widgets
+    - Widgets types
   summary: Information about a widget type
   description: Gets information about a widget type.
   operationId: getWidgetTypeByName
@@ -19,7 +19,7 @@ get:
 
 delete:
   tags:
-    - Widgets
+    - Widgets types
   summary: Delete a widget type
   description: Deletes a widget type and the elements for this widget type.
   operationId: deleteWidgetTypeByName

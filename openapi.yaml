@@ -52,6 +52,10 @@ tags:
   externalDocs:
     url: https://www.eliona.io
   name: Dashboards
+- description: Handle widgets types for dashboards
+  externalDocs:
+    url: https://www.eliona.io
+  name: Widgets types
 - description: Handle widgets for dashboards
   externalDocs:
     url: https://www.eliona.io
@@ -691,7 +695,7 @@ paths:
           description: Successfully returned a list of widget types
       summary: List of widget types
       tags:
-      - Widgets
+      - Widgets types
     put:
       description: Create a widget type if the a type with the name not exists or
         update a widget type if the name already exists
@@ -720,7 +724,7 @@ paths:
           description: Successfully added widget type
       summary: Create or update a widget type
       tags:
-      - Widgets
+      - Widgets types
   /widget-types/{widget-type-name}:
     delete:
       description: Deletes a widget type and the elements for this widget type.
@@ -740,7 +744,7 @@ paths:
           description: Widget type with name not found
       summary: Delete a widget type
       tags:
-      - Widgets
+      - Widgets types
     get:
       description: Gets information about a widget type.
       operationId: getWidgetTypeByName
@@ -775,7 +779,7 @@ paths:
           description: Widget type with name not found
       summary: Information about a widget type
       tags:
-      - Widgets
+      - Widgets types
   /dashboards:
     get:
       description: Gets a list of dashboards
