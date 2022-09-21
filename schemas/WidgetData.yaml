@@ -1,12 +1,11 @@
 type: object
 description: Data for a widget
-required:
-  - elementSequence
 properties:
   elementSequence:
     type: integer
     description: Position of the element in widget type
     example: 1
+    nullable: true
   key:
     type: string
     description: Key for the data

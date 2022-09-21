@@ -2826,6 +2826,7 @@ components:
         elementSequence:
           description: Position of the element in widget type
           example: 1
+          nullable: true
           type: integer
         key:
           description: Key for the data
@@ -2848,8 +2849,6 @@ components:
           example: Temperature
           nullable: true
           type: string
-      required:
-      - elementSequence
       type: object
     AlarmPriority:
       description: The priority of the alarm. The higher this value the higher the
