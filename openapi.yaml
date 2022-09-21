@@ -52,7 +52,7 @@ tags:
   externalDocs:
     url: https://www.eliona.io
   name: Dashboards
-- description: Handle widgets fpr dashboards
+- description: Handle widgets for dashboards
   externalDocs:
     url: https://www.eliona.io
   name: Widgets
