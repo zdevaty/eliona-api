@@ -185,7 +185,7 @@ tags:
     externalDocs:
       url: https://www.eliona.io
   - name: Widgets
-    description: Handle widgets fpr dashboards
+    description: Handle widgets for dashboards
     externalDocs:
       url: https://www.eliona.io
 
