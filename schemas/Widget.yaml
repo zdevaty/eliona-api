@@ -33,8 +33,5 @@ properties:
     type: array
     description: List of data for the elements of widget
     nullable: true
-    required:
-      - elementSequence
-      - assetId
     items:
       $ref: 'WidgetData.yaml'

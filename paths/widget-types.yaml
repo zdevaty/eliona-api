@@ -1,8 +1,27 @@
+get:
+  tags:
+    - Widgets
+  summary: List of widget types
+  description: Returns a list of widget types
+  operationId: getWidgetTypes
+  parameters:
+    - $ref: '../parameters/expansions.yaml'
+  responses:
+    200:
+      description: Successfully returned a list of widget types
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/WidgetType.yaml'
 put:
   tags:
-    - Dashboards
+    - Widgets
   summary: Create or update a widget type
   description: Create a widget type if the a type with the name not exists or update a widget type if the name already exists
+  parameters:
+    - $ref: '../parameters/expansions.yaml'
   operationId: putWidgetType
   requestBody:
     required: true

@@ -1,0 +1,18 @@
+get:
+  tags:
+    - Dashboards
+  summary: Information about a dashboard
+  description: Gets information about a dashboard.
+  operationId: getDashboardById
+  parameters:
+    - $ref: '../parameters/dashboard-id.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  responses:
+    200:
+      description: Successfully returned the the dashboard
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Dashboard.yaml'
+    404:
+      description: Dashboard with id not found

@@ -52,6 +52,10 @@ tags:
   externalDocs:
     url: https://www.eliona.io
   name: Dashboards
+- description: Handle widgets fpr dashboards
+  externalDocs:
+    url: https://www.eliona.io
+  name: Widgets
 paths:
   /apps/{app-name}:
     get:
@@ -660,10 +664,51 @@ paths:
       tags:
       - Aggregations
   /widget-types:
+    get:
+      description: Returns a list of widget types
+      operationId: getWidgetTypes
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/WidgetType'
+                type: array
+          description: Successfully returned a list of widget types
+      summary: List of widget types
+      tags:
+      - Widgets
     put:
       description: Create a widget type if the a type with the name not exists or
         update a widget type if the name already exists
       operationId: putWidgetType
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -675,11 +720,107 @@ paths:
           description: Successfully added widget type
       summary: Create or update a widget type
       tags:
-      - Dashboards
+      - Widgets
+  /widget-types/{widget-type-name}:
+    delete:
+      description: Deletes a widget type and the elements for this widget type.
+      operationId: deleteWidgetTypeByName
+      parameters:
+      - description: The name of the widget type
+        example: weather
+        in: path
+        name: widget-type-name
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: Successfully deleted the widget type
+        "404":
+          description: Widget type with name not found
+      summary: Delete a widget type
+      tags:
+      - Widgets
+    get:
+      description: Gets information about a widget type.
+      operationId: getWidgetTypeByName
+      parameters:
+      - description: The name of the widget type
+        example: weather
+        in: path
+        name: widget-type-name
+        required: true
+        schema:
+          type: string
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetType'
+          description: Successfully returned a widget type by name.
+        "404":
+          description: Widget type with name not found
+      summary: Information about a widget type
+      tags:
+      - Widgets
   /dashboards:
+    get:
+      description: Gets a list of dashboards
+      operationId: getDashboards
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Dashboard'
+                type: array
+          description: Successfully returned the list of dashboards
+      summary: Information about dashboards
+      tags:
+      - Dashboards
     post:
       description: Create a new dashboard for frontend
       operationId: postDashboard
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -696,9 +837,80 @@ paths:
       summary: Creates a new dashboard
       tags:
       - Dashboards
+  /dashboards/{dashboard-id}:
+    get:
+      description: Gets information about a dashboard.
+      operationId: getDashboardById
+      parameters:
+      - description: The id of the dashboard
+        example: 4711
+        in: path
+        name: dashboard-id
+        required: true
+        schema:
+          type: integer
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dashboard'
+          description: Successfully returned the the dashboard
+        "404":
+          description: Dashboard with id not found
+      summary: Information about a dashboard
+      tags:
+      - Dashboards
   /dashboards/{dashboard-id}/widgets:
+    get:
+      description: Gets information about widgets on a dashboard.
+      operationId: getDashboardWidgets
+      parameters:
+      - description: The id of the dashboard
+        example: 4711
+        in: path
+        name: dashboard-id
+        required: true
+        schema:
+          type: integer
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Widget'
+          description: Successfully returned the widgets for the dashboard
+        "404":
+          description: Dashboard with id not found
+      summary: Information about widgets on dashboard
+      tags:
+      - Widgets
     post:
-      description: Create a new widget an ad this to a dashboard
+      description: Create a new widget and add this to a dashboard
       operationId: postDashboardWidget
       parameters:
       - description: The id of the dashboard
@@ -708,6 +920,18 @@ paths:
         required: true
         schema:
           type: integer
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -717,9 +941,11 @@ paths:
       responses:
         "201":
           description: Successfully added widget
+        "404":
+          description: Dashboard with id not found
       summary: Adds widget to dashboard
       tags:
-      - Dashboards
+      - Widgets
   /alarm-rules:
     get:
       description: Gets information about alarm rules.
@@ -1996,7 +2222,8 @@ components:
           nullable: true
           type: boolean
         elements:
-          description: A list of elements for this widget
+          description: A list of elements for this widget (order matches the order
+            of elements for this type)
           items:
             $ref: '#/components/schemas/WidgetTypeElement'
           type: array
@@ -2010,11 +2237,48 @@ components:
       example:
         sequence: 1
         name: Weather info
-        Id: 4711
+        id: 4711
+        widgets:
+        - data:
+          - elementSequence: 1
+            subtype: input
+            assetId: 4711
+            description: Temperature
+            attribute: temperature
+            key: key
+          - elementSequence: 1
+            subtype: input
+            assetId: 4711
+            description: Temperature
+            attribute: temperature
+            key: key
+          assetId: 4711
+          width: normal
+          details: "{}"
+          widgetTypeName: Weather
+          timespan: 7
+        - data:
+          - elementSequence: 1
+            subtype: input
+            assetId: 4711
+            description: Temperature
+            attribute: temperature
+            key: key
+          - elementSequence: 1
+            subtype: input
+            assetId: 4711
+            description: Temperature
+            attribute: temperature
+            key: key
+          assetId: 4711
+          width: normal
+          details: "{}"
+          widgetTypeName: Weather
+          timespan: 7
         projectId: "99"
         userId: "42"
       properties:
-        Id:
+        id:
           description: The internal Id of dashboard
           example: 4711
           nullable: true
@@ -2038,6 +2302,13 @@ components:
           example: 1
           nullable: true
           type: integer
+        widgets:
+          description: List of widgets on this dashboard (order matches the order
+            of widgets on the dashboard)
+          items:
+            $ref: '#/components/schemas/Widget'
+          nullable: true
+          type: array
       required:
       - name
       - projectId
@@ -2095,9 +2366,6 @@ components:
           items:
             $ref: '#/components/schemas/WidgetData'
           nullable: true
-          required:
-          - assetId
-          - elementSequence
           type: array
       required:
       - widgetTypeName

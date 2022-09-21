@@ -5,7 +5,7 @@ required:
   - projectId
   - userId
 properties:
-  Id:
+  id:
     type: integer
     readOnly: true
     description: The internal Id of dashboard
@@ -29,3 +29,9 @@ properties:
     example: 1
     default: 0
     nullable: true
+  widgets:
+    type: array
+    description: List of widgets on this dashboard (order matches the order of widgets on the dashboard)
+    nullable: true
+    items:
+      $ref: 'Widget.yaml'

@@ -72,8 +72,14 @@ paths:
   /widget-types:
     $ref: './paths/widget-types.yaml'
 
+  /widget-types/{widget-type-name}:
+    $ref: './paths/widget-types-name.yaml'
+
   /dashboards:
     $ref: './paths/dashboards.yaml'
+
+  /dashboards/{dashboard-id}:
+    $ref: './paths/dashboards-id.yaml'
 
   /dashboards/{dashboard-id}/widgets:
     $ref: './paths/dashboards-id-widgets.yaml'
@@ -176,6 +182,10 @@ tags:
       url: https://www.eliona.io
   - name: Dashboards
     description: Handle dashboards
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Widgets
+    description: Handle widgets fpr dashboards
     externalDocs:
       url: https://www.eliona.io
 
