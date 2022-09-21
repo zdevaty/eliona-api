@@ -8,18 +8,6 @@ properties:
     type: string
     description: The name for the type of this widget
     example: Weather
-  width:
-    type: string
-    description: The width of this widget on dashboard
-    enum:
-      - normal
-      - double
-      - full
-  timespan:
-    type: integer
-    description: The number of days if the widget type uses timespan
-    example: 7
-    nullable: true
   details:
     type: object
     description: Detailed configuration depending on the widget type

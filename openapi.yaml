@@ -2257,10 +2257,8 @@ components:
             attribute: temperature
             key: key
           assetId: 4711
-          width: normal
           details: "{}"
           widgetTypeName: Weather
-          timespan: 7
         - data:
           - elementSequence: 1
             subtype: input
@@ -2275,10 +2273,8 @@ components:
             attribute: temperature
             key: key
           assetId: 4711
-          width: normal
           details: "{}"
           widgetTypeName: Weather
-          timespan: 7
         projectId: "99"
         userId: "42"
       properties:
@@ -2335,27 +2331,13 @@ components:
           attribute: temperature
           key: key
         assetId: 4711
-        width: normal
         details: "{}"
         widgetTypeName: Weather
-        timespan: 7
       properties:
         widgetTypeName:
           description: The name for the type of this widget
           example: Weather
           type: string
-        width:
-          description: The width of this widget on dashboard
-          enum:
-          - normal
-          - double
-          - full
-          type: string
-        timespan:
-          description: The number of days if the widget type uses timespan
-          example: 7
-          nullable: true
-          type: integer
         details:
           description: Detailed configuration depending on the widget type
           nullable: true
