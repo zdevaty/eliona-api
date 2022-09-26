@@ -12,7 +12,7 @@ It is best to start these images with Docker compose. You can use this [docker-c
 
 ## Usage ##
 
-The mock can be used with the following settings if you run the mock on localhost.
+The mock can be used with the following settings if you run the mock on localhost:
 
 - CONNECTION_STRING: postgres://postgres:secret@localhost:5432
 - API_ENDPOINT: http://localhost:3000/v2
