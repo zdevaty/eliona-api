@@ -1514,6 +1514,172 @@ paths:
       tags:
       - Agents
 components:
+  parameters:
+    app-name:
+      description: The name of the app
+      example: weather
+      in: path
+      name: app-name
+      required: true
+      schema:
+        type: string
+    patch-name:
+      description: The name of the patch
+      example: 2.0.0
+      in: path
+      name: patch-name
+      required: true
+      schema:
+        type: string
+    expansions:
+      description: "List of referenced data to load, insert or update. Each entry\
+        \ defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'."
+      explode: false
+      in: query
+      name: expansions
+      schema:
+        items:
+          type: string
+        nullable: true
+        type: array
+      style: form
+    asset-type-name:
+      description: The name of the asset type
+      example: weather_location
+      in: path
+      name: asset-type-name
+      required: true
+      schema:
+        type: string
+    asset-id:
+      description: The id of the asset
+      example: 4711
+      in: path
+      name: asset-id
+      required: true
+      schema:
+        type: integer
+    assetId:
+      description: Filter for a specific asset id
+      example: 4711
+      in: query
+      name: assetId
+      required: false
+      schema:
+        type: integer
+    dataSubtype:
+      description: Filter for a specific type of asset data
+      example: input
+      in: query
+      name: dataSubtype
+      required: false
+      schema:
+        enum:
+        - input
+        - info
+        - status
+        - output
+        type: string
+    assetTypeName:
+      description: Filter the name of the asset type
+      example: weather_location
+      in: query
+      name: assetTypeName
+      required: false
+      schema:
+        type: string
+    fromDate:
+      description: Filter by lower date time (RFC3339) limit inclusive
+      example: 2020-01-01T09:00:00.000Z
+      in: query
+      name: fromDate
+      required: false
+      schema:
+        type: string
+    toDate:
+      description: Filter by upper date time (RFC3339) limit exclusive
+      example: 2021-12-31T23:00:00.000Z
+      in: query
+      name: toDate
+      required: false
+      schema:
+        type: string
+    aggregation-id:
+      description: The id of the aggregation
+      example: 4711
+      in: path
+      name: aggregation-id
+      required: true
+      schema:
+        type: integer
+    widget-type-name:
+      description: The name of the widget type
+      example: weather
+      in: path
+      name: widget-type-name
+      required: true
+      schema:
+        type: string
+    dashboard-id:
+      description: The id of the dashboard
+      example: 4711
+      in: path
+      name: dashboard-id
+      required: true
+      schema:
+        type: integer
+    alarm-rule-id:
+      description: The id of the alarm rule
+      example: 4711
+      in: path
+      name: alarm-rule-id
+      required: true
+      schema:
+        type: integer
+    projectId:
+      description: Filter for a specific project
+      in: query
+      name: projectId
+      required: false
+      schema:
+        nullable: true
+        type: string
+    node-ident:
+      description: The UUID identifier of the node
+      example: 4711
+      in: path
+      name: node-ident
+      required: true
+      schema:
+        example: fef0a0d3-acad-4611-ac03-1fd842d72505
+        type: string
+    agent-class:
+      description: The class of an agent
+      example: iosys
+      in: path
+      name: agent-class
+      required: true
+      schema:
+        enum:
+        - iosys
+        - mbus
+        type: string
+    agent-id:
+      description: The id of the agent
+      example: 4711
+      in: path
+      name: agent-id
+      required: true
+      schema:
+        type: integer
+    agent-device-id:
+      description: The id of the device
+      example: 4711
+      in: path
+      name: agent-device-id
+      required: true
+      schema:
+        type: integer
   schemas:
     App:
       description: An app
@@ -1751,11 +1917,13 @@ components:
           format: double
           nullable: true
           type: number
+          example: null
         max:
           description: Upper limit
           format: double
           nullable: true
           type: number
+          example: null
         aggregationMode:
           description: Aggregation calculation mode
           enum:
@@ -2245,33 +2413,25 @@ components:
         widgets:
         - data:
           - elementSequence: 1
-            data: "{ \"key\": \"humidity\" }"
-            subtype: input
+            data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
+              : \"humidity\" }"
             assetId: 4711
-            description: Temperature
-            attribute: temperature
           - elementSequence: 1
-            data: "{ \"key\": \"humidity\" }"
-            subtype: input
+            data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
+              : \"humidity\" }"
             assetId: 4711
-            description: Temperature
-            attribute: temperature
           assetId: 4711
           details: "{}"
           widgetTypeName: Weather
         - data:
           - elementSequence: 1
-            data: "{ \"key\": \"humidity\" }"
-            subtype: input
+            data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
+              : \"humidity\" }"
             assetId: 4711
-            description: Temperature
-            attribute: temperature
           - elementSequence: 1
-            data: "{ \"key\": \"humidity\" }"
-            subtype: input
+            data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
+              : \"humidity\" }"
             assetId: 4711
-            description: Temperature
-            attribute: temperature
           assetId: 4711
           details: "{}"
           widgetTypeName: Weather
@@ -2319,17 +2479,13 @@ components:
       example:
         data:
         - elementSequence: 1
-          data: "{ \"key\": \"humidity\" }"
-          subtype: input
+          data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
+            : \"humidity\" }"
           assetId: 4711
-          description: Temperature
-          attribute: temperature
         - elementSequence: 1
-          data: "{ \"key\": \"humidity\" }"
-          subtype: input
+          data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
+            : \"humidity\" }"
           assetId: 4711
-          description: Temperature
-          attribute: temperature
         assetId: 4711
         details: "{}"
         widgetTypeName: Weather
@@ -2817,11 +2973,9 @@ components:
       description: Data for a widget
       example:
         elementSequence: 1
-        data: "{ \"key\": \"humidity\" }"
-        subtype: input
+        data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\":\
+          \ \"humidity\" }"
         assetId: 4711
-        description: Temperature
-        attribute: temperature
       properties:
         elementSequence:
           description: Position of the element in widget type
@@ -2833,21 +2987,10 @@ components:
           example: 4711
           nullable: true
           type: integer
-        subtype:
-          $ref: '#/components/schemas/DataSubtype'
-        attribute:
-          description: Name of the attribute of the asset type
-          example: temperature
-          nullable: true
-          type: string
-        description:
-          description: Text for frontend
-          example: Temperature
-          nullable: true
-          type: string
         data:
           description: individual config parameters depending on category
-          example: "{ \"key\": \"humidity\" }"
+          example: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
+            : \"humidity\" }"
           nullable: true
           type: object
       type: object
@@ -2982,6 +3125,7 @@ components:
           type: integer
       title: IosysAgentDeviceSpecific
       type: object
+      example: null
     MbusAgentDeviceSpecific:
       description: Specific device for MBUS agents
       nullable: true
@@ -3022,6 +3166,7 @@ components:
           type: integer
       title: MbusAgentDeviceSpecific
       type: object
+      example: null
     IosysAgentDeviceMappingSpecific:
       description: Specific mapping for IOSYS agents
       nullable: true
@@ -3079,6 +3224,7 @@ components:
           type: number
       title: IosysAgentDeviceMappingSpecific
       type: object
+      example: null
     MbusAgentDeviceMappingSpecific:
       description: Specific mapping for MBUS agents
       nullable: true
@@ -3096,6 +3242,7 @@ components:
           type: number
       title: MbusAgentDeviceMappingSpecific
       type: object
+      example: null
   securitySchemes:
     ApiKeyAuth:
       description: Use the API key as a secret for authorizing and identifying an
