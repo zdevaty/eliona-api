@@ -2356,10 +2356,12 @@ components:
         elements:
         - sequence: 1
           description: Weather
+          id: 4711
           category: weather
           config: "{ \"variant\": \"todayAndForecast\" }"
         - sequence: 1
           description: Weather
+          id: 4711
           category: weather
           config: "{ \"variant\": \"todayAndForecast\" }"
         name: weather
@@ -2962,9 +2964,16 @@ components:
       example:
         sequence: 1
         description: Weather
+        id: 4711
         category: weather
         config: "{ \"variant\": \"todayAndForecast\" }"
       properties:
+        id:
+          description: The internal Id of widget element
+          example: 4711
+          nullable: true
+          readOnly: true
+          type: integer
         category:
           description: The category for this element
           enum:

@@ -4,6 +4,12 @@ required:
   - category
   - description
 properties:
+  id:
+    type: integer
+    readOnly: true
+    description: The internal Id of widget element
+    example: 4711
+    nullable: true
   category:
     type: string
     description: The category for this element
