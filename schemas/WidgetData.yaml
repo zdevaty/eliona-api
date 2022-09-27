@@ -11,20 +11,8 @@ properties:
     description: The master asset id of this widget
     example: 4711
     nullable: true
-  subtype:
-    $ref: 'DataSubtype.yaml'
-  attribute:
-    type: string
-    description: Name of the attribute of the asset type
-    example: temperature
-    nullable: true
-  description:
-    type: string
-    description: Text for frontend
-    example: Temperature
-    nullable: true
   data:
     type: object
     description: individual config parameters depending on category
     nullable: true
-    example:  "{ \"key\": \"humidity\" }"
+    example:  "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\": \"humidity\" }"
