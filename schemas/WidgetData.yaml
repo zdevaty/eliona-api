@@ -17,6 +17,11 @@ properties:
     description: The master asset id of this widget
     example: 4711
     nullable: true
+  sequence:
+    type: integer
+    description: Placement order within widget; if not set the index in array is taken
+    example: 1
+    nullable: true
   data:
     type: object
     description: individual config parameters depending on category
