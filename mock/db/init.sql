@@ -126,14 +126,11 @@ create table if not exists public.widget (
 );
 
 create table if not exists public.widget_data (
-    id                integer not null,
+    widget_id         integer not null,
     widget_element_id integer not null,
-    seq               smallint,
-    key               text,
     asset_id          integer,
-    subtype           text,
-    attribute         text,
-    description       text
+    data              json,
+    id                serial primary key
 );
 
 create table if not exists public.widget_type (
