@@ -2423,6 +2423,7 @@ components:
             assetId: 4711
           assetId: 4711
           details: "{}"
+          id: 4711
           widgetTypeName: Weather
         - sequence: 1
           data:
@@ -2436,6 +2437,7 @@ components:
             assetId: 4711
           assetId: 4711
           details: "{}"
+          id: 4711
           widgetTypeName: Weather
         projectId: "99"
         userId: "42"
@@ -2491,8 +2493,15 @@ components:
           assetId: 4711
         assetId: 4711
         details: "{}"
+        id: 4711
         widgetTypeName: Weather
       properties:
+        id:
+          description: The internal Id of widget
+          example: 4711
+          nullable: true
+          readOnly: true
+          type: integer
         widgetTypeName:
           description: The name for the type of this widget
           example: Weather

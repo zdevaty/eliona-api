@@ -4,6 +4,12 @@ required:
   - widgetTypeName
   - width
 properties:
+  id:
+    type: integer
+    readOnly: true
+    description: The internal Id of widget
+    example: 4711
+    nullable: true
   widgetTypeName:
     type: string
     description: The name for the type of this widget
