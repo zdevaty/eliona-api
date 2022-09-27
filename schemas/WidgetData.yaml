@@ -1,6 +1,12 @@
 type: object
 description: Data for a widget
 properties:
+  id:
+    type: integer
+    readOnly: true
+    description: The internal Id of widget data
+    example: 4711
+    nullable: true
   elementSequence:
     type: integer
     description: Position of the element in widget type

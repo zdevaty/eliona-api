@@ -2417,10 +2417,12 @@ components:
             data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
               : \"humidity\" }"
             assetId: 4711
+            id: 4711
           - elementSequence: 1
             data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
               : \"humidity\" }"
             assetId: 4711
+            id: 4711
           assetId: 4711
           details: "{}"
           id: 4711
@@ -2431,10 +2433,12 @@ components:
             data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
               : \"humidity\" }"
             assetId: 4711
+            id: 4711
           - elementSequence: 1
             data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
               : \"humidity\" }"
             assetId: 4711
+            id: 4711
           assetId: 4711
           details: "{}"
           id: 4711
@@ -2487,10 +2491,12 @@ components:
           data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
             : \"humidity\" }"
           assetId: 4711
+          id: 4711
         - elementSequence: 1
           data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
             : \"humidity\" }"
           assetId: 4711
+          id: 4711
         assetId: 4711
         details: "{}"
         id: 4711
@@ -2994,7 +3000,14 @@ components:
         data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\":\
           \ \"humidity\" }"
         assetId: 4711
+        id: 4711
       properties:
+        id:
+          description: The internal Id of widget data
+          example: 4711
+          nullable: true
+          readOnly: true
+          type: integer
         elementSequence:
           description: Position of the element in widget type
           example: 1
