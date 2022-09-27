@@ -2354,10 +2354,12 @@ components:
         custom: true
         withAlarm: false
         elements:
-        - description: Weather
+        - sequence: 1
+          description: Weather
           category: weather
           config: "{ \"variant\": \"todayAndForecast\" }"
-        - description: Weather
+        - sequence: 1
+          description: Weather
           category: weather
           config: "{ \"variant\": \"todayAndForecast\" }"
         name: weather
@@ -2958,6 +2960,7 @@ components:
     WidgetTypeElement:
       description: An element for widget types
       example:
+        sequence: 1
         description: Weather
         category: weather
         config: "{ \"variant\": \"todayAndForecast\" }"
@@ -2991,6 +2994,12 @@ components:
           description: description text for this element
           example: Weather
           type: string
+        sequence:
+          description: sequence of element in widget; if not defined the index in
+            array is taken
+          example: 1
+          nullable: true
+          type: integer
         config:
           description: individual config parameters depending on category
           example: "{ \"variant\": \"todayAndForecast\" }"

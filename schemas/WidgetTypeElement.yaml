@@ -33,6 +33,11 @@ properties:
     type: string
     description: description text for this element
     example: Weather
+  sequence:
+    type: integer
+    description: sequence of element in widget; if not defined the index in array is taken
+    nullable: true
+    example: 1
   config:
     type: object
     description: individual config parameters depending on category
