@@ -2367,7 +2367,14 @@ components:
           it: Questa è una descrizione italiana
           fr: Ceci est une description français
         icon: weather
+        id: 4711
       properties:
+        id:
+          description: The internal Id of widget type
+          example: 4711
+          nullable: true
+          readOnly: true
+          type: integer
         name:
           description: The unique name for this widget type
           example: weather

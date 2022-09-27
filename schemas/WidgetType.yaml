@@ -5,6 +5,12 @@ required:
   - translation
   - elements
 properties:
+  id:
+    type: integer
+    readOnly: true
+    description: The internal Id of widget type
+    example: 4711
+    nullable: true
   name:
     type: string
     description: The unique name for this widget type
