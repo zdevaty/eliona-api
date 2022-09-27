@@ -2355,12 +2355,10 @@ components:
         withAlarm: false
         elements:
         - sequence: 1
-          description: Weather
           id: 4711
           category: weather
           config: "{ \"variant\": \"todayAndForecast\" }"
         - sequence: 1
-          description: Weather
           id: 4711
           category: weather
           config: "{ \"variant\": \"todayAndForecast\" }"
@@ -2963,7 +2961,6 @@ components:
       description: An element for widget types
       example:
         sequence: 1
-        description: Weather
         id: 4711
         category: weather
         config: "{ \"variant\": \"todayAndForecast\" }"
@@ -2998,10 +2995,6 @@ components:
           - weather
           - storey
           example: weather
-          type: string
-        description:
-          description: description text for this element
-          example: Weather
           type: string
         sequence:
           description: sequence of element in widget; if not defined the index in

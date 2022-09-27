@@ -35,10 +35,6 @@ properties:
       - alarms
       - weather
       - storey
-  description:
-    type: string
-    description: description text for this element
-    example: Weather
   sequence:
     type: integer
     description: sequence of element in widget; if not defined the index in array is taken
