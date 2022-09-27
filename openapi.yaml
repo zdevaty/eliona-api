@@ -2414,13 +2414,11 @@ components:
         - sequence: 1
           data:
           - elementSequence: 1
-            sequence: 1
             data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
               : \"humidity\" }"
             assetId: 4711
             id: 4711
           - elementSequence: 1
-            sequence: 1
             data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
               : \"humidity\" }"
             assetId: 4711
@@ -2432,13 +2430,11 @@ components:
         - sequence: 1
           data:
           - elementSequence: 1
-            sequence: 1
             data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
               : \"humidity\" }"
             assetId: 4711
             id: 4711
           - elementSequence: 1
-            sequence: 1
             data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
               : \"humidity\" }"
             assetId: 4711
@@ -2492,13 +2488,11 @@ components:
         sequence: 1
         data:
         - elementSequence: 1
-          sequence: 1
           data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
             : \"humidity\" }"
           assetId: 4711
           id: 4711
         - elementSequence: 1
-          sequence: 1
           data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
             : \"humidity\" }"
           assetId: 4711
@@ -3003,7 +2997,6 @@ components:
       description: Data for a widget
       example:
         elementSequence: 1
-        sequence: 1
         data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\":\
           \ \"humidity\" }"
         assetId: 4711
@@ -3023,12 +3016,6 @@ components:
         assetId:
           description: The master asset id of this widget
           example: 4711
-          nullable: true
-          type: integer
-        sequence:
-          description: Placement order within widget; if not set the index in array
-            is taken
-          example: 1
           nullable: true
           type: integer
         data:
