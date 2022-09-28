@@ -17,3 +17,7 @@ The mock can be used with the following settings if you run the mock on localhos
 - CONNECTION_STRING: postgres://postgres:secret@localhost:5432
 - API_ENDPOINT: http://localhost:3000/v2
 - API_TOKEN: secret
+
+By default, an app named `example` is registered in the database. So you can use this app name to communicate with Eliona. For other app names please change or add the app into the table `eliona_app`.
+
+- APP_NAME: example

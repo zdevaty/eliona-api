@@ -103,6 +103,9 @@ create table if not exists public.eliona_app (
     initialised boolean default false
 );
 
+insert into public.eliona_app (app_name, category, active)
+values  ('example', 'app', true);
+
 create schema if not exists versioning;
 
 create table if not exists versioning.patches (
