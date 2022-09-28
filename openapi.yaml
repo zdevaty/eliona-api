@@ -314,6 +314,13 @@ paths:
       description: Gets a list of assets
       operationId: getAssets
       parameters:
+      - description: Filter the name of the asset type
+        example: weather_location
+        in: query
+        name: assetTypeName
+        required: false
+        schema:
+          type: string
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -326,13 +333,6 @@ paths:
           nullable: true
           type: array
         style: form
-      - description: Filter the name of the asset type
-        example: weather_location
-        in: query
-        name: assetTypeName
-        required: false
-        schema:
-          type: string
       responses:
         "200":
           content:
