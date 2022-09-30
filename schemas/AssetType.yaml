@@ -30,6 +30,16 @@ properties:
     description: Icon name corresponding to assets of this type
     example: weather
     nullable: true
+  payloadFunction:
+    type: string
+    description: Asset types payload function
+    example: PLS
+    nullable: true
+  allowedInactivity:
+    type: string
+    format: duration
+    example: 0 hours 5 mins
+    nullable: true
   attributes:
     type: array
     description: List of named attributes

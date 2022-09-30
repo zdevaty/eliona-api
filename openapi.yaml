@@ -1755,6 +1755,7 @@ components:
       description: A type of assets
       example:
         vendor: vendor
+        allowedInactivity: 0 hours 5 mins
         custom: true
         name: weather_location
         translation:
@@ -1771,7 +1772,9 @@ components:
           max: 6.027456183070403
           assetTypeName: weather_location
           precision: 1
+          scale: 5.962133916683182
           type: temperature
+          zero: 5.637376656633329
           ar: false
           sequence: 1
           unit: °C
@@ -1784,16 +1787,22 @@ components:
             en: This is an english description
             it: Questa è una descrizione italiana
             fr: Ceci est une description français
+          map: "{}"
           aggregationMode: avg
           aggregationRasters:
           - DAY
           - DAY
+          sourcePath:
+          - "{}"
+          - "{}"
         - viewer: false
           virtual: true
           max: 6.027456183070403
           assetTypeName: weather_location
           precision: 1
+          scale: 5.962133916683182
           type: temperature
+          zero: 5.637376656633329
           ar: false
           sequence: 1
           unit: °C
@@ -1806,10 +1815,15 @@ components:
             en: This is an english description
             it: Questa è una descrizione italiana
             fr: Ceci est une description français
+          map: "{}"
           aggregationMode: avg
           aggregationRasters:
           - DAY
           - DAY
+          sourcePath:
+          - "{}"
+          - "{}"
+        payloadFunction: PLS
       properties:
         name:
           description: The unique name for this asset type
@@ -1838,6 +1852,16 @@ components:
           example: weather
           nullable: true
           type: string
+        payloadFunction:
+          description: Asset types payload function
+          example: PLS
+          nullable: true
+          type: string
+        allowedInactivity:
+          example: 0 hours 5 mins
+          format: duration
+          nullable: true
+          type: string
         attributes:
           description: List of named attributes
           items:
@@ -1855,7 +1879,9 @@ components:
         max: 6.027456183070403
         assetTypeName: weather_location
         precision: 1
+        scale: 5.962133916683182
         type: temperature
+        zero: 5.637376656633329
         ar: false
         sequence: 1
         unit: °C
@@ -1868,10 +1894,14 @@ components:
           en: This is an english description
           it: Questa è una descrizione italiana
           fr: Ceci est une description français
+        map: "{}"
         aggregationMode: avg
         aggregationRasters:
         - DAY
         - DAY
+        sourcePath:
+        - "{}"
+        - "{}"
       properties:
         assetTypeName:
           description: The unique name for the asset type
@@ -2014,6 +2044,24 @@ components:
           description: Is the attribute virtual or not
           nullable: true
           type: boolean
+        scale:
+          description: value scale
+          nullable: true
+          type: number
+        zero:
+          description: value scale
+          nullable: true
+          type: number
+        map:
+          description: custom map
+          nullable: true
+          type: object
+        sourcePath:
+          description: source path for attribute value
+          items:
+            type: object
+          nullable: true
+          type: array
       required:
       - name
       - subtype
