@@ -162,5 +162,4 @@ properties:
     description: source path for attribute value
     nullable: true
     items:
-      schema:
-        string
+      type: string
