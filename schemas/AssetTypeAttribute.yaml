@@ -163,3 +163,7 @@ properties:
     nullable: true
     items:
       type: string
+  isDigital:
+    type: boolean
+    description: is attribute digital
+    nullable: true

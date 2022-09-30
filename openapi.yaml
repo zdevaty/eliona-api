@@ -1769,6 +1769,7 @@ components:
         attributes:
         - viewer: false
           virtual: true
+          isDigital: true
           max: 6.027456183070403
           assetTypeName: weather_location
           precision: 1
@@ -1797,6 +1798,7 @@ components:
           - sourcePath
         - viewer: false
           virtual: true
+          isDigital: true
           max: 6.027456183070403
           assetTypeName: weather_location
           precision: 1
@@ -1876,6 +1878,7 @@ components:
       example:
         viewer: false
         virtual: true
+        isDigital: true
         max: 6.027456183070403
         assetTypeName: weather_location
         precision: 1
@@ -2062,6 +2065,10 @@ components:
             type: string
           nullable: true
           type: array
+        isDigital:
+          description: is attribute digital
+          nullable: true
+          type: boolean
       required:
       - name
       - subtype
