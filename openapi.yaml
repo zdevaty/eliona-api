@@ -1793,8 +1793,8 @@ components:
           - DAY
           - DAY
           sourcePath:
-          - "{}"
-          - "{}"
+          - sourcePath
+          - sourcePath
         - viewer: false
           virtual: true
           max: 6.027456183070403
@@ -1821,8 +1821,8 @@ components:
           - DAY
           - DAY
           sourcePath:
-          - "{}"
-          - "{}"
+          - sourcePath
+          - sourcePath
         payloadFunction: PLS
       properties:
         name:
@@ -1900,8 +1900,8 @@ components:
         - DAY
         - DAY
         sourcePath:
-        - "{}"
-        - "{}"
+        - sourcePath
+        - sourcePath
       properties:
         assetTypeName:
           description: The unique name for the asset type
@@ -2059,7 +2059,7 @@ components:
         sourcePath:
           description: source path for attribute value
           items:
-            type: object
+            type: string
           nullable: true
           type: array
       required:
