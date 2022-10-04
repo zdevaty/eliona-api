@@ -1,10 +1,10 @@
 ### Delete type
 DELETE http://localhost:8084/v2/asset-types/weather_location
 
-### Insert new asse type
+### Insert new asset type
 GET http://localhost:8084/v2/asset-types/weather_location
 
-### Insert new asse type
+### Insert new asset type
 PUT http://localhost:8084/v2/asset-types
 Content-Type: application/json
 
