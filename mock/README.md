@@ -20,4 +20,4 @@ The mock can be used with the following settings if you run the mock on localhos
 
 By default, an app named `example` is registered in the database. So you can use this app name to communicate with Eliona. For other app names please change or add the app into the table `eliona_app`.
 
-- APP_NAME: example
+- APPNAME: example
