@@ -69,6 +69,7 @@ create table if not exists public.attribute_schema
     zero            double precision,
     precision       smallint,
     min             numeric,
+    is_digital      boolean default false    not null,
     max             numeric,
     step            numeric,
     map             json,
