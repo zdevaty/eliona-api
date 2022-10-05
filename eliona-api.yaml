@@ -27,8 +27,12 @@ servers:
   - url: http://api.eliona.io/v2
 security:
   - ApiKeyAuth: []
+  - BearerAuth: []
 
 paths:
+
+  /version:
+    $ref: './paths/version.yaml'
 
   /apps/{app-name}:
     $ref: './paths/apps-name.yaml'
@@ -192,6 +196,10 @@ tags:
     description: Handle widgets for dashboards
     externalDocs:
       url: https://www.eliona.io
+  - name: Version
+    description: API version
+    externalDocs:
+      url: https://www.eliona.io
 
 components:
   securitySchemes:
@@ -200,4 +208,9 @@ components:
       description: Use the API key as a secret for authorizing and identifying an app or agent
       in: header
       name: X-API-Key
+    BearerAuth:
+      type: http
+      description: Use the Bearer for authorizing and identifying a frontend access
+      scheme: bearer
+      bearerFormat: JWT
 

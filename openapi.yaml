@@ -11,6 +11,7 @@ servers:
 - url: http://api.eliona.io/v2
 security:
 - ApiKeyAuth: []
+- BearerAuth: []
 tags:
 - description: Handle nodes
   externalDocs:
@@ -60,7 +61,27 @@ tags:
   externalDocs:
     url: https://www.eliona.io
   name: Widgets
+- description: API version
+  externalDocs:
+    url: https://www.eliona.io
+  name: Version
 paths:
+  /version:
+    get:
+      description: Gets information about the APIs version.
+      operationId: getVersion
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example: v2.1.2
+                type: string
+          description: Successfully returned the APIs version.
+      security: []
+      summary: Version of the API
+      tags:
+      - Version
   /apps/{app-name}:
     get:
       description: Gets information about an app.
@@ -3374,3 +3395,8 @@ components:
       in: header
       name: X-API-Key
       type: apiKey
+    BearerAuth:
+      bearerFormat: JWT
+      description: Use the Bearer for authorizing and identifying a frontend access
+      scheme: bearer
+      type: http
