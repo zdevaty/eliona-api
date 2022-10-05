@@ -75,8 +75,7 @@ paths:
           content:
             application/json:
               schema:
-                example: v2.1.2
-                type: string
+                type: object
           description: Successfully returned the APIs version.
       security: []
       summary: Version of the API
