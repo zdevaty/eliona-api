@@ -1963,6 +1963,7 @@ components:
           - voltage
           - watchdog
           - weather
+          - voc
           example: temperature
           nullable: true
           type: string

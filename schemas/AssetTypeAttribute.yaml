@@ -44,6 +44,7 @@ properties:
       - voltage
       - watchdog
       - weather
+      - voc
   enable:
     type: boolean
     default: true
