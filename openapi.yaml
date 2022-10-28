@@ -624,6 +624,13 @@ paths:
         required: false
         schema:
           type: string
+      - description: Filter for a specific aggregation id
+        example: "0815"
+        in: query
+        name: aggregationId
+        required: false
+        schema:
+          type: integer
       responses:
         "200":
           content:
@@ -1699,6 +1706,14 @@ components:
       required: false
       schema:
         type: string
+    aggregationId:
+      description: Filter for a specific aggregation id
+      example: "0815"
+      in: query
+      name: aggregationId
+      required: false
+      schema:
+        type: integer
     aggregation-id:
       description: The id of the aggregation
       example: 4711
