@@ -1,0 +1,7 @@
+name: aggregationId
+description: Filter for a specific aggregation id
+in: query
+required: false
+example: 0815
+schema:
+  type: integer

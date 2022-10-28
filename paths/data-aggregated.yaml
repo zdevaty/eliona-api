@@ -10,6 +10,7 @@ get:
     - $ref: '../parameters/assetId.yaml'
     - $ref: '../parameters/dataSubtype.yaml'
     - $ref: '../parameters/assetTypeName.yaml'
+    - $ref: '../parameters/aggregationId.yaml'
   responses:
     200:
       description: Successfully returned aggregated data sets
