@@ -29,3 +29,25 @@ delete:
       description: Successfully deleted the aggregation by id.
     404:
       description: Aggregation with id not found
+
+put:
+  tags:
+    - Aggregations
+  summary: Updates an aggregation
+  description: Updates an aggregation.
+  operationId: putAggregationById
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Aggregation.yaml'
+  responses:
+    200:
+      description: Successfully updated an aggregation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Aggregation.yaml'
+    404:
+      description: Aggregation with id not found

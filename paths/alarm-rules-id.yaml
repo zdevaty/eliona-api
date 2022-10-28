@@ -16,3 +16,25 @@ get:
             $ref: '../schemas/AlarmRule.yaml'
     404:
       description: Alarm rule with id not found
+
+put:
+  tags:
+    - Alarm rules
+  summary: Update an alarm rule
+  description: Update an alarm rule.
+  operationId: putAlarmRuleById
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AlarmRule.yaml'
+  responses:
+    200:
+      description: Successfully updated an existing alarm rule
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AlarmRule.yaml'
+    404:
+      description: Alarm rule with id not found

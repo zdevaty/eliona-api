@@ -16,3 +16,25 @@ get:
             $ref: '../schemas/Asset.yaml'
     404:
       description: Asset with id not found
+
+put:
+  tags:
+    - Assets
+  summary: Update an asset
+  description: Update an asset.
+  operationId: putAssetById
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Asset.yaml'
+  responses:
+    200:
+      description: Successfully updated an existing asset
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Asset.yaml'
+    404:
+      description: Asset with id not found

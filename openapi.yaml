@@ -342,6 +342,40 @@ paths:
       summary: Information about an asset type
       tags:
       - Asset types
+    put:
+      description: Update an asset type.
+      operationId: putAssetTypeByName
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetType'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetType'
+          description: Successfully updated an existing asset type
+        "404":
+          description: Asset type with name not found
+      summary: Update an asset type
+      tags:
+      - Asset types
   /asset-types/{asset-type-name}/attributes:
     post:
       description: Create a new asset type attribute.
@@ -514,6 +548,27 @@ paths:
         "404":
           description: Asset with id not found
       summary: Information about an asset
+      tags:
+      - Assets
+    put:
+      description: Update an asset.
+      operationId: putAssetById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Asset'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+          description: Successfully updated an existing asset
+        "404":
+          description: Asset with id not found
+      summary: Update an asset
       tags:
       - Assets
   /data:
@@ -833,6 +888,27 @@ paths:
       summary: Information about an aggregation
       tags:
       - Aggregations
+    put:
+      description: Updates an aggregation.
+      operationId: putAggregationById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Aggregation'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aggregation'
+          description: Successfully updated an aggregation
+        "404":
+          description: Aggregation with id not found
+      summary: Updates an aggregation
+      tags:
+      - Aggregations
   /widget-types:
     get:
       description: Returns a list of widget types
@@ -982,6 +1058,40 @@ paths:
         "404":
           description: Widget type with name not found
       summary: Information about a widget type
+      tags:
+      - Widgets types
+    put:
+      description: Update a widget type.
+      operationId: putWidgetTypeByName
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WidgetType'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetType'
+          description: Successfully updated widget type
+        "404":
+          description: Widget type with name not found
+      summary: Update a widget type
       tags:
       - Widgets types
   /dashboards:
@@ -1256,6 +1366,27 @@ paths:
         "404":
           description: Alarm rule with id not found
       summary: Information about an alarm rule
+      tags:
+      - Alarm rules
+    put:
+      description: Update an alarm rule.
+      operationId: putAlarmRuleById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlarmRule'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlarmRule'
+          description: Successfully updated an existing alarm rule
+        "404":
+          description: Alarm rule with id not found
+      summary: Update an alarm rule
       tags:
       - Alarm rules
   /alarms:
@@ -1547,8 +1678,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Node'
-          description: Successfully returned a list of node
+          description: Successfully returned a node
+        "404":
+          description: Node ident not found
       summary: Information about a node
+      tags:
+      - Nodes
+    put:
+      description: Update a node.
+      operationId: putNodeByIdent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Node'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+          description: Successfully updated an existing node
+        "404":
+          description: Node ident not found
+      summary: Update a node
       tags:
       - Nodes
   /agents:
@@ -1653,6 +1807,72 @@ paths:
                 $ref: '#/components/schemas/Agent'
           description: Successfully created a new or updated an existing agent
       summary: Create or update an agent
+      tags:
+      - Agents
+  /agents/{agent-class}/{agent-id}:
+    get:
+      description: Gets information about an agent.
+      operationId: getAgentByClassAndId
+      parameters:
+      - description: The id of the agent
+        example: 4711
+        in: path
+        name: agent-id
+        required: true
+        schema:
+          type: integer
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+          description: Successfully returned an agent
+        "404":
+          description: Agent with id not found
+      summary: Information about an agent
+      tags:
+      - Agents
+    put:
+      description: Update an agent.
+      operationId: putAgentByClassAndId
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Agent'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+          description: Successfully updated an existing agent
+        "404":
+          description: Agent with id not found
+      summary: Update an agent
       tags:
       - Agents
   /agents/{agent-class}/{agent-id}/devices:

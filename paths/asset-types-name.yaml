@@ -30,3 +30,27 @@ delete:
       description: Successfully deleted the asset type
     404:
       description: Asset type with name not found
+
+put:
+  tags:
+    - Asset types
+  summary: Update an asset type
+  description: Update an asset type.
+  operationId: putAssetTypeByName
+  parameters:
+    - $ref: '../parameters/expansions.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AssetType.yaml'
+  responses:
+    200:
+      description: Successfully updated an existing asset type
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AssetType.yaml'
+    404:
+      description: Asset type with name not found

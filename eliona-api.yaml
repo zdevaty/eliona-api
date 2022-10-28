@@ -49,6 +49,10 @@ paths:
   /asset-types/{asset-type-name}/attributes:
     $ref: './paths/asset-types-name-attributes.yaml'
 
+  # Not yet implemented
+  #  /asset-types/{asset-type-name}/attributes/{asset-type-attribute-name}:
+  #    $ref: './paths/asset-types-name-attributes-name.yaml'
+
   /assets:
     $ref: './paths/assets.yaml'
 
@@ -121,9 +125,8 @@ paths:
   /agents/{agent-class}:
     $ref: './paths/agents-class.yaml'
 
-  # Not yet implemented
-  # /agents/{agent-class}/{agent-id}:
-  #   $ref: './paths/agents-class-id.yaml'
+  /agents/{agent-class}/{agent-id}:
+    $ref: './paths/agents-class-id.yaml'
 
   /agents/{agent-class}/{agent-id}/devices:
     $ref: './paths/agents-class-id-devices.yaml'
