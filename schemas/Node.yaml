@@ -33,7 +33,7 @@ properties:
     nullable: true
   description:
     type: string
-    description: Descriptive text fpr the edge node
+    description: Descriptive text for the edge node
     nullable: true
     example: Node east plant
   enable:

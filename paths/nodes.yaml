@@ -18,7 +18,7 @@ put:
   tags:
     - Nodes
   summary: Create or update a node
-  description: Create a new node or update a node rule if already exists
+  description: Create a new node or update a node rule if already exists. Uses the unique node ident for updating.
   operationId: putNode
   requestBody:
     required: true

@@ -20,7 +20,7 @@ put:
   tags:
     - Agents
   summary: Create or update an agent for a specific class
-  description: Create a new agent or update an agent if already exists
+  description: Create a new agent or update an agent if already exists. Uses the unique agent id for updating.
   operationId: putAgentByClass
   parameters:
     - $ref: '../parameters/agent-class.yaml'

@@ -2,7 +2,7 @@ put:
   tags:
     - Asset types
   summary: Create or update an asset type attribute
-  description: Create a new asset type attribute or update an asset type attribute if already exists
+  description: Create a new asset type attribute or update an asset type attribute if already exists. Uses the unique combination of asset type name, subtype and attribute name for updating.
   operationId: putAssetTypeAttribute
   parameters:
     - $ref: '../parameters/asset-type-name.yaml'

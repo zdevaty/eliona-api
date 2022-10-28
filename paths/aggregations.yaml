@@ -18,7 +18,7 @@ put:
   tags:
     - Aggregations
   summary: Creates or updates an aggregation
-  description: Creates an aggregation or updates if already exists
+  description: Creates an aggregation or updates if already exists. Uses the unique combination of asset id, subtype, attribute and raster for updating.
   operationId: putAggregation
   requestBody:
     required: true

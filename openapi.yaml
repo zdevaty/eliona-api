@@ -221,7 +221,8 @@ paths:
       tags:
       - Asset types
     put:
-      description: Create a new asset type or update an asset type if already exists
+      description: Create a new asset type or update an asset type if already exists.
+        Uses the unique asset type name for updating.
       operationId: putAssetType
       parameters:
       - description: "List of referenced data to load, insert or update. Each entry\
@@ -309,8 +310,9 @@ paths:
       - Asset types
   /asset-types/{asset-type-name}/attributes:
     put:
-      description: Create a new asset type attribute or update an asset type attribute
-        if already exists
+      description: "Create a new asset type attribute or update an asset type attribute\
+        \ if already exists. Uses the unique combination of asset type name, subtype\
+        \ and attribute name for updating."
       operationId: putAssetTypeAttribute
       parameters:
       - description: The name of the asset type
@@ -370,8 +372,8 @@ paths:
       tags:
       - Assets
     put:
-      description: "Creates an asset if no asset with the same projectId and globalAssetIdentifier\
-        \ already exists. If there is such an asset, the asset is updated."
+      description: Creates an asset if no asset  or updating it if already exists.
+        Uses the unique combination of project id and global asset id for updating.
       operationId: putAsset
       requestBody:
         content:
@@ -469,7 +471,8 @@ paths:
       tags:
       - Data
     put:
-      description: Create new asset data or update data if already exists.
+      description: Create new asset data or update data if already exists. Uses the
+        unique combination of asset id and subtype for updating.
       operationId: putData
       requestBody:
         content:
@@ -650,7 +653,8 @@ paths:
       tags:
       - Aggregations
     put:
-      description: Creates an aggregation or updates if already exists
+      description: "Creates an aggregation or updates if already exists. Uses the\
+        \ unique combination of asset id, subtype, attribute and raster for updating."
       operationId: putAggregation
       requestBody:
         content:
@@ -741,8 +745,8 @@ paths:
       tags:
       - Widgets types
     put:
-      description: Create a widget type if the a type with the name not exists or
-        update a widget type if the name already exists
+      description: Create a new widget type or update it if already exists. Uses the
+        unique widget type name for updating.
       operationId: putWidgetType
       parameters:
       - description: "List of referenced data to load, insert or update. Each entry\
@@ -1024,7 +1028,8 @@ paths:
       tags:
       - Alarm rules
     put:
-      description: Create a new alarm rule or update an alarm rule if already exists
+      description: Create a new alarm rule or update an alarm rule if already exists.
+        Uses the unique alarm id for updating.
       operationId: putAlarmRule
       requestBody:
         content:
@@ -1306,7 +1311,8 @@ paths:
       tags:
       - Nodes
     put:
-      description: Create a new node or update a node rule if already exists
+      description: Create a new node or update a node rule if already exists. Uses
+        the unique node ident for updating.
       operationId: putNode
       requestBody:
         content:
@@ -1391,7 +1397,8 @@ paths:
       tags:
       - Agents
     put:
-      description: Create a new agent or update an agent if already exists
+      description: Create a new agent or update an agent if already exists. Uses the
+        unique agent id for updating.
       operationId: putAgentByClass
       parameters:
       - description: The class of an agent
@@ -1452,7 +1459,7 @@ paths:
       - Agents
     put:
       description: Create a new agent device or update an agent device if already
-        exists
+        exists. Uses the unique device id for updating.
       operationId: putAgentDeviceById
       parameters:
       - description: The class of an agent
@@ -1520,7 +1527,7 @@ paths:
       - Agents
     put:
       description: Create a new agent device mapping or update an agent device mapping
-        if already exists
+        if already exists. Uses the unique mapping id for updating.
       operationId: putAgentDeviceMappingById
       parameters:
       - description: The class of an agent
@@ -3002,7 +3009,7 @@ components:
           nullable: true
           type: string
         description:
-          description: Descriptive text fpr the edge node
+          description: Descriptive text for the edge node
           example: Node east plant
           nullable: true
           type: string

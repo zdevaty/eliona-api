@@ -19,7 +19,7 @@ put:
   tags:
     - Widgets types
   summary: Create or update a widget type
-  description: Create a widget type if the a type with the name not exists or update a widget type if the name already exists
+  description: Create a new widget type or update it if already exists. Uses the unique widget type name for updating.
   parameters:
     - $ref: '../parameters/expansions.yaml'
   operationId: putWidgetType

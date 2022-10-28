@@ -21,7 +21,7 @@ put:
   tags:
     - Agents
   summary: Create or update an agent device mapping
-  description: Create a new agent device mapping or update an agent device mapping if already exists
+  description: Create a new agent device mapping or update an agent device mapping if already exists. Uses the unique mapping id for updating.
   operationId: putAgentDeviceMappingById
   parameters:
     - $ref: '../parameters/agent-class.yaml'
