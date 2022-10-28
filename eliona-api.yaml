@@ -147,6 +147,12 @@ paths:
   # /agent-device-mappings/{agent-class}/{agent-device-mapping-id}:
   #   $ref: './paths/agent-device-mappings-class-id.yaml'
 
+  /send-mail:
+    $ref: './paths/send-mail.yaml'
+
+  /message-receipts/{message-id}:
+    $ref: './paths/message-receipts-id.yaml'
+
 tags:
   - name: Nodes
     description: Handle nodes
@@ -196,6 +202,10 @@ tags:
     description: Handle widgets for dashboards
     externalDocs:
       url: https://www.eliona.io
+  - name: Messages
+    description: Message handling
+    externalDocs:
+      url: https://www.eliona.io
   - name: Version
     description: API version
     externalDocs:
@@ -213,4 +223,3 @@ components:
       description: Use the Bearer for authorizing and identifying a frontend access
       scheme: bearer
       bearerFormat: JWT
-

@@ -1,3 +1,6 @@
+### Get all alarm rules
+GET http://localhost:8084/v2/alarm-rules
+
 ### Insert new alarm rule
 PUT http://localhost:8084/v2/alarm-rules
 Content-Type: application/json

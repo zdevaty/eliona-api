@@ -61,6 +61,10 @@ tags:
   externalDocs:
     url: https://www.eliona.io
   name: Widgets
+- description: Message handling
+  externalDocs:
+    url: https://www.eliona.io
+  name: Messages
 - description: API version
   externalDocs:
     url: https://www.eliona.io
@@ -1553,6 +1557,50 @@ paths:
       summary: Create or update an agent device mapping
       tags:
       - Agents
+  /send-mail:
+    post:
+      description: Sends an e-mail to recipients
+      operationId: postMail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageReceipt'
+          description: Successfully accepted the e-mail
+      summary: Send e-mail
+      tags:
+      - Messages
+  /message-receipts/{message-id}:
+    get:
+      description: Gets receipt information for a message.
+      operationId: getMessageReceiptById
+      parameters:
+      - description: The id of the message
+        example: AB0815
+        in: path
+        name: message-id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageReceipt'
+          description: Successfully returned the receipt
+        "404":
+          description: Message with id not found
+      summary: Information about a message
+      tags:
+      - Messages
 components:
   parameters:
     app-name:
@@ -1720,6 +1768,14 @@ components:
       required: true
       schema:
         type: integer
+    message-id:
+      description: The id of the message
+      example: AB0815
+      in: path
+      name: message-id
+      required: true
+      schema:
+        type: string
   schemas:
     App:
       description: An app
@@ -2727,7 +2783,7 @@ components:
           nullable: true
           type: number
         message:
-          description: Message texts for alarm
+          description: Message.yaml texts for alarm
           nullable: true
           type: object
         tags:
@@ -2889,7 +2945,7 @@ components:
           nullable: true
           type: string
         message:
-          description: Message texts for alarm
+          description: Message.yaml texts for alarm
           nullable: true
           type: object
         assetInfo:
@@ -3007,6 +3063,87 @@ components:
       anyOf:
       - $ref: '#/components/schemas/IosysAgentDeviceMapping'
       - $ref: '#/components/schemas/MbusAgentDeviceMapping'
+    Message:
+      description: A message
+      example:
+        attachments:
+        - data: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          name: example.gif
+          mimeType: image/png
+        - data: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          name: example.gif
+          mimeType: image/png
+        sender: sender@example.com
+        recipients:
+        - recipient@example.com
+        - recipient@example.com
+        subject: This is a example message
+        mimeType: text/html
+        content: <h1>Example</h1>
+      properties:
+        sender:
+          description: "Address of the sender, e.g. an e-mail address"
+          example: sender@example.com
+          nullable: true
+          type: string
+        recipients:
+          description: A list of recipient addresses to receive this message
+          items:
+            description: "A recipient's address, e.g. an e-mail address"
+            example: recipient@example.com
+            type: object
+          minItems: 1
+          type: array
+        subject:
+          description: The subject for this message
+          example: This is a example message
+          type: string
+        mimeType:
+          description: The MIME type of the message content
+          example: text/html
+          nullable: true
+          type: string
+        content:
+          description: The content of the message
+          example: <h1>Example</h1>
+          type: string
+        attachments:
+          description: A list of files attached to the message
+          items:
+            $ref: '#/components/schemas/Attachment'
+          nullable: true
+          type: array
+      required:
+      - content
+      - recipients
+      type: object
+    MessageReceipt:
+      description: A receipt for a message
+      example:
+        id: AB0815
+        scheduledAt: 2000-01-23T04:56:07.000+00:00
+        status: scheduled
+      properties:
+        id:
+          description: Identifies the message
+          example: AB0815
+          readOnly: true
+          type: string
+        scheduledAt:
+          description: When the message is scheduled for sending
+          format: date-time
+          nullable: true
+          type: string
+        status:
+          description: Status of the message processing
+          enum:
+          - scheduled
+          - sent
+          - failed
+          type: string
+      required:
+      - id
+      type: object
     Translation:
       description: Readable text to display in frontend
       example:
@@ -3183,6 +3320,31 @@ components:
       - $ref: '#/components/schemas/AgentDeviceMappingGeneral'
       - $ref: '#/components/schemas/MbusAgentDeviceMappingSpecific'
       x-all-of-name: MbusAgentDeviceMapping
+    Attachment:
+      description: A binary attachment for messages
+      example:
+        data: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+        name: example.gif
+        mimeType: image/png
+      properties:
+        name:
+          description: "The name for the attachment, e.g. the filename"
+          example: example.gif
+          type: string
+        mimeType:
+          description: The MIME type of binary data
+          example: image/png
+          nullable: true
+          type: string
+        data:
+          description: The binary data as base64 encoded string
+          example: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          format: byte
+          type: string
+      required:
+      - data
+      - name
+      type: object
     AgentDeviceGeneral:
       description: A general device for an agent
       nullable: true

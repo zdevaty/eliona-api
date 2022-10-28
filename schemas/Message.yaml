@@ -1,0 +1,38 @@
+type: object
+description: A message
+required:
+  - recipients
+  - content
+properties:
+  sender:
+    type: string
+    nullable: true
+    description: Address of the sender, e.g. an e-mail address
+    example: sender@example.com
+  recipients:
+    description: A list of recipient addresses to receive this message
+    type: array
+    items:
+      description: A recipient's address, e.g. an e-mail address
+      example: recipient@example.com
+      schema: string
+    minItems: 1
+  subject:
+    type: string
+    description: The subject for this message
+    example: This is a example message
+  mimeType:
+    description: The MIME type of the message content
+    type: string
+    nullable: true
+    example: text/html
+  content:
+    description: The content of the message
+    type: string
+    example: <h1>Example</h1>
+  attachments:
+    description: A list of files attached to the message
+    nullable: true
+    type: array
+    items:
+      $ref: 'Attachment.yaml'

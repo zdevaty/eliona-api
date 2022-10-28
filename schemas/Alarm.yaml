@@ -65,7 +65,7 @@ properties:
     nullable: true
   message:
     type: object
-    description: Message texts for alarm
+    description: Message.yaml texts for alarm
     nullable: true
   assetInfo:
     $ref: 'Asset.yaml'

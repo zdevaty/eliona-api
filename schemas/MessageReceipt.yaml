@@ -1,0 +1,22 @@
+type: object
+description: A receipt for a message
+required:
+  - id
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: Identifies the message
+    example: AB0815
+  scheduledAt:
+    description: When the message is scheduled for sending
+    format: date-time
+    nullable: true
+    type: string
+  status:
+    description: Status of the message processing
+    type: string
+    enum:
+      - scheduled
+      - sent
+      - failed

@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Messages
+  summary: Information about a message
+  description: Gets receipt information for a message.
+  operationId: getMessageReceiptById
+  parameters:
+    - $ref: '../parameters/message-id.yaml'
+  responses:
+    200:
+      description: Successfully returned the receipt
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/MessageReceipt.yaml'
+    404:
+      description: Message with id not found
