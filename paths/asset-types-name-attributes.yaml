@@ -14,5 +14,34 @@ put:
         schema:
           $ref: '../schemas/AssetTypeAttribute.yaml'
   responses:
-    201:
+    200:
       description: Successfully created a new or updated an existing asset type attribute
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AssetTypeAttribute.yaml'
+
+post:
+  tags:
+    - Asset types
+  summary: Create asset type attribute
+  description: Create a new asset type attribute.
+  operationId: postAssetTypeAttribute
+  parameters:
+    - $ref: '../parameters/asset-type-name.yaml'
+  type: integer
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AssetTypeAttribute.yaml'
+  responses:
+    201:
+      description: Successfully created a new asset type attribute
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AssetTypeAttribute.yaml'
+    409:
+      description: Combination of asset type name, subtype and attribute name already exists

@@ -31,9 +31,33 @@ put:
         schema:
           $ref: '../schemas/AssetType.yaml'
   responses:
-    201:
+    200:
       description: Successfully created a new or updated an existing asset type
       content:
         application/json:
           schema:
             $ref: '../schemas/AssetType.yaml'
+
+post:
+  tags:
+    - Asset types
+  summary: Create an asset type
+  description: Create a new asset type.
+  operationId: postAssetType
+  parameters:
+    - $ref: '../parameters/expansions.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AssetType.yaml'
+  responses:
+    201:
+      description: Successfully created a new asset type
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AssetType.yaml'
+    409:
+      description: Asset type name already exists

@@ -29,5 +29,29 @@ put:
         schema:
           $ref: '../schemas/AlarmRule.yaml'
   responses:
-    201:
+    200:
       description: Successfully created a new or updated an existing alarm rule
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AlarmRule.yaml'
+
+post:
+  tags:
+    - Alarm rules
+  summary: Create an alarm rule
+  description: Create a new alarm rule.
+  operationId: postAlarmRule
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AlarmRule.yaml'
+  responses:
+    201:
+      description: Successfully created a new alarm rule
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AlarmRule.yaml'

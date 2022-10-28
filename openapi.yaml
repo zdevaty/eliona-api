@@ -220,6 +220,40 @@ paths:
       summary: List of asset types
       tags:
       - Asset types
+    post:
+      description: Create a new asset type.
+      operationId: postAssetType
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetType'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetType'
+          description: Successfully created a new asset type
+        "409":
+          description: Asset type name already exists
+      summary: Create an asset type
+      tags:
+      - Asset types
     put:
       description: Create a new asset type or update an asset type if already exists.
         Uses the unique asset type name for updating.
@@ -244,7 +278,7 @@ paths:
               $ref: '#/components/schemas/AssetType'
         required: true
       responses:
-        "201":
+        "200":
           content:
             application/json:
               schema:
@@ -309,6 +343,36 @@ paths:
       tags:
       - Asset types
   /asset-types/{asset-type-name}/attributes:
+    post:
+      description: Create a new asset type attribute.
+      operationId: postAssetTypeAttribute
+      parameters:
+      - description: The name of the asset type
+        example: weather_location
+        in: path
+        name: asset-type-name
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetTypeAttribute'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetTypeAttribute'
+          description: Successfully created a new asset type attribute
+        "409":
+          description: "Combination of asset type name, subtype and attribute name\
+            \ already exists"
+      summary: Create asset type attribute
+      tags:
+      - Asset types
     put:
       description: "Create a new asset type attribute or update an asset type attribute\
         \ if already exists. Uses the unique combination of asset type name, subtype\
@@ -329,7 +393,11 @@ paths:
               $ref: '#/components/schemas/AssetTypeAttribute'
         required: true
       responses:
-        "201":
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetTypeAttribute'
           description: Successfully created a new or updated an existing asset type
             attribute
       summary: Create or update an asset type attribute
@@ -371,6 +439,27 @@ paths:
       summary: Information about assets
       tags:
       - Assets
+    post:
+      description: Creates a new asset.
+      operationId: postAsset
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Asset'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+          description: Successfully created a new asset
+        "409":
+          description: Combination of project id and global asset id already exists
+      summary: Create an asset
+      tags:
+      - Assets
     put:
       description: Creates an asset if no asset  or updating it if already exists.
         Uses the unique combination of project id and global asset id for updating.
@@ -382,7 +471,7 @@ paths:
               $ref: '#/components/schemas/Asset'
         required: true
       responses:
-        "201":
+        "200":
           content:
             application/json:
               schema:
@@ -659,6 +748,28 @@ paths:
       summary: Information about aggregations
       tags:
       - Aggregations
+    post:
+      description: Creates a new aggregation.
+      operationId: postAggregation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Aggregation'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aggregation'
+          description: Successfully created an aggregation
+        "409":
+          description: "Combination of asset id, subtype, attribute and raster already\
+            \ exists"
+      summary: Creates an aggregation
+      tags:
+      - Aggregations
     put:
       description: "Creates an aggregation or updates if already exists. Uses the\
         \ unique combination of asset id, subtype, attribute and raster for updating."
@@ -670,7 +781,7 @@ paths:
               $ref: '#/components/schemas/Aggregation'
         required: true
       responses:
-        "201":
+        "200":
           content:
             application/json:
               schema:
@@ -751,6 +862,40 @@ paths:
       summary: List of widget types
       tags:
       - Widgets types
+    post:
+      description: Create a new widget type.
+      operationId: postWidgetType
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WidgetType'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetType'
+          description: Successfully created widget type
+        "409":
+          description: Widget type name already exists
+      summary: Create a widget type
+      tags:
+      - Widgets types
     put:
       description: Create a new widget type or update it if already exists. Uses the
         unique widget type name for updating.
@@ -775,8 +920,12 @@ paths:
               $ref: '#/components/schemas/WidgetType'
         required: true
       responses:
-        "201":
-          description: Successfully added widget type
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetType'
+          description: Successfully added or updated widget type
       summary: Create or update a widget type
       tags:
       - Widgets types
@@ -1034,6 +1183,25 @@ paths:
       summary: Information about alarm rules
       tags:
       - Alarm rules
+    post:
+      description: Create a new alarm rule.
+      operationId: postAlarmRule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlarmRule'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlarmRule'
+          description: Successfully created a new alarm rule
+      summary: Create an alarm rule
+      tags:
+      - Alarm rules
     put:
       description: Create a new alarm rule or update an alarm rule if already exists.
         Uses the unique alarm id for updating.
@@ -1045,7 +1213,11 @@ paths:
               $ref: '#/components/schemas/AlarmRule'
         required: true
       responses:
-        "201":
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlarmRule'
           description: Successfully created a new or updated an existing alarm rule
       summary: Create or update an alarm rule
       tags:
@@ -1317,6 +1489,25 @@ paths:
       summary: Information about nodes
       tags:
       - Nodes
+    post:
+      description: Create a new node.
+      operationId: postNode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Node'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+          description: Successfully created a new node
+      summary: Create a node
+      tags:
+      - Nodes
     put:
       description: Create a new node or update a node rule if already exists. Uses
         the unique node ident for updating.
@@ -1328,7 +1519,7 @@ paths:
               $ref: '#/components/schemas/Node'
         required: true
       responses:
-        "201":
+        "200":
           content:
             application/json:
               schema:
@@ -1403,10 +1594,9 @@ paths:
       summary: Information about agents for a specific class
       tags:
       - Agents
-    put:
-      description: Create a new agent or update an agent if already exists. Uses the
-        unique agent id for updating.
-      operationId: putAgentByClass
+    post:
+      description: Create a new agent for a specific class
+      operationId: postAgentByClass
       parameters:
       - description: The class of an agent
         example: iosys
@@ -1426,8 +1616,43 @@ paths:
         required: true
       responses:
         "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+          description: Successfully created a new agent
+      summary: Create an agent
+      tags:
+      - Agents
+    put:
+      description: Create a new agent for a specific class or update an agent if already
+        exists. Uses the unique agent id for updating.
+      operationId: putAgentByClass
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Agent'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
           description: Successfully created a new or updated an existing agent
-      summary: Create or update an agent for a specific class
+      summary: Create or update an agent
       tags:
       - Agents
   /agents/{agent-class}/{agent-id}/devices:
@@ -1464,6 +1689,43 @@ paths:
       summary: Information about agent devices
       tags:
       - Agents
+    post:
+      description: Create a new agent device.
+      operationId: postAgentDeviceById
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      - description: The id of the agent
+        example: 4711
+        in: path
+        name: agent-id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentDevice'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDevice'
+          description: Successfully created a new agent device
+      summary: Create an agent device
+      tags:
+      - Agents
     put:
       description: Create a new agent device or update an agent device if already
         exists. Uses the unique device id for updating.
@@ -1493,7 +1755,11 @@ paths:
               $ref: '#/components/schemas/AgentDevice'
         required: true
       responses:
-        "201":
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDevice'
           description: Successfully created a new or updated an existing agent device
       summary: Create or update an agent device
       tags:
@@ -1532,6 +1798,43 @@ paths:
       summary: Information about agent device mappings
       tags:
       - Agents
+    post:
+      description: Create a new agent device mapping.
+      operationId: postAgentDeviceMappingById
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      - description: The id of the device
+        example: 4711
+        in: path
+        name: agent-device-id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentDeviceMapping'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDeviceMapping'
+          description: Successfully created a new agent device mapping
+      summary: Create an agent device mapping
+      tags:
+      - Agents
     put:
       description: Create a new agent device mapping or update an agent device mapping
         if already exists. Uses the unique mapping id for updating.
@@ -1561,7 +1864,7 @@ paths:
               $ref: '#/components/schemas/AgentDeviceMapping'
         required: true
       responses:
-        "201":
+        "200":
           content:
             application/json:
               schema:

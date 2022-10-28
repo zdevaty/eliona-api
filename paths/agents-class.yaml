@@ -19,8 +19,8 @@ get:
 put:
   tags:
     - Agents
-  summary: Create or update an agent for a specific class
-  description: Create a new agent or update an agent if already exists. Uses the unique agent id for updating.
+  summary: Create or update an agent
+  description: Create a new agent for a specific class or update an agent if already exists. Uses the unique agent id for updating.
   operationId: putAgentByClass
   parameters:
     - $ref: '../parameters/agent-class.yaml'
@@ -31,5 +31,31 @@ put:
         schema:
           $ref: '../schemas/Agent.yaml'
   responses:
-    201:
+    200:
       description: Successfully created a new or updated an existing agent
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Agent.yaml'
+
+post:
+  tags:
+    - Agents
+  summary: Create an agent
+  description: Create a new agent for a specific class
+  operationId: postAgentByClass
+  parameters:
+    - $ref: '../parameters/agent-class.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Agent.yaml'
+  responses:
+    201:
+      description: Successfully created a new agent
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Agent.yaml'

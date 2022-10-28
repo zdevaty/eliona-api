@@ -27,9 +27,31 @@ put:
         schema:
           $ref: '../schemas/Aggregation.yaml'
   responses:
-    201:
+    200:
       description: Successfully created or updated an aggregation
       content:
         application/json:
           schema:
             $ref: '../schemas/Aggregation.yaml'
+
+post:
+  tags:
+    - Aggregations
+  summary: Creates an aggregation
+  description: Creates a new aggregation.
+  operationId: postAggregation
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Aggregation.yaml'
+  responses:
+    201:
+      description: Successfully created an aggregation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Aggregation.yaml'
+    409:
+      description: Combination of asset id, subtype, attribute and raster already exists

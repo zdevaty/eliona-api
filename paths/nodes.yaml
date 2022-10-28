@@ -27,8 +27,28 @@ put:
         schema:
           $ref: '../schemas/Node.yaml'
   responses:
-    201:
+    200:
       description: Successfully created a new or updated an existing node
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Node.yaml'
+
+post:
+  tags:
+    - Nodes
+  summary: Create a node
+  description: Create a new node.
+  operationId: postNode
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Node.yaml'
+  responses:
+    201:
+      description: Successfully created a new node
       content:
         application/json:
           schema:

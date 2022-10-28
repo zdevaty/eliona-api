@@ -33,8 +33,31 @@ put:
         schema:
           $ref: '../schemas/AgentDeviceMapping.yaml'
   responses:
-    201:
+    200:
       description: Successfully created a new or updated an existing agent device mapping
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AgentDeviceMapping.yaml'
+
+post:
+  tags:
+    - Agents
+  summary: Create an agent device mapping
+  description: Create a new agent device mapping.
+  operationId: postAgentDeviceMappingById
+  parameters:
+    - $ref: '../parameters/agent-class.yaml'
+    - $ref: '../parameters/agent-device-id.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AgentDeviceMapping.yaml'
+  responses:
+    201:
+      description: Successfully created a new agent device mapping
       content:
         application/json:
           schema:

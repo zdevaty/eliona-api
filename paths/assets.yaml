@@ -30,9 +30,31 @@ put:
         schema:
           $ref: '../schemas/Asset.yaml'
   responses:
-    201:
+    200:
       description: Successfully created a new or updated an existing asset
       content:
         application/json:
           schema:
             $ref: '../schemas/Asset.yaml'
+
+post:
+  tags:
+    - Assets
+  summary: Create an asset
+  description: Creates a new asset.
+  operationId: postAsset
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Asset.yaml'
+  responses:
+    201:
+      description: Successfully created a new asset
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Asset.yaml'
+    409:
+      description: Combination of project id and global asset id already exists
