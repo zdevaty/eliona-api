@@ -37,6 +37,7 @@ put:
   summary: Update a widget type
   description: Update a widget type.
   parameters:
+    - $ref: '../parameters/widget-type-name.yaml'
     - $ref: '../parameters/expansions.yaml'
   operationId: putWidgetTypeByName
   requestBody:
