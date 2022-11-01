@@ -1,0 +1,41 @@
+get:
+  tags:
+    - Agents
+  summary: Information about agent device mapping
+  description: Gets information about agent device mapping.
+  parameters:
+    - $ref: '../parameters/agent-class.yaml'
+    - $ref: '../parameters/agent-device-mapping-id.yaml'
+  operationId: getAgentDeviceMappingById
+  responses:
+    200:
+      description: Successfully returned a agent device
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/AgentDeviceMapping.yaml'
+
+put:
+  tags:
+    - Agents
+  summary: Update an agent device mapping
+  description: Update a new agent device mapping.
+  operationId: putAgentDeviceMappingById
+  parameters:
+    - $ref: '../parameters/agent-class.yaml'
+    - $ref: '../parameters/agent-device-id.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AgentDeviceMapping.yaml'
+  responses:
+    200:
+      description: Successfully update a new agent device mapping
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AgentDeviceMapping.yaml'

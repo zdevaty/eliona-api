@@ -1343,8 +1343,9 @@ paths:
       tags:
       - Alarm rules
     put:
-      description: Create a new alarm rule or update an alarm rule if already exists.
-        Uses the unique alarm id for updating.
+      deprecated: true
+      description: "Deprecated - Use POST /alarm-rules to create and PUT /alarm-rules/{alarm-rule-id}\
+        \ to update"
       operationId: putAlarmRule
       requestBody:
         content:
@@ -1678,8 +1679,9 @@ paths:
       tags:
       - Nodes
     put:
-      description: Create a new node or update a node rule if already exists. Uses
-        the unique node ident for updating.
+      deprecated: true
+      description: "Deprecated - Use POST /nodes to create PUT /nodes/{node-ident}\
+        \ to update."
       operationId: putNode
       requestBody:
         content:
@@ -1826,8 +1828,9 @@ paths:
       tags:
       - Agents
     put:
-      description: Create a new agent for a specific class or update an agent if already
-        exists. Uses the unique agent id for updating.
+      deprecated: true
+      description: "Deprecated - use POST /agents/{agent-class} for creating and PUT\
+        \ /agents/{agent-class}/{agent-id} for updating"
       operationId: putAgentByClass
       parameters:
       - description: The class of an agent
@@ -2001,8 +2004,10 @@ paths:
       tags:
       - Agents
     put:
-      description: Create a new agent device or update an agent device if already
-        exists. Uses the unique device id for updating.
+      deprecated: true
+      description: "Deprecated - use POST /agents/{agent-class}/{agent-id}/devices\
+        \ for creating and PUT /agent-devices/{agent-class}/{agent-device-id} for\
+        \ updating"
       operationId: putAgentDeviceById
       parameters:
       - description: The class of an agent
@@ -2038,10 +2043,81 @@ paths:
       summary: Create or update an agent device
       tags:
       - Agents
+  /agent-devices/{agent-class}/{agent-device-id}:
+    get:
+      description: Gets information about agent device.
+      operationId: getAgentDeviceById
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      - description: The id of the device
+        example: 4711
+        in: path
+        name: agent-device-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AgentDevice'
+                type: array
+          description: Successfully returned a agent device
+      summary: Information about agent device
+      tags:
+      - Agents
+    put:
+      description: Update a new agent device.
+      operationId: putAgentDeviceById
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      - description: The id of the device
+        example: 4711
+        in: path
+        name: agent-device-id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentDevice'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDevice'
+          description: Successfully update a new agent device
+      summary: Update an agent device
+      tags:
+      - Agents
   /agent-devices/{agent-class}/{agent-device-id}/mappings:
     get:
       description: Gets information about mappings between agent and eliona.
-      operationId: getAgentDeviceMappingsById
+      operationId: getAgentDeviceMappingsByDeviceId
       parameters:
       - description: The class of an agent
         example: iosys
@@ -2074,7 +2150,7 @@ paths:
       - Agents
     post:
       description: Create a new agent device mapping.
-      operationId: postAgentDeviceMappingById
+      operationId: postAgentDeviceMappingByDeviceId
       parameters:
       - description: The class of an agent
         example: iosys
@@ -2110,9 +2186,11 @@ paths:
       tags:
       - Agents
     put:
-      description: Create a new agent device mapping or update an agent device mapping
-        if already exists. Uses the unique mapping id for updating.
-      operationId: putAgentDeviceMappingById
+      deprecated: true
+      description: "Deprecated - Use POST /agent-devices/{agent-class}/{agent-device-id}/mappings\
+        \ for creating and /agent-device-mappings/{agent-class}/{agent-device-mapping-id}\
+        \ for updating"
+      operationId: putAgentDeviceMappingByDeviceId
       parameters:
       - description: The class of an agent
         example: iosys
@@ -2146,6 +2224,77 @@ paths:
           description: Successfully created a new or updated an existing agent device
             mapping
       summary: Create or update an agent device mapping
+      tags:
+      - Agents
+  /agent-device-mappings/{agent-class}/{agent-device-mapping-id}:
+    get:
+      description: Gets information about agent device mapping.
+      operationId: getAgentDeviceMappingById
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      - description: The id of the device mapping
+        example: 4711
+        in: path
+        name: agent-device-mapping-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AgentDeviceMapping'
+                type: array
+          description: Successfully returned a agent device
+      summary: Information about agent device mapping
+      tags:
+      - Agents
+    put:
+      description: Update a new agent device mapping.
+      operationId: putAgentDeviceMappingById
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      - description: The id of the device
+        example: 4711
+        in: path
+        name: agent-device-id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentDeviceMapping'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDeviceMapping'
+          description: Successfully update a new agent device mapping
+      summary: Update an agent device mapping
       tags:
       - Agents
   /send-mail:
@@ -2364,6 +2513,14 @@ components:
       example: 4711
       in: path
       name: agent-device-id
+      required: true
+      schema:
+        type: integer
+    agent-device-mapping-id:
+      description: The id of the device mapping
+      example: 4711
+      in: path
+      name: agent-device-mapping-id
       required: true
       schema:
         type: integer

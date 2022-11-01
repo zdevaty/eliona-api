@@ -17,10 +17,11 @@ get:
               $ref: '../schemas/AlarmRule.yaml'
 
 put:
+  deprecated: true
   tags:
     - Alarm rules
   summary: Create or update an alarm rule
-  description: Create a new alarm rule or update an alarm rule if already exists. Uses the unique alarm id for updating.
+  description: Deprecated - Use POST /alarm-rules to create and PUT /alarm-rules/{alarm-rule-id} to update
   operationId: putAlarmRule
   requestBody:
     required: true

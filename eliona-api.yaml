@@ -131,24 +131,14 @@ paths:
   /agents/{agent-class}/{agent-id}/devices:
     $ref: './paths/agents-class-id-devices.yaml'
 
-  # Not yet implemented
-  # /agent-devices/{agent-class}:
-  #   $ref: './paths/agent-devices-class.yaml'
-
-  # Not yet implemented
-  # /agent-devices/{agent-class}/{agent-device-id}:
-  #   $ref: './paths/agent-devices-class-id.yaml'
+  /agent-devices/{agent-class}/{agent-device-id}:
+    $ref: './paths/agent-devices-class-id.yaml'
 
   /agent-devices/{agent-class}/{agent-device-id}/mappings:
     $ref: './paths/agent-devices-class-id-mappings.yaml'
 
-  # Not yet implemented
-  # /agent-device-mappings/{agent-class}:
-  #   $ref: './paths/agent-device-mappings-class.yaml'
-
-  # Not yet implemented
-  # /agent-device-mappings/{agent-class}/{agent-device-mapping-id}:
-  #   $ref: './paths/agent-device-mappings-class-id.yaml'
+  /agent-device-mappings/{agent-class}/{agent-device-mapping-id}:
+    $ref: './paths/agent-device-mappings-class-id.yaml'
 
   /send-mail:
     $ref: './paths/send-mail.yaml'

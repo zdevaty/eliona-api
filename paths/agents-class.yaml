@@ -17,10 +17,11 @@ get:
               $ref: '../schemas/Agent.yaml'
 
 put:
+  deprecated: true
   tags:
     - Agents
   summary: Create or update an agent
-  description: Create a new agent for a specific class or update an agent if already exists. Uses the unique agent id for updating.
+  description: Deprecated - use POST /agents/{agent-class} for creating and PUT /agents/{agent-class}/{agent-id} for updating
   operationId: putAgentByClass
   parameters:
     - $ref: '../parameters/agent-class.yaml'

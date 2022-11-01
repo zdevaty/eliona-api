@@ -15,10 +15,11 @@ get:
               $ref: '../schemas/Node.yaml'
 
 put:
+  deprecated: true
   tags:
     - Nodes
   summary: Create or update a node
-  description: Create a new node or update a node rule if already exists. Uses the unique node ident for updating.
+  description: Deprecated - Use POST /nodes to create PUT /nodes/{node-ident} to update.
   operationId: putNode
   requestBody:
     required: true

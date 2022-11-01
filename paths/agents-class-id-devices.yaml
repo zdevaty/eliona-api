@@ -18,10 +18,11 @@ get:
               $ref: '../schemas/AgentDevice.yaml'
 
 put:
+  deprecated: true
   tags:
     - Agents
   summary: Create or update an agent device
-  description: Create a new agent device or update an agent device if already exists. Uses the unique device id for updating.
+  description: Deprecated - use POST /agents/{agent-class}/{agent-id}/devices for creating and PUT /agent-devices/{agent-class}/{agent-device-id} for updating
   operationId: putAgentDeviceById
   parameters:
     - $ref: '../parameters/agent-class.yaml'
