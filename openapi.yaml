@@ -1935,7 +1935,7 @@ paths:
   /agents/{agent-class}/{agent-id}/devices:
     get:
       description: Gets information about agent devices.
-      operationId: getAgentDevicesById
+      operationId: getAgentDevicesByAgentId
       parameters:
       - description: The class of an agent
         example: iosys
@@ -1968,7 +1968,7 @@ paths:
       - Agents
     post:
       description: Create a new agent device.
-      operationId: postAgentDeviceById
+      operationId: postAgentDeviceByAgentId
       parameters:
       - description: The class of an agent
         example: iosys
@@ -2008,7 +2008,7 @@ paths:
       description: "Deprecated - use POST /agents/{agent-class}/{agent-id}/devices\
         \ for creating and PUT /agent-devices/{agent-class}/{agent-device-id} for\
         \ updating"
-      operationId: putAgentDeviceById
+      operationId: putAgentDeviceByAgentId
       parameters:
       - description: The class of an agent
         example: iosys
@@ -2274,10 +2274,10 @@ paths:
           - iosys
           - mbus
           type: string
-      - description: The id of the device
+      - description: The id of the device mapping
         example: 4711
         in: path
-        name: agent-device-id
+        name: agent-device-mapping-id
         required: true
         schema:
           type: integer
