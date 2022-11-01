@@ -44,4 +44,6 @@ properties:
     type: object
     description: individual config parameters depending on category
     nullable: true
-    example:  "{ \"variant\": \"todayAndForecast\" }"
+    example: {
+      "variant": "todayAndForecast"
+    }

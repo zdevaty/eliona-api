@@ -22,7 +22,7 @@ properties:
   attribute:
     type: string
     description: Name of the attribute of the asset type
-    example: temperature
+    example: "temperature"
   enable:
     type: boolean
     description: Rule enabled or not
@@ -53,8 +53,13 @@ properties:
     nullable: true
   message:
     type: object
-    description: Message.yaml texts for alarm
+    description: Texts for alarm
     nullable: true
+    example: {
+      "come": {
+        "en": "AC fan defect"
+      }
+    }
   tags:
     type: array
     description: List of associated tags
@@ -73,6 +78,7 @@ properties:
     type: string
     description: Notification
     nullable: true
+    example: R
   dontMask:
     type: boolean
     description: Do not mask

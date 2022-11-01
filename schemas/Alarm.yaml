@@ -67,6 +67,7 @@ properties:
     type: object
     description: Message.yaml texts for alarm
     nullable: true
+    example: {}
   assetInfo:
     $ref: 'Asset.yaml'
   ruleInfo:

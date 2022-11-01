@@ -21,4 +21,8 @@ properties:
     type: object
     description: individual config parameters depending on category
     nullable: true
-    example:  "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\": \"humidity\" }"
+    example:  {
+      "subtype": "input",
+      "attribute": "temperature",
+      "key": "humidity"
+    }

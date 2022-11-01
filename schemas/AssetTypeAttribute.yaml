@@ -158,6 +158,7 @@ properties:
     type: object
     description: custom map
     nullable: true
+    example: {}
   sourcePath:
     type: array
     description: source path for attribute value

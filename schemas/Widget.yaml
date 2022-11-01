@@ -18,6 +18,7 @@ properties:
     type: object
     description: Detailed configuration depending on the widget type
     nullable: true
+    example: {}
   assetId:
     type: integer
     description: The master asset id of this widget

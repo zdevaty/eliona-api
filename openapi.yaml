@@ -2409,7 +2409,7 @@ components:
             en: This is an english description
             it: Questa è una descrizione italiana
             fr: Ceci est une description français
-          map: "{}"
+          map: {}
           aggregationMode: avg
           aggregationRasters:
           - DAY
@@ -2438,7 +2438,7 @@ components:
             en: This is an english description
             it: Questa è una descrizione italiana
             fr: Ceci est une description français
-          map: "{}"
+          map: {}
           aggregationMode: avg
           aggregationRasters:
           - DAY
@@ -2518,7 +2518,7 @@ components:
           en: This is an english description
           it: Questa è una descrizione italiana
           fr: Ceci est une description français
-        map: "{}"
+        map: {}
         aggregationMode: avg
         aggregationRasters:
         - DAY
@@ -2679,6 +2679,7 @@ components:
           type: number
         map:
           description: custom map
+          example: {}
           nullable: true
           type: object
         sourcePath:
@@ -2791,7 +2792,7 @@ components:
     Data:
       description: Data for assets
       example:
-        data: "{}"
+        data: {}
         subtype: input
         assetId: 4711
         assetTypeName: weather_location
@@ -2810,6 +2811,7 @@ components:
           type: string
         data:
           description: Asset payload
+          example: {}
           type: object
         assetTypeName:
           description: The name of the corresponding asset type
@@ -3054,11 +3056,13 @@ components:
         - sequence: 1
           id: 4711
           category: weather
-          config: "{ \"variant\": \"todayAndForecast\" }"
+          config:
+            variant: todayAndForecast
         - sequence: 1
           id: 4711
           category: weather
-          config: "{ \"variant\": \"todayAndForecast\" }"
+          config:
+            variant: todayAndForecast
         name: weather
         translation:
           de: Das ist eine deutsche Beschreibung
@@ -3120,33 +3124,41 @@ components:
         - sequence: 1
           data:
           - elementSequence: 1
-            data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
-              : \"humidity\" }"
+            data:
+              subtype: input
+              attribute: temperature
+              key: humidity
             assetId: 4711
             id: 4711
           - elementSequence: 1
-            data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
-              : \"humidity\" }"
+            data:
+              subtype: input
+              attribute: temperature
+              key: humidity
             assetId: 4711
             id: 4711
           assetId: 4711
-          details: "{}"
+          details: {}
           id: 4711
           widgetTypeName: Weather
         - sequence: 1
           data:
           - elementSequence: 1
-            data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
-              : \"humidity\" }"
+            data:
+              subtype: input
+              attribute: temperature
+              key: humidity
             assetId: 4711
             id: 4711
           - elementSequence: 1
-            data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
-              : \"humidity\" }"
+            data:
+              subtype: input
+              attribute: temperature
+              key: humidity
             assetId: 4711
             id: 4711
           assetId: 4711
-          details: "{}"
+          details: {}
           id: 4711
           widgetTypeName: Weather
         projectId: "99"
@@ -3194,17 +3206,21 @@ components:
         sequence: 1
         data:
         - elementSequence: 1
-          data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
-            : \"humidity\" }"
+          data:
+            subtype: input
+            attribute: temperature
+            key: humidity
           assetId: 4711
           id: 4711
         - elementSequence: 1
-          data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
-            : \"humidity\" }"
+          data:
+            subtype: input
+            attribute: temperature
+            key: humidity
           assetId: 4711
           id: 4711
         assetId: 4711
-        details: "{}"
+        details: {}
         id: 4711
         widgetTypeName: Weather
       properties:
@@ -3220,6 +3236,7 @@ components:
           type: string
         details:
           description: Detailed configuration depending on the widget type
+          example: {}
           nullable: true
           type: object
         assetId:
@@ -3250,7 +3267,9 @@ components:
         subject: subject
         urldoc: urldoc
         priority: 2
-        message: "{}"
+        message:
+          come:
+            en: AC fan defect
         tags:
         - tags
         - tags
@@ -3260,7 +3279,7 @@ components:
         low: 38.7
         assetId: 4711
         enable: true
-        notifyOn: notifyOn
+        notifyOn: R
         dontMask: false
         id: 123
         attribute: temperature
@@ -3328,7 +3347,10 @@ components:
           nullable: true
           type: number
         message:
-          description: Message.yaml texts for alarm
+          description: Texts for alarm
+          example:
+            come:
+              en: AC fan defect
           nullable: true
           type: object
         tags:
@@ -3347,6 +3369,7 @@ components:
           type: string
         notifyOn:
           description: Notification
+          example: R
           nullable: true
           type: string
         dontMask:
@@ -3369,7 +3392,7 @@ components:
         requiresAcknowledge: false
         acknowledgeText: acknowledgeText
         priority: 2
-        message: "{}"
+        message: {}
         goneTimestamp: 2000-01-23T04:56:07.000+00:00
         acknowledgeTimestamp: 2000-01-23T04:56:07.000+00:00
         subtype: input
@@ -3379,7 +3402,9 @@ components:
           subject: subject
           urldoc: urldoc
           priority: 2
-          message: "{}"
+          message:
+            come:
+              en: AC fan defect
           tags:
           - tags
           - tags
@@ -3389,7 +3414,7 @@ components:
           low: 38.7
           assetId: 4711
           enable: true
-          notifyOn: notifyOn
+          notifyOn: R
           dontMask: false
           id: 123
           attribute: temperature
@@ -3491,6 +3516,7 @@ components:
           type: string
         message:
           description: Message.yaml texts for alarm
+          example: {}
           nullable: true
           type: object
         assetInfo:
@@ -3565,7 +3591,7 @@ components:
         id: 4711
         nodeId: "1234"
         class: null
-        config: "{}"
+        config: {}
       nullable: true
       properties:
         id:
@@ -3597,6 +3623,7 @@ components:
           type: boolean
         config:
           description: Individual configuration depending on agent class
+          example: {}
           nullable: true
           type: object
       type: object
@@ -3741,7 +3768,8 @@ components:
         sequence: 1
         id: 4711
         category: weather
-        config: "{ \"variant\": \"todayAndForecast\" }"
+        config:
+          variant: todayAndForecast
       properties:
         id:
           description: The internal Id of widget element
@@ -3782,7 +3810,8 @@ components:
           type: integer
         config:
           description: individual config parameters depending on category
-          example: "{ \"variant\": \"todayAndForecast\" }"
+          example:
+            variant: todayAndForecast
           nullable: true
           type: object
       required:
@@ -3793,8 +3822,10 @@ components:
       description: Data for a widget
       example:
         elementSequence: 1
-        data: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\":\
-          \ \"humidity\" }"
+        data:
+          subtype: input
+          attribute: temperature
+          key: humidity
         assetId: 4711
         id: 4711
       properties:
@@ -3816,8 +3847,10 @@ components:
           type: integer
         data:
           description: individual config parameters depending on category
-          example: "{ \"subtype\": \"input\", \"attribute\": \"temperature\", \"key\"\
-            : \"humidity\" }"
+          example:
+            subtype: input
+            attribute: temperature
+            key: humidity
           nullable: true
           type: object
       type: object

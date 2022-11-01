@@ -33,3 +33,4 @@ properties:
     type: object
     nullable: true
     description: Individual configuration depending on agent class
+    example: {}
