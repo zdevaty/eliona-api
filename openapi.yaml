@@ -346,6 +346,13 @@ paths:
       description: Update an asset type.
       operationId: putAssetTypeByName
       parameters:
+      - description: The name of the asset type
+        example: weather_location
+        in: path
+        name: asset-type-name
+        required: true
+        schema:
+          type: string
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -553,6 +560,14 @@ paths:
     put:
       description: Update an asset.
       operationId: putAssetById
+      parameters:
+      - description: The id of the asset
+        example: 4711
+        in: path
+        name: asset-id
+        required: true
+        schema:
+          type: integer
       requestBody:
         content:
           application/json:
@@ -891,6 +906,14 @@ paths:
     put:
       description: Updates an aggregation.
       operationId: putAggregationById
+      parameters:
+      - description: The id of the aggregation
+        example: 4711
+        in: path
+        name: aggregation-id
+        required: true
+        schema:
+          type: integer
       requestBody:
         content:
           application/json:
@@ -1064,6 +1087,13 @@ paths:
       description: Update a widget type.
       operationId: putWidgetTypeByName
       parameters:
+      - description: The name of the widget type
+        example: weather
+        in: path
+        name: widget-type-name
+        required: true
+        schema:
+          type: string
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -1371,6 +1401,14 @@ paths:
     put:
       description: Update an alarm rule.
       operationId: putAlarmRuleById
+      parameters:
+      - description: The id of the alarm rule
+        example: 4711
+        in: path
+        name: alarm-rule-id
+        required: true
+        schema:
+          type: integer
       requestBody:
         content:
           application/json:
@@ -1687,6 +1725,15 @@ paths:
     put:
       description: Update a node.
       operationId: putNodeByIdent
+      parameters:
+      - description: The UUID identifier of the node
+        example: 4711
+        in: path
+        name: node-ident
+        required: true
+        schema:
+          example: fef0a0d3-acad-4611-ac03-1fd842d72505
+          type: string
       requestBody:
         content:
           application/json:
@@ -1847,6 +1894,13 @@ paths:
       description: Update an agent.
       operationId: putAgentByClassAndId
       parameters:
+      - description: The id of the agent
+        example: 4711
+        in: path
+        name: agent-id
+        required: true
+        schema:
+          type: integer
       - description: The class of an agent
         example: iosys
         in: path
