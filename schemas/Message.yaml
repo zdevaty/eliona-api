@@ -17,6 +17,22 @@ properties:
       example: recipient@example.com
       schema: string
     minItems: 1
+  copyRecipients:
+    description: A list of recipient addresses to receive this message as copy
+    nullable: true
+    type: array
+    items:
+      description: A recipient's address, e.g. an e-mail address
+      example: copy-recipient@example.com
+      schema: string
+  blindCopyRecipients:
+    description: A list of recipient addresses to receive this message as blind copy without any other recipient information
+    nullable: true
+    type: array
+    items:
+      description: A recipient's address, e.g. an e-mail address
+      example: blind-copy-recipient@example.com
+      schema: string
   subject:
     type: string
     description: The subject for this message

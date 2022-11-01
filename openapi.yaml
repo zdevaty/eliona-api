@@ -3861,6 +3861,12 @@ components:
         - recipient@example.com
         - recipient@example.com
         subject: This is a example message
+        blindCopyRecipients:
+        - blind-copy-recipient@example.com
+        - blind-copy-recipient@example.com
+        copyRecipients:
+        - copy-recipient@example.com
+        - copy-recipient@example.com
         mimeType: text/html
         content: <h1>Example</h1>
       properties:
@@ -3876,6 +3882,23 @@ components:
             example: recipient@example.com
             type: object
           minItems: 1
+          type: array
+        copyRecipients:
+          description: A list of recipient addresses to receive this message as copy
+          items:
+            description: "A recipient's address, e.g. an e-mail address"
+            example: copy-recipient@example.com
+            type: object
+          nullable: true
+          type: array
+        blindCopyRecipients:
+          description: A list of recipient addresses to receive this message as blind
+            copy without any other recipient information
+          items:
+            description: "A recipient's address, e.g. an e-mail address"
+            example: blind-copy-recipient@example.com
+            type: object
+          nullable: true
           type: array
         subject:
           description: The subject for this message
