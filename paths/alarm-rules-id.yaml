@@ -23,6 +23,8 @@ put:
   summary: Update an alarm rule
   description: Update an alarm rule.
   operationId: putAlarmRuleById
+  parameters:
+    - $ref: '../parameters/alarm-rule-id.yaml'
   requestBody:
     required: true
     content:

@@ -22,6 +22,8 @@ put:
   summary: Update a node
   description: Update a node.
   operationId: putNodeByIdent
+  parameters:
+    - $ref: '../parameters/node-ident.yaml'
   requestBody:
     required: true
     content:

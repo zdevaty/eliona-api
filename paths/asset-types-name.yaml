@@ -38,6 +38,7 @@ put:
   description: Update an asset type.
   operationId: putAssetTypeByName
   parameters:
+    - $ref: '../parameters/asset-type-name.yaml'
     - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true

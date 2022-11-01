@@ -36,6 +36,8 @@ put:
   summary: Updates an aggregation
   description: Updates an aggregation.
   operationId: putAggregationById
+  parameters:
+    - $ref: '../parameters/aggregation-id.yaml'
   requestBody:
     required: true
     content:

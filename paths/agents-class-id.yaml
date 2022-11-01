@@ -24,6 +24,7 @@ put:
   description: Update an agent.
   operationId: putAgentByClassAndId
   parameters:
+    - $ref: '../parameters/agent-id.yaml'
     - $ref: '../parameters/agent-class.yaml'
   requestBody:
     required: true
