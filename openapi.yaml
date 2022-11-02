@@ -3880,7 +3880,7 @@ components:
           items:
             description: "A recipient's address, e.g. an e-mail address"
             example: recipient@example.com
-            type: object
+            type: string
           minItems: 1
           type: array
         copyRecipients:
@@ -3888,7 +3888,7 @@ components:
           items:
             description: "A recipient's address, e.g. an e-mail address"
             example: copy-recipient@example.com
-            type: object
+            type: string
           nullable: true
           type: array
         blindCopyRecipients:
@@ -3897,7 +3897,7 @@ components:
           items:
             description: "A recipient's address, e.g. an e-mail address"
             example: blind-copy-recipient@example.com
-            type: object
+            type: string
           nullable: true
           type: array
         subject:
