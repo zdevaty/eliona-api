@@ -1,0 +1,16 @@
+### Send mail
+POST {{api-server}}/send-mail
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "recipients": [
+    "example@eliona.io"
+  ],
+  "subject": "This is an example message",
+  "content": "<!DOCTYPE html><html><body><h1>Hello world!</h1></body></html>"
+}
+
+### Get mail status
+GET {{api-server}}/message-receipts/6
+X-Api-Key: {{read-only-token}}
