@@ -1,11 +1,14 @@
 ### Get all nodes
-GET http://localhost:8084/v2/nodes
+GET {{api-server}}/v2/nodes
+X-Api-Key: {{read-only-token}}
 
 ### Get node by ident
-GET http://localhost:8084/v2/nodes/7b6b2ac7-f4bd-474f-bc51-a9bd004f6604
+GET {{api-server}}/v2/nodes/9ff259f4-fa1e-4364-98a6-f94c14ba6d425
+X-Api-Key: {{read-only-token}}
 
 ### Insert new node
-PUT http://localhost:8084/v2/nodes
+POST {{api-server}}/v2/nodes
+X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
@@ -16,15 +19,15 @@ Content-Type: application/json
   "enable": false
 }
 
-### Update new node
-PUT http://localhost:8084/v2/nodes
+### Update node
+PUT {{api-server}}/v2/nodes/9ff259f4-fa1e-4364-98a6-f94c14ba6d42
+X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
-  "ident": "f0da68cf-468f-44d9-b460-18682c864b12",
-"password": "string",
-"vendor": "string",
-"model": "string",
-"description": "Node east plant (updated)",
-"enable": false
+  "password": "string",
+  "vendor": "string3",
+  "model": "string",
+  "description": "Node east plant",
+  "enable": false
 }

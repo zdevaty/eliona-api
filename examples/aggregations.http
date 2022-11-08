@@ -1,13 +1,27 @@
 ### Get all aggregations
-GET http://localhost:8084/v2/aggregations
+GET {{api-server}}/v2/aggregations
+X-Api-Key: {{read-only-token}}
 
 ### Creates an aggregation
-PUT http://localhost:8084/v2/aggregations
+PUT {{api-server}}/v2/aggregations
+X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
-    "assetId": 57006,
+    "assetId": 127,
     "subtype": "output",
     "mode": "avg",
     "raster": "MONTH"
+}
+
+### Updates an aggregation
+PUT {{api-server}}/v2/aggregations/797
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "assetId": 127,
+  "subtype": "output",
+  "mode": "avg",
+  "raster": "MONTH"
 }

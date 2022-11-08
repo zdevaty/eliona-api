@@ -1,2 +1,3 @@
 ### Acknow an alarm
-PATCH http://localhost:8084/v2/alarms/8409?acknowledgeText=Test Andreas Göbel from APIv2&acknowledged=true
+PATCH {{api-server}}/v2/alarms/8409?acknowledgeText=Test Andreas Göbel from APIv2&acknowledged=true
+X-Api-Key: {{read-write-token}}

@@ -1,11 +1,14 @@
 ### Delete type
-DELETE http://localhost:8084/v2/asset-types/weather_location
+DELETE {{api-server}}/v2/asset-types/weather_location
+X-Api-Key: {{read-write-token}}
 
-### Insert new asset type
-GET http://localhost:8084/v2/asset-types/weather_location
+### Selects asset type
+GET {{api-server}}/v2/asset-types/weather_location
+X-Api-Key: {{read-only-token}}
 
-### Insert new asset type
-PUT http://localhost:8084/v2/asset-types
+### Upserts new asset type
+PUT {{api-server}}/v2/asset-types
+X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
@@ -21,4 +24,44 @@ Content-Type: application/json
 "icon": "weather",
 "urldoc": "urldoc",
 "model": "model"
+}
+
+### Insert new asset type
+POST {{api-server}}/v2/asset-types
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "vendor": "vendor",
+  "custom": true,
+  "name": "weather_location",
+  "translation": {
+    "de": "Das ist eine deutsche Beschreibung",
+    "en": "This is an english description",
+    "it": "Questa è una descrizione italiana",
+    "fr": "Ceci est une description français"
+  },
+  "icon": "weather",
+  "urldoc": "urldoc",
+  "model": "model"
+}
+
+### Update new asset type
+PUT {{api-server}}/v2/asset-types/weather_location
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "vendor": "vendor",
+  "custom": true,
+  "name": "weather_location",
+  "translation": {
+    "de": "Das ist eine deutsche Beschreibung",
+    "en": "This is an english description",
+    "it": "Questa è una descrizione italiana",
+    "fr": "Ceci est une description français"
+  },
+  "icon": "weather",
+  "urldoc": "urldoc",
+  "model": "model"
 }

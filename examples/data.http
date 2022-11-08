@@ -1,20 +1,27 @@
 ### Get all data
-GET http://localhost:8084/v2/data
+GET {{api-server}}/v2/data
+X-Api-Key: {{read-only-token}}
 
 ### Get all data based on asset id
-GET http://localhost:8084/v2/data?assetId=125
+GET {{api-server}}/v2/data?assetId=125
+X-Api-Key: {{read-only-token}}
 
 ### Get all data based on subtype
-GET http://localhost:8084/v2/data?dataSubtype=input
+GET {{api-server}}/v2/data?dataSubtype=input
+X-Api-Key: {{read-only-token}}
 
 ### Get all data based on asset type
-GET http://localhost:8084/v2/data?assetTypeName=VIRTUAL Battery
+GET {{api-server}}/v2/data?assetTypeName=VIRTUAL Battery
+X-Api-Key: {{read-only-token}}
 
 ### Get data trends
-GET http://localhost:8084/v2/data-trends?assetTypeName=VIRTUAL Battery&fromDate=2022-07-30T20:00:00.000%2B02:00&toDate=2022-07-30T21:00:00.000%2B02:00
+GET {{api-server}}/v2/data-trends?assetTypeName=VIRTUAL Battery&fromDate=2022-07-30T20:00:00.000%2B02:00&toDate=2022-07-30T21:00:00.000%2B02:00
+X-Api-Key: {{read-only-token}}
 
 ### Get data aggs
-GET http://localhost:8084/v2/aggregated-data?assetId=9002
+GET {{api-server}}/v2/aggregated-data?assetId=9002
+X-Api-Key: {{read-only-token}}
 
 ### Get data aggs with timestamp
-GET http://localhost:8084/v2/aggregated-data?assetId=9002&fromDate=2022-08-08T14:00:00.0%2B02:00&toDate=2022-08-08T15:00:11.0%2B02:00
+GET {{api-server}}/v2/aggregated-data?assetId=9002&fromDate=2022-08-08T14:00:00.0%2B02:00&toDate=2022-08-08T15:00:11.0%2B02:00
+X-Api-Key: {{read-only-token}}

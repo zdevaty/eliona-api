@@ -3850,12 +3850,14 @@ components:
       description: A message
       example:
         attachments:
-        - data: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
-          name: example.gif
-          mimeType: image/png
-        - data: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
-          name: example.gif
-          mimeType: image/png
+        - name: example.gif
+          encoding: base64
+          contentType: image/png
+          content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+        - name: example.gif
+          encoding: base64
+          contentType: image/png
+          content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
         sender: sender@example.com
         recipients:
         - recipient@example.com
@@ -4135,23 +4137,28 @@ components:
     Attachment:
       description: A binary attachment for messages
       example:
-        data: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
         name: example.gif
-        mimeType: image/png
+        encoding: base64
+        contentType: image/png
+        content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
       properties:
         name:
           description: "The name for the attachment, e.g. the filename"
           example: example.gif
           type: string
-        mimeType:
-          description: The MIME type of binary data
+        contentType:
+          description: The type of binary data
           example: image/png
           nullable: true
           type: string
-        data:
-          description: The binary data as base64 encoded string
+        encoding:
+          description: The encoding of content
+          example: base64
+          nullable: true
+          type: string
+        content:
+          description: The binary data as encoded string
           example: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
-          format: byte
           type: string
       required:
       - data

@@ -1,13 +1,14 @@
 ### Get all agents
-GET http://localhost:8084/v2/agents
+GET {{api-server}}/v2/agents
+X-Api-Key: {{read-only-token}}
 
 ### Get all agents of class
-GET http://localhost:8084/v2/agents/iosys
-X-Api-Key: 123
-
+GET {{api-server}}/v2/agents/iosys
+X-Api-Key: {{read-only-token}}
 
 ### Insert new agent for class
-PUT http://localhost:8084/v2/agents/iosys
+POST {{api-server}}/v2/agents/iosys
+X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
@@ -16,22 +17,34 @@ Content-Type: application/json
   "config": {}
 }
 
-### Update new agent for class
-PUT http://localhost:8084/v2/agents/iosys
+### Get agent
+GET {{api-server}}/v2/agents/iosys/4
+X-Api-Key: {{read-only-token}}
+
+### Update new agent for class and id
+PUT {{api-server}}/v2/agents/iosys/4
 Content-Type: application/json
+X-Api-Key: {{read-write-token}}
 
 {
-  "id": 4106,
   "description": "IOSYS Agent east plant (updated)",
   "enable": false,
   "config": {}
 }
 
+
+
 ### Select devices
-GET http://localhost:8084/v2/agents/iosys/558/devices
+GET {{api-server}}/v2/agents/iosys/4/devices
+X-Api-Key: {{read-only-token}}
+
+### Select device
+GET {{api-server}}/v2/agent-devices/iosys/4
+X-Api-Key: {{read-only-token}}
 
 ### Insert devices
-PUT http://localhost:8084/v2/agents/iosys/558/devices
+POST {{api-server}}/v2/agents/iosys/4/devices
+X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
@@ -43,11 +56,33 @@ Content-Type: application/json
   "reconnect": 20
 }
 
+### UPDATE devices
+PUT {{api-server}}/v2/agent-devices/iosys/4
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "enable": false,
+  "port": 0,
+  "certificate": "XXX (updated)",
+  "key": "YYY (updated)",
+  "timeout": 0,
+  "reconnect": 20
+}
+
+
+
 ### Select mappings
-GET http://localhost:8084/v2/agent-devices/iosys/304/mappings
+GET {{api-server}}/v2/agent-devices/iosys/4/mappings
+X-Api-Key: {{read-only-token}}
+
+### Select mapping
+GET {{api-server}}/v2/agent-device-mappings/iosys/1
+X-Api-Key: {{read-only-token}}
 
 ### Insert mapping
-PUT http://localhost:8084/v2/agent-devices/iosys/304/mappings
+POST {{api-server}}/v2/agent-devices/iosys/4/mappings
+X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
@@ -59,12 +94,27 @@ Content-Type: application/json
   "down": false,
   "scale": 0,
   "zero": 0,
-  "mask": [
-    0
-  ],
-  "maskAttributes": [
-    "string"
-  ],
+  "deadTime": 0,
+  "deadBand": 0,
+  "filter": "LPF1",
+  "tau": 0
+}
+
+### Update mapping
+PUT {{api-server}}/v2/agent-device-mappings/iosys/1
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "deviceId": 4,
+  "enable": true,
+  "subtype": "input",
+  "attribute": "temperature",
+  "iosVar": "string (updated)",
+  "iosType": "INT",
+  "down": false,
+  "scale": 0,
+  "zero": 0,
   "deadTime": 0,
   "deadBand": 0,
   "filter": "LPF1",

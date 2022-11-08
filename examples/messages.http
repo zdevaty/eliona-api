@@ -1,5 +1,5 @@
 ### Send mail
-POST {{api-server}}/send-mail
+POST {{api-server}}/v2/send-mail
 X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
@@ -12,5 +12,5 @@ Content-Type: application/json
 }
 
 ### Get mail status
-GET {{api-server}}/message-receipts/6
+GET {{api-server}}/v2/message-receipts/9
 X-Api-Key: {{read-only-token}}
