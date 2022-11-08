@@ -5,10 +5,18 @@ Content-Type: application/json
 
 {
   "recipients": [
-    "example@eliona.io"
+    "andreas.goebel@eliona.io"
   ],
   "subject": "This is an example message",
-  "content": "<!DOCTYPE html><html><body><h1>Hello world!</h1></body></html>"
+  "content": "<h1>Hello world!</h1><p>Das ist ein Test</p>",
+  "attachments" : [
+    {
+      "name": "example.gif",
+      "encoding": "base64",
+      "contentType": "image/png",
+      "content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+    }
+  ]
 }
 
 ### Get mail status

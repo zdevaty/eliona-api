@@ -3849,6 +3849,7 @@ components:
     Message:
       description: A message
       example:
+        template: eliona
         attachments:
         - name: example.gif
           encoding: base64
@@ -3869,7 +3870,6 @@ components:
         copyRecipients:
         - copy-recipient@example.com
         - copy-recipient@example.com
-        mimeType: text/html
         content: <h1>Example</h1>
       properties:
         sender:
@@ -3906,13 +3906,18 @@ components:
           description: The subject for this message
           example: This is a example message
           type: string
-        mimeType:
-          description: The MIME type of the message content
-          example: text/html
+        template:
+          default: eliona
+          description: The template used for message content
+          enum:
+          - none
+          - eliona
+          example: eliona
           nullable: true
           type: string
         content:
-          description: The content of the message
+          description: "The content of the message. If template is used, the content\
+            \ is embedded in the template."
           example: <h1>Example</h1>
           type: string
         attachments:
