@@ -3,7 +3,7 @@ info:
   description: API to access Eliona Smart Building Assistant
   termsOfService: https://www.eliona.io/v2
   title: Eliona API
-  version: 2.2.0
+  version: 2.4.2
 externalDocs:
   description: Find out more about Eliona
   url: https://www.eliona.io
