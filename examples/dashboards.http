@@ -1,0 +1,11 @@
+### Get all dashboards
+GET {{api-server}}/v2/dashboards
+X-Api-Key: {{read-only-token}}
+
+### Get dashboard
+GET {{api-server}}/v2/dashboards/7
+X-Api-Key: {{read-only-token}}
+
+### Get dashboard widgets
+GET {{api-server}}/v2/dashboards/7/widgets
+X-Api-Key: {{read-only-token}}

@@ -16,7 +16,8 @@ Content-Type: application/json
   "vendor": "string",
   "model": "string",
   "description": "Node east plant",
-  "enable": false
+  "enable": false,
+  "assetId": 12345
 }
 
 ### Update node

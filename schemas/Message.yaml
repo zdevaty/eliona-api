@@ -37,16 +37,6 @@ properties:
     type: string
     description: The subject for this message
     example: This is a example message
-  template:
-    description: The template used for message content
-    type: string
-    enum:
-      - none
-      - eliona
-    default:
-      eliona
-    example: eliona
-    nullable: true
   content:
     description: The content of the message. If template is used, the content is embedded in the template.
     type: string

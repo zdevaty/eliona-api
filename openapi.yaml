@@ -3,7 +3,7 @@ info:
   description: API to access Eliona Smart Building Assistant
   termsOfService: https://www.eliona.io/v2
   title: Eliona API
-  version: 2.4.2
+  version: 2.4.3
 externalDocs:
   description: Find out more about Eliona
   url: https://www.eliona.io
@@ -3849,7 +3849,6 @@ components:
     Message:
       description: A message
       example:
-        template: eliona
         attachments:
         - name: example.gif
           encoding: base64
@@ -3905,15 +3904,6 @@ components:
         subject:
           description: The subject for this message
           example: This is a example message
-          type: string
-        template:
-          default: eliona
-          description: The template used for message content
-          enum:
-          - none
-          - eliona
-          example: eliona
-          nullable: true
           type: string
         content:
           description: "The content of the message. If template is used, the content\
