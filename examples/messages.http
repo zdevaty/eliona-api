@@ -8,7 +8,7 @@ Content-Type: application/json
     "andreas.goebel@eliona.io"
   ],
   "subject": "This is an example message",
-  "content": "Hello,<br>this is a test message",
+  "content": "Hello!<br><br>This is a test message.<br><br>Regards",
   "attachments" : [
     {
       "name": "example.gif",

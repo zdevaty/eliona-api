@@ -19,9 +19,9 @@ GET {{api-server}}/v2/data-trends?assetTypeName=VIRTUAL Battery&fromDate=2022-07
 X-Api-Key: {{read-only-token}}
 
 ### Get data aggs
-GET {{api-server}}/v2/aggregated-data?assetId=9002
+GET {{api-server}}/v2/data-aggregated?assetId=127
 X-Api-Key: {{read-only-token}}
 
 ### Get data aggs with timestamp
-GET {{api-server}}/v2/aggregated-data?assetId=9002&fromDate=2022-08-08T14:00:00.0%2B02:00&toDate=2022-08-08T15:00:11.0%2B02:00
+GET {{api-server}}/v2/data-aggregated?assetId=62&attribute=brightness&fromDate=2022-10-01T00:00:00.0%2B02:00&toDate=2022-11-01T00:00:00.0%2B02:00
 X-Api-Key: {{read-only-token}}
