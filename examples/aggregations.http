@@ -25,3 +25,15 @@ Content-Type: application/json
   "mode": "avg",
   "raster": "MONTH"
 }
+
+### Post an aggregation
+POST {{api-server}}/v2/aggregations
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "assetId": 127,
+  "subtype": "output",
+  "mode": "avg",
+  "raster": "MONTH"
+}
