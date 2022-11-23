@@ -1,0 +1,3 @@
+### Get all apps
+GET {{api-server}}/v2/apps/frontends
+X-Api-Key: {{read-only-token}}

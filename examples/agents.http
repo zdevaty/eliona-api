@@ -17,6 +17,19 @@ Content-Type: application/json
   "config": {}
 }
 
+### Insert new agent for class
+PUT {{api-server}}/v2/agents/iosys
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "assetId": 180,
+  "enable": false,
+  "description": "potlakbd",
+  "nodeId": "29",
+  "config": {}
+}
+
 ### Get agent
 GET {{api-server}}/v2/agents/iosys/4
 X-Api-Key: {{read-only-token}}

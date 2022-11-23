@@ -456,6 +456,13 @@ paths:
         required: false
         schema:
           type: string
+      - description: Filter for a specific project
+        in: query
+        name: projectId
+        required: false
+        schema:
+          nullable: true
+          type: string
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -2387,6 +2394,14 @@ components:
       required: false
       schema:
         type: string
+    projectId:
+      description: Filter for a specific project
+      in: query
+      name: projectId
+      required: false
+      schema:
+        nullable: true
+        type: string
     asset-id:
       description: The id of the asset
       example: 4711
@@ -2472,14 +2487,6 @@ components:
       required: true
       schema:
         type: integer
-    projectId:
-      description: Filter for a specific project
-      in: query
-      name: projectId
-      required: false
-      schema:
-        nullable: true
-        type: string
     node-ident:
       description: The UUID identifier of the node
       example: 4711

@@ -6,6 +6,7 @@ get:
   operationId: getAssets
   parameters:
     - $ref: '../parameters/assetTypeName.yaml'
+    - $ref: '../parameters/projectId.yaml'
     - $ref: '../parameters/expansions.yaml'
   responses:
     200:
