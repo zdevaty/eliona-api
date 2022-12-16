@@ -5,8 +5,18 @@ on:
 
 jobs:
     generate:
-        name: Generate complete OpenAPI.yaml file
+        name: Generate OpenAPI definition and build release
         runs-on: ubuntu-latest
         steps:
           - name: Check out the repo
             uses: actions/checkout@v3
+          - name: Generate the openapi.yaml file
+            uses: addnab/docker-run-action@v3
+            with:
+              image: openapitools/openapi-generator-cli:v6.2.1
+              options: -v ${{ github.workspace }}:/local
+              run: generate |
+                -g openapi-yaml |
+                -i /local/eliona-api.yaml |
+                -o /local |
+                --additional-properties=outputFile=/local/openapi.yaml
