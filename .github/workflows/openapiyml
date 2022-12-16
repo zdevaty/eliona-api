@@ -1,0 +1,12 @@
+name: OpenAPI
+
+on: 
+  workflow_dispatch:
+
+jobs:
+    generate:
+        name: Generate complete OpenAPI.yaml file
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repo
+            uses: actions/checkout@v3
