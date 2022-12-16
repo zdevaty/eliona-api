@@ -15,4 +15,5 @@ jobs:
             with:
               image: openapitools/openapi-generator-cli:v6.2.1
               options: -v ${{ github.workspace }}:/local
-              run: generate -g openapi-yaml -i /local/eliona-api.yaml -o /local --additional-properties=outputFile=/local/openapi.yaml
+              run: |
+                generate -g openapi-yaml -i /local/eliona-api.yaml -o /local --additional-properties=outputFile=/local/openapi.yaml
