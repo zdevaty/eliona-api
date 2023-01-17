@@ -1,0 +1,35 @@
+get:
+  tags:
+    - Data
+  summary: Gets all data
+  description: Gets information about data for assets.
+  operationId: getData
+  parameters:
+    - $ref: '../parameters/assetId.yaml'
+    - $ref: '../parameters/dataSubtype.yaml'
+    - $ref: '../parameters/assetTypeName.yaml'
+  responses:
+    200:
+      description: Successfully returned data for assets
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/Data.yaml'
+
+put:
+  tags:
+    - Data
+  summary: Create or update asset data
+  description: Create new asset data or update data if already exists. Uses the unique combination of asset id and subtype for updating.
+  operationId: putData
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Data.yaml'
+  responses:
+    201:
+      description: Successfully created a new or updated existing asset data

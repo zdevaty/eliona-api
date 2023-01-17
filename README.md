@@ -10,20 +10,20 @@ The API is defined by an OpenAPI specification file. The file is versioned to ha
 
 There are 2 versions of the API available, a stable release version and a beta version, that is currently in development.
 
-- [Eliona API v2 Release](https://eliona-smart-building-assistant.github.io/open-api-docs/?https://raw.githubusercontent.com/eliona-smart-building-assistant/eliona-api/master/openapi.yaml)
-- [Eliona API v2 Development](https://eliona-smart-building-assistant.github.io/open-api-docs/?https://raw.githubusercontent.com/eliona-smart-building-assistant/eliona-api/develop/openapi.yaml)
+- [Eliona API v2 Release](https://eliona-smart-building-assistant.github.io/open-api-docs/?yaml=https://raw.githubusercontent.com/eliona-smart-building-assistant/eliona-api/master/openapi.yaml)
+- [Eliona API v2 Development](https://eliona-smart-building-assistant.github.io/open-api-docs/?yaml=https://raw.githubusercontent.com/eliona-smart-building-assistant/eliona-api/develop/openapi.yaml)
 
-## Generate ##
+## Generation ##
 
-To build the openapi.yaml file that contains all API definitions in one file you have to generate it with OpenAPI generator. See [OpenAPI Generator documentation](https://openapi-generator.tech/docs/generators/openapi-yaml) for further details.
+### Generate single openapi.yaml file ###
 
-At first, download the [Generator Jar](https://openapi-generator.tech/docs/installation#jar) file: `https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/6.0.0/openapi-generator-cli-6.0.0.jar` to any directory outside this project. Also, Java 8 runtime at a minimum is required.
+To build the `openapi.yaml` file that contains the complete API definitions in one file you have to generate it with OpenAPI generator. This single file is needed for further code generation which is easier with one file instead of multiple files in different directories.
 
-Then you can generate the file with the following command.
+The easiest way to generate the `openapi.yaml` file is to use one of the predefined generation script which use the OpenAPI Generator Docker image.
 
-```bash
-java -jar .\openapi-generator-cli-6.0.0.jar generate \
-  -g openapi-yaml \
-  -i eliona-api.yaml \
-  --additional-properties=outputFile=openapi.yaml
 ```
+.\generate.cmd # Windows
+./generate.sh # Linux
+```
+
+If you want to use other generators take the necessary generator options from one of the scripts. See [OpenAPI Generator documentation](https://openapi-generator.tech/docs/generators/openapi-yaml) for further details.

@@ -1,15 +1,17 @@
 type: object
 description: An asset
+nullable: true
 required:
   - projectId
   - globalAssetIdentifier
   - assetType
 properties:
-  Id:
+  id:
     type: integer
     readOnly: true
     description: The internal Id of asset
     example: 4711
+    nullable: true
   projectId:
     type: string
     description: ID of the project to which the asset belongs
@@ -22,6 +24,7 @@ properties:
     type: string
     description: Alternate text for the asset to display in frontend
     example: Station Zurich
+    nullable: true
   assetType:
     type: string
     description: Reference to asset type by name
@@ -30,34 +33,41 @@ properties:
     format: double
     description: Latitude coordinate (GPS) of the asset
     example: 47.3667
+    nullable: true
   longitude:
     type: number
     format: double
     description: Longitude coordinate (GPS) of the asset
     example: 8.5500
+    nullable: true
   description:
     type: string
     description: Textual description for this asset
     example: Weather station Zurich, Swiss
+    nullable: true
   parentFunctionalAssetId:
     type: integer
     description: The id of an asset which groups this asset as a functional child
     example: 4712
+    nullable: true
   parentLocationalAssetId:
     type: integer
     description: The id of an asset which groups this asset as a locational child
     example: 4712
+    nullable: true
   tags:
     type: array
-    description: List of tags associated with asset
+    description: List of associated tags
+    nullable: true
     items:
       type: string
     example:
       - weather
       - location
-  children:
+  childrenInfo:
     type: array
     readOnly: true
-    description: List of children for this asset. This list is filled when the `withChildren` parameter is set.
+    nullable: true
+    description: List of children for this asset.
     items:
       $ref: 'Asset.yaml'

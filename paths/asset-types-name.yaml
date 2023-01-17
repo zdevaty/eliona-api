@@ -1,0 +1,57 @@
+get:
+  tags:
+    - Asset types
+  summary: Information about an asset type
+  description: Gets information about an asset type.
+  operationId: getAssetTypeByName
+  parameters:
+    - $ref: '../parameters/asset-type-name.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  responses:
+    200:
+      description: Successfully returned an asset type by name.
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AssetType.yaml'
+    404:
+      description: Asset type with name not found
+
+delete:
+  tags:
+    - Asset types
+  summary: Delete an asset type
+  description: Deletes an asset type and the attributes for this asset type.
+  operationId: deleteAssetTypeByName
+  parameters:
+    - $ref: '../parameters/asset-type-name.yaml'
+  responses:
+    204:
+      description: Successfully deleted the asset type
+    404:
+      description: Asset type with name not found
+
+put:
+  tags:
+    - Asset types
+  summary: Update an asset type
+  description: Update an asset type.
+  operationId: putAssetTypeByName
+  parameters:
+    - $ref: '../parameters/asset-type-name.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AssetType.yaml'
+  responses:
+    200:
+      description: Successfully updated an existing asset type
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AssetType.yaml'
+    404:
+      description: Asset type with name not found

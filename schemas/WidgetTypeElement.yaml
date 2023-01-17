@@ -4,6 +4,12 @@ required:
   - category
   - description
 properties:
+  id:
+    type: integer
+    readOnly: true
+    description: The internal Id of widget element
+    example: 4711
+    nullable: true
   category:
     type: string
     description: The category for this element
@@ -29,11 +35,15 @@ properties:
       - alarms
       - weather
       - storey
-  description:
-    type: string
-    description: description text for this element
-    example: Weather
+  sequence:
+    type: integer
+    description: sequence of element in widget; if not defined the index in array is taken
+    nullable: true
+    example: 1
   config:
     type: object
     description: individual config parameters depending on category
-    example:  "{ \"variant\": \"todayAndForecast\" }"
+    nullable: true
+    example: {
+      "variant": "todayAndForecast"
+    }

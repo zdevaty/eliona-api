@@ -1,0 +1,49 @@
+type: object
+description: A message
+required:
+  - recipients
+  - content
+properties:
+  sender:
+    type: string
+    nullable: true
+    description: Address of the sender, e.g. an e-mail address
+    example: sender@example.com
+  recipients:
+    description: A list of recipient addresses to receive this message
+    type: array
+    items:
+      type: string
+      description: A recipient's address, e.g. an e-mail address
+      example: recipient@example.com
+    minItems: 1
+  copyRecipients:
+    description: A list of recipient addresses to receive this message as copy
+    nullable: true
+    type: array
+    items:
+      type: string
+      description: A recipient's address, e.g. an e-mail address
+      example: copy-recipient@example.com
+  blindCopyRecipients:
+    description: A list of recipient addresses to receive this message as blind copy without any other recipient information
+    nullable: true
+    type: array
+    items:
+      type: string
+      description: A recipient's address, e.g. an e-mail address
+      example: blind-copy-recipient@example.com
+  subject:
+    type: string
+    description: The subject for this message
+    example: This is a example message
+  content:
+    description: The content of the message. If template is used, the content is embedded in the template.
+    type: string
+    example: <h1>Example</h1>
+  attachments:
+    description: A list of files attached to the message
+    nullable: true
+    type: array
+    items:
+      $ref: 'Attachment.yaml'

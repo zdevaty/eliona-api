@@ -2,10 +2,15 @@ type: object
 description: A frontend widget
 required:
   - name
-  - custom
   - translation
   - elements
 properties:
+  id:
+    type: integer
+    readOnly: true
+    description: The internal Id of widget type
+    example: 4711
+    nullable: true
   name:
     type: string
     description: The unique name for this widget type
@@ -20,16 +25,19 @@ properties:
     type: string
     description: Icon name corresponding to assets used in this widget
     example: weather
+    nullable: true
   withAlarm:
     type: boolean
     default: false
     description: Show alarms in widget
+    nullable: true
   withTimespan:
     type: boolean
     default: false
     description: Show selection for timespan in widget
+    nullable: true
   elements:
     type: array
-    description: A list of elements for this widget
+    description: A list of elements for this widget (order matches the order of elements for this type)
     items:
       $ref: 'WidgetTypeElement.yaml'

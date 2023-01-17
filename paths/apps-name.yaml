@@ -5,7 +5,7 @@ get:
   description: Gets information about an app.
   operationId: getAppByName
   parameters:
-    - $ref: '../parameters/AppName.yaml'
+    - $ref: '../parameters/app-name.yaml'
   responses:
     200:
       description: Successfully returned information about an app.
@@ -21,7 +21,7 @@ patch:
   description: Update properties of an app.
   operationId: patchAppByName
   parameters:
-    - $ref: '../parameters/AppName.yaml'
+    - $ref: '../parameters/app-name.yaml'
     - name: registered
       in: query
       required: false

@@ -5,13 +5,7 @@ get:
   description: Returns a list of asset types
   operationId: getAssetTypes
   parameters:
-    - name: withAttributes
-      description: Gets also the the list of attributes
-      in: query
-      required: false
-      schema:
-        type: boolean
-        default: false
+    - $ref: '../parameters/expansions.yaml'
   responses:
     200:
       description: Successfully returned a list of asset types
@@ -26,8 +20,10 @@ put:
   tags:
     - Asset types
   summary: Create or update an asset type
-  description: Create a new asset type or update an asset type if already exists
+  description: Create a new asset type or update an asset type if already exists. Uses the unique asset type name for updating.
   operationId: putAssetType
+  parameters:
+    - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true
     content:
@@ -37,3 +33,31 @@ put:
   responses:
     200:
       description: Successfully created a new or updated an existing asset type
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AssetType.yaml'
+
+post:
+  tags:
+    - Asset types
+  summary: Create an asset type
+  description: Create a new asset type.
+  operationId: postAssetType
+  parameters:
+    - $ref: '../parameters/expansions.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AssetType.yaml'
+  responses:
+    201:
+      description: Successfully created a new asset type
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AssetType.yaml'
+    409:
+      description: Asset type name already exists

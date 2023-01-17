@@ -1,0 +1,7 @@
+name: widget-type-name
+in: path
+description: The name of the widget type
+example: weather
+required: true
+schema:
+  type: string

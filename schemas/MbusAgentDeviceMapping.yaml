@@ -1,0 +1,19 @@
+x-all-of-name: MbusAgentDeviceMapping
+allOf:
+  - $ref: 'AgentDeviceMappingGeneral.yaml'
+  - type: object
+    title: MbusAgentDeviceMappingSpecific
+    description: Specific mapping for MBUS agents
+    nullable: true
+    properties:
+      field:
+        type: integer
+        nullable: true
+      scale:
+        type: number
+        format: double
+        nullable: true
+      zero:
+        type: number
+        format: double
+        nullable: true

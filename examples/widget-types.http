@@ -1,0 +1,99 @@
+### Select all widget types
+GET {{api-server}}/v2/widget-types?expansions=WidgetType.elements
+X-Api-Key: {{read-only-token}}
+
+### Select widget type
+GET {{api-server}}/v2/widget-types/Weather Station?expansions=WidgetType.elements
+X-Api-Key: {{read-only-token}}
+
+### Select widget type
+GET {{api-server}}/v2/widget-types/fjjhjdhjfd
+X-Api-Key: {{read-only-token}}
+
+### Insert widget type
+POST {{api-server}}/v2/widget-types?expansions=WidgetType.elements
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "name": "Weather Station",
+  "custom": true,
+  "translation": {
+    "en": "Weather Station"
+  },
+  "elements": [
+    {
+      "category": "progress",
+      "sequence": 1,
+      "config": {
+        "showLegend": true
+      }
+    },
+    {
+      "category": "radar",
+      "sequence": 2,
+      "config": {
+        "showLegend": true
+      }
+    }
+  ]
+}
+
+### Upserts widget type
+PUT {{api-server}}/v2/widget-types?expansions=WidgetType.elements
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "name": "Weather Station",
+  "custom": true,
+  "translation": {
+    "en": "Weather Station"
+  },
+  "elements": [
+    {
+      "category": "progress",
+      "sequence": 1,
+      "config": {
+        "showLegend": true
+      }
+    },
+    {
+      "category": "radar",
+      "sequence": 2,
+      "config": {
+        "showLegend": true
+      }
+    }
+  ]
+}
+
+### Updates widget type
+PUT {{api-server}}/v2/widget-types/Weather Station?expansions=WidgetType.elements
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "name": "Weather Station",
+  "custom": true,
+  "translation": {
+    "en": "Weather Station"
+  },
+  "elements": [
+    {
+      "category": "progress",
+      "sequence": 1,
+      "config": {
+        "showLegend": true
+      }
+    },
+    {
+      "category": "radar",
+      "sequence": 2,
+      "config": {
+        "showLegend": true
+      }
+    }
+  ]
+}
+

@@ -1,0 +1,7 @@
+name: assetTypeName
+description: Filter the name of the asset type
+in: query
+required: false
+example: weather_location
+schema:
+  type: string

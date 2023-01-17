@@ -1,0 +1,55 @@
+get:
+  tags:
+    - Aggregations
+  summary: Information about an aggregation
+  description: Gets information about an aggregation by the given id.
+  operationId: getAggregationById
+  parameters:
+    - $ref: '../parameters/aggregation-id.yaml'
+  responses:
+    200:
+      description: Successfully returned an aggregation by id.
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Aggregation.yaml'
+    404:
+      description: Aggregation with id not found
+
+delete:
+  tags:
+    - Aggregations
+  summary: Delete an aggregation
+  description: Deletes an aggregation by the given id.
+  operationId: deleteAggregationById
+  parameters:
+    - $ref: '../parameters/aggregation-id.yaml'
+  responses:
+    204:
+      description: Successfully deleted the aggregation by id.
+    404:
+      description: Aggregation with id not found
+
+put:
+  tags:
+    - Aggregations
+  summary: Updates an aggregation
+  description: Updates an aggregation.
+  operationId: putAggregationById
+  parameters:
+    - $ref: '../parameters/aggregation-id.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Aggregation.yaml'
+  responses:
+    200:
+      description: Successfully updated an aggregation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Aggregation.yaml'
+    404:
+      description: Aggregation with id not found

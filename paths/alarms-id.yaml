@@ -1,0 +1,44 @@
+get:
+  tags:
+    - Alarms
+  summary: Information about alarm
+  description: Gets information about alarm.
+  operationId: getAlarmById
+  parameters:
+    - $ref: '../parameters/alarm-rule-id.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  responses:
+    200:
+      description: Successfully returned an alarm
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Alarm.yaml'
+    404:
+      description: Alarm with id not found
+
+patch:
+  tags:
+    - Alarms
+  summary: Update alarm
+  description: Update properties of alarm for given id.
+  operationId: patchAlarmById
+  parameters:
+    - $ref: '../parameters/alarm-rule-id.yaml'
+    - name: acknowledged
+      in: query
+      required: true
+      description: Marks the alarm as acknowledged by setting the acknowledge timestamp to now.
+      schema:
+        type: boolean
+        enum:
+          - true
+    - name: acknowledgeText
+      in: query
+      required: false
+      description: Sets the text for acknowledgement
+      schema:
+        type: string
+  responses:
+    200:
+      description: Successfully updated the alarm

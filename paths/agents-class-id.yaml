@@ -1,0 +1,43 @@
+get:
+  tags:
+    - Agents
+  summary: Information about an agent
+  description: Gets information about an agent.
+  operationId: getAgentByClassAndId
+  parameters:
+    - $ref: '../parameters/agent-id.yaml'
+    - $ref: '../parameters/agent-class.yaml'
+  responses:
+    200:
+      description: Successfully returned an agent
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Agent.yaml'
+    404:
+      description: Agent with id not found
+
+put:
+  tags:
+    - Agents
+  summary: Update an agent
+  description: Update an agent.
+  operationId: putAgentByClassAndId
+  parameters:
+    - $ref: '../parameters/agent-id.yaml'
+    - $ref: '../parameters/agent-class.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Agent.yaml'
+  responses:
+    200:
+      description: Successfully updated an existing agent
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Agent.yaml'
+    404:
+      description: Agent with id not found

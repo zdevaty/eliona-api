@@ -1,0 +1,43 @@
+### Select assets
+GET {{api-server}}/v2/assets
+X-Api-Key: {{read-only-token}}
+
+### Select asset
+GET {{api-server}}/v2/assets/158
+X-Api-Key: {{read-only-token}}
+
+### Upserts asset by project and gai
+PUT {{api-server}}/v2/assets
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "projectId": "99",
+  "globalAssetIdentifier": "GAI 4711",
+  "name": "Test Asset",
+  "assetType": "weather_location"
+}
+
+### Insert asset
+POST {{api-server}}/v2/assets
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "projectId": "99",
+  "globalAssetIdentifier": "GAI 4711",
+  "name": "Test Asset",
+  "assetType": "weather_location"
+}
+
+### Update new asset type
+PUT {{api-server}}/v2/assets/158
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "projectId": "99",
+  "globalAssetIdentifier": "GAI 4711",
+  "name": "Test Asset",
+  "assetType": "weather_location"
+}

@@ -1,0 +1,51 @@
+### Get all alarm rules
+GET {{api-server}}/v2/alarm-rules
+X-Api-Key: {{read-only-token}}
+
+### Get alarm rule
+GET {{api-server}}/v2/alarm-rules/66
+X-Api-Key: {{read-only-token}}
+
+### Insert new alarm rule
+POST {{api-server}}/v2/alarm-rules
+Content-Type: application/json
+X-Api-Key: {{read-write-token}}
+
+{
+  "assetId": 143,
+  "subtype": "output",
+  "attribute": "temperature_setpoint",
+  "enable": true,
+  "priority": 1,
+  "requiresAcknowledge": true,
+  "high": 2,
+  "message": {
+    "come": "Test",
+    "gone": null
+  },
+  "tags": null,
+  "notifyOn": "R",
+  "dontMask": false
+}
+
+### Update alarm rule
+PUT {{api-server}}/v2/alarm-rules/66
+Content-Type: application/json
+X-Api-Key: {{read-write-token}}
+
+{
+  "assetId": 143,
+  "subtype": "output",
+  "attribute": "temperature_setpoint",
+  "enable": true,
+  "priority": 1,
+  "requiresAcknowledge": true,
+  "high": 2,
+  "message": {
+    "come": "Test",
+    "gone": null
+  },
+  "tags": null,
+  "notifyOn": "R",
+  "dontMask": false
+}

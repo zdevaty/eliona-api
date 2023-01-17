@@ -1,11 +1,31 @@
+get:
+  tags:
+    - Widgets
+  summary: Information about widgets on dashboard
+  description: Gets information about widgets on a dashboard.
+  operationId: getDashboardWidgets
+  parameters:
+    - $ref: '../parameters/dashboard-id.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  responses:
+    200:
+      description: Successfully returned the widgets for the dashboard
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Widget.yaml'
+    404:
+      description: Dashboard with id not found
+
 post:
   tags:
-    - Dashboards
+    - Widgets
   summary: Adds widget to dashboard
-  description: Create a new widget an ad this to a dashboard
+  description: Create a new widget and add this to a dashboard
   operationId: postDashboardWidget
   parameters:
-    - $ref: '../parameters/DashboardId.yaml'
+    - $ref: '../parameters/dashboard-id.yaml'
+    - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true
     content:
@@ -13,5 +33,7 @@ post:
         schema:
           $ref: '../schemas/Widget.yaml'
   responses:
-    200:
+    201:
       description: Successfully added widget
+    404:
+      description: Dashboard with id not found

@@ -1,0 +1,34 @@
+### Get all nodes
+GET {{api-server}}/v2/nodes
+X-Api-Key: {{read-only-token}}
+
+### Get node by ident
+GET {{api-server}}/v2/nodes/9ff259f4-fa1e-4364-98a6-f94c14ba6d425
+X-Api-Key: {{read-only-token}}
+
+### Insert new node
+POST {{api-server}}/v2/nodes
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "password": "string",
+  "vendor": "string",
+  "model": "string",
+  "description": "Node east plant",
+  "enable": false,
+  "assetId": 12345
+}
+
+### Update node
+PUT {{api-server}}/v2/nodes/9ff259f4-fa1e-4364-98a6-f94c14ba6d42
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "password": "string",
+  "vendor": "string3",
+  "model": "string",
+  "description": "Node east plant",
+  "enable": false
+}

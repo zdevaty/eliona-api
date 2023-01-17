@@ -1,0 +1,24 @@
+type: object
+description: A binary attachment for messages
+required:
+  - name
+  - data
+properties:
+  name:
+    description: The name for the attachment, e.g. the filename
+    type: string
+    example: example.gif
+  contentType:
+    description: The type of binary data
+    type: string
+    nullable: true
+    example: image/png
+  encoding:
+    description: The encoding of content
+    type: string
+    nullable: true
+    example: base64
+  content:
+    description: The binary data as encoded string
+    type: string
+    example: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=

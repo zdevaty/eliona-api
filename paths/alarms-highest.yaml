@@ -1,0 +1,18 @@
+get:
+  tags:
+    - Alarms
+  summary: Information about most prioritized alarms
+  description: Gets information about an alarms with the highest priority for each asset.
+  operationId: getHighestAlarms
+  parameters:
+    - $ref: '../parameters/projectId.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  responses:
+    200:
+      description: Successfully returned a list of most prioritized alarms
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/Alarm.yaml'

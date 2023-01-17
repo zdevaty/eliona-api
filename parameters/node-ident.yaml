@@ -1,0 +1,8 @@
+name: node-ident
+in: path
+description: The UUID identifier of the node
+example: 4711
+required: true
+schema:
+  type: string
+  example: fef0a0d3-acad-4611-ac03-1fd842d72505

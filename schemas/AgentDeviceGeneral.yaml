@@ -1,0 +1,22 @@
+type: object
+description: A general device for an agent
+nullable: true
+properties:
+  class:
+    $ref: 'AgentClass.yaml'
+  id:
+    type: integer
+    description: Unique id for the device
+    nullable: true
+    readOnly: true
+    example: 1234
+  agentId:
+    type: integer
+    description: The id of the agent the device belongs to
+    example: 4711
+    nullable: true
+    readOnly: true
+  enable:
+    type: boolean
+    description: Is the device enabled or not
+    default: false

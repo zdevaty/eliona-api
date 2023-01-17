@@ -1,0 +1,7 @@
+name: agent-device-id
+in: path
+description: The id of the device
+example: 4711
+required: true
+schema:
+  type: integer

@@ -1,0 +1,2 @@
+### Get version
+GET {{api-server}}/v2/version

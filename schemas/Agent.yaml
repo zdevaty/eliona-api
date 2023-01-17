@@ -1,0 +1,36 @@
+type: object
+description: An agent installed on an edge node
+nullable: true
+properties:
+  id:
+    type: integer
+    description: Unique id for the agent
+    nullable: true
+    readOnly: true
+    example: 4711
+  nodeId:
+    type: string
+    description: Id of the node where the agent is installed
+    nullable: true
+    example: 1234
+  assetId:
+    type: integer
+    description: ID of the corresponding asset
+    example: 4711
+    nullable: true
+  class:
+    $ref: 'AgentClass.yaml'
+  description:
+    type: string
+    nullable: true
+    description: Descriptive text for the agent
+    example: IOSYS Agent east plant
+  enable:
+    type: boolean
+    description: Is the agent enabled or not
+    default: false
+  config:
+    type: object
+    nullable: true
+    description: Individual configuration depending on agent class
+    example: {}

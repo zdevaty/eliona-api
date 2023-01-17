@@ -1,0 +1,62 @@
+get:
+  tags:
+    - Agents
+  summary: Information about agents for a specific class
+  description: Gets information about agents.
+  operationId: getAgentsByClass
+  parameters:
+    - $ref: '../parameters/agent-class.yaml'
+  responses:
+    200:
+      description: Successfully returned a list of agents
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/Agent.yaml'
+
+put:
+  deprecated: true
+  tags:
+    - Agents
+  summary: Create or update an agent
+  description: Deprecated - use POST /agents/{agent-class} for creating and PUT /agents/{agent-class}/{agent-id} for updating
+  operationId: putAgentByClass
+  parameters:
+    - $ref: '../parameters/agent-class.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Agent.yaml'
+  responses:
+    200:
+      description: Successfully created a new or updated an existing agent
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Agent.yaml'
+
+post:
+  tags:
+    - Agents
+  summary: Create an agent
+  description: Create a new agent for a specific class
+  operationId: postAgentByClass
+  parameters:
+    - $ref: '../parameters/agent-class.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Agent.yaml'
+  responses:
+    201:
+      description: Successfully created a new agent
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Agent.yaml'

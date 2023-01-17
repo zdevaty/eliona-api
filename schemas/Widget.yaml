@@ -1,36 +1,37 @@
 type: object
 description: A widget on a frontend dashboard
 required:
-  - widgetType
+  - widgetTypeName
   - width
 properties:
+  id:
+    type: integer
+    readOnly: true
+    description: The internal Id of widget
+    example: 4711
+    nullable: true
   widgetTypeName:
     type: string
     description: The name for the type of this widget
     example: Weather
-  width:
-    type: string
-    description: The width of this widget on dashboard
-    enum:
-      - normal
-      - double
-      - full
-  timespan:
-    type: integer
-    description: The number of days if the widget type uses timespan
-    example: 7
   details:
     type: object
     description: Detailed configuration depending on the widget type
+    nullable: true
+    example: {}
   assetId:
     type: integer
     description: The master asset id of this widget
     example: 4711
+    nullable: true
+  sequence:
+    type: integer
+    description: Placement order on dashboard; if not set the index in array is taken
+    example: 1
+    nullable: true
   data:
     type: array
     description: List of data for the elements of widget
-    required:
-      - elementSequence
-      - assetId
+    nullable: true
     items:
       $ref: 'WidgetData.yaml'

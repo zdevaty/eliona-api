@@ -1,0 +1,12 @@
+name: dataSubtype
+description: Filter for a specific type of asset data
+in: query
+required: false
+example: input
+schema:
+  type: string
+  enum:
+    - input
+    - info
+    - status
+    - output

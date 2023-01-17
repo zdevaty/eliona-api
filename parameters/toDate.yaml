@@ -1,0 +1,9 @@
+name: toDate
+description: Filter by upper date time (RFC3339) limit exclusive
+in: query
+required: false
+example: 2021-12-31T23:00:00.000Z
+schema:
+  type: string
+  # Cannot use format data-time, because code generators supports string parameter only
+  # format: date-time

@@ -1,0 +1,11 @@
+type: integer
+description: The priority of the alarm. The higher this value the higher the priority.
+example: 2
+enum:
+  - 1
+  - 2
+  - 3
+x-enum-varnames:
+  - ALARM_PRIORITY_LOW
+  - ALARM_PRIORITY_MEDIUM
+  - ALARM_PRIORITY_HEIGHT

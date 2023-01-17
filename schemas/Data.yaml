@@ -1,5 +1,5 @@
 type: object
-description: Heap data
+description: Data for assets
 required:
   - assetId
   - subtype
@@ -10,11 +10,20 @@ properties:
     description: ID of the corresponding asset
     example: 4711
   subtype:
-    $ref: 'HeapSubtype.yaml'
+    $ref: 'DataSubtype.yaml'
   timestamp:
     type: string
     format: date-time
     description: Timestamp of the latest data change
+    nullable: true
   data:
     type: object
     description: Asset payload
+    example: {}
+  assetTypeName:
+    type: string
+    description: The name of the corresponding asset type
+    readOnly: true
+    nullable: true
+    example: weather_location
+

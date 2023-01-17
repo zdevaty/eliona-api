@@ -4,6 +4,10 @@ get:
   summary: Information about assets
   description: Gets a list of assets
   operationId: getAssets
+  parameters:
+    - $ref: '../parameters/assetTypeName.yaml'
+    - $ref: '../parameters/projectId.yaml'
+    - $ref: '../parameters/expansions.yaml'
   responses:
     200:
       description: Successfully returned the list of assets
@@ -18,7 +22,7 @@ put:
   tags:
     - Assets
   summary: Create or update an asset
-  description: Creates an asset if no asset with the same projectId and globalAssetIdentifier already exists. If there is such an asset, the asset is updated.
+  description: Creates an asset if no asset  or updating it if already exists. Uses the unique combination of project id and global asset id for updating.
   operationId: putAsset
   requestBody:
     required: true
@@ -33,3 +37,25 @@ put:
         application/json:
           schema:
             $ref: '../schemas/Asset.yaml'
+
+post:
+  tags:
+    - Assets
+  summary: Create an asset
+  description: Creates a new asset.
+  operationId: postAsset
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Asset.yaml'
+  responses:
+    201:
+      description: Successfully created a new asset
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Asset.yaml'
+    409:
+      description: Combination of project id and global asset id already exists

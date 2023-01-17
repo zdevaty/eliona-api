@@ -1,4 +1,3 @@
-# /app/{app-name}
 type: object
 description: An app
 required:
@@ -11,6 +10,8 @@ properties:
   active:
     type: boolean
     description: Is the app active or inactive
+    nullable: true
   registered:
     type: boolean
     description: Is the app already registered or not
+    nullable: true

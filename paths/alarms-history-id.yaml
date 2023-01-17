@@ -1,0 +1,18 @@
+get:
+  tags:
+    - Alarms
+  summary: Information about alarm history
+  description: Gets information about alarm over the entire time. This includes current alarm and history.
+  operationId: getAlarmHistoryById
+  parameters:
+    - $ref: '../parameters/alarm-rule-id.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  responses:
+    200:
+      description: Successfully returned a list of alarms
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/Alarm.yaml'

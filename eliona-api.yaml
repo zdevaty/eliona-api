@@ -16,7 +16,7 @@ openapi: 3.0.3
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 info:
-  version: 2.0.1
+  version: 2.4.4
   title: Eliona API
   description: API to access Eliona Smart Building Assistant
   termsOfService: https://www.eliona.io/v2
@@ -25,8 +25,14 @@ externalDocs:
   url: https://www.eliona.io
 servers:
   - url: http://api.eliona.io/v2
+security:
+  - ApiKeyAuth: []
+  - BearerAuth: []
 
 paths:
+
+  /version:
+    $ref: './paths/version.yaml'
 
   /apps/{app-name}:
     $ref: './paths/apps-name.yaml'
@@ -34,48 +40,179 @@ paths:
   /apps/{app-name}/patches/{patch-name}:
     $ref: './paths/apps-name-patches-name.yaml'
 
+  /asset-types:
+    $ref: './paths/asset-types.yaml'
+
+  /asset-types/{asset-type-name}:
+    $ref: './paths/asset-types-name.yaml'
+
+  /asset-types/{asset-type-name}/attributes:
+    $ref: './paths/asset-types-name-attributes.yaml'
+
+  # Not yet implemented
+  #  /asset-types/{asset-type-name}/attributes/{asset-type-attribute-name}:
+  #    $ref: './paths/asset-types-name-attributes-name.yaml'
+
   /assets:
     $ref: './paths/assets.yaml'
 
   /assets/{asset-id}:
     $ref: './paths/assets-id.yaml'
 
-  /asset-types:
-    $ref: './paths/asset-types.yaml'
+  /data:
+    $ref: './paths/data.yaml'
 
-  /asset-types/{asset-type-name}/attributes:
-    $ref: './paths/asset-types-name-attributes.yaml'
+  /data-trends:
+    $ref: './paths/data-trends.yaml'
 
-  /heaps:
-    $ref: './paths/heaps.yaml'
+  /data-listener:
+    $ref: './paths/data-listener.yaml'
+
+  /data-aggregated:
+    $ref: './paths/data-aggregated.yaml'
+
+  /aggregations:
+    $ref: './paths/aggregations.yaml'
+
+  /aggregations/{aggregation-id}:
+    $ref: './paths/aggregations-id.yaml'
 
   /widget-types:
     $ref: './paths/widget-types.yaml'
 
+  /widget-types/{widget-type-name}:
+    $ref: './paths/widget-types-name.yaml'
+
   /dashboards:
     $ref: './paths/dashboards.yaml'
+
+  /dashboards/{dashboard-id}:
+    $ref: './paths/dashboards-id.yaml'
 
   /dashboards/{dashboard-id}/widgets:
     $ref: './paths/dashboards-id-widgets.yaml'
 
+  /alarm-rules:
+    $ref: './paths/alarm-rules.yaml'
+
+  /alarm-rules/{alarm-rule-id}:
+    $ref: './paths/alarm-rules-id.yaml'
+
+  /alarms:
+    $ref: './paths/alarms.yaml'
+
+  /alarms/{alarm-rule-id}:
+    $ref: './paths/alarms-id.yaml'
+
+  /alarms-history:
+    $ref: './paths/alarms-history.yaml'
+
+  /alarms-history/{alarm-rule-id}:
+    $ref: './paths/alarms-history-id.yaml'
+
+  /alarms-highest:
+    $ref: './paths/alarms-highest.yaml'
+
+  /nodes:
+    $ref: './paths/nodes.yaml'
+
+  /nodes/{node-ident}:
+    $ref: './paths/nodes-ident.yaml'
+
+  /agents:
+    $ref: './paths/agents.yaml'
+
+  /agents/{agent-class}:
+    $ref: './paths/agents-class.yaml'
+
+  /agents/{agent-class}/{agent-id}:
+    $ref: './paths/agents-class-id.yaml'
+
+  /agents/{agent-class}/{agent-id}/devices:
+    $ref: './paths/agents-class-id-devices.yaml'
+
+  /agent-devices/{agent-class}/{agent-device-id}:
+    $ref: './paths/agent-devices-class-id.yaml'
+
+  /agent-devices/{agent-class}/{agent-device-id}/mappings:
+    $ref: './paths/agent-devices-class-id-mappings.yaml'
+
+  /agent-device-mappings/{agent-class}/{agent-device-mapping-id}:
+    $ref: './paths/agent-device-mappings-class-id.yaml'
+
+  /send-mail:
+    $ref: './paths/send-mail.yaml'
+
+  /message-receipts/{message-id}:
+    $ref: './paths/message-receipts-id.yaml'
+
 tags:
-  - name: Apps
-    description: Handle apps
+  - name: Nodes
+    description: Handle nodes
     externalDocs:
       url: https://www.eliona.io
-  - name: Assets
-    description: Handle assets
+  - name: Agents
+    description: Handle agents
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Alarms
+    description: Handle alarms
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Alarm rules
+    description: Handle alarm rules
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Apps
+    description: Handle apps
     externalDocs:
       url: https://www.eliona.io
   - name: Asset types
     description: Handle asset types
     externalDocs:
       url: https://www.eliona.io
-  - name: Heaps
-    description: Handle Heap data
+  - name: Assets
+    description: Handle assets
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Aggregations
+    description: Handle data aggregations
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Data
+    description: Handle asset data
     externalDocs:
       url: https://www.eliona.io
   - name: Dashboards
     description: Handle dashboards
     externalDocs:
       url: https://www.eliona.io
+  - name: Widgets types
+    description: Handle widgets types for dashboards
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Widgets
+    description: Handle widgets for dashboards
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Messages
+    description: Message handling
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Version
+    description: API version
+    externalDocs:
+      url: https://www.eliona.io
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      description: Use the API key as a secret for authorizing and identifying an app or agent
+      in: header
+      name: X-API-Key
+    BearerAuth:
+      type: http
+      description: Use the Bearer for authorizing and identifying a frontend access
+      scheme: bearer
+      bearerFormat: JWT

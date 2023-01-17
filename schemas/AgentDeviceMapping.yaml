@@ -1,0 +1,3 @@
+anyOf:
+  - $ref: 'IosysAgentDeviceMapping.yaml'
+  - $ref: 'MbusAgentDeviceMapping.yaml'

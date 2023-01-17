@@ -1,0 +1,57 @@
+get:
+  tags:
+    - Aggregations
+  summary: Information about aggregations
+  description: Gets a list of aggregations
+  operationId: getAggregations
+  responses:
+    200:
+      description: Successfully returned the list of aggregations
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/Aggregation.yaml'
+
+put:
+  tags:
+    - Aggregations
+  summary: Creates or updates an aggregation
+  description: Creates an aggregation or updates if already exists. Uses the unique combination of asset id, subtype, attribute and raster for updating.
+  operationId: putAggregation
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Aggregation.yaml'
+  responses:
+    200:
+      description: Successfully created or updated an aggregation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Aggregation.yaml'
+
+post:
+  tags:
+    - Aggregations
+  summary: Creates an aggregation
+  description: Creates a new aggregation.
+  operationId: postAggregation
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Aggregation.yaml'
+  responses:
+    201:
+      description: Successfully created an aggregation
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Aggregation.yaml'
+    409:
+      description: Combination of asset id, subtype, attribute and raster already exists

@@ -1,0 +1,65 @@
+get:
+  tags:
+    - Agents
+  summary: Information about agent devices
+  description: Gets information about agent devices.
+  parameters:
+    - $ref: '../parameters/agent-class.yaml'
+    - $ref: '../parameters/agent-id.yaml'
+  operationId: getAgentDevicesByAgentId
+  responses:
+    200:
+      description: Successfully returned a list of devices
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/AgentDevice.yaml'
+
+put:
+  deprecated: true
+  tags:
+    - Agents
+  summary: Create or update an agent device
+  description: Deprecated - use POST /agents/{agent-class}/{agent-id}/devices for creating and PUT /agent-devices/{agent-class}/{agent-device-id} for updating
+  operationId: putAgentDeviceByAgentId
+  parameters:
+    - $ref: '../parameters/agent-class.yaml'
+    - $ref: '../parameters/agent-id.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AgentDevice.yaml'
+  responses:
+    200:
+      description: Successfully created a new or updated an existing agent device
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AgentDevice.yaml'
+
+post:
+  tags:
+    - Agents
+  summary: Create an agent device
+  description: Create a new agent device.
+  operationId: postAgentDeviceByAgentId
+  parameters:
+    - $ref: '../parameters/agent-class.yaml'
+    - $ref: '../parameters/agent-id.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AgentDevice.yaml'
+  responses:
+    201:
+      description: Successfully created a new agent device
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AgentDevice.yaml'

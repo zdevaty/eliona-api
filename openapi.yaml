@@ -3,34 +3,88 @@ info:
   description: API to access Eliona Smart Building Assistant
   termsOfService: https://www.eliona.io/v2
   title: Eliona API
-  version: 2.0.1
+  version: 2.4.4
 externalDocs:
   description: Find out more about Eliona
   url: https://www.eliona.io
 servers:
 - url: http://api.eliona.io/v2
+security:
+- ApiKeyAuth: []
+- BearerAuth: []
 tags:
+- description: Handle nodes
+  externalDocs:
+    url: https://www.eliona.io
+  name: Nodes
+- description: Handle agents
+  externalDocs:
+    url: https://www.eliona.io
+  name: Agents
+- description: Handle alarms
+  externalDocs:
+    url: https://www.eliona.io
+  name: Alarms
+- description: Handle alarm rules
+  externalDocs:
+    url: https://www.eliona.io
+  name: Alarm rules
 - description: Handle apps
   externalDocs:
     url: https://www.eliona.io
   name: Apps
-- description: Handle assets
-  externalDocs:
-    url: https://www.eliona.io
-  name: Assets
 - description: Handle asset types
   externalDocs:
     url: https://www.eliona.io
   name: Asset types
-- description: Handle Heap data
+- description: Handle assets
   externalDocs:
     url: https://www.eliona.io
-  name: Heaps
+  name: Assets
+- description: Handle data aggregations
+  externalDocs:
+    url: https://www.eliona.io
+  name: Aggregations
+- description: Handle asset data
+  externalDocs:
+    url: https://www.eliona.io
+  name: Data
 - description: Handle dashboards
   externalDocs:
     url: https://www.eliona.io
   name: Dashboards
+- description: Handle widgets types for dashboards
+  externalDocs:
+    url: https://www.eliona.io
+  name: Widgets types
+- description: Handle widgets for dashboards
+  externalDocs:
+    url: https://www.eliona.io
+  name: Widgets
+- description: Message handling
+  externalDocs:
+    url: https://www.eliona.io
+  name: Messages
+- description: API version
+  externalDocs:
+    url: https://www.eliona.io
+  name: Version
 paths:
+  /version:
+    get:
+      description: Gets information about the APIs version.
+      operationId: getVersion
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Successfully returned the APIs version.
+      security: []
+      summary: Version of the API
+      tags:
+      - Version
   /apps/{app-name}:
     get:
       description: Gets information about an app.
@@ -137,10 +191,290 @@ paths:
       summary: Updates a patch
       tags:
       - Apps
+  /asset-types:
+    get:
+      description: Returns a list of asset types
+      operationId: getAssetTypes
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AssetType'
+                type: array
+          description: Successfully returned a list of asset types
+      summary: List of asset types
+      tags:
+      - Asset types
+    post:
+      description: Create a new asset type.
+      operationId: postAssetType
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetType'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetType'
+          description: Successfully created a new asset type
+        "409":
+          description: Asset type name already exists
+      summary: Create an asset type
+      tags:
+      - Asset types
+    put:
+      description: Create a new asset type or update an asset type if already exists.
+        Uses the unique asset type name for updating.
+      operationId: putAssetType
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetType'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetType'
+          description: Successfully created a new or updated an existing asset type
+      summary: Create or update an asset type
+      tags:
+      - Asset types
+  /asset-types/{asset-type-name}:
+    delete:
+      description: Deletes an asset type and the attributes for this asset type.
+      operationId: deleteAssetTypeByName
+      parameters:
+      - description: The name of the asset type
+        example: weather_location
+        in: path
+        name: asset-type-name
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: Successfully deleted the asset type
+        "404":
+          description: Asset type with name not found
+      summary: Delete an asset type
+      tags:
+      - Asset types
+    get:
+      description: Gets information about an asset type.
+      operationId: getAssetTypeByName
+      parameters:
+      - description: The name of the asset type
+        example: weather_location
+        in: path
+        name: asset-type-name
+        required: true
+        schema:
+          type: string
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetType'
+          description: Successfully returned an asset type by name.
+        "404":
+          description: Asset type with name not found
+      summary: Information about an asset type
+      tags:
+      - Asset types
+    put:
+      description: Update an asset type.
+      operationId: putAssetTypeByName
+      parameters:
+      - description: The name of the asset type
+        example: weather_location
+        in: path
+        name: asset-type-name
+        required: true
+        schema:
+          type: string
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetType'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetType'
+          description: Successfully updated an existing asset type
+        "404":
+          description: Asset type with name not found
+      summary: Update an asset type
+      tags:
+      - Asset types
+  /asset-types/{asset-type-name}/attributes:
+    post:
+      description: Create a new asset type attribute.
+      operationId: postAssetTypeAttribute
+      parameters:
+      - description: The name of the asset type
+        example: weather_location
+        in: path
+        name: asset-type-name
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetTypeAttribute'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetTypeAttribute'
+          description: Successfully created a new asset type attribute
+        "409":
+          description: "Combination of asset type name, subtype and attribute name\
+            \ already exists"
+      summary: Create asset type attribute
+      tags:
+      - Asset types
+    put:
+      description: "Create a new asset type attribute or update an asset type attribute\
+        \ if already exists. Uses the unique combination of asset type name, subtype\
+        \ and attribute name for updating."
+      operationId: putAssetTypeAttribute
+      parameters:
+      - description: The name of the asset type
+        example: weather_location
+        in: path
+        name: asset-type-name
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetTypeAttribute'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetTypeAttribute'
+          description: Successfully created a new or updated an existing asset type
+            attribute
+      summary: Create or update an asset type attribute
+      tags:
+      - Asset types
   /assets:
     get:
       description: Gets a list of assets
       operationId: getAssets
+      parameters:
+      - description: Filter the name of the asset type
+        example: weather_location
+        in: query
+        name: assetTypeName
+        required: false
+        schema:
+          type: string
+      - description: Filter for a specific project
+        in: query
+        name: projectId
+        required: false
+        schema:
+          nullable: true
+          type: string
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -153,9 +487,30 @@ paths:
       summary: Information about assets
       tags:
       - Assets
+    post:
+      description: Creates a new asset.
+      operationId: postAsset
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Asset'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+          description: Successfully created a new asset
+        "409":
+          description: Combination of project id and global asset id already exists
+      summary: Create an asset
+      tags:
+      - Assets
     put:
-      description: "Creates an asset if no asset with the same projectId and globalAssetIdentifier\
-        \ already exists. If there is such an asset, the asset is updated."
+      description: Creates an asset if no asset  or updating it if already exists.
+        Uses the unique combination of project id and global asset id for updating.
       operationId: putAsset
       requestBody:
         content:
@@ -185,12 +540,18 @@ paths:
         required: true
         schema:
           type: integer
-      - description: Gets also the the children hierarchy
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
         in: query
-        name: withChildren
+        name: expansions
         schema:
-          default: false
-          type: boolean
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -203,92 +564,461 @@ paths:
       summary: Information about an asset
       tags:
       - Assets
-  /asset-types:
-    get:
-      description: Returns a list of asset types
-      operationId: getAssetTypes
+    put:
+      description: Update an asset.
+      operationId: putAssetById
       parameters:
-      - description: Gets also the the list of attributes
+      - description: The id of the asset
+        example: 4711
+        in: path
+        name: asset-id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Asset'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+          description: Successfully updated an existing asset
+        "404":
+          description: Asset with id not found
+      summary: Update an asset
+      tags:
+      - Assets
+  /data:
+    get:
+      description: Gets information about data for assets.
+      operationId: getData
+      parameters:
+      - description: Filter for a specific asset id
+        example: 4711
         in: query
-        name: withAttributes
+        name: assetId
         required: false
         schema:
-          default: false
-          type: boolean
+          type: integer
+      - description: Filter for a specific type of asset data
+        example: input
+        in: query
+        name: dataSubtype
+        required: false
+        schema:
+          enum:
+          - input
+          - info
+          - status
+          - output
+          type: string
+      - description: Filter the name of the asset type
+        example: weather_location
+        in: query
+        name: assetTypeName
+        required: false
+        schema:
+          type: string
       responses:
         "200":
           content:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/AssetType'
+                  $ref: '#/components/schemas/Data'
                 type: array
-          description: Successfully returned a list of asset types
-      summary: List of asset types
+          description: Successfully returned data for assets
+      summary: Gets all data
       tags:
-      - Asset types
+      - Data
     put:
-      description: Create a new asset type or update an asset type if already exists
-      operationId: putAssetType
+      description: Create new asset data or update data if already exists. Uses the
+        unique combination of asset id and subtype for updating.
+      operationId: putData
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AssetType'
+              $ref: '#/components/schemas/Data'
         required: true
       responses:
-        "200":
-          description: Successfully created a new or updated an existing asset type
-      summary: Create or update an asset type
+        "201":
+          description: Successfully created a new or updated existing asset data
+      summary: Create or update asset data
       tags:
-      - Asset types
-  /asset-types/{asset-type-name}/attributes:
-    put:
-      description: Create a new asset type attribute or update an asset type attribute
-        if already exists
-      operationId: putAssetTypeAttribute
+      - Data
+  /data-trends:
+    get:
+      description: Gets trend information about historical data for assets.
+      operationId: getDataTrends
       parameters:
-      - description: The name of the asset type
-        example: weather_location
-        in: path
-        name: asset-type-name
-        required: true
+      - description: Filter by lower date time (RFC3339) limit inclusive
+        example: 2020-01-01T09:00:00.000Z
+        in: query
+        name: fromDate
+        required: false
         schema:
           type: string
+      - description: Filter by upper date time (RFC3339) limit exclusive
+        example: 2021-12-31T23:00:00.000Z
+        in: query
+        name: toDate
+        required: false
+        schema:
+          type: string
+      - description: Filter for a specific asset id
+        example: 4711
+        in: query
+        name: assetId
+        required: false
+        schema:
+          type: integer
+      - description: Filter for a specific type of asset data
+        example: input
+        in: query
+        name: dataSubtype
+        required: false
+        schema:
+          enum:
+          - input
+          - info
+          - status
+          - output
+          type: string
+      - description: Filter the name of the asset type
+        example: weather_location
+        in: query
+        name: assetTypeName
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Data'
+                type: array
+          description: Successfully returned historical data for assets
+      summary: Get trend of historical data
+      tags:
+      - Data
+  /data-listener:
+    get:
+      description: Open a WebSocket connection to get informed when new asset data
+        is written or anything changes.
+      operationId: listenData
+      parameters:
+      - description: Filter for a specific asset id
+        example: 4711
+        in: query
+        name: assetId
+        required: false
+        schema:
+          type: integer
+      - description: Filter for a specific type of asset data
+        example: input
+        in: query
+        name: dataSubtype
+        required: false
+        schema:
+          enum:
+          - input
+          - info
+          - status
+          - output
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Data'
+          description: Successfully opened a connection to asset data WebSocket
+      summary: WebSocket connection for asset data changes
+      tags:
+      - Data
+  /data-aggregated:
+    get:
+      description: Gets aggregated data sets which combines a set of data points for
+        a defined periodical raster
+      operationId: getDataAggregated
+      parameters:
+      - description: Filter by lower date time (RFC3339) limit inclusive
+        example: 2020-01-01T09:00:00.000Z
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          type: string
+      - description: Filter by upper date time (RFC3339) limit exclusive
+        example: 2021-12-31T23:00:00.000Z
+        in: query
+        name: toDate
+        required: false
+        schema:
+          type: string
+      - description: Filter for a specific asset id
+        example: 4711
+        in: query
+        name: assetId
+        required: false
+        schema:
+          type: integer
+      - description: Filter for a specific type of asset data
+        example: input
+        in: query
+        name: dataSubtype
+        required: false
+        schema:
+          enum:
+          - input
+          - info
+          - status
+          - output
+          type: string
+      - description: Filter the name of the asset type
+        example: weather_location
+        in: query
+        name: assetTypeName
+        required: false
+        schema:
+          type: string
+      - description: Filter for a specific aggregation id
+        example: "0815"
+        in: query
+        name: aggregationId
+        required: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/DataAggregated'
+                type: array
+          description: Successfully returned aggregated data sets
+      summary: Get aggregated data
+      tags:
+      - Data
+  /aggregations:
+    get:
+      description: Gets a list of aggregations
+      operationId: getAggregations
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Aggregation'
+                type: array
+          description: Successfully returned the list of aggregations
+      summary: Information about aggregations
+      tags:
+      - Aggregations
+    post:
+      description: Creates a new aggregation.
+      operationId: postAggregation
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AssetTypeAttribute'
+              $ref: '#/components/schemas/Aggregation'
         required: true
       responses:
-        "200":
-          description: Successfully created a new or updated an existing asset type
-            attribute
-      summary: Create or update an asset type attribute
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aggregation'
+          description: Successfully created an aggregation
+        "409":
+          description: "Combination of asset id, subtype, attribute and raster already\
+            \ exists"
+      summary: Creates an aggregation
       tags:
-      - Asset types
-  /heaps:
+      - Aggregations
     put:
-      description: Create new heap data or update data if already exists
-      operationId: putHeap
+      description: "Creates an aggregation or updates if already exists. Uses the\
+        \ unique combination of asset id, subtype, attribute and raster for updating."
+      operationId: putAggregation
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Heap'
+              $ref: '#/components/schemas/Aggregation'
         required: true
       responses:
         "200":
-          description: Successfully created a new or updated existing heap data
-      summary: Create or update heap data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aggregation'
+          description: Successfully created or updated an aggregation
+      summary: Creates or updates an aggregation
       tags:
-      - Heaps
+      - Aggregations
+  /aggregations/{aggregation-id}:
+    delete:
+      description: Deletes an aggregation by the given id.
+      operationId: deleteAggregationById
+      parameters:
+      - description: The id of the aggregation
+        example: 4711
+        in: path
+        name: aggregation-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: Successfully deleted the aggregation by id.
+        "404":
+          description: Aggregation with id not found
+      summary: Delete an aggregation
+      tags:
+      - Aggregations
+    get:
+      description: Gets information about an aggregation by the given id.
+      operationId: getAggregationById
+      parameters:
+      - description: The id of the aggregation
+        example: 4711
+        in: path
+        name: aggregation-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aggregation'
+          description: Successfully returned an aggregation by id.
+        "404":
+          description: Aggregation with id not found
+      summary: Information about an aggregation
+      tags:
+      - Aggregations
+    put:
+      description: Updates an aggregation.
+      operationId: putAggregationById
+      parameters:
+      - description: The id of the aggregation
+        example: 4711
+        in: path
+        name: aggregation-id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Aggregation'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aggregation'
+          description: Successfully updated an aggregation
+        "404":
+          description: Aggregation with id not found
+      summary: Updates an aggregation
+      tags:
+      - Aggregations
   /widget-types:
+    get:
+      description: Returns a list of widget types
+      operationId: getWidgetTypes
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/WidgetType'
+                type: array
+          description: Successfully returned a list of widget types
+      summary: List of widget types
+      tags:
+      - Widgets types
+    post:
+      description: Create a new widget type.
+      operationId: postWidgetType
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WidgetType'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetType'
+          description: Successfully created widget type
+        "409":
+          description: Widget type name already exists
+      summary: Create a widget type
+      tags:
+      - Widgets types
     put:
-      description: Create a widget type if the a type with the name not exists or
-        update a widget type if the name already exists
+      description: Create a new widget type or update it if already exists. Uses the
+        unique widget type name for updating.
       operationId: putWidgetType
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -297,14 +1027,155 @@ paths:
         required: true
       responses:
         "200":
-          description: Successfully added widget type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetType'
+          description: Successfully added or updated widget type
       summary: Create or update a widget type
       tags:
-      - Dashboards
+      - Widgets types
+  /widget-types/{widget-type-name}:
+    delete:
+      description: Deletes a widget type and the elements for this widget type.
+      operationId: deleteWidgetTypeByName
+      parameters:
+      - description: The name of the widget type
+        example: weather
+        in: path
+        name: widget-type-name
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: Successfully deleted the widget type
+        "404":
+          description: Widget type with name not found
+      summary: Delete a widget type
+      tags:
+      - Widgets types
+    get:
+      description: Gets information about a widget type.
+      operationId: getWidgetTypeByName
+      parameters:
+      - description: The name of the widget type
+        example: weather
+        in: path
+        name: widget-type-name
+        required: true
+        schema:
+          type: string
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetType'
+          description: Successfully returned a widget type by name.
+        "404":
+          description: Widget type with name not found
+      summary: Information about a widget type
+      tags:
+      - Widgets types
+    put:
+      description: Update a widget type.
+      operationId: putWidgetTypeByName
+      parameters:
+      - description: The name of the widget type
+        example: weather
+        in: path
+        name: widget-type-name
+        required: true
+        schema:
+          type: string
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WidgetType'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetType'
+          description: Successfully updated widget type
+        "404":
+          description: Widget type with name not found
+      summary: Update a widget type
+      tags:
+      - Widgets types
   /dashboards:
+    get:
+      description: Gets a list of dashboards
+      operationId: getDashboards
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Dashboard'
+                type: array
+          description: Successfully returned the list of dashboards
+      summary: Information about dashboards
+      tags:
+      - Dashboards
     post:
       description: Create a new dashboard for frontend
       operationId: postDashboard
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -312,7 +1183,7 @@ paths:
               $ref: '#/components/schemas/Dashboard'
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
@@ -321,9 +1192,80 @@ paths:
       summary: Creates a new dashboard
       tags:
       - Dashboards
+  /dashboards/{dashboard-id}:
+    get:
+      description: Gets information about a dashboard.
+      operationId: getDashboardById
+      parameters:
+      - description: The id of the dashboard
+        example: 4711
+        in: path
+        name: dashboard-id
+        required: true
+        schema:
+          type: integer
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dashboard'
+          description: Successfully returned the the dashboard
+        "404":
+          description: Dashboard with id not found
+      summary: Information about a dashboard
+      tags:
+      - Dashboards
   /dashboards/{dashboard-id}/widgets:
+    get:
+      description: Gets information about widgets on a dashboard.
+      operationId: getDashboardWidgets
+      parameters:
+      - description: The id of the dashboard
+        example: 4711
+        in: path
+        name: dashboard-id
+        required: true
+        schema:
+          type: integer
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Widget'
+          description: Successfully returned the widgets for the dashboard
+        "404":
+          description: Dashboard with id not found
+      summary: Information about widgets on dashboard
+      tags:
+      - Widgets
     post:
-      description: Create a new widget an ad this to a dashboard
+      description: Create a new widget and add this to a dashboard
       operationId: postDashboardWidget
       parameters:
       - description: The id of the dashboard
@@ -333,6 +1275,18 @@ paths:
         required: true
         schema:
           type: integer
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -340,12 +1294,1251 @@ paths:
               $ref: '#/components/schemas/Widget'
         required: true
       responses:
-        "200":
+        "201":
           description: Successfully added widget
+        "404":
+          description: Dashboard with id not found
       summary: Adds widget to dashboard
       tags:
-      - Dashboards
+      - Widgets
+  /alarm-rules:
+    get:
+      description: Gets information about alarm rules.
+      operationId: getAlarmRules
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AlarmRule'
+                type: array
+          description: Successfully returned a list of alarms
+      summary: Information about alarm rules
+      tags:
+      - Alarm rules
+    post:
+      description: Create a new alarm rule.
+      operationId: postAlarmRule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlarmRule'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlarmRule'
+          description: Successfully created a new alarm rule
+      summary: Create an alarm rule
+      tags:
+      - Alarm rules
+    put:
+      deprecated: true
+      description: "Deprecated - Use POST /alarm-rules to create and PUT /alarm-rules/{alarm-rule-id}\
+        \ to update"
+      operationId: putAlarmRule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlarmRule'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlarmRule'
+          description: Successfully created a new or updated an existing alarm rule
+      summary: Create or update an alarm rule
+      tags:
+      - Alarm rules
+  /alarm-rules/{alarm-rule-id}:
+    get:
+      description: Gets information about an alarm rule.
+      operationId: getAlarmRuleById
+      parameters:
+      - description: The id of the alarm rule
+        example: 4711
+        in: path
+        name: alarm-rule-id
+        required: true
+        schema:
+          type: integer
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlarmRule'
+          description: Successfully returned an alarm rule
+        "404":
+          description: Alarm rule with id not found
+      summary: Information about an alarm rule
+      tags:
+      - Alarm rules
+    put:
+      description: Update an alarm rule.
+      operationId: putAlarmRuleById
+      parameters:
+      - description: The id of the alarm rule
+        example: 4711
+        in: path
+        name: alarm-rule-id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlarmRule'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlarmRule'
+          description: Successfully updated an existing alarm rule
+        "404":
+          description: Alarm rule with id not found
+      summary: Update an alarm rule
+      tags:
+      - Alarm rules
+  /alarms:
+    get:
+      description: Gets information about alarms
+      operationId: getAlarms
+      parameters:
+      - description: Filter for a specific project
+        in: query
+        name: projectId
+        required: false
+        schema:
+          nullable: true
+          type: string
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Alarm'
+                type: array
+          description: Successfully returned a list of alarms
+      summary: Information about alarms
+      tags:
+      - Alarms
+  /alarms/{alarm-rule-id}:
+    get:
+      description: Gets information about alarm.
+      operationId: getAlarmById
+      parameters:
+      - description: The id of the alarm rule
+        example: 4711
+        in: path
+        name: alarm-rule-id
+        required: true
+        schema:
+          type: integer
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alarm'
+          description: Successfully returned an alarm
+        "404":
+          description: Alarm with id not found
+      summary: Information about alarm
+      tags:
+      - Alarms
+    patch:
+      description: Update properties of alarm for given id.
+      operationId: patchAlarmById
+      parameters:
+      - description: The id of the alarm rule
+        example: 4711
+        in: path
+        name: alarm-rule-id
+        required: true
+        schema:
+          type: integer
+      - description: Marks the alarm as acknowledged by setting the acknowledge timestamp
+          to now.
+        in: query
+        name: acknowledged
+        required: true
+        schema:
+          enum:
+          - true
+          type: boolean
+      - description: Sets the text for acknowledgement
+        in: query
+        name: acknowledgeText
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Successfully updated the alarm
+      summary: Update alarm
+      tags:
+      - Alarms
+  /alarms-history:
+    get:
+      description: "Gets information about alarms over the entire time. This includes\
+        \ current alarms and alarms, which are already processed."
+      operationId: getAlarmsHistory
+      parameters:
+      - description: Filter for a specific project
+        in: query
+        name: projectId
+        required: false
+        schema:
+          nullable: true
+          type: string
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Alarm'
+                type: array
+          description: Successfully returned a list of alarms
+      summary: Information about alarms history
+      tags:
+      - Alarms
+  /alarms-history/{alarm-rule-id}:
+    get:
+      description: Gets information about alarm over the entire time. This includes
+        current alarm and history.
+      operationId: getAlarmHistoryById
+      parameters:
+      - description: The id of the alarm rule
+        example: 4711
+        in: path
+        name: alarm-rule-id
+        required: true
+        schema:
+          type: integer
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Alarm'
+                type: array
+          description: Successfully returned a list of alarms
+      summary: Information about alarm history
+      tags:
+      - Alarms
+  /alarms-highest:
+    get:
+      description: Gets information about an alarms with the highest priority for
+        each asset.
+      operationId: getHighestAlarms
+      parameters:
+      - description: Filter for a specific project
+        in: query
+        name: projectId
+        required: false
+        schema:
+          nullable: true
+          type: string
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Alarm'
+                type: array
+          description: Successfully returned a list of most prioritized alarms
+      summary: Information about most prioritized alarms
+      tags:
+      - Alarms
+  /nodes:
+    get:
+      description: Gets information about nodes.
+      operationId: getNodes
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Node'
+                type: array
+          description: Successfully returned a list of nodes
+      summary: Information about nodes
+      tags:
+      - Nodes
+    post:
+      description: Create a new node.
+      operationId: postNode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Node'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+          description: Successfully created a new node
+      summary: Create a node
+      tags:
+      - Nodes
+    put:
+      deprecated: true
+      description: "Deprecated - Use POST /nodes to create PUT /nodes/{node-ident}\
+        \ to update."
+      operationId: putNode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Node'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+          description: Successfully created a new or updated an existing node
+      summary: Create or update a node
+      tags:
+      - Nodes
+  /nodes/{node-ident}:
+    get:
+      description: Gets information about a node.
+      operationId: getNodeByIdent
+      parameters:
+      - description: The UUID identifier of the node
+        example: 4711
+        in: path
+        name: node-ident
+        required: true
+        schema:
+          example: fef0a0d3-acad-4611-ac03-1fd842d72505
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+          description: Successfully returned a node
+        "404":
+          description: Node ident not found
+      summary: Information about a node
+      tags:
+      - Nodes
+    put:
+      description: Update a node.
+      operationId: putNodeByIdent
+      parameters:
+      - description: The UUID identifier of the node
+        example: 4711
+        in: path
+        name: node-ident
+        required: true
+        schema:
+          example: fef0a0d3-acad-4611-ac03-1fd842d72505
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Node'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Node'
+          description: Successfully updated an existing node
+        "404":
+          description: Node ident not found
+      summary: Update a node
+      tags:
+      - Nodes
+  /agents:
+    get:
+      description: Gets information about agents.
+      operationId: getAgents
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Agent'
+                type: array
+          description: Successfully returned a list of agents
+      summary: Information about agents
+      tags:
+      - Agents
+  /agents/{agent-class}:
+    get:
+      description: Gets information about agents.
+      operationId: getAgentsByClass
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Agent'
+                type: array
+          description: Successfully returned a list of agents
+      summary: Information about agents for a specific class
+      tags:
+      - Agents
+    post:
+      description: Create a new agent for a specific class
+      operationId: postAgentByClass
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Agent'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+          description: Successfully created a new agent
+      summary: Create an agent
+      tags:
+      - Agents
+    put:
+      deprecated: true
+      description: "Deprecated - use POST /agents/{agent-class} for creating and PUT\
+        \ /agents/{agent-class}/{agent-id} for updating"
+      operationId: putAgentByClass
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Agent'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+          description: Successfully created a new or updated an existing agent
+      summary: Create or update an agent
+      tags:
+      - Agents
+  /agents/{agent-class}/{agent-id}:
+    get:
+      description: Gets information about an agent.
+      operationId: getAgentByClassAndId
+      parameters:
+      - description: The id of the agent
+        example: 4711
+        in: path
+        name: agent-id
+        required: true
+        schema:
+          type: integer
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+          description: Successfully returned an agent
+        "404":
+          description: Agent with id not found
+      summary: Information about an agent
+      tags:
+      - Agents
+    put:
+      description: Update an agent.
+      operationId: putAgentByClassAndId
+      parameters:
+      - description: The id of the agent
+        example: 4711
+        in: path
+        name: agent-id
+        required: true
+        schema:
+          type: integer
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Agent'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+          description: Successfully updated an existing agent
+        "404":
+          description: Agent with id not found
+      summary: Update an agent
+      tags:
+      - Agents
+  /agents/{agent-class}/{agent-id}/devices:
+    get:
+      description: Gets information about agent devices.
+      operationId: getAgentDevicesByAgentId
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      - description: The id of the agent
+        example: 4711
+        in: path
+        name: agent-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AgentDevice'
+                type: array
+          description: Successfully returned a list of devices
+      summary: Information about agent devices
+      tags:
+      - Agents
+    post:
+      description: Create a new agent device.
+      operationId: postAgentDeviceByAgentId
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      - description: The id of the agent
+        example: 4711
+        in: path
+        name: agent-id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentDevice'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDevice'
+          description: Successfully created a new agent device
+      summary: Create an agent device
+      tags:
+      - Agents
+    put:
+      deprecated: true
+      description: "Deprecated - use POST /agents/{agent-class}/{agent-id}/devices\
+        \ for creating and PUT /agent-devices/{agent-class}/{agent-device-id} for\
+        \ updating"
+      operationId: putAgentDeviceByAgentId
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      - description: The id of the agent
+        example: 4711
+        in: path
+        name: agent-id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentDevice'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDevice'
+          description: Successfully created a new or updated an existing agent device
+      summary: Create or update an agent device
+      tags:
+      - Agents
+  /agent-devices/{agent-class}/{agent-device-id}:
+    get:
+      description: Gets information about agent device.
+      operationId: getAgentDeviceById
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      - description: The id of the device
+        example: 4711
+        in: path
+        name: agent-device-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AgentDevice'
+                type: array
+          description: Successfully returned a agent device
+      summary: Information about agent device
+      tags:
+      - Agents
+    put:
+      description: Update a new agent device.
+      operationId: putAgentDeviceById
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      - description: The id of the device
+        example: 4711
+        in: path
+        name: agent-device-id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentDevice'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDevice'
+          description: Successfully update a new agent device
+      summary: Update an agent device
+      tags:
+      - Agents
+  /agent-devices/{agent-class}/{agent-device-id}/mappings:
+    get:
+      description: Gets information about mappings between agent and eliona.
+      operationId: getAgentDeviceMappingsByDeviceId
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      - description: The id of the device
+        example: 4711
+        in: path
+        name: agent-device-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AgentDeviceMapping'
+                type: array
+          description: Successfully returned a mapping
+      summary: Information about agent device mappings
+      tags:
+      - Agents
+    post:
+      description: Create a new agent device mapping.
+      operationId: postAgentDeviceMappingByDeviceId
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      - description: The id of the device
+        example: 4711
+        in: path
+        name: agent-device-id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentDeviceMapping'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDeviceMapping'
+          description: Successfully created a new agent device mapping
+      summary: Create an agent device mapping
+      tags:
+      - Agents
+    put:
+      deprecated: true
+      description: "Deprecated - Use POST /agent-devices/{agent-class}/{agent-device-id}/mappings\
+        \ for creating and /agent-device-mappings/{agent-class}/{agent-device-mapping-id}\
+        \ for updating"
+      operationId: putAgentDeviceMappingByDeviceId
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      - description: The id of the device
+        example: 4711
+        in: path
+        name: agent-device-id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentDeviceMapping'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDeviceMapping'
+          description: Successfully created a new or updated an existing agent device
+            mapping
+      summary: Create or update an agent device mapping
+      tags:
+      - Agents
+  /agent-device-mappings/{agent-class}/{agent-device-mapping-id}:
+    get:
+      description: Gets information about agent device mapping.
+      operationId: getAgentDeviceMappingById
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      - description: The id of the device mapping
+        example: 4711
+        in: path
+        name: agent-device-mapping-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AgentDeviceMapping'
+                type: array
+          description: Successfully returned a agent device
+      summary: Information about agent device mapping
+      tags:
+      - Agents
+    put:
+      description: Update a new agent device mapping.
+      operationId: putAgentDeviceMappingById
+      parameters:
+      - description: The class of an agent
+        example: iosys
+        in: path
+        name: agent-class
+        required: true
+        schema:
+          enum:
+          - iosys
+          - mbus
+          type: string
+      - description: The id of the device mapping
+        example: 4711
+        in: path
+        name: agent-device-mapping-id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentDeviceMapping'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentDeviceMapping'
+          description: Successfully update a new agent device mapping
+      summary: Update an agent device mapping
+      tags:
+      - Agents
+  /send-mail:
+    post:
+      description: Sends an e-mail to recipients
+      operationId: postMail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageReceipt'
+          description: Successfully accepted the e-mail
+      summary: Send e-mail
+      tags:
+      - Messages
+  /message-receipts/{message-id}:
+    get:
+      description: Gets receipt information for a message.
+      operationId: getMessageReceiptById
+      parameters:
+      - description: The id of the message
+        example: AB0815
+        in: path
+        name: message-id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageReceipt'
+          description: Successfully returned the receipt
+        "404":
+          description: Message with id not found
+      summary: Information about a message
+      tags:
+      - Messages
 components:
+  parameters:
+    app-name:
+      description: The name of the app
+      example: weather
+      in: path
+      name: app-name
+      required: true
+      schema:
+        type: string
+    patch-name:
+      description: The name of the patch
+      example: 2.0.0
+      in: path
+      name: patch-name
+      required: true
+      schema:
+        type: string
+    expansions:
+      description: "List of referenced data to load, insert or update. Each entry\
+        \ defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'."
+      explode: false
+      in: query
+      name: expansions
+      schema:
+        items:
+          type: string
+        nullable: true
+        type: array
+      style: form
+    asset-type-name:
+      description: The name of the asset type
+      example: weather_location
+      in: path
+      name: asset-type-name
+      required: true
+      schema:
+        type: string
+    assetTypeName:
+      description: Filter the name of the asset type
+      example: weather_location
+      in: query
+      name: assetTypeName
+      required: false
+      schema:
+        type: string
+    projectId:
+      description: Filter for a specific project
+      in: query
+      name: projectId
+      required: false
+      schema:
+        nullable: true
+        type: string
+    asset-id:
+      description: The id of the asset
+      example: 4711
+      in: path
+      name: asset-id
+      required: true
+      schema:
+        type: integer
+    assetId:
+      description: Filter for a specific asset id
+      example: 4711
+      in: query
+      name: assetId
+      required: false
+      schema:
+        type: integer
+    dataSubtype:
+      description: Filter for a specific type of asset data
+      example: input
+      in: query
+      name: dataSubtype
+      required: false
+      schema:
+        enum:
+        - input
+        - info
+        - status
+        - output
+        type: string
+    fromDate:
+      description: Filter by lower date time (RFC3339) limit inclusive
+      example: 2020-01-01T09:00:00.000Z
+      in: query
+      name: fromDate
+      required: false
+      schema:
+        type: string
+    toDate:
+      description: Filter by upper date time (RFC3339) limit exclusive
+      example: 2021-12-31T23:00:00.000Z
+      in: query
+      name: toDate
+      required: false
+      schema:
+        type: string
+    aggregationId:
+      description: Filter for a specific aggregation id
+      example: "0815"
+      in: query
+      name: aggregationId
+      required: false
+      schema:
+        type: integer
+    aggregation-id:
+      description: The id of the aggregation
+      example: 4711
+      in: path
+      name: aggregation-id
+      required: true
+      schema:
+        type: integer
+    widget-type-name:
+      description: The name of the widget type
+      example: weather
+      in: path
+      name: widget-type-name
+      required: true
+      schema:
+        type: string
+    dashboard-id:
+      description: The id of the dashboard
+      example: 4711
+      in: path
+      name: dashboard-id
+      required: true
+      schema:
+        type: integer
+    alarm-rule-id:
+      description: The id of the alarm rule
+      example: 4711
+      in: path
+      name: alarm-rule-id
+      required: true
+      schema:
+        type: integer
+    node-ident:
+      description: The UUID identifier of the node
+      example: 4711
+      in: path
+      name: node-ident
+      required: true
+      schema:
+        example: fef0a0d3-acad-4611-ac03-1fd842d72505
+        type: string
+    agent-class:
+      description: The class of an agent
+      example: iosys
+      in: path
+      name: agent-class
+      required: true
+      schema:
+        enum:
+        - iosys
+        - mbus
+        type: string
+    agent-id:
+      description: The id of the agent
+      example: 4711
+      in: path
+      name: agent-id
+      required: true
+      schema:
+        type: integer
+    agent-device-id:
+      description: The id of the device
+      example: 4711
+      in: path
+      name: agent-device-id
+      required: true
+      schema:
+        type: integer
+    agent-device-mapping-id:
+      description: The id of the device mapping
+      example: 4711
+      in: path
+      name: agent-device-mapping-id
+      required: true
+      schema:
+        type: integer
+    message-id:
+      description: The id of the message
+      example: AB0815
+      in: path
+      name: message-id
+      required: true
+      schema:
+        type: string
   schemas:
     App:
       description: An app
@@ -360,9 +2553,11 @@ components:
           type: string
         active:
           description: Is the app active or inactive
+          nullable: true
           type: boolean
         registered:
           description: Is the app already registered or not
+          nullable: true
           type: boolean
       required:
       - name
@@ -385,102 +2580,21 @@ components:
           type: string
         active:
           description: Is the app active or inactive
+          nullable: true
           type: boolean
         applied:
           description: Is the app already applied or not
+          nullable: true
           type: boolean
       required:
       - appName
       - name
       type: object
-    Asset:
-      description: An asset
-      example:
-        globalAssetIdentifier: zurich_swiss
-        children:
-        - null
-        - null
-        latitude: 47.3667
-        name: Station Zurich
-        description: "Weather station Zurich, Swiss"
-        parentFunctionalAssetId: 4712
-        Id: 4711
-        projectId: "99"
-        assetType: assetType
-        longitude: 8.55
-        parentLocationalAssetId: 4712
-        tags:
-        - weather
-        - location
-      properties:
-        Id:
-          description: The internal Id of asset
-          example: 4711
-          readOnly: true
-          type: integer
-        projectId:
-          description: ID of the project to which the asset belongs
-          example: "99"
-          type: string
-        globalAssetIdentifier:
-          description: Unique identifier for the asset
-          example: zurich_swiss
-          type: string
-        name:
-          description: Alternate text for the asset to display in frontend
-          example: Station Zurich
-          type: string
-        assetType:
-          description: Reference to asset type by name
-          type: string
-        latitude:
-          description: Latitude coordinate (GPS) of the asset
-          example: 47.3667
-          format: double
-          type: number
-        longitude:
-          description: Longitude coordinate (GPS) of the asset
-          example: 8.55
-          format: double
-          type: number
-        description:
-          description: Textual description for this asset
-          example: "Weather station Zurich, Swiss"
-          type: string
-        parentFunctionalAssetId:
-          description: The id of an asset which groups this asset as a functional
-            child
-          example: 4712
-          type: integer
-        parentLocationalAssetId:
-          description: The id of an asset which groups this asset as a locational
-            child
-          example: 4712
-          type: integer
-        tags:
-          description: List of tags associated with asset
-          example:
-          - weather
-          - location
-          items:
-            type: string
-          type: array
-        children:
-          description: List of children for this asset. This list is filled when the
-            `withChildren` parameter is set.
-          items:
-            $ref: '#/components/schemas/Asset'
-          readOnly: true
-          type: array
-      required:
-      - assetType
-      - globalAssetIdentifier
-      - projectId
-      type: object
     AssetType:
       description: A type of assets
       example:
         vendor: vendor
+        allowedInactivity: 0 hours 5 mins
         custom: true
         name: weather_location
         translation:
@@ -494,20 +2608,18 @@ components:
         attributes:
         - viewer: false
           virtual: true
+          isDigital: true
           max: 6.027456183070403
           assetTypeName: weather_location
           precision: 1
+          scale: 5.962133916683182
           type: temperature
-          pipeline:
-            mode: avg
-            raster:
-            - S1
-            - S1
+          zero: 5.637376656633329
           ar: false
           sequence: 1
           unit: °C
           min: 0.8008281904610115
-          subtype: null
+          subtype: input
           enable: true
           name: temperature
           translation:
@@ -515,22 +2627,28 @@ components:
             en: This is an english description
             it: Questa è una descrizione italiana
             fr: Ceci est une description français
+          map: {}
+          aggregationMode: avg
+          aggregationRasters:
+          - DAY
+          - DAY
+          sourcePath:
+          - sourcePath
+          - sourcePath
         - viewer: false
           virtual: true
+          isDigital: true
           max: 6.027456183070403
           assetTypeName: weather_location
           precision: 1
+          scale: 5.962133916683182
           type: temperature
-          pipeline:
-            mode: avg
-            raster:
-            - S1
-            - S1
+          zero: 5.637376656633329
           ar: false
           sequence: 1
           unit: °C
           min: 0.8008281904610115
-          subtype: null
+          subtype: input
           enable: true
           name: temperature
           translation:
@@ -538,6 +2656,15 @@ components:
             en: This is an english description
             it: Questa è una descrizione italiana
             fr: Ceci est une description français
+          map: {}
+          aggregationMode: avg
+          aggregationRasters:
+          - DAY
+          - DAY
+          sourcePath:
+          - sourcePath
+          - sourcePath
+        payloadFunction: PLS
       properties:
         name:
           description: The unique name for this asset type
@@ -549,26 +2676,40 @@ components:
           type: boolean
         vendor:
           description: The vendor providing assets of this type
+          nullable: true
           type: string
         model:
           description: The specific model of assets of this type
+          nullable: true
           type: string
         translation:
           $ref: '#/components/schemas/Translation'
         urldoc:
           description: The url describing assets of this type
+          nullable: true
           type: string
         icon:
           description: Icon name corresponding to assets of this type
           example: weather
+          nullable: true
+          type: string
+        payloadFunction:
+          description: Asset types payload function
+          example: PLS
+          nullable: true
+          type: string
+        allowedInactivity:
+          example: 0 hours 5 mins
+          format: duration
+          nullable: true
           type: string
         attributes:
           description: List of named attributes
           items:
             $ref: '#/components/schemas/AssetTypeAttribute'
+          nullable: true
           type: array
       required:
-      - custom
       - name
       type: object
     AssetTypeAttribute:
@@ -576,20 +2717,18 @@ components:
       example:
         viewer: false
         virtual: true
+        isDigital: true
         max: 6.027456183070403
         assetTypeName: weather_location
         precision: 1
+        scale: 5.962133916683182
         type: temperature
-        pipeline:
-          mode: avg
-          raster:
-          - S1
-          - S1
+        zero: 5.637376656633329
         ar: false
         sequence: 1
         unit: °C
         min: 0.8008281904610115
-        subtype: null
+        subtype: input
         enable: true
         name: temperature
         translation:
@@ -597,18 +2736,26 @@ components:
           en: This is an english description
           it: Questa è una descrizione italiana
           fr: Ceci est une description français
+        map: {}
+        aggregationMode: avg
+        aggregationRasters:
+        - DAY
+        - DAY
+        sourcePath:
+        - sourcePath
+        - sourcePath
       properties:
         assetTypeName:
           description: The unique name for the asset type
           example: weather_location
-          readOnly: true
+          nullable: true
           type: string
         name:
-          description: Unique key of asset heap data
+          description: Unique key of asset data
           example: temperature
           type: string
         subtype:
-          $ref: '#/components/schemas/HeapSubtype'
+          $ref: '#/components/schemas/DataSubtype'
         type:
           description: Name of the type for this attribute
           enum:
@@ -635,17 +2782,20 @@ components:
           - voltage
           - watchdog
           - weather
+          - voc
           example: temperature
+          nullable: true
           type: string
         enable:
           default: true
-          description: Is heap data active or not
+          description: Is data active or not
           type: boolean
         translation:
           $ref: '#/components/schemas/Translation'
         unit:
           description: Physical unit of numeric data
           example: °C
+          nullable: true
           type: string
         precision:
           description: Number of decimal places
@@ -653,259 +2803,31 @@ components:
           format: int64
           maximum: 20
           minimum: -20
+          nullable: true
           type: integer
         min:
           description: Lower limit
           format: double
+          nullable: true
           type: number
+          example: null
         max:
           description: Upper limit
           format: double
+          nullable: true
           type: number
-        pipeline:
-          $ref: '#/components/schemas/Pipeline'
-        viewer:
-          default: false
-          description: Should the attribute be displayed in viewer
-          type: boolean
-        ar:
-          default: false
-          description: Should the attribute be displayed in AR
-          type: boolean
-        sequence:
-          description: Sequence in AR display
-          format: int64
-          type: integer
-        virtual:
-          description: Is the attribute virtual or not
-          type: boolean
-      required:
-      - name
-      - subtype
-      type: object
-    Heap:
-      description: Heap data
-      example:
-        data: "{}"
-        subtype: null
-        assetId: 4711
-        timestamp: 2000-01-23T04:56:07.000+00:00
-      properties:
-        assetId:
-          description: ID of the corresponding asset
-          example: 4711
-          type: integer
-        subtype:
-          $ref: '#/components/schemas/HeapSubtype'
-        timestamp:
-          description: Timestamp of the latest data change
-          format: date-time
-          type: string
-        data:
-          description: Asset payload
-          type: object
-      required:
-      - assetId
-      - data
-      - subtype
-      type: object
-    WidgetType:
-      description: A frontend widget
-      example:
-        withTimespan: false
-        custom: true
-        withAlarm: false
-        elements:
-        - description: Weather
-          category: weather
-          config: "{ \"variant\": \"todayAndForecast\" }"
-        - description: Weather
-          category: weather
-          config: "{ \"variant\": \"todayAndForecast\" }"
-        name: weather
-        translation:
-          de: Das ist eine deutsche Beschreibung
-          en: This is an english description
-          it: Questa è una descrizione italiana
-          fr: Ceci est une description français
-        icon: weather
-      properties:
-        name:
-          description: The unique name for this widget type
-          example: weather
-          type: string
-        custom:
-          default: true
-          description: Is this a customer created type or not
-          type: boolean
-        translation:
-          $ref: '#/components/schemas/Translation'
-        icon:
-          description: Icon name corresponding to assets used in this widget
-          example: weather
-          type: string
-        withAlarm:
-          default: false
-          description: Show alarms in widget
-          type: boolean
-        withTimespan:
-          default: false
-          description: Show selection for timespan in widget
-          type: boolean
-        elements:
-          description: A list of elements for this widget
-          items:
-            $ref: '#/components/schemas/WidgetTypeElement'
-          type: array
-      required:
-      - custom
-      - elements
-      - name
-      - translation
-      type: object
-    Dashboard:
-      description: A frontend dashboard
-      example:
-        sequence: 42
-        name: Weather info
-        Id: 4711
-        projectId: "99"
-        userId: "42"
-      properties:
-        Id:
-          description: The internal Id of dashboard
-          example: 4711
-          readOnly: true
-          type: integer
-        name:
-          description: The name for this dashboard
-          example: Weather info
-          type: string
-        projectId:
-          description: ID of the project to which the dashboard belongs
-          example: "99"
-          type: string
-        userId:
-          description: ID of the user who owns the dashboard
-          example: "42"
-          type: string
-        sequence:
-          description: "The sequence of the. If not defined, the sequence is automatically\
-            \ incremented."
-          example: 42
-          type: integer
-      required:
-      - name
-      - projectId
-      - userId
-      type: object
-    Widget:
-      description: A widget on a frontend dashboard
-      example:
-        data:
-        - elementSequence: 1
-          subtype: null
-          assetId: 4711
-          description: Temperature
-          attribute: temperature
-          key: key
-        - elementSequence: 1
-          subtype: null
-          assetId: 4711
-          description: Temperature
-          attribute: temperature
-          key: key
-        assetId: 4711
-        width: normal
-        details: "{}"
-        widgetTypeName: Weather
-        timespan: 7
-      properties:
-        widgetTypeName:
-          description: The name for the type of this widget
-          example: Weather
-          type: string
-        width:
-          description: The width of this widget on dashboard
-          enum:
-          - normal
-          - double
-          - full
-          type: string
-        timespan:
-          description: The number of days if the widget type uses timespan
-          example: 7
-          type: integer
-        details:
-          description: Detailed configuration depending on the widget type
-          type: object
-        assetId:
-          description: The master asset id of this widget
-          example: 4711
-          type: integer
-        data:
-          description: List of data for the elements of widget
-          items:
-            $ref: '#/components/schemas/WidgetData'
-          required:
-          - assetId
-          - elementSequence
-          type: array
-      required:
-      - widgetType
-      - width
-      type: object
-    Translation:
-      description: Readable text to display in frontend
-      example:
-        de: Das ist eine deutsche Beschreibung
-        en: This is an english description
-        it: Questa è una descrizione italiana
-        fr: Ceci est une description français
-      properties:
-        de:
-          description: German text
-          example: Das ist eine deutsche Beschreibung
-          type: string
-        en:
-          description: English text
-          example: This is an english description
-          type: string
-        fr:
-          description: French text
-          example: Ceci est une description français
-          type: string
-        it:
-          description: Italian text
-          example: Questa è una descrizione italiana
-          type: string
-      type: object
-    HeapSubtype:
-      default: input
-      description: Type of asset heap data
-      enum:
-      - input
-      - info
-      - status
-      - output
-      type: string
-    Pipeline:
-      example:
-        mode: avg
-        raster:
-        - S1
-        - S1
-      properties:
-        mode:
-          description: Pipeline calculation mode
+          example: null
+        aggregationMode:
+          description: Aggregation calculation mode
           enum:
           - avg
           - sum
           - cusum
+          nullable: true
           type: string
-        raster:
-          description: Pipeline calculation intervals
+        aggregationRasters:
           items:
+            description: Aggregation calculation intervals
             enum:
             - S1
             - S2
@@ -943,16 +2865,1156 @@ components:
             - YEAR
             - DECADE
             - CENTURY
+            example: DAY
             type: string
           type: array
+        viewer:
+          default: false
+          description: Should the attribute be displayed in viewer
+          nullable: true
+          type: boolean
+        ar:
+          default: false
+          description: Should the attribute be displayed in AR
+          nullable: true
+          type: boolean
+        sequence:
+          description: Sequence in AR display
+          format: int64
+          nullable: true
+          type: integer
+        virtual:
+          description: Is the attribute virtual or not
+          nullable: true
+          type: boolean
+        scale:
+          description: value scale
+          nullable: true
+          type: number
+        zero:
+          description: value scale
+          nullable: true
+          type: number
+        map:
+          description: custom map
+          example: {}
+          nullable: true
+          type: object
+        sourcePath:
+          description: source path for attribute value
+          items:
+            type: string
+          nullable: true
+          type: array
+        isDigital:
+          description: is attribute digital
+          nullable: true
+          type: boolean
+      required:
+      - name
+      - subtype
       type: object
+    Asset:
+      description: An asset
+      example:
+        globalAssetIdentifier: zurich_swiss
+        latitude: 47.3667
+        name: Station Zurich
+        description: "Weather station Zurich, Swiss"
+        parentFunctionalAssetId: 4712
+        id: 4711
+        projectId: "99"
+        childrenInfo:
+        - null
+        - null
+        assetType: assetType
+        longitude: 8.55
+        parentLocationalAssetId: 4712
+        tags:
+        - weather
+        - location
+      nullable: true
+      properties:
+        id:
+          description: The internal Id of asset
+          example: 4711
+          nullable: true
+          readOnly: true
+          type: integer
+        projectId:
+          description: ID of the project to which the asset belongs
+          example: "99"
+          type: string
+        globalAssetIdentifier:
+          description: Unique identifier for the asset
+          example: zurich_swiss
+          type: string
+        name:
+          description: Alternate text for the asset to display in frontend
+          example: Station Zurich
+          nullable: true
+          type: string
+        assetType:
+          description: Reference to asset type by name
+          type: string
+        latitude:
+          description: Latitude coordinate (GPS) of the asset
+          example: 47.3667
+          format: double
+          nullable: true
+          type: number
+        longitude:
+          description: Longitude coordinate (GPS) of the asset
+          example: 8.55
+          format: double
+          nullable: true
+          type: number
+        description:
+          description: Textual description for this asset
+          example: "Weather station Zurich, Swiss"
+          nullable: true
+          type: string
+        parentFunctionalAssetId:
+          description: The id of an asset which groups this asset as a functional
+            child
+          example: 4712
+          nullable: true
+          type: integer
+        parentLocationalAssetId:
+          description: The id of an asset which groups this asset as a locational
+            child
+          example: 4712
+          nullable: true
+          type: integer
+        tags:
+          description: List of associated tags
+          example:
+          - weather
+          - location
+          items:
+            type: string
+          nullable: true
+          type: array
+        childrenInfo:
+          description: List of children for this asset.
+          items:
+            $ref: '#/components/schemas/Asset'
+          nullable: true
+          readOnly: true
+          type: array
+      required:
+      - assetType
+      - globalAssetIdentifier
+      - projectId
+      type: object
+    Data:
+      description: Data for assets
+      example:
+        data: {}
+        subtype: input
+        assetId: 4711
+        assetTypeName: weather_location
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          type: integer
+        subtype:
+          $ref: '#/components/schemas/DataSubtype'
+        timestamp:
+          description: Timestamp of the latest data change
+          format: date-time
+          nullable: true
+          type: string
+        data:
+          description: Asset payload
+          example: {}
+          type: object
+        assetTypeName:
+          description: The name of the corresponding asset type
+          example: weather_location
+          nullable: true
+          readOnly: true
+          type: string
+      required:
+      - assetId
+      - data
+      - subtype
+      type: object
+    DataAggregated:
+      description: Aggregated data combines multiple data points for a periodical
+        raster
+      example:
+        average: 4.3
+        last: 3.0
+        max: 11.4
+        aggregationId: 815
+        assetTypeName: weather_location
+        raster: DAY
+        count: 100
+        sum: 430
+        min: 1.2
+        subtype: input
+        lastTimestamp: 2000-01-23T04:56:07.000+00:00
+        assetId: 4711
+        attribute: temperature
+        first: 9.3
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        aggregationId:
+          description: ID of the aggregation
+          example: 815
+          type: integer
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          type: integer
+        subtype:
+          $ref: '#/components/schemas/DataSubtype'
+        attribute:
+          description: Name of the attribute which holds the data points
+          example: temperature
+          type: string
+        raster:
+          description: Calculation intervals.
+          enum:
+          - S1
+          - S2
+          - S3
+          - S4
+          - S5
+          - S6
+          - S10
+          - S12
+          - S15
+          - S20
+          - S30
+          - M1
+          - M2
+          - M3
+          - M4
+          - M5
+          - M6
+          - M10
+          - M12
+          - M15
+          - M20
+          - M30
+          - H1
+          - H2
+          - H3
+          - H4
+          - H6
+          - H8
+          - H12
+          - DAY
+          - WEEK
+          - MONTH
+          - QUARTER
+          - YEAR
+          - DECADE
+          - CENTURY
+          example: DAY
+          type: string
+        timestamp:
+          description: Timestamp of this aggregated data set
+          format: date-time
+          nullable: true
+          type: string
+        count:
+          description: Count of data points in this aggregated data set
+          example: 100
+          format: double
+          nullable: true
+          type: number
+        average:
+          description: Average of all data points for this aggregated data set
+          example: 4.3
+          format: double
+          nullable: true
+          type: number
+        sum:
+          description: Sum of all data points for this aggregated data set
+          example: 430
+          format: double
+          nullable: true
+          type: number
+        first:
+          description: First data point in this aggregated data set
+          example: 9.3
+          format: double
+          nullable: true
+          type: number
+        min:
+          description: Data point with the most minimal value in this aggregated data
+            set
+          example: 1.2
+          format: double
+          nullable: true
+          type: number
+        max:
+          description: Data point with the most maximal value in this aggregated data
+            set
+          example: 11.4
+          format: double
+          nullable: true
+          type: number
+        last:
+          description: Latest data point in this aggregated data set
+          example: 3.0
+          format: double
+          nullable: true
+          type: number
+        lastTimestamp:
+          description: Timestamp of the latest data point
+          format: date-time
+          nullable: true
+          type: string
+        assetTypeName:
+          description: The name of the corresponding asset type
+          example: weather_location
+          nullable: true
+          readOnly: true
+          type: string
+      required:
+      - assetId
+      - id
+      - raster
+      - subtype
+      type: object
+    Aggregation:
+      description: Defines the aggregation of data points
+      example:
+        mode: avg
+        subtype: input
+        assetId: 4711
+        raster: DAY
+        id: 815
+        attribute: temperature
+      properties:
+        id:
+          description: ID of the aggregation
+          example: 815
+          nullable: true
+          readOnly: true
+          type: integer
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          type: integer
+        subtype:
+          $ref: '#/components/schemas/DataSubtype'
+        attribute:
+          description: Name of the attribute which holds the data points
+          example: temperature
+          type: string
+        mode:
+          description: Calculation mode
+          enum:
+          - avg
+          - sum
+          - cusum
+          example: avg
+          type: string
+        raster:
+          description: calculation interval
+          enum:
+          - S1
+          - S2
+          - S3
+          - S4
+          - S5
+          - S6
+          - S10
+          - S12
+          - S15
+          - S20
+          - S30
+          - M1
+          - M2
+          - M3
+          - M4
+          - M5
+          - M6
+          - M10
+          - M12
+          - M15
+          - M20
+          - M30
+          - H1
+          - H2
+          - H3
+          - H4
+          - H6
+          - H8
+          - H12
+          - DAY
+          - WEEK
+          - MONTH
+          - QUARTER
+          - YEAR
+          - DECADE
+          - CENTURY
+          example: DAY
+          nullable: true
+          type: string
+      required:
+      - assetId
+      - mode
+      - subtype
+      type: object
+    WidgetType:
+      description: A frontend widget
+      example:
+        withTimespan: false
+        custom: true
+        withAlarm: false
+        elements:
+        - sequence: 1
+          id: 4711
+          category: weather
+          config:
+            variant: todayAndForecast
+        - sequence: 1
+          id: 4711
+          category: weather
+          config:
+            variant: todayAndForecast
+        name: weather
+        translation:
+          de: Das ist eine deutsche Beschreibung
+          en: This is an english description
+          it: Questa è una descrizione italiana
+          fr: Ceci est une description français
+        icon: weather
+        id: 4711
+      properties:
+        id:
+          description: The internal Id of widget type
+          example: 4711
+          nullable: true
+          readOnly: true
+          type: integer
+        name:
+          description: The unique name for this widget type
+          example: weather
+          type: string
+        custom:
+          default: true
+          description: Is this a customer created type or not
+          type: boolean
+        translation:
+          $ref: '#/components/schemas/Translation'
+        icon:
+          description: Icon name corresponding to assets used in this widget
+          example: weather
+          nullable: true
+          type: string
+        withAlarm:
+          default: false
+          description: Show alarms in widget
+          nullable: true
+          type: boolean
+        withTimespan:
+          default: false
+          description: Show selection for timespan in widget
+          nullable: true
+          type: boolean
+        elements:
+          description: A list of elements for this widget (order matches the order
+            of elements for this type)
+          items:
+            $ref: '#/components/schemas/WidgetTypeElement'
+          type: array
+      required:
+      - elements
+      - name
+      - translation
+      type: object
+    Dashboard:
+      description: A frontend dashboard
+      example:
+        sequence: 1
+        name: Weather info
+        id: 4711
+        widgets:
+        - sequence: 1
+          data:
+          - elementSequence: 1
+            data:
+              subtype: input
+              attribute: temperature
+              key: humidity
+            assetId: 4711
+            id: 4711
+          - elementSequence: 1
+            data:
+              subtype: input
+              attribute: temperature
+              key: humidity
+            assetId: 4711
+            id: 4711
+          assetId: 4711
+          details: {}
+          id: 4711
+          widgetTypeName: Weather
+        - sequence: 1
+          data:
+          - elementSequence: 1
+            data:
+              subtype: input
+              attribute: temperature
+              key: humidity
+            assetId: 4711
+            id: 4711
+          - elementSequence: 1
+            data:
+              subtype: input
+              attribute: temperature
+              key: humidity
+            assetId: 4711
+            id: 4711
+          assetId: 4711
+          details: {}
+          id: 4711
+          widgetTypeName: Weather
+        projectId: "99"
+        userId: "42"
+      properties:
+        id:
+          description: The internal Id of dashboard
+          example: 4711
+          nullable: true
+          readOnly: true
+          type: integer
+        name:
+          description: The name for this dashboard
+          example: Weather info
+          type: string
+        projectId:
+          description: ID of the project to which the dashboard belongs
+          example: "99"
+          type: string
+        userId:
+          description: ID of the user who owns the dashboard
+          example: "42"
+          type: string
+        sequence:
+          default: 0
+          description: The sequence of the dashboard
+          example: 1
+          nullable: true
+          type: integer
+        widgets:
+          description: List of widgets on this dashboard (order matches the order
+            of widgets on the dashboard)
+          items:
+            $ref: '#/components/schemas/Widget'
+          nullable: true
+          type: array
+      required:
+      - name
+      - projectId
+      - userId
+      type: object
+    Widget:
+      description: A widget on a frontend dashboard
+      example:
+        sequence: 1
+        data:
+        - elementSequence: 1
+          data:
+            subtype: input
+            attribute: temperature
+            key: humidity
+          assetId: 4711
+          id: 4711
+        - elementSequence: 1
+          data:
+            subtype: input
+            attribute: temperature
+            key: humidity
+          assetId: 4711
+          id: 4711
+        assetId: 4711
+        details: {}
+        id: 4711
+        widgetTypeName: Weather
+      properties:
+        id:
+          description: The internal Id of widget
+          example: 4711
+          nullable: true
+          readOnly: true
+          type: integer
+        widgetTypeName:
+          description: The name for the type of this widget
+          example: Weather
+          type: string
+        details:
+          description: Detailed configuration depending on the widget type
+          example: {}
+          nullable: true
+          type: object
+        assetId:
+          description: The master asset id of this widget
+          example: 4711
+          nullable: true
+          type: integer
+        sequence:
+          description: Placement order on dashboard; if not set the index in array
+            is taken
+          example: 1
+          nullable: true
+          type: integer
+        data:
+          description: List of data for the elements of widget
+          items:
+            $ref: '#/components/schemas/WidgetData'
+          nullable: true
+          type: array
+      required:
+      - widgetTypeName
+      - width
+      type: object
+    AlarmRule:
+      description: Rule for an alarm
+      example:
+        requiresAcknowledge: false
+        subject: subject
+        urldoc: urldoc
+        priority: 2
+        message:
+          come:
+            en: AC fan defect
+        tags:
+        - tags
+        - tags
+        equal: 38.7
+        high: 38.7
+        subtype: input
+        low: 38.7
+        assetId: 4711
+        enable: true
+        notifyOn: R
+        dontMask: false
+        id: 123
+        attribute: temperature
+        assetInfo:
+          globalAssetIdentifier: zurich_swiss
+          latitude: 47.3667
+          name: Station Zurich
+          description: "Weather station Zurich, Swiss"
+          parentFunctionalAssetId: 4712
+          id: 4711
+          projectId: "99"
+          childrenInfo:
+          - null
+          - null
+          assetType: assetType
+          longitude: 8.55
+          parentLocationalAssetId: 4712
+          tags:
+          - weather
+          - location
+      nullable: true
+      properties:
+        id:
+          description: The id of the rule
+          example: 123
+          nullable: true
+          readOnly: true
+          type: integer
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          type: integer
+        subtype:
+          $ref: '#/components/schemas/DataSubtype'
+        attribute:
+          description: Name of the attribute of the asset type
+          example: temperature
+          type: string
+        enable:
+          default: true
+          description: Rule enabled or not
+          type: boolean
+        priority:
+          $ref: '#/components/schemas/AlarmPriority'
+        requiresAcknowledge:
+          default: false
+          description: Requires the alarm an acknowledgment
+          type: boolean
+        equal:
+          description: Triggers alarm if attribute value equals this value
+          example: 38.7
+          format: double
+          nullable: true
+          type: number
+        low:
+          description: Triggers alarm if attribute value is less than value
+          example: 38.7
+          format: double
+          nullable: true
+          type: number
+        high:
+          description: Triggers alarm if attribute value is greater than value
+          example: 38.7
+          format: double
+          nullable: true
+          type: number
+        message:
+          description: Texts for alarm
+          example:
+            come:
+              en: AC fan defect
+          nullable: true
+          type: object
+        tags:
+          description: List of associated tags
+          items:
+            type: string
+          nullable: true
+          type: array
+        subject:
+          description: The subject for the alarm
+          nullable: true
+          type: string
+        urldoc:
+          description: The url describing the alarm
+          nullable: true
+          type: string
+        notifyOn:
+          description: Notification
+          example: R
+          nullable: true
+          type: string
+        dontMask:
+          default: false
+          description: Do not mask
+          nullable: true
+          type: boolean
+        assetInfo:
+          $ref: '#/components/schemas/Asset'
+      required:
+      - assetId
+      - attribute
+      - priority
+      - subtype
+      type: object
+    Alarm:
+      description: An alarm
+      example:
+        occurrences: 1
+        requiresAcknowledge: false
+        acknowledgeText: acknowledgeText
+        priority: 2
+        message: {}
+        goneTimestamp: 2000-01-23T04:56:07.000+00:00
+        acknowledgeTimestamp: 2000-01-23T04:56:07.000+00:00
+        subtype: input
+        assetId: 4711
+        ruleInfo:
+          requiresAcknowledge: false
+          subject: subject
+          urldoc: urldoc
+          priority: 2
+          message:
+            come:
+              en: AC fan defect
+          tags:
+          - tags
+          - tags
+          equal: 38.7
+          high: 38.7
+          subtype: input
+          low: 38.7
+          assetId: 4711
+          enable: true
+          notifyOn: R
+          dontMask: false
+          id: 123
+          attribute: temperature
+          assetInfo:
+            globalAssetIdentifier: zurich_swiss
+            latitude: 47.3667
+            name: Station Zurich
+            description: "Weather station Zurich, Swiss"
+            parentFunctionalAssetId: 4712
+            id: 4711
+            projectId: "99"
+            childrenInfo:
+            - null
+            - null
+            assetType: assetType
+            longitude: 8.55
+            parentLocationalAssetId: 4712
+            tags:
+            - weather
+            - location
+        acknowledgeUserId: acknowledgeUserId
+        attribute: temperature
+        ruleId: 123
+        value: 38.7
+        assetInfo:
+          globalAssetIdentifier: zurich_swiss
+          latitude: 47.3667
+          name: Station Zurich
+          description: "Weather station Zurich, Swiss"
+          parentFunctionalAssetId: 4712
+          id: 4711
+          projectId: "99"
+          childrenInfo:
+          - null
+          - null
+          assetType: assetType
+          longitude: 8.55
+          parentLocationalAssetId: 4712
+          tags:
+          - weather
+          - location
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      nullable: true
+      properties:
+        ruleId:
+          description: The id of the corresponding rule
+          example: 123
+          nullable: true
+          type: integer
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          type: integer
+        subtype:
+          $ref: '#/components/schemas/DataSubtype'
+        attribute:
+          description: Name of the attribute of the asset type
+          example: temperature
+          nullable: true
+          type: string
+        priority:
+          $ref: '#/components/schemas/AlarmPriority'
+        requiresAcknowledge:
+          default: false
+          description: Requires the alarm an acknowledgment
+          type: boolean
+        value:
+          description: The value which triggers the alarm
+          example: 38.7
+          format: double
+          nullable: true
+          type: number
+        timestamp:
+          description: Timestamp of the latest data change
+          format: date-time
+          type: string
+        goneTimestamp:
+          description: Timestamp of the latest data change
+          format: date-time
+          nullable: true
+          type: string
+        acknowledgeTimestamp:
+          description: Timestamp of the latest data change
+          format: date-time
+          nullable: true
+          type: string
+        occurrences:
+          description: How often this alarm is triggered
+          example: 1
+          type: integer
+        acknowledgeText:
+          description: Text of acknowledgement
+          nullable: true
+          type: string
+        acknowledgeUserId:
+          description: User who acknowledged the alarm
+          format: text
+          nullable: true
+          type: string
+        message:
+          description: Message.yaml texts for alarm
+          example: {}
+          nullable: true
+          type: object
+        assetInfo:
+          $ref: '#/components/schemas/Asset'
+        ruleInfo:
+          $ref: '#/components/schemas/AlarmRule'
+      required:
+      - assetId
+      - occurrences
+      - priority
+      - subtype
+      - timestamp
+      type: object
+    Node:
+      description: An edge node
+      example:
+        password: password
+        ident: fef0a0d3-acad-4611-ac03-1fd842d72505
+        assetId: 4711
+        vendor: vendor
+        enable: false
+        description: Node east plant
+        model: model
+        id: "1234"
+      nullable: true
+      properties:
+        id:
+          description: Unique id for the edge node
+          example: "1234"
+          nullable: true
+          readOnly: true
+          type: string
+        ident:
+          description: UUID to identify the edge node
+          example: fef0a0d3-acad-4611-ac03-1fd842d72505
+          nullable: true
+          readOnly: true
+          type: string
+        password:
+          description: Password with which the node identifies itself
+          nullable: true
+          type: string
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          nullable: true
+          type: integer
+        vendor:
+          description: Vendor name
+          nullable: true
+          type: string
+        model:
+          description: Model name
+          nullable: true
+          type: string
+        description:
+          description: Descriptive text for the edge node
+          example: Node east plant
+          nullable: true
+          type: string
+        enable:
+          default: false
+          description: Is the node enabled or not
+          type: boolean
+      type: object
+    Agent:
+      description: An agent installed on an edge node
+      example:
+        assetId: 4711
+        enable: false
+        description: IOSYS Agent east plant
+        id: 4711
+        nodeId: "1234"
+        class: null
+        config: {}
+      nullable: true
+      properties:
+        id:
+          description: Unique id for the agent
+          example: 4711
+          nullable: true
+          readOnly: true
+          type: integer
+        nodeId:
+          description: Id of the node where the agent is installed
+          example: "1234"
+          nullable: true
+          type: string
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          nullable: true
+          type: integer
+        class:
+          $ref: '#/components/schemas/AgentClass'
+        description:
+          description: Descriptive text for the agent
+          example: IOSYS Agent east plant
+          nullable: true
+          type: string
+        enable:
+          default: false
+          description: Is the agent enabled or not
+          type: boolean
+        config:
+          description: Individual configuration depending on agent class
+          example: {}
+          nullable: true
+          type: object
+      type: object
+    AgentDevice:
+      anyOf:
+      - $ref: '#/components/schemas/IosysAgentDevice'
+      - $ref: '#/components/schemas/MbusAgentDevice'
+    AgentDeviceMapping:
+      anyOf:
+      - $ref: '#/components/schemas/IosysAgentDeviceMapping'
+      - $ref: '#/components/schemas/MbusAgentDeviceMapping'
+    Message:
+      description: A message
+      example:
+        attachments:
+        - name: example.gif
+          encoding: base64
+          contentType: image/png
+          content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+        - name: example.gif
+          encoding: base64
+          contentType: image/png
+          content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+        sender: sender@example.com
+        recipients:
+        - recipient@example.com
+        - recipient@example.com
+        subject: This is a example message
+        blindCopyRecipients:
+        - blind-copy-recipient@example.com
+        - blind-copy-recipient@example.com
+        copyRecipients:
+        - copy-recipient@example.com
+        - copy-recipient@example.com
+        content: <h1>Example</h1>
+      properties:
+        sender:
+          description: "Address of the sender, e.g. an e-mail address"
+          example: sender@example.com
+          nullable: true
+          type: string
+        recipients:
+          description: A list of recipient addresses to receive this message
+          items:
+            description: "A recipient's address, e.g. an e-mail address"
+            example: recipient@example.com
+            type: string
+          minItems: 1
+          type: array
+        copyRecipients:
+          description: A list of recipient addresses to receive this message as copy
+          items:
+            description: "A recipient's address, e.g. an e-mail address"
+            example: copy-recipient@example.com
+            type: string
+          nullable: true
+          type: array
+        blindCopyRecipients:
+          description: A list of recipient addresses to receive this message as blind
+            copy without any other recipient information
+          items:
+            description: "A recipient's address, e.g. an e-mail address"
+            example: blind-copy-recipient@example.com
+            type: string
+          nullable: true
+          type: array
+        subject:
+          description: The subject for this message
+          example: This is a example message
+          type: string
+        content:
+          description: "The content of the message. If template is used, the content\
+            \ is embedded in the template."
+          example: <h1>Example</h1>
+          type: string
+        attachments:
+          description: A list of files attached to the message
+          items:
+            $ref: '#/components/schemas/Attachment'
+          nullable: true
+          type: array
+      required:
+      - content
+      - recipients
+      type: object
+    MessageReceipt:
+      description: A receipt for a message
+      example:
+        id: AB0815
+        scheduledAt: 2000-01-23T04:56:07.000+00:00
+        status: scheduled
+      properties:
+        id:
+          description: Identifies the message
+          example: AB0815
+          readOnly: true
+          type: string
+        scheduledAt:
+          description: When the message is scheduled for sending
+          format: date-time
+          nullable: true
+          type: string
+        status:
+          description: Status of the message processing
+          enum:
+          - scheduled
+          - sent
+          - failed
+          type: string
+      required:
+      - id
+      type: object
+    Translation:
+      description: Readable text to display in frontend
+      example:
+        de: Das ist eine deutsche Beschreibung
+        en: This is an english description
+        it: Questa è una descrizione italiana
+        fr: Ceci est une description français
+      nullable: true
+      properties:
+        de:
+          description: German text
+          example: Das ist eine deutsche Beschreibung
+          type: string
+        en:
+          description: English text
+          example: This is an english description
+          type: string
+        fr:
+          description: French text
+          example: Ceci est une description français
+          type: string
+        it:
+          description: Italian text
+          example: Questa è una descrizione italiana
+          type: string
+      type: object
+    DataSubtype:
+      default: input
+      description: Type of asset data
+      enum:
+      - input
+      - info
+      - status
+      - output
+      example: input
+      type: string
+      x-enum-descriptions:
+      - Input subtype for data values
+      - Info subtype for data values
+      - Status subtype for data values
+      - Output subtype for data values
+      x-enum-varnames:
+      - SUBTYPE_INPUT
+      - SUBTYPE_INFO
+      - SUBTYPE_STATUS
+      - SUBTYPE_OUTPUT
     WidgetTypeElement:
       description: An element for widget types
       example:
-        description: Weather
+        sequence: 1
+        id: 4711
         category: weather
-        config: "{ \"variant\": \"todayAndForecast\" }"
+        config:
+          variant: todayAndForecast
       properties:
+        id:
+          description: The internal Id of widget element
+          example: 4711
+          nullable: true
+          readOnly: true
+          type: integer
         category:
           description: The category for this element
           enum:
@@ -978,13 +4040,17 @@ components:
           - storey
           example: weather
           type: string
-        description:
-          description: description text for this element
-          example: Weather
-          type: string
+        sequence:
+          description: sequence of element in widget; if not defined the index in
+            array is taken
+          example: 1
+          nullable: true
+          type: integer
         config:
           description: individual config parameters depending on category
-          example: "{ \"variant\": \"todayAndForecast\" }"
+          example:
+            variant: todayAndForecast
+          nullable: true
           type: object
       required:
       - category
@@ -994,33 +4060,326 @@ components:
       description: Data for a widget
       example:
         elementSequence: 1
-        subtype: null
+        data:
+          subtype: input
+          attribute: temperature
+          key: humidity
         assetId: 4711
-        description: Temperature
-        attribute: temperature
-        key: key
+        id: 4711
       properties:
+        id:
+          description: The internal Id of widget data
+          example: 4711
+          nullable: true
+          readOnly: true
+          type: integer
         elementSequence:
           description: Position of the element in widget type
           example: 1
+          nullable: true
           type: integer
-        key:
-          description: Key for the data
-          type: string
         assetId:
           description: The master asset id of this widget
           example: 4711
+          nullable: true
           type: integer
-        subtype:
-          $ref: '#/components/schemas/HeapSubtype'
-        attribute:
-          description: "Attribute of the asset type, which heap data should be used"
-          example: temperature
+        data:
+          description: individual config parameters depending on category
+          example:
+            subtype: input
+            attribute: temperature
+            key: humidity
+          nullable: true
+          type: object
+      type: object
+    AlarmPriority:
+      description: The priority of the alarm. The higher this value the higher the
+        priority.
+      enum:
+      - 1
+      - 2
+      - 3
+      example: 2
+      type: integer
+      x-enum-varnames:
+      - ALARM_PRIORITY_LOW
+      - ALARM_PRIORITY_MEDIUM
+      - ALARM_PRIORITY_HEIGHT
+    AgentClass:
+      description: The class of an agent
+      enum:
+      - iosys
+      - mbus
+      nullable: true
+      readOnly: true
+      type: string
+      x-enum-varnames:
+      - AGENT_CLASS_IOSYS
+      - AGENT_CLASS_MBUS
+    IosysAgentDevice:
+      allOf:
+      - $ref: '#/components/schemas/AgentDeviceGeneral'
+      - $ref: '#/components/schemas/IosysAgentDeviceSpecific'
+      x-all-of-name: IosysAgentDevice
+    MbusAgentDevice:
+      allOf:
+      - $ref: '#/components/schemas/AgentDeviceGeneral'
+      - $ref: '#/components/schemas/MbusAgentDeviceSpecific'
+      x-all-of-name: MbusAgentDevice
+    IosysAgentDeviceMapping:
+      allOf:
+      - $ref: '#/components/schemas/AgentDeviceMappingGeneral'
+      - $ref: '#/components/schemas/IosysAgentDeviceMappingSpecific'
+      x-all-of-name: IosysAgentDeviceMapping
+    MbusAgentDeviceMapping:
+      allOf:
+      - $ref: '#/components/schemas/AgentDeviceMappingGeneral'
+      - $ref: '#/components/schemas/MbusAgentDeviceMappingSpecific'
+      x-all-of-name: MbusAgentDeviceMapping
+    Attachment:
+      description: A binary attachment for messages
+      example:
+        name: example.gif
+        encoding: base64
+        contentType: image/png
+        content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+      properties:
+        name:
+          description: "The name for the attachment, e.g. the filename"
+          example: example.gif
           type: string
-        description:
-          description: Text for frontend
-          example: Temperature
+        contentType:
+          description: The type of binary data
+          example: image/png
+          nullable: true
+          type: string
+        encoding:
+          description: The encoding of content
+          example: base64
+          nullable: true
+          type: string
+        content:
+          description: The binary data as encoded string
+          example: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
           type: string
       required:
-      - elementSequence
+      - data
+      - name
       type: object
+    AgentDeviceGeneral:
+      description: A general device for an agent
+      nullable: true
+      properties:
+        class:
+          $ref: '#/components/schemas/AgentClass'
+        id:
+          description: Unique id for the device
+          example: 1234
+          nullable: true
+          readOnly: true
+          type: integer
+        agentId:
+          description: The id of the agent the device belongs to
+          example: 4711
+          nullable: true
+          readOnly: true
+          type: integer
+        enable:
+          default: false
+          description: Is the device enabled or not
+          type: boolean
+      type: object
+    AgentDeviceMappingGeneral:
+      description: A general mapping of attributes for an agent
+      nullable: true
+      properties:
+        class:
+          $ref: '#/components/schemas/AgentClass'
+        id:
+          description: Unique id for the mapping
+          example: 1234
+          nullable: true
+          readOnly: true
+          type: integer
+        deviceId:
+          description: The id of the device the mapping belongs to
+          example: 4711
+          nullable: true
+          readOnly: true
+          type: integer
+        enable:
+          default: true
+          description: Is the mapping enabled or not
+          type: boolean
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          nullable: true
+          type: integer
+        subtype:
+          $ref: '#/components/schemas/DataSubtype'
+        attribute:
+          description: Name of the attribute to map
+          example: temperature
+          type: string
+      required:
+      - attribute
+      - subtype
+      type: object
+    IosysAgentDeviceSpecific:
+      description: Specific device for IOSYS agents
+      nullable: true
+      properties:
+        port:
+          description: Port of device
+          nullable: true
+          type: integer
+        certificate:
+          description: Certificate of device
+          nullable: true
+          type: string
+        key:
+          description: Key for device
+          nullable: true
+          type: string
+        timeout:
+          description: Time in seconds
+          nullable: true
+          type: integer
+        reconnect:
+          description: Reconnect
+          example: 10
+          nullable: true
+          type: integer
+      title: IosysAgentDeviceSpecific
+      type: object
+      example: null
+    MbusAgentDeviceSpecific:
+      description: Specific device for MBUS agents
+      nullable: true
+      properties:
+        manufacturer:
+          nullable: true
+          type: string
+        model:
+          nullable: true
+          type: string
+        address:
+          nullable: true
+          type: integer
+        secAddress:
+          nullable: true
+          type: string
+        raster:
+          nullable: true
+          type: string
+        maxFail:
+          default: 4
+          nullable: true
+          type: integer
+        maxRetry:
+          default: 3
+          nullable: true
+          type: integer
+        sendNke:
+          default: false
+          nullable: true
+          type: boolean
+        appResetSubcode:
+          nullable: true
+          type: integer
+        multiFrames:
+          default: 0
+          nullable: true
+          type: integer
+      title: MbusAgentDeviceSpecific
+      type: object
+      example: null
+    IosysAgentDeviceMappingSpecific:
+      description: Specific mapping for IOSYS agents
+      nullable: true
+      properties:
+        iosVar:
+          nullable: true
+          type: string
+        iosType:
+          enum:
+          - INT
+          - REAL
+          - STRING
+          nullable: true
+          type: string
+        down:
+          default: false
+          nullable: true
+          type: boolean
+        scale:
+          format: double
+          nullable: true
+          type: number
+        zero:
+          format: double
+          nullable: true
+          type: number
+        mask:
+          items:
+            format: int64
+            type: integer
+          nullable: true
+          type: array
+        maskAttributes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        deadTime:
+          nullable: true
+          type: integer
+        deadBand:
+          format: double
+          nullable: true
+          type: number
+        filter:
+          enum:
+          - LPF1
+          - LPF2
+          - MOVA
+          nullable: true
+          type: string
+        tau:
+          format: double
+          nullable: true
+          type: number
+      title: IosysAgentDeviceMappingSpecific
+      type: object
+      example: null
+    MbusAgentDeviceMappingSpecific:
+      description: Specific mapping for MBUS agents
+      nullable: true
+      properties:
+        field:
+          nullable: true
+          type: integer
+        scale:
+          format: double
+          nullable: true
+          type: number
+        zero:
+          format: double
+          nullable: true
+          type: number
+      title: MbusAgentDeviceMappingSpecific
+      type: object
+      example: null
+  securitySchemes:
+    ApiKeyAuth:
+      description: Use the API key as a secret for authorizing and identifying an
+        app or agent
+      in: header
+      name: X-API-Key
+      type: apiKey
+    BearerAuth:
+      bearerFormat: JWT
+      description: Use the Bearer for authorizing and identifying a frontend access
+      scheme: bearer
+      type: http

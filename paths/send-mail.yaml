@@ -1,0 +1,19 @@
+post:
+  tags:
+    - Messages
+  summary: Send e-mail
+  description: Sends an e-mail to recipients
+  operationId: postMail
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Message.yaml'
+  responses:
+    201:
+      description: Successfully accepted the e-mail
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/MessageReceipt.yaml'

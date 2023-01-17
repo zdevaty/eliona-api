@@ -1,27 +1,28 @@
 type: object
 description: Data for a widget
-required:
-  - elementSequence
 properties:
+  id:
+    type: integer
+    readOnly: true
+    description: The internal Id of widget data
+    example: 4711
+    nullable: true
   elementSequence:
     type: integer
     description: Position of the element in widget type
     example: 1
-  key:
-    type: string
-    description: Key for the data
-    example:
+    nullable: true
   assetId:
     type: integer
     description: The master asset id of this widget
     example: 4711
-  subtype:
-    $ref: 'HeapSubtype.yaml'
-  attribute:
-    type: string
-    description: Attribute of the asset type, which heap data should be used
-    example: temperature
-  description:
-    type: string
-    description: Text for frontend
-    example: Temperature
+    nullable: true
+  data:
+    type: object
+    description: individual config parameters depending on category
+    nullable: true
+    example:  {
+      "subtype": "input",
+      "attribute": "temperature",
+      "key": "humidity"
+    }

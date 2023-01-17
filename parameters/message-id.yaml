@@ -1,0 +1,7 @@
+name: message-id
+in: path
+description: The id of the message
+example: AB0815
+required: true
+schema:
+  type: string

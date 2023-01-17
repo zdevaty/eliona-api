@@ -1,0 +1,42 @@
+get:
+  tags:
+    - Alarm rules
+  summary: Information about an alarm rule
+  description: Gets information about an alarm rule.
+  operationId: getAlarmRuleById
+  parameters:
+    - $ref: '../parameters/alarm-rule-id.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  responses:
+    200:
+      description: Successfully returned an alarm rule
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AlarmRule.yaml'
+    404:
+      description: Alarm rule with id not found
+
+put:
+  tags:
+    - Alarm rules
+  summary: Update an alarm rule
+  description: Update an alarm rule.
+  operationId: putAlarmRuleById
+  parameters:
+    - $ref: '../parameters/alarm-rule-id.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AlarmRule.yaml'
+  responses:
+    200:
+      description: Successfully updated an existing alarm rule
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AlarmRule.yaml'
+    404:
+      description: Alarm rule with id not found

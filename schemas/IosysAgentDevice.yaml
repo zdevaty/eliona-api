@@ -1,0 +1,32 @@
+x-all-of-name: IosysAgentDevice
+allOf:
+  - $ref: 'AgentDeviceGeneral.yaml'
+  - type: object
+    title: IosysAgentDeviceSpecific
+    description: Specific device for IOSYS agents
+    nullable: true
+    properties:
+      port:
+        type: integer
+        description: Port of device
+        nullable: true
+      certificate:
+        type: string
+        description: Certificate of device
+        nullable: true
+      key:
+        type: string
+        description: Key for device
+        nullable: true
+      timeout:
+        type: integer
+        description: Time in seconds
+        nullable: true
+      reconnect:
+        type: integer
+        description: Reconnect
+        nullable: true
+        example: 10
+        min: 10
+
+

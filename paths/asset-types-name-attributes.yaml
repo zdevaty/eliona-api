@@ -2,10 +2,10 @@ put:
   tags:
     - Asset types
   summary: Create or update an asset type attribute
-  description: Create a new asset type attribute or update an asset type attribute if already exists
+  description: Create a new asset type attribute or update an asset type attribute if already exists. Uses the unique combination of asset type name, subtype and attribute name for updating.
   operationId: putAssetTypeAttribute
   parameters:
-    - $ref: '../parameters/AssetTypeName.yaml'
+    - $ref: '../parameters/asset-type-name.yaml'
   type: integer
   requestBody:
     required: true
@@ -16,3 +16,32 @@ put:
   responses:
     200:
       description: Successfully created a new or updated an existing asset type attribute
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AssetTypeAttribute.yaml'
+
+post:
+  tags:
+    - Asset types
+  summary: Create asset type attribute
+  description: Create a new asset type attribute.
+  operationId: postAssetTypeAttribute
+  parameters:
+    - $ref: '../parameters/asset-type-name.yaml'
+  type: integer
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AssetTypeAttribute.yaml'
+  responses:
+    201:
+      description: Successfully created a new asset type attribute
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AssetTypeAttribute.yaml'
+    409:
+      description: Combination of asset type name, subtype and attribute name already exists

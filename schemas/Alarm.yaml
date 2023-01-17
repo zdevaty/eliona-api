@@ -1,0 +1,74 @@
+type: object
+description: An alarm
+nullable: true
+required:
+  - assetId
+  - subtype
+  - priority
+  - timestamp
+  - occurrences
+properties:
+  ruleId:
+    type: integer
+    description: The id of the corresponding rule
+    example: 123
+    nullable: true
+  assetId:
+    type: integer
+    description: ID of the corresponding asset
+    example: 4711
+  subtype:
+    $ref: 'DataSubtype.yaml'
+  attribute:
+    type: string
+    description: Name of the attribute of the asset type
+    example: temperature
+    nullable: true
+  priority:
+    $ref: 'AlarmPriority.yaml'
+  requiresAcknowledge:
+    type: boolean
+    description: Requires the alarm an acknowledgment
+    default: false
+  value:
+    type: number
+    format: double
+    description: The value which triggers the alarm
+    example: 38.7
+    nullable: true
+  timestamp:
+    type: string
+    format: date-time
+    description: Timestamp of the latest data change
+  goneTimestamp:
+    type: string
+    format: date-time
+    description: Timestamp of the latest data change
+    nullable: true
+  acknowledgeTimestamp:
+    type: string
+    format: date-time
+    description: Timestamp of the latest data change
+    nullable: true
+  occurrences:
+    type: integer
+    description: How often this alarm is triggered
+    example: 1
+  acknowledgeText:
+    type: string
+    description: Text of acknowledgement
+    nullable: true
+  acknowledgeUserId:
+    type: string
+    format: text
+    description: User who acknowledged the alarm
+    nullable: true
+  message:
+    type: object
+    description: Message.yaml texts for alarm
+    nullable: true
+    example: {}
+  assetInfo:
+    $ref: 'Asset.yaml'
+  ruleInfo:
+    $ref: 'AlarmRule.yaml'

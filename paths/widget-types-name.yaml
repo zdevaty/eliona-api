@@ -1,0 +1,57 @@
+get:
+  tags:
+    - Widgets types
+  summary: Information about a widget type
+  description: Gets information about a widget type.
+  operationId: getWidgetTypeByName
+  parameters:
+    - $ref: '../parameters/widget-type-name.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  responses:
+    200:
+      description: Successfully returned a widget type by name.
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/WidgetType.yaml'
+    404:
+      description: Widget type with name not found
+
+delete:
+  tags:
+    - Widgets types
+  summary: Delete a widget type
+  description: Deletes a widget type and the elements for this widget type.
+  operationId: deleteWidgetTypeByName
+  parameters:
+    - $ref: '../parameters/widget-type-name.yaml'
+  responses:
+    204:
+      description: Successfully deleted the widget type
+    404:
+      description: Widget type with name not found
+
+put:
+  tags:
+    - Widgets types
+  summary: Update a widget type
+  description: Update a widget type.
+  parameters:
+    - $ref: '../parameters/widget-type-name.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  operationId: putWidgetTypeByName
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/WidgetType.yaml'
+  responses:
+    200:
+      description: Successfully updated widget type
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/WidgetType.yaml'
+    404:
+      description: Widget type with name not found

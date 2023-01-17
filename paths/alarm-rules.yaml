@@ -1,0 +1,58 @@
+get:
+  tags:
+    - Alarm rules
+  summary: Information about alarm rules
+  description: Gets information about alarm rules.
+  operationId: getAlarmRules
+  parameters:
+    - $ref: '../parameters/expansions.yaml'
+  responses:
+    200:
+      description: Successfully returned a list of alarms
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/AlarmRule.yaml'
+
+put:
+  deprecated: true
+  tags:
+    - Alarm rules
+  summary: Create or update an alarm rule
+  description: Deprecated - Use POST /alarm-rules to create and PUT /alarm-rules/{alarm-rule-id} to update
+  operationId: putAlarmRule
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AlarmRule.yaml'
+  responses:
+    200:
+      description: Successfully created a new or updated an existing alarm rule
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AlarmRule.yaml'
+
+post:
+  tags:
+    - Alarm rules
+  summary: Create an alarm rule
+  description: Create a new alarm rule.
+  operationId: postAlarmRule
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AlarmRule.yaml'
+  responses:
+    201:
+      description: Successfully created a new alarm rule
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AlarmRule.yaml'
