@@ -10,21 +10,27 @@ openapi: 3.0.3
 # |______|_|_|\___/|_| |_|\__,_|
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
-#  BUT NOT LIMITED  TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+#  BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
 #  NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
 #  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 info:
   version: 2.4.4
-  title: Eliona API
-  description: API to access Eliona Smart Building Assistant
-  termsOfService: https://www.eliona.io/v2
+  title: Eliona REST API
+  description:
+    The Eliona REST API enables unified access to the resources and data of an Eliona environment.
+  contact:
+    name: Eliona by IoTEC AG
+    url: https://eliona.io
+    email: hello@eliona.io
+  license:
+    name: MIT License
 externalDocs:
-  description: Find out more about Eliona
-  url: https://www.eliona.io
+  description: Find out more about Eliona App SDK
+  url: https://github.com/eliona-smart-building-assistant
 servers:
-  - url: http://api.eliona.io/v2
+  - url: https://api.eliona.io/v2
 security:
   - ApiKeyAuth: []
   - BearerAuth: []

@@ -3,7 +3,7 @@ GET {{api-server}}/v2/alarm-rules
 X-Api-Key: {{read-only-token}}
 
 ### Get alarm rule
-GET {{api-server}}/v2/alarm-rules/66
+GET {{api-server}}/v2/alarm-rules/934
 X-Api-Key: {{read-only-token}}
 
 ### Insert new alarm rule
