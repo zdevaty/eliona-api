@@ -5,7 +5,8 @@ Content-Type: application/json
 
 {
   "recipients": [
-    "andreas.goebel@eliona.io"
+    "andreas.goebel@eliona.io",
+    "andreas.goebel@netzverb.de"
   ],
   "subject": "This is an example message",
   "content": "Hello!<br><br>This is a test message.<br><br>Regards",
@@ -20,5 +21,5 @@ Content-Type: application/json
 }
 
 ### Get mail status
-GET {{api-server}}/v2/message-receipts/9
+GET {{api-server}}/v2/message-receipts/79
 X-Api-Key: {{read-only-token}}

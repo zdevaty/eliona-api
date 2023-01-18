@@ -1,3 +1,11 @@
 ### Acknow an alarm
-PATCH {{api-server}}/v2/alarms/8409?acknowledgeText=Test Andreas Göbel from APIv2&acknowledged=true
+PATCH {{api-server}}/v2/alarms/894?acknowledgeText=Test Andreas Göbel from APIv2&acknowledged=true
 X-Api-Key: {{read-write-token}}
+
+### Get alarms
+GET {{api-server}}/v2/alarms
+X-Api-Key: {{read-only-token}}
+
+### Get alarm
+GET {{api-server}}/v2/alarms/894
+X-Api-Key: {{read-only-token}}

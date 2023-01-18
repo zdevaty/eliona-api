@@ -1,14 +1,20 @@
 openapi: 3.0.3
 info:
-  description: API to access Eliona Smart Building Assistant
-  termsOfService: https://www.eliona.io/v2
-  title: Eliona API
+  contact:
+    email: hello@eliona.io
+    name: Eliona by IoTEC AG
+    url: https://eliona.io
+  description: The Eliona REST API enables unified access to the resources and data
+    of an Eliona environment.
+  license:
+    name: MIT License
+  title: Eliona REST API
   version: 2.4.4
 externalDocs:
-  description: Find out more about Eliona
-  url: https://www.eliona.io
+  description: Find out more about Eliona App SDK
+  url: https://github.com/eliona-smart-building-assistant
 servers:
-- url: http://api.eliona.io/v2
+- url: https://api.eliona.io/v2
 security:
 - ApiKeyAuth: []
 - BearerAuth: []
