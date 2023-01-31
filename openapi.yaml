@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.4.5
+  version: 2.4.6
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -91,17 +91,17 @@ paths:
       summary: Version of the API
       tags:
       - Version
-  /openapi.yaml:
+  /version/openapi.json:
     get:
-      description: Gets specification for this API version as an openapi.yaml file.
+      description: Gets specification for this API version as an openapi.json file.
       operationId: getOpenAPI
       responses:
         "200":
           content:
-            application/yaml: {}
-          description: Successfully returned the openapi.yaml file.
+            application/json: {}
+          description: Successfully returned the openapi.json file.
       security: []
-      summary: OpenAPI specification for this API
+      summary: OpenAPI specification for this API version
       tags:
       - Version
   /apps/{app-name}:

@@ -16,7 +16,7 @@ openapi: 3.0.3
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 info:
-  version: 2.4.5
+  version: 2.4.6
   title: Eliona REST API
   description:
     The Eliona REST API enables unified access to the resources and data of an Eliona environment.
@@ -40,8 +40,8 @@ paths:
   /version:
     $ref: './paths/version.yaml'
 
-  /openapi.yaml:
-    $ref: './paths/openapi-yaml.yaml'
+  /version/openapi.json:
+    $ref: './paths/version-openapi.yaml'
 
   /apps/{app-name}:
     $ref: './paths/apps-name.yaml'
