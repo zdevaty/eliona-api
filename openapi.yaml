@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.4.6
+  version: 2.4.7
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -1667,6 +1667,41 @@ paths:
                 type: array
           description: Successfully returned a list of most prioritized alarms
       summary: Information about most prioritized alarms
+      tags:
+      - Alarms
+  /alarm-listener:
+    get:
+      description: Open a WebSocket connection to get informed when new alarm data
+        is written or anything changes.
+      operationId: listenAlarm
+      parameters:
+      - description: Filter for a specific project
+        in: query
+        name: projectId
+        required: false
+        schema:
+          nullable: true
+          type: string
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alarm'
+          description: Successfully opened a connection to alarm WebSocket
+      summary: WebSocket connection for alarm changes
       tags:
       - Alarms
   /nodes:
