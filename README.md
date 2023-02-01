@@ -8,10 +8,7 @@ The API is defined by an OpenAPI specification. This specification has a main ve
 
 In view of a simplified editing the specification is partitioned into multiple files. The file `eliona-api.yaml` combines all the other files grouped by `parameters`, `paths` and `schemas`.
 
-There are a release distribution which is stable and a distribution which is currently under development.
-
 - [Eliona API v2 Release](https://api.eliona.io/)
-- [Eliona API v2 Development](https://api.eliona.io/?yaml=https://raw.githubusercontent.com/eliona-smart-building-assistant/eliona-api/develop/openapi.yaml)
 
 ## Generation ##
 
