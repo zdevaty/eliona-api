@@ -18,6 +18,7 @@ properties:
     type: string
     description: Password with which the node identifies itself
     nullable: true
+    deprecated: true
   assetId:
     type: integer
     description: ID of the corresponding asset

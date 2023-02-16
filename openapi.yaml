@@ -3163,7 +3163,8 @@ components:
           example: DAY
           type: string
         timestamp:
-          description: Timestamp of this aggregated data set
+          description: Timestamp of this aggregated data set. The timestamp when the
+            timeslot based on raster starts.
           format: date-time
           nullable: true
           type: string
@@ -3819,6 +3820,7 @@ components:
           readOnly: true
           type: string
         password:
+          deprecated: true
           description: Password with which the node identifies itself
           nullable: true
           type: string

@@ -64,7 +64,7 @@ properties:
   timestamp:
     type: string
     format: date-time
-    description: Timestamp of this aggregated data set
+    description: Timestamp of this aggregated data set. The timestamp when the timeslot based on raster starts.
     nullable: true
   count:
     type: number
