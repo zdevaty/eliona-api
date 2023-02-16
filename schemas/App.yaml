@@ -15,3 +15,12 @@ properties:
     type: boolean
     description: Is the app already registered or not
     nullable: true
+  metadata:
+    type: object
+    description: Delivers the apps metadata to handle it in the app store
+    nullable: true
+  version:
+    type: string
+    description: the apps version
+    nullable: true
+    example: v3.2.1

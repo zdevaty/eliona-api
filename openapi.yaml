@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.4.8
+  version: 2.4.9
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -2577,9 +2577,11 @@ components:
     App:
       description: An app
       example:
+        metadata: "{}"
         name: weather
         active: true
         registered: true
+        version: v3.2.1
       properties:
         name:
           description: Name of the app
@@ -2593,6 +2595,15 @@ components:
           description: Is the app already registered or not
           nullable: true
           type: boolean
+        metadata:
+          description: Delivers the apps metadata to handle it in the app store
+          nullable: true
+          type: object
+        version:
+          description: the apps version
+          example: v3.2.1
+          nullable: true
+          type: string
       required:
       - name
       type: object
