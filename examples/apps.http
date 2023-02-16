@@ -1,3 +1,7 @@
 ### Get all apps
-GET {{api-server}}/v2/apps/frontends
+GET {{api-server}}/v2/apps/example
+X-Api-Key: {{read-only-token}}
+
+### Set registered
+PATCH {{api-server}}/v2/apps/example?registered=true
 X-Api-Key: {{read-only-token}}
