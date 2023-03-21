@@ -30,6 +30,28 @@ properties:
     description: Icon name corresponding to assets of this type
     example: weather
     nullable: true
+    enum:
+      - blind
+      - building
+      - button
+      - closable
+      - elevator
+      - environment
+      - fallback
+      - filling
+      - gateway
+      - light
+      - mailbox
+      - parking
+      - people
+      - power
+      - rack
+      - storey
+      - trash
+      - ventilation
+      - vibration
+      - water
+      - weather
   payloadFunction:
     type: string
     description: Asset types payload function

@@ -2868,6 +2868,7 @@ components:
           - avg
           - sum
           - cusum
+          - avg-on-change
           nullable: true
           type: string
         aggregationRasters:
@@ -3261,6 +3262,7 @@ components:
           - avg
           - sum
           - cusum
+          - avg-on-change
           example: avg
           type: string
         raster:

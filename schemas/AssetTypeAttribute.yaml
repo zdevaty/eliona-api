@@ -21,6 +21,7 @@ properties:
     nullable: true
     example: temperature
     enum:
+      - air_quality
       - battery-voltage
       - brightness
       - co2
@@ -42,7 +43,6 @@ properties:
       - temperature
       - vehicle-detector
       - voltage
-      - watchdog
       - weather
       - voc
   enable:
@@ -82,6 +82,7 @@ properties:
       - avg
       - sum
       - cusum
+      - avg-on-change
     nullable: true
     description: Aggregation calculation mode
   aggregationRasters:
