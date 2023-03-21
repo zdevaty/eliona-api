@@ -1,5 +1,5 @@
 ### Get all aggregations
-GET {{api-server}}/v2/aggregations
+GET {{api-server}}/v2/aggregations?assetId=138
 X-Api-Key: {{read-only-token}}
 
 ### Creates an aggregation

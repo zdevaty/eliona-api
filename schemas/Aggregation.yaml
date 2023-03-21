@@ -27,6 +27,7 @@ properties:
       - avg
       - sum
       - cusum
+      - avg-on-change
     description: Calculation mode
     example: avg
   raster:

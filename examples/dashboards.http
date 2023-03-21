@@ -3,9 +3,9 @@ GET {{api-server}}/v2/dashboards
 X-Api-Key: {{read-only-token}}
 
 ### Get dashboard
-GET {{api-server}}/v2/dashboards/7
+GET {{api-server}}/v2/dashboards/53?expansions=Dashboard.widgets,Widget.data
 X-Api-Key: {{read-only-token}}
 
 ### Get dashboard widgets
-GET {{api-server}}/v2/dashboards/7/widgets
+GET {{api-server}}/v2/dashboards/53/widgets
 X-Api-Key: {{read-only-token}}

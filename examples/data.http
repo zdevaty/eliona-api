@@ -23,5 +23,5 @@ GET {{api-server}}/v2/data-aggregated?assetId=62
 X-Api-Key: {{read-only-token}}
 
 ### Get data aggs with timestamp
-GET {{api-server}}/v2/data-aggregated?assetId=62&attribute=brightness&fromDate=2022-10-01T00:00:00.0%2B02:00&toDate=2022-11-01T00:00:00.0%2B02:00
+GET {{api-server}}/v2/data-aggregated?assetId=62&attribute=brightness&fromDate=2022-10-01T23:50:00.0%2B02:00&toDate=2022-11-01T00:05:00.0%2B02:00
 X-Api-Key: {{read-only-token}}
