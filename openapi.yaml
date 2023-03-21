@@ -2735,6 +2735,28 @@ components:
           type: string
         icon:
           description: Icon name corresponding to assets of this type
+          enum:
+          - blind
+          - building
+          - button
+          - closable
+          - elevator
+          - environment
+          - fallback
+          - filling
+          - gateway
+          - light
+          - mailbox
+          - parking
+          - people
+          - power
+          - rack
+          - storey
+          - trash
+          - ventilation
+          - vibration
+          - water
+          - weather
           example: weather
           nullable: true
           type: string
@@ -2804,6 +2826,7 @@ components:
         type:
           description: Name of the type for this attribute
           enum:
+          - air_quality
           - battery-voltage
           - brightness
           - co2
@@ -2825,7 +2848,6 @@ components:
           - temperature
           - vehicle-detector
           - voltage
-          - watchdog
           - weather
           - voc
           example: temperature
