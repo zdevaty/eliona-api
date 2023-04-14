@@ -3,7 +3,7 @@ DELETE {{api-server}}/v2/asset-types/weather_location
 X-Api-Key: {{read-write-token}}
 
 ### Selects asset type
-GET {{api-server}}/v2/asset-types/?expansions=attributes
+GET {{api-server}}/v2/asset-types/weather_location?expansions=AssetType.attributes
 X-Api-Key: {{read-only-token}}
 
 ### Upserts new asset type

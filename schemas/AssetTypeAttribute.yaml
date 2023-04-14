@@ -156,10 +156,12 @@ properties:
     description: value scale
     nullable: true
   map:
-    type: object
-    description: custom map
+    type: array
+    description: list of mappings between integer values and custom translated strings
     nullable: true
-    example: {}
+    example: [{"value": 0, "map": {"en": "empty", "de": "leer"}}, {"value": 1, "map": {"en": "full", "de": "voll"}}]
+    items:
+      type: object
   sourcePath:
     type: array
     description: source path for attribute value
