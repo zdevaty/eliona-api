@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.4.12
+  version: 2.4.13
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -2672,7 +2672,15 @@ components:
             en: This is an english description
             it: Questa è una descrizione italiana
             fr: Ceci est une description français
-          map: {}
+          map:
+          - value: 0
+            map:
+              en: empty
+              de: leer
+          - value: 1
+            map:
+              en: full
+              de: voll
           aggregationMode: avg
           aggregationRasters:
           - DAY
@@ -2701,7 +2709,15 @@ components:
             en: This is an english description
             it: Questa è una descrizione italiana
             fr: Ceci est une description français
-          map: {}
+          map:
+          - value: 0
+            map:
+              en: empty
+              de: leer
+          - value: 1
+            map:
+              en: full
+              de: voll
           aggregationMode: avg
           aggregationRasters:
           - DAY
@@ -2803,7 +2819,15 @@ components:
           en: This is an english description
           it: Questa è una descrizione italiana
           fr: Ceci est une description français
-        map: {}
+        map:
+        - value: 0
+          map:
+            en: empty
+            de: leer
+        - value: 1
+          map:
+            en: full
+            de: voll
         aggregationMode: avg
         aggregationRasters:
         - DAY
@@ -2964,10 +2988,21 @@ components:
           nullable: true
           type: number
         map:
-          description: custom map
-          example: {}
+          description: list of mappings between integer values and custom translated
+            strings
+          example:
+          - value: 0
+            map:
+              en: empty
+              de: leer
+          - value: 1
+            map:
+              en: full
+              de: voll
+          items:
+            type: object
           nullable: true
-          type: object
+          type: array
         sourcePath:
           description: source path for attribute value
           items:
