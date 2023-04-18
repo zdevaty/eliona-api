@@ -2674,13 +2674,9 @@ components:
             fr: Ceci est une description français
           map:
           - value: 0
-            map:
-              en: empty
-              de: leer
+            map: empty
           - value: 1
-            map:
-              en: full
-              de: voll
+            map: full
           aggregationMode: avg
           aggregationRasters:
           - DAY
@@ -2711,13 +2707,9 @@ components:
             fr: Ceci est une description français
           map:
           - value: 0
-            map:
-              en: empty
-              de: leer
+            map: empty
           - value: 1
-            map:
-              en: full
-              de: voll
+            map: full
           aggregationMode: avg
           aggregationRasters:
           - DAY
@@ -2821,13 +2813,9 @@ components:
           fr: Ceci est une description français
         map:
         - value: 0
-          map:
-            en: empty
-            de: leer
+          map: empty
         - value: 1
-          map:
-            en: full
-            de: voll
+          map: full
         aggregationMode: avg
         aggregationRasters:
         - DAY
@@ -2992,13 +2980,9 @@ components:
             strings
           example:
           - value: 0
-            map:
-              en: empty
-              de: leer
+            map: empty
           - value: 1
-            map:
-              en: full
-              de: voll
+            map: full
           items:
             type: object
           nullable: true

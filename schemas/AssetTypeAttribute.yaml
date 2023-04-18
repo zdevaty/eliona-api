@@ -159,7 +159,7 @@ properties:
     type: array
     description: list of mappings between integer values and custom translated strings
     nullable: true
-    example: [{"value": 0, "map": {"en": "empty", "de": "leer"}}, {"value": 1, "map": {"en": "full", "de": "voll"}}]
+    example: [{"value": 0, "map": "empty"}, {"value": 1, "map": "full"}]
     items:
       type: object
   sourcePath:
