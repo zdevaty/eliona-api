@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.4.16
+  version: 2.4.17
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -620,6 +620,18 @@ paths:
         required: true
         schema:
           type: integer
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       requestBody:
         content:
           application/json:

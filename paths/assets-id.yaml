@@ -25,6 +25,7 @@ put:
   operationId: putAssetById
   parameters:
     - $ref: '../parameters/asset-id.yaml'
+    - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true
     content:
