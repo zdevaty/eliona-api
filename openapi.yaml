@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.4.14
+  version: 2.4.15
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -3005,21 +3005,30 @@ components:
       description: An asset
       example:
         globalAssetIdentifier: zurich_swiss
+        attachments:
+        - name: example.gif
+          encoding: base64
+          contentType: image/png
+          content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+        - name: example.gif
+          encoding: base64
+          contentType: image/png
+          content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
         latitude: 47.3667
-        name: Station Zurich
         description: "Weather station Zurich, Swiss"
-        parentFunctionalAssetId: 4712
-        id: 4711
-        projectId: "99"
         childrenInfo:
         - null
         - null
         assetType: assetType
-        longitude: 8.55
         parentLocationalAssetId: 4712
         tags:
         - weather
         - location
+        name: Station Zurich
+        parentFunctionalAssetId: 4712
+        id: 4711
+        projectId: "99"
+        longitude: 8.55
       nullable: true
       properties:
         id:
@@ -3088,6 +3097,12 @@ components:
             $ref: '#/components/schemas/Asset'
           nullable: true
           readOnly: true
+          type: array
+        attachments:
+          description: A list of files attached to the asset
+          items:
+            $ref: '#/components/schemas/Attachment'
+          nullable: true
           type: array
       required:
       - assetType
@@ -3592,21 +3607,30 @@ components:
         attribute: temperature
         assetInfo:
           globalAssetIdentifier: zurich_swiss
+          attachments:
+          - name: example.gif
+            encoding: base64
+            contentType: image/png
+            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          - name: example.gif
+            encoding: base64
+            contentType: image/png
+            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
           latitude: 47.3667
-          name: Station Zurich
           description: "Weather station Zurich, Swiss"
-          parentFunctionalAssetId: 4712
-          id: 4711
-          projectId: "99"
           childrenInfo:
           - null
           - null
           assetType: assetType
-          longitude: 8.55
           parentLocationalAssetId: 4712
           tags:
           - weather
           - location
+          name: Station Zurich
+          parentFunctionalAssetId: 4712
+          id: 4711
+          projectId: "99"
+          longitude: 8.55
       nullable: true
       properties:
         id:
@@ -3727,42 +3751,60 @@ components:
           attribute: temperature
           assetInfo:
             globalAssetIdentifier: zurich_swiss
+            attachments:
+            - name: example.gif
+              encoding: base64
+              contentType: image/png
+              content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+            - name: example.gif
+              encoding: base64
+              contentType: image/png
+              content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
             latitude: 47.3667
-            name: Station Zurich
             description: "Weather station Zurich, Swiss"
-            parentFunctionalAssetId: 4712
-            id: 4711
-            projectId: "99"
             childrenInfo:
             - null
             - null
             assetType: assetType
-            longitude: 8.55
             parentLocationalAssetId: 4712
             tags:
             - weather
             - location
+            name: Station Zurich
+            parentFunctionalAssetId: 4712
+            id: 4711
+            projectId: "99"
+            longitude: 8.55
         acknowledgeUserId: acknowledgeUserId
         attribute: temperature
         ruleId: 123
         value: 38.7
         assetInfo:
           globalAssetIdentifier: zurich_swiss
+          attachments:
+          - name: example.gif
+            encoding: base64
+            contentType: image/png
+            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          - name: example.gif
+            encoding: base64
+            contentType: image/png
+            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
           latitude: 47.3667
-          name: Station Zurich
           description: "Weather station Zurich, Swiss"
-          parentFunctionalAssetId: 4712
-          id: 4711
-          projectId: "99"
           childrenInfo:
           - null
           - null
           assetType: assetType
-          longitude: 8.55
           parentLocationalAssetId: 4712
           tags:
           - weather
           - location
+          name: Station Zurich
+          parentFunctionalAssetId: 4712
+          id: 4711
+          projectId: "99"
+          longitude: 8.55
         timestamp: 2000-01-23T04:56:07.000+00:00
       nullable: true
       properties:
@@ -4090,6 +4132,36 @@ components:
       - SUBTYPE_INFO
       - SUBTYPE_STATUS
       - SUBTYPE_OUTPUT
+    Attachment:
+      description: A binary attachment
+      example:
+        name: example.gif
+        encoding: base64
+        contentType: image/png
+        content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+      properties:
+        name:
+          description: "The name for the attachment, e.g. the filename"
+          example: example.gif
+          type: string
+        contentType:
+          description: The type of binary data
+          example: image/png
+          nullable: true
+          type: string
+        encoding:
+          description: The encoding of content
+          example: base64
+          nullable: true
+          type: string
+        content:
+          description: The binary data as encoded string
+          example: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          type: string
+      required:
+      - data
+      - name
+      type: object
     WidgetTypeElement:
       description: An element for widget types
       example:
@@ -4226,36 +4298,6 @@ components:
       - $ref: '#/components/schemas/AgentDeviceMappingGeneral'
       - $ref: '#/components/schemas/MbusAgentDeviceMappingSpecific'
       x-all-of-name: MbusAgentDeviceMapping
-    Attachment:
-      description: A binary attachment for messages
-      example:
-        name: example.gif
-        encoding: base64
-        contentType: image/png
-        content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
-      properties:
-        name:
-          description: "The name for the attachment, e.g. the filename"
-          example: example.gif
-          type: string
-        contentType:
-          description: The type of binary data
-          example: image/png
-          nullable: true
-          type: string
-        encoding:
-          description: The encoding of content
-          example: base64
-          nullable: true
-          type: string
-        content:
-          description: The binary data as encoded string
-          example: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
-          type: string
-      required:
-      - data
-      - name
-      type: object
     AgentDeviceGeneral:
       description: A general device for an agent
       nullable: true

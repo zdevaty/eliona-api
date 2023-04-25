@@ -71,3 +71,9 @@ properties:
     description: List of children for this asset.
     items:
       $ref: 'Asset.yaml'
+  attachments:
+    description: A list of files attached to the asset
+    nullable: true
+    type: array
+    items:
+      $ref: 'Attachment.yaml'

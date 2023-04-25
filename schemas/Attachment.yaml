@@ -1,5 +1,5 @@
 type: object
-description: A binary attachment for messages
+description: A binary attachment
 required:
   - name
   - data
