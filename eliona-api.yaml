@@ -16,7 +16,7 @@ openapi: 3.0.3
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 info:
-  version: 2.4.17
+  version: 2.4.18
   title: Eliona REST API
   description:
     The Eliona REST API enables unified access to the resources and data of an Eliona environment.
@@ -158,6 +158,9 @@ paths:
   /message-receipts/{message-id}:
     $ref: './paths/message-receipts-id.yaml'
 
+  /qr-codes/assets/{asset-id}:
+    $ref: './paths/qr-codes-assets-id.yaml'
+
 tags:
   - name: Nodes
     description: Handle nodes
@@ -209,6 +212,10 @@ tags:
       url: https://www.eliona.io
   - name: Messages
     description: Message handling
+    externalDocs:
+      url: https://www.eliona.io
+  - name: QR codes
+    description: QR codes for frontend links
     externalDocs:
       url: https://www.eliona.io
   - name: Version

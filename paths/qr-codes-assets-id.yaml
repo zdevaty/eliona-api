@@ -1,0 +1,18 @@
+get:
+  tags:
+    - QR codes
+  summary: QR code for assets
+  description: Generates QR code linking to an asset in the Eliona frontend.
+  operationId: getQrCodeByAssetId
+  parameters:
+    - $ref: '../parameters/asset-id.yaml'
+  responses:
+    200:
+      description: Successfully returned QR code
+      content:
+        image/png:
+          schema:
+            type: string
+            format: binary
+    404:
+      description: Asset with id not found

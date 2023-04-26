@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.4.17
+  version: 2.4.18
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -71,6 +71,10 @@ tags:
   externalDocs:
     url: https://www.eliona.io
   name: Messages
+- description: QR codes for frontend links
+  externalDocs:
+    url: https://www.eliona.io
+  name: QR codes
 - description: API version
   externalDocs:
     url: https://www.eliona.io
@@ -2420,6 +2424,31 @@ paths:
       summary: Information about a message
       tags:
       - Messages
+  /qr-codes/assets/{asset-id}:
+    get:
+      description: Generates QR code linking to an asset in the Eliona frontend.
+      operationId: getQrCodeByAssetId
+      parameters:
+      - description: The id of the asset
+        example: 4711
+        in: path
+        name: asset-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            image/png:
+              schema:
+                format: binary
+                type: string
+          description: Successfully returned QR code
+        "404":
+          description: Asset with id not found
+      summary: QR code for assets
+      tags:
+      - QR codes
 components:
   parameters:
     app-name:
