@@ -17,6 +17,20 @@ get:
     404:
       description: Alarm rule with id not found
 
+delete:
+  tags:
+    - Alarm rules
+  summary: Delete an alarm rule
+  description: Deletes an alarm rule.
+  operationId: deleteAlarmRuleById
+  parameters:
+    - $ref: '../parameters/alarm-rule-id.yaml'
+  responses:
+    204:
+      description: Successfully deleted the alarm rule
+    404:
+      description: Alarm rule with id not found
+
 put:
   tags:
     - Alarm rules

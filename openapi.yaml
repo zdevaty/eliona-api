@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.4.18
+  version: 2.4.19
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -1432,6 +1432,25 @@ paths:
       tags:
       - Alarm rules
   /alarm-rules/{alarm-rule-id}:
+    delete:
+      description: Deletes an alarm rule.
+      operationId: deleteAlarmRuleById
+      parameters:
+      - description: The id of the alarm rule
+        example: 4711
+        in: path
+        name: alarm-rule-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: Successfully deleted the alarm rule
+        "404":
+          description: Alarm rule with id not found
+      summary: Delete an alarm rule
+      tags:
+      - Alarm rules
     get:
       description: Gets information about an alarm rule.
       operationId: getAlarmRuleById
