@@ -1,0 +1,3 @@
+### Select QR codes
+GET {{api-server}}/v2/qr-codes/assets/3649
+X-Api-Key: {{read-only-token}}

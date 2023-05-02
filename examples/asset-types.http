@@ -28,7 +28,23 @@ Content-Type: application/json
     {
       "enable": true,
       "name": "test",
-      "subtype": "input"
+      "subtype": "input",
+      "map": [
+        {
+          "map": {
+            "de": "keine",
+            "en": "none"
+          },
+          "value": -1
+        },
+        {
+          "map": {
+            "de": "voll",
+            "en": "full"
+          },
+          "value": 0
+        }
+      ]
     }
   ]
 }

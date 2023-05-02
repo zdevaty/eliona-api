@@ -2,8 +2,12 @@
 GET {{api-server}}/v2/assets
 X-Api-Key: {{read-only-token}}
 
-### Select asset
-GET {{api-server}}/v2/assets/158
+### Select asset with id
+GET {{api-server}}/v2/assets/296
+X-Api-Key: {{read-only-token}}
+
+### Select asset with id and attachments
+GET {{api-server}}/v2/assets/3909?expansions=Asset.attachments
 X-Api-Key: {{read-only-token}}
 
 ### Upserts asset by project and gai
@@ -30,8 +34,28 @@ Content-Type: application/json
   "assetType": "weather_location"
 }
 
-### Update new asset type
-PUT {{api-server}}/v2/assets/158
+### Insert asset with attachment
+POST {{api-server}}/v2/assets?expansions=Asset.attachments
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "projectId": "99",
+  "globalAssetIdentifier": "1234",
+  "name": "Test Asset",
+  "assetType": "thingdust_space",
+  "attachments": [
+    {
+      "name": "example.gif",
+      "encoding": "base64",
+      "contentType": "image/png",
+      "content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+    }
+  ]
+}
+
+### Update new asset
+PUT {{api-server}}/v2/assets/255
 X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
@@ -40,4 +64,24 @@ Content-Type: application/json
   "globalAssetIdentifier": "GAI 4711",
   "name": "Test Asset",
   "assetType": "weather_location"
+}
+
+### Update new asset with attachment
+PUT {{api-server}}/v2/assets/255?expansions=Asset.attachments
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "projectId": "99",
+  "globalAssetIdentifier": "GAI 4711",
+  "name": "Test Asset",
+  "assetType": "weather_location",
+  "attachments": [
+    {
+      "name": "example.gif",
+      "encoding": "base64",
+      "contentType": "image/png",
+      "content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+    }
+  ]
 }

@@ -3,5 +3,5 @@ GET {{api-server}}/v2/apps/example
 X-Api-Key: {{read-only-token}}
 
 ### Set registered
-PATCH {{api-server}}/v2/apps/example?registered=true
-X-Api-Key: {{read-only-token}}
+PATCH {{api-server}}/v2/apps/example?registered=false
+X-Api-Key: {{read-write-token}}
