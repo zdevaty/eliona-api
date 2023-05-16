@@ -40,6 +40,11 @@ properties:
     description: Longitude coordinate (GPS) of the asset
     example: 8.5500
     nullable: true
+  isTracker:
+    type: boolean
+    description: Does the asset function as a tracker and capture its position by itself
+    default: false
+    nullable: true
   description:
     type: string
     description: Textual description for this asset

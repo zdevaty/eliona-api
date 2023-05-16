@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.4.19
+  version: 2.4.20
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -3113,6 +3113,7 @@ components:
         name: Station Zurich
         parentFunctionalAssetId: 4712
         id: 4711
+        isTracker: false
         projectId: "99"
         longitude: 8.55
       nullable: true
@@ -3151,6 +3152,12 @@ components:
           format: double
           nullable: true
           type: number
+        isTracker:
+          default: false
+          description: Does the asset function as a tracker and capture its position
+            by itself
+          nullable: true
+          type: boolean
         description:
           description: Textual description for this asset
           example: "Weather station Zurich, Swiss"
@@ -3715,6 +3722,7 @@ components:
           name: Station Zurich
           parentFunctionalAssetId: 4712
           id: 4711
+          isTracker: false
           projectId: "99"
           longitude: 8.55
       nullable: true
@@ -3859,6 +3867,7 @@ components:
             name: Station Zurich
             parentFunctionalAssetId: 4712
             id: 4711
+            isTracker: false
             projectId: "99"
             longitude: 8.55
         acknowledgeUserId: acknowledgeUserId
@@ -3889,6 +3898,7 @@ components:
           name: Station Zurich
           parentFunctionalAssetId: 4712
           id: 4711
+          isTracker: false
           projectId: "99"
           longitude: 8.55
         timestamp: 2000-01-23T04:56:07.000+00:00
