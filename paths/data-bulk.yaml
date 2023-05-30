@@ -1,0 +1,17 @@
+put:
+  tags:
+    - Data
+  summary: Create or update multiple asset data
+  description: Create multiple asset data or update data if already exists. Uses the unique combination of asset id and subtype for updating.
+  operationId: putBulkData
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '../schemas/Data.yaml'
+  responses:
+    201:
+      description: Successfully created multiple asset data

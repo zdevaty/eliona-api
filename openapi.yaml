@@ -717,6 +717,25 @@ paths:
       summary: Create or update asset data
       tags:
       - Data
+  /data/bulk:
+    put:
+      description: Create multiple asset data or update data if already exists. Uses
+        the unique combination of asset id and subtype for updating.
+      operationId: putBulkData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/Data'
+              type: array
+        required: true
+      responses:
+        "201":
+          description: Successfully created multiple asset data
+      summary: Create or update multiple asset data
+      tags:
+      - Data
   /data-trends:
     get:
       description: Gets trend information about historical data for assets.

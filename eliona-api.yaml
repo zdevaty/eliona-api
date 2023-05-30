@@ -71,6 +71,9 @@ paths:
   /data:
     $ref: './paths/data.yaml'
 
+  /data/bulk:
+    $ref: './paths/data-bulk.yaml'
+
   /data-trends:
     $ref: './paths/data-trends.yaml'
 
