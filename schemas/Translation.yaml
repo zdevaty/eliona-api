@@ -5,16 +5,16 @@ properties:
   de:
     type: string
     description: German text
-    example: Das ist eine deutsche Beschreibung
+    example: Das ist ein deutscher Text
   en:
     type: string
     description: English text
-    example: This is an english description
+    example: This is an english text
   fr:
     type: string
     description: French text
-    example: Ceci est une description français
+    example: Ceci est en texte anglais
   it:
     type: string
     description: Italian text
-    example: Questa è una descrizione italiana
+    example: Questo è nel testo inglese

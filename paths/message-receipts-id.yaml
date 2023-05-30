@@ -1,6 +1,6 @@
 get:
   tags:
-    - Messages
+    - Communication
   summary: Information about a message
   description: Gets receipt information for a message.
   operationId: getMessageReceiptById
@@ -14,4 +14,4 @@ get:
           schema:
             $ref: '../schemas/MessageReceipt.yaml'
     404:
-      description: Message with id not found
+      description: Message with ID not found

@@ -1,0 +1,7 @@
+name: notification-id
+in: path
+description: The id of the notification
+example: N123
+required: true
+schema:
+  type: string

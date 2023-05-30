@@ -67,10 +67,10 @@ tags:
   externalDocs:
     url: https://www.eliona.io
   name: Widgets
-- description: Message handling
+- description: Communicate to peoples
   externalDocs:
     url: https://www.eliona.io
-  name: Messages
+  name: Communication
 - description: User information
   externalDocs:
     url: https://www.eliona.io
@@ -2423,7 +2423,27 @@ paths:
           description: Successfully accepted the e-mail
       summary: Send e-mail
       tags:
-      - Messages
+      - Communication
+  /send-notification:
+    post:
+      description: Sends a notification to Eliona users
+      operationId: postNotification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Notification'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageReceipt'
+          description: Successfully accepted the notification
+      summary: Send notification
+      tags:
+      - Communication
   /message-receipts/{message-id}:
     get:
       description: Gets receipt information for a message.
@@ -2444,10 +2464,10 @@ paths:
                 $ref: '#/components/schemas/MessageReceipt'
           description: Successfully returned the receipt
         "404":
-          description: Message with id not found
+          description: Message with ID not found
       summary: Information about a message
       tags:
-      - Messages
+      - Communication
   /qr-codes/assets/{asset-id}:
     get:
       description: Generates QR code linking to an asset in the Eliona frontend.
@@ -2782,10 +2802,10 @@ components:
         custom: true
         name: weather_location
         translation:
-          de: Das ist eine deutsche Beschreibung
-          en: This is an english description
-          it: Questa è una descrizione italiana
-          fr: Ceci est une description français
+          de: Das ist ein deutscher Text
+          en: This is an english text
+          it: Questo è nel testo inglese
+          fr: Ceci est en texte anglais
         icon: weather
         urldoc: urldoc
         model: model
@@ -2807,10 +2827,10 @@ components:
           enable: true
           name: temperature
           translation:
-            de: Das ist eine deutsche Beschreibung
-            en: This is an english description
-            it: Questa è una descrizione italiana
-            fr: Ceci est une description français
+            de: Das ist ein deutscher Text
+            en: This is an english text
+            it: Questo è nel testo inglese
+            fr: Ceci est en texte anglais
           map:
           - value: 0
             map: empty
@@ -2840,10 +2860,10 @@ components:
           enable: true
           name: temperature
           translation:
-            de: Das ist eine deutsche Beschreibung
-            en: This is an english description
-            it: Questa è una descrizione italiana
-            fr: Ceci est une description français
+            de: Das ist ein deutscher Text
+            en: This is an english text
+            it: Questo è nel testo inglese
+            fr: Ceci est en texte anglais
           map:
           - value: 0
             map: empty
@@ -2946,10 +2966,10 @@ components:
         enable: true
         name: temperature
         translation:
-          de: Das ist eine deutsche Beschreibung
-          en: This is an english description
-          it: Questa è una descrizione italiana
-          fr: Ceci est une description français
+          de: Das ist ein deutscher Text
+          en: This is an english text
+          it: Questo è nel testo inglese
+          fr: Ceci est en texte anglais
         map:
         - value: 0
           map: empty
@@ -3533,10 +3553,10 @@ components:
             variant: todayAndForecast
         name: weather
         translation:
-          de: Das ist eine deutsche Beschreibung
-          en: This is an english description
-          it: Questa è una descrizione italiana
-          fr: Ceci est une description français
+          de: Das ist ein deutscher Text
+          en: This is an english text
+          it: Questo è nel testo inglese
+          fr: Ceci est en texte anglais
         icon: weather
         id: 4711
       properties:
@@ -4209,31 +4229,54 @@ components:
       - recipients
       type: object
     MessageReceipt:
-      description: A receipt for a message
+      description: A receipt for a message or notification
       example:
         id: AB0815
         scheduledAt: 2000-01-23T04:56:07.000+00:00
         status: scheduled
       properties:
         id:
-          description: Identifies the message
+          description: Identifies the message or notification
           example: AB0815
           readOnly: true
           type: string
         scheduledAt:
-          description: When the message is scheduled for sending
+          description: When the message or notification is scheduled
           format: date-time
           nullable: true
           type: string
         status:
-          description: Status of the message processing
+          description: Status of communication processing
           enum:
           - scheduled
           - sent
+          - seen
+          - read
+          - deleted
           - failed
           type: string
       required:
       - id
+      type: object
+    Notification:
+      description: A notification
+      example:
+        message:
+          de: Das ist ein deutscher Text
+          en: This is an english text
+          it: Questo è nel testo inglese
+          fr: Ceci est en texte anglais
+        user: peter.fox@example.com
+      properties:
+        user:
+          description: E-Mail address of the Eliona user
+          example: peter.fox@example.com
+          nullable: true
+          type: string
+        message:
+          $ref: '#/components/schemas/Translation'
+      required:
+      - user
       type: object
     User:
       description: An user
@@ -4269,27 +4312,27 @@ components:
     Translation:
       description: Readable text to display in frontend
       example:
-        de: Das ist eine deutsche Beschreibung
-        en: This is an english description
-        it: Questa è una descrizione italiana
-        fr: Ceci est une description français
+        de: Das ist ein deutscher Text
+        en: This is an english text
+        it: Questo è nel testo inglese
+        fr: Ceci est en texte anglais
       nullable: true
       properties:
         de:
           description: German text
-          example: Das ist eine deutsche Beschreibung
+          example: Das ist ein deutscher Text
           type: string
         en:
           description: English text
-          example: This is an english description
+          example: This is an english text
           type: string
         fr:
           description: French text
-          example: Ceci est une description français
+          example: Ceci est en texte anglais
           type: string
         it:
           description: Italian text
-          example: Questa è una descrizione italiana
+          example: Questo è nel testo inglese
           type: string
       type: object
     DataSubtype:

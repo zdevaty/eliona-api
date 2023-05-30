@@ -1,0 +1,12 @@
+type: object
+description: A notification
+required:
+  - user
+properties:
+  user:
+    type: string
+    nullable: true
+    description: E-Mail address of the Eliona user
+    example: peter.fox@example.com
+  message:
+    $ref: 'Translation.yaml'

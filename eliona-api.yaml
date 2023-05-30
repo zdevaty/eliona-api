@@ -155,6 +155,9 @@ paths:
   /send-mail:
     $ref: './paths/send-mail.yaml'
 
+  /send-notification:
+    $ref: './paths/send-notification.yaml'
+
   /message-receipts/{message-id}:
     $ref: './paths/message-receipts-id.yaml'
 
@@ -216,8 +219,8 @@ tags:
     description: Handle widgets for dashboards
     externalDocs:
       url: https://www.eliona.io
-  - name: Messages
-    description: Message handling
+  - name: Communication
+    description: Communicate to peoples
     externalDocs:
       url: https://www.eliona.io
   - name: Users

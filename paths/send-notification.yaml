@@ -1,18 +1,18 @@
 post:
   tags:
     - Communication
-  summary: Send e-mail
-  description: Sends an e-mail to recipients
-  operationId: postMail
+  summary: Send notification
+  description: Sends a notification to Eliona users
+  operationId: postNotification
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: '../schemas/Message.yaml'
+          $ref: '../schemas/Notification.yaml'
   responses:
     201:
-      description: Successfully accepted the e-mail
+      description: Successfully accepted the notification
       content:
         application/json:
           schema:
