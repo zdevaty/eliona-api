@@ -28,15 +28,16 @@ patch:
     - name: acknowledged
       in: query
       required: true
-      description: Marks the alarm as acknowledged by setting the acknowledge timestamp to now.
+      description: Marks the alarm as acknowledged or not acknowledged by setting the acknowledge timestamp to now or to null.
       schema:
         type: boolean
         enum:
           - true
+          - false
     - name: acknowledgeText
       in: query
       required: false
-      description: Sets the text for acknowledgement
+      description: Sets the text for acknowledgement if acknowledged is set to true
       schema:
         type: string
   responses:

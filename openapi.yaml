@@ -1598,16 +1598,17 @@ paths:
         required: true
         schema:
           type: integer
-      - description: Marks the alarm as acknowledged by setting the acknowledge timestamp
-          to now.
+      - description: Marks the alarm as acknowledged or not acknowledged by setting
+          the acknowledge timestamp to now or to null.
         in: query
         name: acknowledged
         required: true
         schema:
           enum:
           - true
+          - false
           type: boolean
-      - description: Sets the text for acknowledgement
+      - description: Sets the text for acknowledgement if acknowledged is set to true
         in: query
         name: acknowledgeText
         required: false
