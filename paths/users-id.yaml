@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Users
+  summary: Information about an user
+  description: Gets information about an user.
+  operationId: getUserById
+  parameters:
+    - $ref: '../parameters/user-id.yaml'
+  responses:
+    200:
+      description: Successfully returned the user by id.
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/User.yaml'
+    404:
+      description: User with id not found

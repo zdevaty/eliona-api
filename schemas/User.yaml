@@ -1,0 +1,25 @@
+type: object
+description: An user
+nullable: true
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: The internal ID of user
+    example: 123
+    nullable: true
+  firstname:
+    type: string
+    description: The user's firstname
+    example: Peter
+    nullable: true
+  lastname:
+    type: string
+    description: The user's lastname
+    example: Fox
+    nullable: true
+  email:
+    type: string
+    description: Address of the user
+    example: peter.fox@example.com
+    nullable: true

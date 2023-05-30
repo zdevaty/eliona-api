@@ -161,6 +161,12 @@ paths:
   /qr-codes/assets/{asset-id}:
     $ref: './paths/qr-codes-assets-id.yaml'
 
+  /users:
+    $ref: './paths/users.yaml'
+
+  /users/{user-id}:
+    $ref: './paths/users-id.yaml'
+
 tags:
   - name: Nodes
     description: Handle nodes
@@ -212,6 +218,10 @@ tags:
       url: https://www.eliona.io
   - name: Messages
     description: Message handling
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Users
+    description: User information
     externalDocs:
       url: https://www.eliona.io
   - name: QR codes

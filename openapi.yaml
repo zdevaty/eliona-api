@@ -71,6 +71,10 @@ tags:
   externalDocs:
     url: https://www.eliona.io
   name: Messages
+- description: User information
+  externalDocs:
+    url: https://www.eliona.io
+  name: Users
 - description: QR codes for frontend links
   externalDocs:
     url: https://www.eliona.io
@@ -2469,6 +2473,46 @@ paths:
       summary: QR code for assets
       tags:
       - QR codes
+  /users:
+    get:
+      description: Gets a list of users
+      operationId: getUsers
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+                type: array
+          description: Successfully returned the list of users
+      summary: Information about users
+      tags:
+      - Users
+  /users/{user-id}:
+    get:
+      description: Gets information about an user.
+      operationId: getUserById
+      parameters:
+      - description: The id of the user
+        example: 123
+        in: path
+        name: user-id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Successfully returned the user by id.
+        "404":
+          description: User with id not found
+      summary: Information about an user
+      tags:
+      - Users
 components:
   parameters:
     app-name:
@@ -2657,6 +2701,14 @@ components:
       example: AB0815
       in: path
       name: message-id
+      required: true
+      schema:
+        type: string
+    user-id:
+      description: The id of the user
+      example: 123
+      in: path
+      name: user-id
       required: true
       schema:
         type: string
@@ -4182,6 +4234,37 @@ components:
           type: string
       required:
       - id
+      type: object
+    User:
+      description: An user
+      example:
+        firstname: Peter
+        id: "123"
+        email: peter.fox@example.com
+        lastname: Fox
+      nullable: true
+      properties:
+        id:
+          description: The internal ID of user
+          example: "123"
+          nullable: true
+          readOnly: true
+          type: string
+        firstname:
+          description: The user's firstname
+          example: Peter
+          nullable: true
+          type: string
+        lastname:
+          description: The user's lastname
+          example: Fox
+          nullable: true
+          type: string
+        email:
+          description: Address of the user
+          example: peter.fox@example.com
+          nullable: true
+          type: string
       type: object
     Translation:
       description: Readable text to display in frontend
