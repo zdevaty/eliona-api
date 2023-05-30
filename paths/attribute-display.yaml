@@ -1,0 +1,33 @@
+get:
+  tags:
+    - Assets
+  summary: How attributes are displayed
+  description: Gets information about how attributes for specific assets are displayed in frontend.
+  operationId: getAttributeDisplay
+  responses:
+    200:
+      description: Successfully returned display information for attributes
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AttributeDisplay.yaml'
+
+put:
+  tags:
+    - Assets
+  summary: Create or update how attributes are displayed
+  description: Create or update how attributes are displayed in frontend. Uses the unique combination of asset id, subtype and attribute name for updating.
+  operationId: putAttributeDisplay
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/AttributeDisplay.yaml'
+  responses:
+    200:
+      description: Successfully updated or created display information for attributes
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AttributeDisplay.yaml'

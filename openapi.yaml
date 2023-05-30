@@ -658,6 +658,41 @@ paths:
       summary: Update an asset
       tags:
       - Assets
+  /attribute-display:
+    get:
+      description: Gets information about how attributes for specific assets are displayed
+        in frontend.
+      operationId: getAttributeDisplay
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeDisplay'
+          description: Successfully returned display information for attributes
+      summary: How attributes are displayed
+      tags:
+      - Assets
+    put:
+      description: "Create or update how attributes are displayed in frontend. Uses\
+        \ the unique combination of asset id, subtype and attribute name for updating."
+      operationId: putAttributeDisplay
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttributeDisplay'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeDisplay'
+          description: Successfully updated or created display information for attributes
+      summary: Create or update how attributes are displayed
+      tags:
+      - Assets
   /data:
     get:
       description: Gets information about data for assets.
@@ -2874,10 +2909,10 @@ components:
             it: Questo è nel testo inglese
             fr: Ceci est en texte anglais
           map:
-          - value: 0
-            map: empty
-          - value: 1
-            map: full
+          - text: five
+            value: 5
+          - text: five
+            value: 5
           aggregationMode: avg
           aggregationRasters:
           - DAY
@@ -2907,10 +2942,10 @@ components:
             it: Questo è nel testo inglese
             fr: Ceci est en texte anglais
           map:
-          - value: 0
-            map: empty
-          - value: 1
-            map: full
+          - text: five
+            value: 5
+          - text: five
+            value: 5
           aggregationMode: avg
           aggregationRasters:
           - DAY
@@ -3013,10 +3048,10 @@ components:
           it: Questo è nel testo inglese
           fr: Ceci est en texte anglais
         map:
-        - value: 0
-          map: empty
-        - value: 1
-          map: full
+        - text: five
+          value: 5
+        - text: five
+          value: 5
         aggregationMode: avg
         aggregationRasters:
         - DAY
@@ -3177,15 +3212,9 @@ components:
           nullable: true
           type: number
         map:
-          description: list of mappings between integer values and custom translated
-            strings
-          example:
-          - value: 0
-            map: empty
-          - value: 1
-            map: full
+          description: list of mapping between value and custom text
           items:
-            type: object
+            $ref: '#/components/schemas/ValueMapping'
           nullable: true
           type: array
         sourcePath:
@@ -3316,6 +3345,86 @@ components:
       - assetType
       - globalAssetIdentifier
       - projectId
+      type: object
+    AttributeDisplay:
+      description: How attributes are displayed for specific assets
+      example:
+        viewer: false
+        ar: false
+        sequence: 1
+        unit: °C
+        min: 0.8008281904610115
+        subtype: input
+        max: 6.027456183070403
+        assetId: 4711
+        precision: 1
+        attribute: temperature
+        map:
+        - text: five
+          value: 5
+        - text: five
+          value: 5
+      properties:
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          type: integer
+        subtype:
+          $ref: '#/components/schemas/DataSubtype'
+        attribute:
+          description: Name of the attribute of the asset type
+          example: temperature
+          type: string
+        unit:
+          description: Physical unit of numeric data
+          example: °C
+          nullable: true
+          type: string
+        precision:
+          description: Number of decimal places
+          example: 1
+          format: int64
+          maximum: 20
+          minimum: -20
+          nullable: true
+          type: integer
+        min:
+          description: Lower limit
+          format: double
+          nullable: true
+          type: number
+          example: null
+        max:
+          description: Upper limit
+          format: double
+          nullable: true
+          type: number
+          example: null
+        viewer:
+          default: false
+          description: Should the attribute be displayed in viewer
+          nullable: true
+          type: boolean
+        ar:
+          default: false
+          description: Should the attribute be displayed in AR
+          nullable: true
+          type: boolean
+        sequence:
+          description: Sequence in AR display
+          format: int64
+          nullable: true
+          type: integer
+        map:
+          description: list of mapping between value and custom text
+          items:
+            $ref: '#/components/schemas/ValueMapping'
+          nullable: true
+          type: array
+      required:
+      - assetId
+      - attribute
+      - subtype
       type: object
     Data:
       description: Data for assets
@@ -4397,6 +4506,24 @@ components:
       - SUBTYPE_INFO
       - SUBTYPE_STATUS
       - SUBTYPE_OUTPUT
+    ValueMapping:
+      description: Mapping between value and custom text
+      example:
+        text: five
+        value: 5
+      properties:
+        value:
+          description: Value that should be mapped
+          example: 5
+          type: integer
+        text:
+          description: Custom text to display instead of value
+          example: five
+          type: string
+      required:
+      - text
+      - value
+      type: object
     Attachment:
       description: A binary attachment
       example:

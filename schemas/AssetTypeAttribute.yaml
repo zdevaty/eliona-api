@@ -157,11 +157,10 @@ properties:
     nullable: true
   map:
     type: array
-    description: list of mappings between integer values and custom translated strings
+    description: list of mapping between value and custom text
     nullable: true
-    example: [{"value": 0, "map": "empty"}, {"value": 1, "map": "full"}]
     items:
-      type: object
+      $ref: 'ValueMapping.yaml'
   sourcePath:
     type: array
     description: source path for attribute value

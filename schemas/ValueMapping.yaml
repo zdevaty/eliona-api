@@ -1,0 +1,14 @@
+type: object
+description: Mapping between value and custom text
+required:
+  - value
+  - text
+properties:
+  value:
+    type: integer
+    description: Value that should be mapped
+    example: 5
+  text:
+    type: string
+    description: Custom text to display instead of value
+    example: five

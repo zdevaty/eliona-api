@@ -1,0 +1,63 @@
+type: object
+description: How attributes are displayed for specific assets
+required:
+  - assetId
+  - subtype
+  - attribute
+properties:
+  assetId:
+    type: integer
+    description: ID of the corresponding asset
+    example: 4711
+  subtype:
+    $ref: 'DataSubtype.yaml'
+  attribute:
+    type: string
+    description: Name of the attribute of the asset type
+    example: "temperature"
+  unit:
+    type: string
+    description: Physical unit of numeric data
+    example: °C
+    nullable: true
+  precision:
+    type: integer
+    format: int64
+    minimum: -20
+    maximum: +20
+    example: 1
+    description: Number of decimal places
+    nullable: true
+  min:
+    type: number
+    format: double
+    description: Lower limit
+    example: null
+    nullable: true
+  max:
+    type: number
+    format: double
+    example: null
+    description: Upper limit
+    nullable: true
+  viewer:
+    type: boolean
+    default: false
+    description: Should the attribute be displayed in viewer
+    nullable: true
+  ar:
+    type: boolean
+    default: false
+    description: Should the attribute be displayed in AR
+    nullable: true
+  sequence:
+    type: integer
+    format: int64
+    description: Sequence in AR display
+    nullable: true
+  map:
+    type: array
+    description: list of mapping between value and custom text
+    nullable: true
+    items:
+      $ref: 'ValueMapping.yaml'

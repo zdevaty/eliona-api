@@ -68,6 +68,9 @@ paths:
   /assets/{asset-id}:
     $ref: './paths/assets-id.yaml'
 
+  /attribute-display:
+    $ref: './paths/attribute-display.yaml'
+
   /data:
     $ref: './paths/data.yaml'
 
