@@ -1371,6 +1371,17 @@ paths:
       description: Gets information about alarm rules.
       operationId: getAlarmRules
       parameters:
+      - description: List of alarm rule ids for filtering
+        explode: false
+        in: query
+        name: alarmRuleIds
+        required: false
+        schema:
+          items:
+            type: integer
+          nullable: true
+          type: array
+        style: form
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -2664,6 +2675,18 @@ components:
       required: true
       schema:
         type: integer
+    alarmRuleIds:
+      description: List of alarm rule ids for filtering
+      explode: false
+      in: query
+      name: alarmRuleIds
+      required: false
+      schema:
+        items:
+          type: integer
+        nullable: true
+        type: array
+      style: form
     alarm-rule-id:
       description: The id of the alarm rule
       example: 4711
