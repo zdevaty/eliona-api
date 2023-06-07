@@ -4549,8 +4549,9 @@ components:
         email:
           description: Address of the user
           example: peter.fox@example.com
-          nullable: true
           type: string
+      required:
+      - email
       type: object
     Project:
       description: A project

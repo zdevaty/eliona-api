@@ -1,6 +1,8 @@
 type: object
 description: An user
 nullable: true
+required:
+  - email
 properties:
   id:
     type: string
@@ -22,4 +24,3 @@ properties:
     type: string
     description: Address of the user
     example: peter.fox@example.com
-    nullable: true
