@@ -1,0 +1,15 @@
+type: object
+description: A project
+nullable: true
+properties:
+  id:
+    type: string
+    readOnly: true
+    description: The internal ID of the project
+    example: 99
+    nullable: true
+  title:
+    type: string
+    description: The title of the project
+    example: My Project
+    nullable: true

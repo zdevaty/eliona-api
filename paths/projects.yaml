@@ -1,0 +1,35 @@
+get:
+  tags:
+    - Projects
+  summary: Information about projects
+  description: Gets a list of projects
+  operationId: getProjects
+  responses:
+    200:
+      description: Successfully returned the list of projects
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/Project.yaml'
+
+put:
+  tags:
+    - Projects
+  summary: Create or update a project
+  description: Creates a project if no project exists or update it if already exists. Uses the id for updating.
+  operationId: putProject
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Project.yaml'
+  responses:
+    200:
+      description: Successfully created a new or updated an existing project
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Project.yaml'

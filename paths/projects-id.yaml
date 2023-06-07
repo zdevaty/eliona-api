@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Projects
+  summary: Information about a project
+  description: Gets information about a project.
+  operationId: getProjectById
+  parameters:
+    - $ref: '../parameters/project-id.yaml'
+  responses:
+    200:
+      description: Successfully returned the project by id.
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Project.yaml'
+    404:
+      description: Project with id not found

@@ -1,0 +1,7 @@
+name: project-id
+in: path
+description: The id of the project
+example: 99
+required: true
+schema:
+  type: string

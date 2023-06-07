@@ -176,6 +176,13 @@ paths:
   /users/{user-id}:
     $ref: './paths/users-id.yaml'
 
+  /projects:
+    $ref: './paths/projects.yaml'
+
+  /projects/{project-id}:
+    $ref: './paths/projects-id.yaml'
+
+
 tags:
   - name: Nodes
     description: Handle nodes
@@ -231,6 +238,10 @@ tags:
       url: https://www.eliona.io
   - name: Users
     description: User information
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Projects
+    description: Project information
     externalDocs:
       url: https://www.eliona.io
   - name: QR codes

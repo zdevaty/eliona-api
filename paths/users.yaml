@@ -13,3 +13,23 @@ get:
             type: array
             items:
               $ref: '../schemas/User.yaml'
+
+put:
+  tags:
+    - Users
+  summary: Create or update an user
+  description: Creates an user if no user exists or update it if already exists. Uses the email address for updating.
+  operationId: putUser
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/User.yaml'
+  responses:
+    200:
+      description: Successfully created a new or updated an existing user
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/User.yaml'
