@@ -182,6 +182,12 @@ paths:
   /projects/{project-id}:
     $ref: './paths/projects-id.yaml'
 
+  /tags:
+    $ref: './paths/tags.yaml'
+
+  /tags/{tag-name}:
+    $ref: './paths/tags-name.yaml'
+
 
 tags:
   - name: Nodes
@@ -242,6 +248,10 @@ tags:
       url: https://www.eliona.io
   - name: Projects
     description: Project information
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Tags
+    description: Tag information
     externalDocs:
       url: https://www.eliona.io
   - name: QR codes

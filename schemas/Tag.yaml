@@ -1,0 +1,20 @@
+type: object
+description: A tag
+nullable: true
+required:
+  - name
+properties:
+  name:
+    type: string
+    description: The name of the tag
+    example: Support
+  colorId:
+    type: integer
+    description: Id of the color
+    example: 3
+    nullable: true
+  custom:
+    type: boolean
+    default: true
+    description: Is this a tag custom or not
+    nullable: true

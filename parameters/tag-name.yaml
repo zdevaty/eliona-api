@@ -1,0 +1,7 @@
+name: tag-name
+in: path
+description: The name of the tag
+example: Support
+required: true
+schema:
+  type: string

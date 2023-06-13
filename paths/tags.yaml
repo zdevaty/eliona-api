@@ -1,0 +1,35 @@
+get:
+  tags:
+    - Tags
+  summary: Information about tags
+  description: Gets a list of tags
+  operationId: getTags
+  responses:
+    200:
+      description: Successfully returned the list of tags
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/Tag.yaml'
+
+put:
+  tags:
+    - Tags
+  summary: Create or update a tag
+  description: Creates a tag if no tag exists or update it if already exists. Uses name for updating.
+  operationId: putTag
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Tag.yaml'
+  responses:
+    200:
+      description: Successfully created a new or updated an existing tag
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Tag.yaml'

@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Tags
+  summary: Information about a tag
+  description: Gets information about a tag.
+  operationId: getTagByName
+  parameters:
+    - $ref: '../parameters/tag-name.yaml'
+  responses:
+    200:
+      description: Successfully returned the tag by name.
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Tag.yaml'
+    404:
+      description: Tag with name not found
