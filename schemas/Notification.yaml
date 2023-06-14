@@ -2,11 +2,16 @@ type: object
 description: A notification
 required:
   - user
+  - message
 properties:
   user:
     type: string
-    nullable: true
     description: E-Mail address of the Eliona user
     example: peter.fox@example.com
+  projectId:
+    type: string
+    nullable: true
+    description: ID of the project the notification should appear
+    example: 99
   message:
     $ref: 'Translation.yaml'
