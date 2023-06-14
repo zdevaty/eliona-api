@@ -4582,15 +4582,21 @@ components:
           it: Questo è nel testo inglese
           fr: Ceci est en texte anglais
         user: peter.fox@example.com
+        projectId: "99"
       properties:
         user:
           description: E-Mail address of the Eliona user
           example: peter.fox@example.com
+          type: string
+        projectId:
+          description: ID of the project the notification should appear
+          example: "99"
           nullable: true
           type: string
         message:
           $ref: '#/components/schemas/Translation'
       required:
+      - message
       - user
       type: object
     User:
