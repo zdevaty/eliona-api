@@ -3,11 +3,15 @@ GET {{api-server}}/v2/assets
 X-Api-Key: {{read-only-token}}
 
 ### Select asset with id
-GET {{api-server}}/v2/assets/296
+GET {{api-server}}/v2/assets/4985
 X-Api-Key: {{read-only-token}}
 
 ### Select asset with id and attachments
-GET {{api-server}}/v2/assets/3909?expansions=Asset.attachments
+GET {{api-server}}/v2/assets/5684?expansions=Asset.attachments
+X-Api-Key: {{read-only-token}}
+
+### Select asset with id and attachments
+GET {{api-server}}/v2/attribute-display
 X-Api-Key: {{read-only-token}}
 
 ### Upserts asset by project and gai
@@ -17,9 +21,11 @@ Content-Type: application/json
 
 {
   "projectId": "99",
-  "globalAssetIdentifier": "GAI 4711",
+  "globalAssetIdentifier": "GAI 4714",
   "name": "Test Asset",
-  "assetType": "weather_location"
+  "assetType": "VIRTUAL Light",
+  "isTracker": true,
+  "tags": ["A", "B"]
 }
 
 ### Insert asset
@@ -41,7 +47,7 @@ Content-Type: application/json
 
 {
   "projectId": "99",
-  "globalAssetIdentifier": "1234",
+  "globalAssetIdentifier": "12345",
   "name": "Test Asset",
   "assetType": "thingdust_space",
   "attachments": [

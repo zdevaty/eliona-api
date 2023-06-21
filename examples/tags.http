@@ -1,0 +1,18 @@
+### Get tags
+GET {{api-server}}/v2/tags
+X-Api-Key: {{read-only-token}}
+
+### Get tag
+GET {{api-server}}/v2/tags/Test Eduard tag rename
+X-Api-Key: {{read-only-token}}
+
+### Insert new tag
+PUT {{api-server}}/v2/tags
+Content-Type: application/json
+X-Api-Key: {{read-write-token}}
+
+{
+  "name": "Test Eduard tag rename",
+  "colorId": 3,
+  "custom": true
+}

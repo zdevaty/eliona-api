@@ -1,9 +1,13 @@
+### Get type
+GET {{api-server}}/v2/asset-types/weather_location/ddd
+X-Api-Key: {{read-write-token}}
+
 ### Delete type
 DELETE {{api-server}}/v2/asset-types/weather_location
 X-Api-Key: {{read-write-token}}
 
 ### Selects asset type
-GET {{api-server}}/v2/asset-types/weather_location?expansions=AssetType.attributes
+GET {{api-server}}/v2/asset-types/test_asset_type?expansions=AssetType.attributes
 X-Api-Key: {{read-only-token}}
 
 ### Upserts new asset type

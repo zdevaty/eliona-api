@@ -3,7 +3,7 @@ GET {{api-server}}/v2/data
 X-Api-Key: {{read-only-token}}
 
 ### Get all data based on asset id
-GET {{api-server}}/v2/data?assetId=125
+GET {{api-server}}/v2/data?assetId=3613
 X-Api-Key: {{read-only-token}}
 
 ### Get all data based on subtype
@@ -25,3 +25,49 @@ X-Api-Key: {{read-only-token}}
 ### Get data aggs with timestamp
 GET {{api-server}}/v2/data-aggregated?assetId=62&attribute=brightness&fromDate=2022-10-01T23:50:00.0%2B02:00&toDate=2022-11-01T00:05:00.0%2B02:00
 X-Api-Key: {{read-only-token}}
+
+### Put data
+PUT {{api-server}}/v2/data
+X-Api-Key: {{read-write-token}}
+
+  {
+    "assetId": 3613,
+    "subtype": "input",
+    "data": {
+      "humidity": 1,
+      "occupancy": 2,
+      "temperature": 3
+    },
+    "assetTypeName": "thingdust_space"
+  }
+
+### Put data bulk
+PUT {{api-server}}/v2/data/bulk
+X-Api-Key: {{read-write-token}}
+
+  [
+  {
+    "assetId": 3613,
+    "subtype": "input",
+    "data": {
+      "humidity": 10
+    },
+    "assetTypeName": "thingdust_space"
+  },
+  {
+    "assetId": 3613,
+    "subtype": "input",
+    "data": {
+      "occupancy": 20
+    },
+    "assetTypeName": "thingdust_space"
+  },
+  {
+    "assetId": 3613,
+    "subtype": "input",
+    "data": {
+      "temperature": 30
+    },
+    "assetTypeName": "thingdust_space"
+  }
+  ]

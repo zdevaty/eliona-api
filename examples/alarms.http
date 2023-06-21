@@ -1,5 +1,5 @@
 ### Acknow an alarm
-PATCH {{api-server}}/v2/alarms/894?acknowledgeText=Test Andreas Göbel from APIv2&acknowledged=true
+PATCH {{api-server}}/v2/alarms/317?acknowledgeText=Test Andreas Göbel from APIv2&acknowledged=true
 X-Api-Key: {{read-write-token}}
 
 ### Get alarms

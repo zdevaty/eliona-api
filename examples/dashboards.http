@@ -3,9 +3,16 @@ GET {{api-server}}/v2/dashboards
 X-Api-Key: {{read-only-token}}
 
 ### Get dashboard
-GET {{api-server}}/v2/dashboards/53?expansions=Dashboard.widgets,Widget.data
+GET {{api-server}}/v2/dashboards/58?expansions=Dashboard.widgets,Widget.data
 X-Api-Key: {{read-only-token}}
 
 ### Get dashboard widgets
 GET {{api-server}}/v2/dashboards/53/widgets
 X-Api-Key: {{read-only-token}}
+
+
+### Get dashboard
+POST {{api-server}}/v2/dashboards?expansions=Dashboard.widgets,Widget.data
+X-Api-Key: {{read-write-token}}
+
+{"name":"KentixONE devices","projectId":"99","userId":"90","widgets":[{"data":[{"assetId":5624,"data":{"aggregatedDataType":"heap","attribute":"open","description":"DoorLock 1","key":"_SETPOINT","seq":0,"subtype":"output"},"elementSequence":1},{"assetId":5624,"data":{"aggregatedDataType":"heap","attribute":"open","description":"DoorLock 1","key":"_CURRENT","seq":0,"subtype":"output"},"elementSequence":1}],"details":{"size":1,"timespan":7},"widgetTypeName":"kentix_one_doolock"},{"data":[{"assetId":5624,"data":{"aggregatedDataType":"heap","attribute":"battery","description":"DoorLock 1 - Battery","subtype":"input"},"elementSequence":1}],"details":{"size":1,"timespan":7},"widgetTypeName":"kentix_one_multi_sensor"},{"assetId":5623,"data":[{"assetId":5623,"data":{"aggregatedDataField":null,"aggregatedDataType":"heap","attribute":"humidity","description":"Humidity","key":"","seq":0,"subtype":"input"},"elementSequence":1},{"assetId":5623,"data":{"aggregatedDataField":null,"aggregatedDataType":"heap","attribute":"air_quality","description":"Air quality","key":"","seq":0,"subtype":"input"},"elementSequence":1},{"assetId":5623,"data":{"aggregatedDataField":null,"aggregatedDataType":"heap","attribute":"co2","description":"CO₂","key":"","seq":0,"subtype":"input"},"elementSequence":1},{"assetId":5623,"data":{"aggregatedDataField":null,"aggregatedDataType":"heap","attribute":"temperature","description":"Temperature","key":"","seq":0,"subtype":"input"},"elementSequence":1}],"details":{"size":2,"timespan":7},"widgetTypeName":"kentix_one_multi_sensor"}]}
