@@ -6,6 +6,8 @@ required:
   - globalAssetIdentifier
   - assetType
 properties:
+  resourceId:
+    $ref: 'ResourceId.yaml'
   id:
     type: integer
     readOnly: true

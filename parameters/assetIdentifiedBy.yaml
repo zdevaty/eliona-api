@@ -1,0 +1,15 @@
+name: identifiedBy
+description: |
+  Serves the field used as a unique identifier for the asset, essential for operations like updates
+  or deletions. In cases where the request lacks a 'resourceId' definition, the 'deviceId' is used as the
+  default identifier instead.
+in: query
+required: false
+example: resourceId
+default: resourceId
+schema:
+  type: string
+  enum:
+    - resourceId
+    - deviceId
+    - id

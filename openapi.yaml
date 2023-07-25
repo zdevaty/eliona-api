@@ -523,9 +523,25 @@ paths:
       tags:
       - Assets
     post:
-      description: Creates a new asset.
+      description: |
+        This process involves creating an asset. The determination if the asset already exists and cannot be
+        created is done by the 'identifiedBy' parameter, which specifies the field used for identification.
       operationId: postAsset
       parameters:
+      - description: |
+          Serves the field used as a unique identifier for the asset, essential for operations like updates
+          or deletions. In cases where the request lacks a 'resourceId' definition, the 'deviceId' is used as the
+          default identifier instead.
+        example: resourceId
+        in: query
+        name: identifiedBy
+        required: false
+        schema:
+          enum:
+          - resourceId
+          - deviceId
+          - id
+          type: string
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -550,17 +566,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Asset'
-          description: Successfully created a new asset
-        "409":
-          description: Combination of project id and global asset id already exists
+          description: |
+            Successfully created a new asset
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400ErrorMessage'
+          description: |
+            Issues arisen during the creation or updating process.
       summary: Create an asset
       tags:
       - Assets
     put:
-      description: Creates an asset if no asset exists or update it if already exists.
-        Uses the unique combination of project id and global asset id for updating.
+      description: |
+        This process involves creating or updating an asset. The choice between updating or creating is determined
+        by the 'identifiedBy' parameter, which specifies the field used for identification.
       operationId: putAsset
       parameters:
+      - description: |
+          Serves the field used as a unique identifier for the asset, essential for operations like updates
+          or deletions. In cases where the request lacks a 'resourceId' definition, the 'deviceId' is used as the
+          default identifier instead.
+        example: resourceId
+        in: query
+        name: identifiedBy
+        required: false
+        schema:
+          enum:
+          - resourceId
+          - deviceId
+          - id
+          type: string
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -586,6 +623,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Asset'
           description: Successfully created a new or updated an existing asset
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400ErrorMessage'
+          description: Issues arisen during the creation or updating process.
       summary: Create or update an asset
       tags:
       - Assets
@@ -626,7 +669,9 @@ paths:
       tags:
       - Assets
     put:
-      description: Update an asset.
+      deprecated: true
+      description: |
+        Deprecated: use the 'PUT /asset' method and optionally the 'identifiedBy' parameter to update a specific asset.
       operationId: putAssetById
       parameters:
       - description: The id of the asset
@@ -664,6 +709,274 @@ paths:
         "404":
           description: Asset with id not found
       summary: Update an asset
+      tags:
+      - Assets
+  /assets-bulk:
+    delete:
+      description: Delete multiple assets based on the identifiers defined by the
+        'identifiedBy' parameter.
+      operationId: deleteBulkAssets
+      parameters:
+      - description: |
+          Serves the field used as a unique identifier for the asset, essential for operations like updates
+          or deletions. In cases where the request lacks a 'resourceId' definition, the 'deviceId' is used as the
+          default identifier instead.
+        example: resourceId
+        in: query
+        name: identifiedBy
+        required: false
+        schema:
+          enum:
+          - resourceId
+          - deviceId
+          - id
+          type: string
+      - description: |
+          The operation mode is specifically designed for conducting bulk operations and plays a crucial role in determining
+          the treatment of the list of resources.
+          - 'normal' (default mode): In this mode, the method is executed as intended. GET operation returns resources,
+          PUT operation creates or updates resources, POST operation updates resources, and DELETE operation deletes the
+          specified resources.
+          - 'verify': When using this mode, the response provides valuable information about the anticipated outcomes
+          of the resources when performing the 'normal' mode. It includes a detailed list of results, such as "would be
+          updated" and "cannot be deleted," offering valuable insights into the potential consequences before actually
+          executing the operation. The response is handled with the 303 (see other) status code.
+        example: normal
+        in: query
+        name: operationMode
+        required: false
+        schema:
+          enum:
+          - normal
+          - verify
+          type: string
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                description: The unique identifiers of the assets to be deleted. This
+                  can be handled by 'identifiedBy' parameter.
+                type: object
+              type: array
+        required: true
+      responses:
+        "204":
+          description: The complete list of assets have been successfully deleted.
+        "303":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: object
+                type: array
+          description: "For the operation mode 'verify,' the response yields a list\
+            \ what would occur under the 'normal' operation mode."
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400ErrorMessage'
+          description: "Issues may arise during the deletion process. If at least\
+            \ one asset encounters an error and cannot be deleted or is not found,\
+            \ no changes will be applied to any of the assets in the list."
+      summary: Delete a list of assets
+      tags:
+      - Assets
+    post:
+      description: "This process involves creating the assets in the list. The determination\
+        \ if the asset already exists and cannot be created is done by the 'identifiedBy'\
+        \ parameter, which specifies the field used for identification."
+      operationId: postBulkAssets
+      parameters:
+      - description: |
+          Serves the field used as a unique identifier for the asset, essential for operations like updates
+          or deletions. In cases where the request lacks a 'resourceId' definition, the 'deviceId' is used as the
+          default identifier instead.
+        example: resourceId
+        in: query
+        name: identifiedBy
+        required: false
+        schema:
+          enum:
+          - resourceId
+          - deviceId
+          - id
+          type: string
+      - description: |
+          The operation mode is specifically designed for conducting bulk operations and plays a crucial role in determining
+          the treatment of the list of resources.
+          - 'normal' (default mode): In this mode, the method is executed as intended. GET operation returns resources,
+          PUT operation creates or updates resources, POST operation updates resources, and DELETE operation deletes the
+          specified resources.
+          - 'verify': When using this mode, the response provides valuable information about the anticipated outcomes
+          of the resources when performing the 'normal' mode. It includes a detailed list of results, such as "would be
+          updated" and "cannot be deleted," offering valuable insights into the potential consequences before actually
+          executing the operation. The response is handled with the 303 (see other) status code.
+        example: normal
+        in: query
+        name: operationMode
+        required: false
+        schema:
+          enum:
+          - normal
+          - verify
+          type: string
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/Asset'
+              type: array
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Asset'
+                type: array
+          description: "The complete list of assets has been successfully created.\
+            \ The content displays the list of assets in the same order as the initial\
+            \ request, along with some generated or default values (e.g. timestamps,\
+            \ IDs)."
+        "303":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: object
+                type: array
+          description: "For the operation mode 'verify,' the response yields a list\
+            \ what would occur under the 'normal' operation mode."
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400ErrorMessage'
+          description: "Issues may arise during the creation process when handling\
+            \ the assets in the list. In such cases, if at least one asset encounters\
+            \ an error and cannot be created, no changes will be applied to any of\
+            \ the assets in the list."
+      summary: Create a list of assets
+      tags:
+      - Assets
+    put:
+      description: "This process involves creating or updating assets. The choice\
+        \ between updating or creating an asset is determined by the 'identifiedBy'\
+        \ parameter, which specifies the field used for identification."
+      operationId: putBulkAssets
+      parameters:
+      - description: |
+          Serves the field used as a unique identifier for the asset, essential for operations like updates
+          or deletions. In cases where the request lacks a 'resourceId' definition, the 'deviceId' is used as the
+          default identifier instead.
+        example: resourceId
+        in: query
+        name: identifiedBy
+        required: false
+        schema:
+          enum:
+          - resourceId
+          - deviceId
+          - id
+          type: string
+      - description: |
+          The operation mode is specifically designed for conducting bulk operations and plays a crucial role in determining
+          the treatment of the list of resources.
+          - 'normal' (default mode): In this mode, the method is executed as intended. GET operation returns resources,
+          PUT operation creates or updates resources, POST operation updates resources, and DELETE operation deletes the
+          specified resources.
+          - 'verify': When using this mode, the response provides valuable information about the anticipated outcomes
+          of the resources when performing the 'normal' mode. It includes a detailed list of results, such as "would be
+          updated" and "cannot be deleted," offering valuable insights into the potential consequences before actually
+          executing the operation. The response is handled with the 303 (see other) status code.
+        example: normal
+        in: query
+        name: operationMode
+        required: false
+        schema:
+          enum:
+          - normal
+          - verify
+          type: string
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/Asset'
+              type: array
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Asset'
+                type: array
+          description: "The complete list of assets has been successfully created\
+            \ or updated. The content displays the list of assets in the same order\
+            \ as the initial request, along with some generated or default values\
+            \ (e.g. timestamps, IDs)."
+        "303":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: object
+                type: array
+          description: "For the operation mode 'verify,' the response yields a list\
+            \ what would occur under the 'normal' operation mode."
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/400ErrorMessage'
+          description: "Issues may arise during the creation or updating process when\
+            \ handling the assets in the list. In such cases, if at least one asset\
+            \ encounters an error and cannot be created or updated, no changes will\
+            \ be applied to any of the assets in the list."
+      summary: Create or update a list of assets
       tags:
       - Assets
   /attribute-display:
@@ -760,7 +1073,7 @@ paths:
       summary: Create or update asset data
       tags:
       - Data
-  /data/bulk:
+  /data-bulk:
     put:
       description: Create multiple asset data or update data if already exists. Uses
         the unique combination of asset id and subtype for updating.
@@ -2800,6 +3113,21 @@ components:
       schema:
         nullable: true
         type: string
+    assetIdentifiedBy:
+      description: |
+        Serves the field used as a unique identifier for the asset, essential for operations like updates
+        or deletions. In cases where the request lacks a 'resourceId' definition, the 'deviceId' is used as the
+        default identifier instead.
+      example: resourceId
+      in: query
+      name: identifiedBy
+      required: false
+      schema:
+        enum:
+        - resourceId
+        - deviceId
+        - id
+        type: string
     asset-id:
       description: The id of the asset
       example: 4711
@@ -2808,6 +3136,26 @@ components:
       required: true
       schema:
         type: integer
+    operationMode:
+      description: |
+        The operation mode is specifically designed for conducting bulk operations and plays a crucial role in determining
+        the treatment of the list of resources.
+        - 'normal' (default mode): In this mode, the method is executed as intended. GET operation returns resources,
+        PUT operation creates or updates resources, POST operation updates resources, and DELETE operation deletes the
+        specified resources.
+        - 'verify': When using this mode, the response provides valuable information about the anticipated outcomes
+        of the resources when performing the 'normal' mode. It includes a detailed list of results, such as "would be
+        updated" and "cannot be deleted," offering valuable insights into the potential consequences before actually
+        executing the operation. The response is handled with the 303 (see other) status code.
+      example: normal
+      in: query
+      name: operationMode
+      required: false
+      schema:
+        enum:
+        - normal
+        - verify
+        type: string
     assetId:
       description: Filter for a specific asset id
       example: 4711
@@ -3399,6 +3747,7 @@ components:
       description: An asset
       example:
         globalAssetIdentifier: zurich_swiss
+        resourceId: 123e4567-e89b-12d3-a456-426655440000
         attachments:
         - name: example.gif
           encoding: base64
@@ -3426,6 +3775,15 @@ components:
         longitude: 8.55
       nullable: true
       properties:
+        resourceId:
+          description: "A custom identifier for the resource, which can be utilized\
+            \ to identify it for various operations such as updates, deletions, and\
+            \ other related tasks. If this identifier is not provided, the application\
+            \ will generate a new value for it automatically"
+          example: 123e4567-e89b-12d3-a456-426655440000
+          format: uuid
+          nullable: true
+          type: string
         id:
           description: The internal Id of asset
           example: 4711
@@ -3510,6 +3868,11 @@ components:
       - globalAssetIdentifier
       - projectId
       type: object
+    "400ErrorMessage":
+      description: An error message showing the issue occur during the operation.
+      example: "error: dependent resource not found"
+      nullable: true
+      type: string
     AttributeDisplay:
       description: How attributes are displayed for specific assets
       example:
@@ -4088,6 +4451,7 @@ components:
         attribute: temperature
         assetInfo:
           globalAssetIdentifier: zurich_swiss
+          resourceId: 123e4567-e89b-12d3-a456-426655440000
           attachments:
           - name: example.gif
             encoding: base64
@@ -4233,6 +4597,7 @@ components:
           attribute: temperature
           assetInfo:
             globalAssetIdentifier: zurich_swiss
+            resourceId: 123e4567-e89b-12d3-a456-426655440000
             attachments:
             - name: example.gif
               encoding: base64
@@ -4264,6 +4629,7 @@ components:
         value: 38.7
         assetInfo:
           globalAssetIdentifier: zurich_swiss
+          resourceId: 123e4567-e89b-12d3-a456-426655440000
           attachments:
           - name: example.gif
             encoding: base64
@@ -4739,6 +5105,15 @@ components:
       - text
       - value
       type: object
+    ResourceId:
+      description: "A custom identifier for the resource, which can be utilized to\
+        \ identify it for various operations such as updates, deletions, and other\
+        \ related tasks. If this identifier is not provided, the application will\
+        \ generate a new value for it automatically"
+      example: 123e4567-e89b-12d3-a456-426655440000
+      format: uuid
+      nullable: true
+      type: string
     Attachment:
       description: A binary attachment
       example:

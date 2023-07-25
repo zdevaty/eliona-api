@@ -1,0 +1,141 @@
+put:
+  tags:
+    - Assets
+  summary: Create or update a list of assets
+  description:
+    This process involves creating or updating assets. The choice between updating or creating an asset is determined
+    by the 'identifiedBy' parameter, which specifies the field used for identification.
+  operationId: putBulkAssets
+  parameters:
+    - $ref: '../parameters/assetIdentifiedBy.yaml'
+    - $ref: '../parameters/operationMode.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '../schemas/Asset.yaml'
+  responses:
+    200:
+      description:
+        The complete list of assets has been successfully created or updated. The content displays the list of assets
+        in the same order as the initial request, along with some generated or default values (e.g. timestamps, IDs).
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/Asset.yaml'
+    303:
+      description:
+        For the operation mode 'verify,' the response yields a list what would occur under the 'normal' operation mode.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+    400:
+      description:
+        Issues may arise during the creation or updating process when handling the assets in the list.
+        In such cases, if at least one asset encounters an error and cannot be created or updated, no changes will
+        be applied to any of the assets in the list.
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/400ErrorMessage.yaml'
+
+post:
+  tags:
+    - Assets
+  summary: Create a list of assets
+  description:
+    This process involves creating the assets in the list. The determination if the asset already exists and cannot be
+    created is done by the 'identifiedBy' parameter, which specifies the field used for identification.
+  operationId: postBulkAssets
+  parameters:
+    - $ref: '../parameters/assetIdentifiedBy.yaml'
+    - $ref: '../parameters/operationMode.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '../schemas/Asset.yaml'
+  responses:
+    201:
+      description:
+        The complete list of assets has been successfully created. The content displays the list of assets in the same
+        order as the initial request, along with some generated or default values (e.g. timestamps, IDs).
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/Asset.yaml'
+    303:
+      description:
+        For the operation mode 'verify,' the response yields a list what would occur under the 'normal' operation mode.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+    400:
+      description:
+        Issues may arise during the creation process when handling the assets in the list.
+        In such cases, if at least one asset encounters an error and cannot be created, no changes will be applied to
+        any of the assets in the list.
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/400ErrorMessage.yaml'
+
+delete:
+  tags:
+    - Assets
+  summary: Delete a list of assets
+  description: Delete multiple assets based on the identifiers defined by the 'identifiedBy' parameter.
+  operationId: deleteBulkAssets
+  parameters:
+    - $ref: '../parameters/assetIdentifiedBy.yaml'
+    - $ref: '../parameters/operationMode.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: object
+            description:
+              The unique identifiers of the assets to be deleted. This can be handled by 'identifiedBy' parameter.
+  responses:
+    204:
+      description:
+        The complete list of assets have been successfully deleted.
+    303:
+      description:
+        For the operation mode 'verify,' the response yields a list what would occur under the 'normal' operation mode.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+    400:
+      description:
+        Issues may arise during the deletion process. If at least one asset encounters an error and cannot
+        be deleted or is not found, no changes will be applied to any of the assets in the list.
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/400ErrorMessage.yaml'

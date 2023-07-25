@@ -68,13 +68,16 @@ paths:
   /assets/{asset-id}:
     $ref: './paths/assets-id.yaml'
 
+  /assets-bulk:
+    $ref: './paths/assets-bulk.yaml'
+
   /attribute-display:
     $ref: './paths/attribute-display.yaml'
 
   /data:
     $ref: './paths/data.yaml'
 
-  /data/bulk:
+  /data-bulk:
     $ref: './paths/data-bulk.yaml'
 
   /data-trends:
