@@ -42,13 +42,13 @@ put:
         application/json:
           schema:
             $ref: '../schemas/Asset.yaml'
-    400:
+    422:
       description:
         Issues arisen during the creation or updating process.
       content:
         application/json:
           schema:
-            $ref: '../schemas/400ErrorMessage.yaml'
+            $ref: '../schemas/422ErrorMessage.yaml'
 
 post:
   tags:
@@ -75,10 +75,10 @@ post:
         application/json:
           schema:
             $ref: '../schemas/Asset.yaml'
-    400:
+    422:
       description: |
         Issues arisen during the creation or updating process.
       content:
         application/json:
           schema:
-            $ref: '../schemas/400ErrorMessage.yaml'
+            $ref: '../schemas/422ErrorMessage.yaml'

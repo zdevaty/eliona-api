@@ -8,7 +8,6 @@ put:
   operationId: putBulkAssets
   parameters:
     - $ref: '../parameters/assetIdentifiedBy.yaml'
-    - $ref: '../parameters/operationMode.yaml'
     - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true
@@ -29,16 +28,7 @@ put:
             type: array
             items:
               $ref: '../schemas/Asset.yaml'
-    303:
-      description:
-        For the operation mode 'verify,' the response yields a list what would occur under the 'normal' operation mode.
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              type: object
-    400:
+    422:
       description:
         Issues may arise during the creation or updating process when handling the assets in the list.
         In such cases, if at least one asset encounters an error and cannot be created or updated, no changes will
@@ -46,7 +36,7 @@ put:
       content:
         application/json:
           schema:
-            $ref: '../schemas/400ErrorMessage.yaml'
+            $ref: '../schemas/422ErrorMessage.yaml'
 
 post:
   tags:
@@ -58,7 +48,6 @@ post:
   operationId: postBulkAssets
   parameters:
     - $ref: '../parameters/assetIdentifiedBy.yaml'
-    - $ref: '../parameters/operationMode.yaml'
     - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true
@@ -79,16 +68,7 @@ post:
             type: array
             items:
               $ref: '../schemas/Asset.yaml'
-    303:
-      description:
-        For the operation mode 'verify,' the response yields a list what would occur under the 'normal' operation mode.
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              type: object
-    400:
+    422:
       description:
         Issues may arise during the creation process when handling the assets in the list.
         In such cases, if at least one asset encounters an error and cannot be created, no changes will be applied to
@@ -96,7 +76,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: '../schemas/400ErrorMessage.yaml'
+            $ref: '../schemas/422ErrorMessage.yaml'
 
 delete:
   tags:
@@ -106,7 +86,6 @@ delete:
   operationId: deleteBulkAssets
   parameters:
     - $ref: '../parameters/assetIdentifiedBy.yaml'
-    - $ref: '../parameters/operationMode.yaml'
     - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true
@@ -122,20 +101,11 @@ delete:
     204:
       description:
         The complete list of assets have been successfully deleted.
-    303:
-      description:
-        For the operation mode 'verify,' the response yields a list what would occur under the 'normal' operation mode.
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              type: object
-    400:
+    422:
       description:
         Issues may arise during the deletion process. If at least one asset encounters an error and cannot
         be deleted or is not found, no changes will be applied to any of the assets in the list.
       content:
         application/json:
           schema:
-            $ref: '../schemas/400ErrorMessage.yaml'
+            $ref: '../schemas/422ErrorMessage.yaml'

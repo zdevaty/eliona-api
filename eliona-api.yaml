@@ -71,6 +71,9 @@ paths:
   /assets-bulk:
     $ref: './paths/assets-bulk.yaml'
 
+  /assets-bulk/dry-run:
+    $ref: './paths/assets-bulk-dry-run.yaml'
+
   /attribute-display:
     $ref: './paths/attribute-display.yaml'
 

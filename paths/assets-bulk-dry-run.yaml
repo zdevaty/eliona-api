@@ -1,0 +1,94 @@
+put:
+  tags:
+    - Assets
+  summary: Dry-run for creating or updating a list of assets
+  description:
+    Simulates the process of creating or updating assets via the 'PUT /assets-bulk' endpoint without actually
+    persisting any changes.
+  operationId: dryRunPutBulkAssets
+  parameters:
+    - $ref: '../parameters/assetIdentifiedBy.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '../schemas/Asset.yaml'
+  responses:
+    200:
+      description:
+        The list of expected results if the request is actually performed.
+        The content displays the list of expected results in the same order as the initial request.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/AssetDryRun.yaml'
+
+post:
+  tags:
+    - Assets
+  summary: Dry-run for creating a list of assets
+  description:
+    Simulates the process of creating assets via the 'POST /assets-bulk' endpoint without actually persisting
+    any changes.
+  operationId: dryRunPostBulkAssets
+  parameters:
+    - $ref: '../parameters/assetIdentifiedBy.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: '../schemas/AssetDryRun.yaml'
+  responses:
+    200:
+      description:
+        The list of expected results if the request is actually performed.
+        The content displays the list of expected results in the same order as the initial request.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/AssetDryRun.yaml'
+
+delete:
+  tags:
+    - Assets
+  summary: Dry-run for deleting a list of assets
+  description:
+    Simulates the process of deleting multiple assets via the 'DELETE /assets-bulk' without actually persisting
+    any changes.
+  operationId: dryRunDeleteBulkAssets
+  parameters:
+    - $ref: '../parameters/assetIdentifiedBy.yaml'
+    - $ref: '../parameters/expansions.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: object
+            description:
+              The unique identifiers of the assets to be deleted. This can be handled by 'identifiedBy' parameter.
+  responses:
+    200:
+      description:
+        The list of expected results if the request is actually performed.
+        The content displays the list of expected results in the same order as the initial request.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/AssetDryRun.yaml'

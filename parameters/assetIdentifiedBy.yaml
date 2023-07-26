@@ -1,12 +1,15 @@
 name: identifiedBy
 description: |
-  Serves the field used as a unique identifier for the asset, essential for operations like updates
-  or deletions. In cases where the request lacks a 'resourceId' definition, the 'deviceId' is used as the
-  default identifier instead.
+  Serves the field name send in the request body as a unique identifier for the asset, essential for
+  operations like updates or deletions. Please refer to the Asset
+  schema definition for further information about this fields.
+  
+  In cases where this parameter isn't defined, all field names
+  are used in the order defined. So if there is no 'resourceId' present in the request body, the 'deviceId' is
+  used and when there is also no deviceId present the 'id' field (assetId) is used.
 in: query
 required: false
 example: resourceId
-default: resourceId
 schema:
   type: string
   enum:
