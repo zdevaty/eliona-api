@@ -14,6 +14,15 @@ properties:
     description: The internal Id of asset
     example: 4711
     nullable: true
+  deviceIds:
+    description: A list of unique device ids
+    nullable: true
+    type: array
+    items:
+      type: string
+    example:
+      - XYZ0123
+      - 13:23:12:34:32
   projectId:
     type: string
     description: ID of the project to which the asset belongs
