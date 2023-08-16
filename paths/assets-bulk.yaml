@@ -36,7 +36,7 @@ put:
       content:
         application/json:
           schema:
-            $ref: '../schemas/422ErrorMessage.yaml'
+            $ref: '../schemas/ErrorMessage422.yaml'
 
 post:
   tags:
@@ -76,7 +76,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: '../schemas/422ErrorMessage.yaml'
+            $ref: '../schemas/ErrorMessage422.yaml'
 
 delete:
   tags:
@@ -108,4 +108,4 @@ delete:
       content:
         application/json:
           schema:
-            $ref: '../schemas/422ErrorMessage.yaml'
+            $ref: '../schemas/ErrorMessage422.yaml'
