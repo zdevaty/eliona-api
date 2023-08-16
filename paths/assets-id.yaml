@@ -18,10 +18,12 @@ get:
       description: Asset with id not found
 
 put:
+  deprecated: true
   tags:
     - Assets
   summary: Update an asset
-  description: Update an asset.
+  description: |
+    Deprecated: use the 'PUT /asset' method and optionally the 'identifiedBy' parameter to update a specific asset.
   operationId: putAssetById
   parameters:
     - $ref: '../parameters/asset-id.yaml'

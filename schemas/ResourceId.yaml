@@ -1,0 +1,8 @@
+type: string
+format: uuid
+description:
+  A custom identifier for the resource, which can be utilized to identify it for various operations such as updates,
+  deletions, and other related tasks. If this identifier is not provided, the application will generate
+  a new value for it automatically
+nullable: true
+example: 123e4567-e89b-12d3-a456-426655440000

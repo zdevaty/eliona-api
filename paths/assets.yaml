@@ -22,9 +22,12 @@ put:
   tags:
     - Assets
   summary: Create or update an asset
-  description: Creates an asset if no asset exists or update it if already exists. Uses the unique combination of project id and global asset id for updating.
+  description: |
+    This process involves creating or updating an asset. The choice between updating or creating is determined
+    by the 'identifiedBy' parameter, which specifies the field used for identification.
   operationId: putAsset
   parameters:
+    - $ref: '../parameters/assetIdentifiedBy.yaml'
     - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true
@@ -39,14 +42,24 @@ put:
         application/json:
           schema:
             $ref: '../schemas/Asset.yaml'
+    422:
+      description:
+        Issues arisen during the creation or updating process.
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/422ErrorMessage.yaml'
 
 post:
   tags:
     - Assets
   summary: Create an asset
-  description: Creates a new asset.
+  description: |
+    This process involves creating an asset. The determination if the asset already exists and cannot be
+    created is done by the 'identifiedBy' parameter, which specifies the field used for identification.
   operationId: postAsset
   parameters:
+    - $ref: '../parameters/assetIdentifiedBy.yaml'
     - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true
@@ -56,10 +69,16 @@ post:
           $ref: '../schemas/Asset.yaml'
   responses:
     201:
-      description: Successfully created a new asset
+      description: |
+        Successfully created a new asset
       content:
         application/json:
           schema:
             $ref: '../schemas/Asset.yaml'
-    409:
-      description: Combination of project id and global asset id already exists
+    422:
+      description: |
+        Issues arisen during the creation or updating process.
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/422ErrorMessage.yaml'

@@ -1,0 +1,41 @@
+type: object
+description: Information about asset try run
+nullable: true
+properties:
+  referencedBy:
+    type: string
+    description: |
+      The field name in the request body that references the asset. Please refer to the
+      'referencedBy' parameter for more details.
+    nullable: false
+    example: resourceId
+  referenceValue:
+    type: object
+    description: |
+      The value used as reference depending on the field name defined as referencedBy parameter.
+    nullable: true
+    example: 123e4567-e89b-12d3-a456-426655440000
+  expectedStatusCode:
+    type: integer
+    nullable: false
+    description: |
+      The status code expecting when actually perform the operation. Some values are
+      - 200: updated (ok) 
+      - 201: created
+      - 204: deleted (no content)
+      - 304: unchanged (not modified)
+      - 400: problem (bad request)
+      - 404: not found
+      - 409: duplicated (conflict)
+      - 422: unprocessable
+    example: 200
+  expectedErrorMessage:
+    type: string
+    nullable: true
+    description: |
+      The error message expecting when actually perform the operation.
+    example: "error: dependent resource not found"
+  before:
+    $ref: 'Asset.yaml'
+  after:
+    $ref: 'Asset.yaml'

@@ -16,7 +16,7 @@ openapi: 3.0.3
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 info:
-  version: 2.4.20
+  version: 2.5.0
   title: Eliona REST API
   description:
     The Eliona REST API enables unified access to the resources and data of an Eliona environment.
@@ -68,13 +68,19 @@ paths:
   /assets/{asset-id}:
     $ref: './paths/assets-id.yaml'
 
+  /assets-bulk:
+    $ref: './paths/assets-bulk.yaml'
+
+  /assets-bulk/dry-run:
+    $ref: './paths/assets-bulk-dry-run.yaml'
+
   /attribute-display:
     $ref: './paths/attribute-display.yaml'
 
   /data:
     $ref: './paths/data.yaml'
 
-  /data/bulk:
+  /data-bulk:
     $ref: './paths/data-bulk.yaml'
 
   /data-trends:

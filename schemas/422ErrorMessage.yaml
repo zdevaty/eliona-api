@@ -1,0 +1,5 @@
+type: string
+nullable: true
+description:
+  An error message showing the issue occur during the operation.
+example: "error: dependent resource not found"
