@@ -576,7 +576,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/422ErrorMessage'
+                $ref: '#/components/schemas/ErrorMessage422'
           description: |
             Issues arisen during the creation or updating process.
       summary: Create an asset
@@ -635,7 +635,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/422ErrorMessage'
+                $ref: '#/components/schemas/ErrorMessage422'
           description: Issues arisen during the creation or updating process.
       summary: Create or update an asset
       tags:
@@ -772,7 +772,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/422ErrorMessage'
+                $ref: '#/components/schemas/ErrorMessage422'
           description: "Issues may arise during the deletion process. If at least\
             \ one asset encounters an error and cannot be deleted or is not found,\
             \ no changes will be applied to any of the assets in the list."
@@ -839,7 +839,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/422ErrorMessage'
+                $ref: '#/components/schemas/ErrorMessage422'
           description: "Issues may arise during the creation process when handling\
             \ the assets in the list. In such cases, if at least one asset encounters\
             \ an error and cannot be created, no changes will be applied to any of\
@@ -907,7 +907,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/422ErrorMessage'
+                $ref: '#/components/schemas/ErrorMessage422'
           description: "Issues may arise during the creation or updating process when\
             \ handling the assets in the list. In such cases, if at least one asset\
             \ encounters an error and cannot be created or updated, no changes will\
@@ -3974,7 +3974,7 @@ components:
       - globalAssetIdentifier
       - projectId
       type: object
-    "422ErrorMessage":
+    ErrorMessage422:
       description: An error message showing the issue occur during the operation.
       example: "error: dependent resource not found"
       nullable: true
