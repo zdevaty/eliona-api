@@ -779,7 +779,7 @@ paths:
           application/json:
             schema:
               items:
-                $ref: '#/components/schemas/deleteBulkAssets_request_inner'
+                $ref: '#/components/schemas/Identifier'
               type: array
         required: true
       responses:
@@ -3994,6 +3994,10 @@ components:
       example: "error: dependent resource not found"
       nullable: true
       type: string
+    Identifier:
+      description: Unique identifier (textual or numeric) of resources
+      example: "1234"
+      type: string
     AssetDryRun:
       description: Information about asset try run
       example:
@@ -4097,10 +4101,6 @@ components:
         after:
           $ref: '#/components/schemas/Asset'
       type: object
-    Identifier:
-      anyOf:
-      - type: string
-      - type: integer
     AttributeDisplay:
       description: How attributes are displayed for specific assets
       example:
@@ -5577,10 +5577,6 @@ components:
       - attribute
       - subtype
       type: object
-    deleteBulkAssets_request_inner:
-      anyOf:
-      - type: string
-      - type: integer
     IosysAgentDeviceSpecific:
       description: Specific device for IOSYS agents
       nullable: true

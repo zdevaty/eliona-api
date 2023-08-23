@@ -1,3 +1,3 @@
-anyOf:
-  - type: string
-  - type: integer
+type: string
+description: Unique identifier (textual or numeric) of resources
+example: 1234
