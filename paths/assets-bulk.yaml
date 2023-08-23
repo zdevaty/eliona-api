@@ -94,7 +94,9 @@ delete:
         schema:
           type: array
           items:
-            $ref: '../schemas/Identifier.yaml'
+            anyOf:
+              - type: string
+              - type: integer
   responses:
     204:
       description:
