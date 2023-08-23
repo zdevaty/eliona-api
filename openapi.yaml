@@ -3995,9 +3995,9 @@ components:
       nullable: true
       type: string
     Identifier:
-      description: Unique identifier of resources
-      example: 1234
-      type: object
+      anyOf:
+      - type: string
+      - type: integer
     AssetDryRun:
       description: Information about asset try run
       example:
