@@ -1,6 +1,3 @@
+type: object
 description: Unique identifier of resources
-oneOf:
-  - type: string
-    nullable: true
-  - type: integer
-    nullable: true
+example: 1234

@@ -973,9 +973,7 @@ paths:
           application/json:
             schema:
               items:
-                description: The unique identifiers of the assets to be deleted. This
-                  can be handled by 'identifiedBy' parameter.
-                type: object
+                $ref: '#/components/schemas/Identifier'
               type: array
         required: true
       responses:
@@ -3998,11 +3996,8 @@ components:
       type: string
     Identifier:
       description: Unique identifier of resources
-      oneOf:
-      - nullable: true
-        type: string
-      - nullable: true
-        type: integer
+      example: 1234
+      type: object
     AssetDryRun:
       description: Information about asset try run
       example:
