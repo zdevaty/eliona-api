@@ -94,9 +94,7 @@ delete:
         schema:
           type: array
           items:
-            type: object
-            description:
-              The unique identifiers of the assets to be deleted. This can be handled by 'identifiedBy' parameter.
+            $ref: '../schemas/Identifier.yaml'
   responses:
     204:
       description:

@@ -17,6 +17,20 @@ get:
     404:
       description: Asset with id not found
 
+delete:
+  tags:
+    - Assets
+  summary: Delete an asset
+  description: Deletes an asset
+  operationId: deleteAssetById
+  parameters:
+    - $ref: '../parameters/asset-id.yaml'
+  responses:
+    204:
+      description: Successfully deleted the asset
+    404:
+      description: Asset type with id not found
+
 put:
   deprecated: true
   tags:

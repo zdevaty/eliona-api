@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.5.0
+  version: 2.5.1
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -641,6 +641,25 @@ paths:
       tags:
       - Assets
   /assets/{asset-id}:
+    delete:
+      description: Deletes an asset
+      operationId: deleteAssetById
+      parameters:
+      - description: The id of the asset
+        example: 4711
+        in: path
+        name: asset-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: Successfully deleted the asset
+        "404":
+          description: Asset type with id not found
+      summary: Delete an asset
+      tags:
+      - Assets
     get:
       description: Gets information about an asset.
       operationId: getAssetById
@@ -760,9 +779,7 @@ paths:
           application/json:
             schema:
               items:
-                description: The unique identifiers of the assets to be deleted. This
-                  can be handled by 'identifiedBy' parameter.
-                type: object
+                $ref: '#/components/schemas/Identifier'
               type: array
         required: true
       responses:
@@ -3979,6 +3996,13 @@ components:
       example: "error: dependent resource not found"
       nullable: true
       type: string
+    Identifier:
+      description: Unique identifier of resources
+      oneOf:
+      - nullable: true
+        type: string
+      - nullable: true
+        type: integer
     AssetDryRun:
       description: Information about asset try run
       example:
