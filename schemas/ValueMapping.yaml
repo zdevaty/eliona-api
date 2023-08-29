@@ -1,8 +1,5 @@
 type: object
 description: Mapping between value and custom text
-required:
-  - value
-  - text
 properties:
   value:
     type: integer

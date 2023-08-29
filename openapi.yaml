@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.5.2
+  version: 2.5.3
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -5280,9 +5280,6 @@ components:
           description: Custom text to display instead of value
           example: five
           type: string
-      required:
-      - text
-      - value
       type: object
     ResourceId:
       description: "A custom identifier for the resource, which can be utilized to\
