@@ -1,16 +1,16 @@
 type: object
-description: Information about asset try run
+description: Information about dry run the operation
 nullable: true
 properties:
   referencedBy:
     type: string
     description: |
-      The field name in the request body that references the asset. Please refer to the
+      The field name in the request body that references the resource. Please refer to the
       'referencedBy' parameter for more details.
     nullable: false
     example: resourceId
   referenceValue:
-    type: object
+    type: string
     description: |
       The value used as reference depending on the field name defined as referencedBy parameter.
     nullable: true
@@ -36,6 +36,13 @@ properties:
       The error message expecting when actually perform the operation.
     example: "error: dependent resource not found"
   before:
-    $ref: 'Asset.yaml'
+    type: object
+    nullable: true
+    description: |
+      The resource that exists before the operation is actually performed. This can
+      be null in case of, that no resource exists.
   after:
-    $ref: 'Asset.yaml'
+    type: object
+    nullable: true
+    description: |
+      The resource after the operation is actually performed.   

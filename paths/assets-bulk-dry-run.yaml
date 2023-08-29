@@ -27,7 +27,7 @@ put:
           schema:
             type: array
             items:
-              $ref: '../schemas/AssetDryRun.yaml'
+              $ref: '../schemas/DryRun.yaml'
 
 post:
   tags:
@@ -47,7 +47,7 @@ post:
         schema:
           type: array
           items:
-            $ref: '../schemas/AssetDryRun.yaml'
+            $ref: '../schemas/DryRun.yaml'
   responses:
     200:
       description:
@@ -58,7 +58,7 @@ post:
           schema:
             type: array
             items:
-              $ref: '../schemas/AssetDryRun.yaml'
+              $ref: '../schemas/DryRun.yaml'
 
 delete:
   tags:
@@ -89,4 +89,4 @@ delete:
           schema:
             type: array
             items:
-              $ref: '../schemas/AssetDryRun.yaml'
+              $ref: '../schemas/DryRun.yaml'

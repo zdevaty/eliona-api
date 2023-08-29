@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.5.1
+  version: 2.5.2
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -982,7 +982,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/AssetDryRun'
+                  $ref: '#/components/schemas/DryRun'
                 type: array
           description: The list of expected results if the request is actually performed.
             The content displays the list of expected results in the same order as
@@ -1030,7 +1030,7 @@ paths:
           application/json:
             schema:
               items:
-                $ref: '#/components/schemas/AssetDryRun'
+                $ref: '#/components/schemas/DryRun'
               type: array
         required: true
       responses:
@@ -1039,7 +1039,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/AssetDryRun'
+                  $ref: '#/components/schemas/DryRun'
                 type: array
           description: The list of expected results if the request is actually performed.
             The content displays the list of expected results in the same order as
@@ -1096,7 +1096,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/AssetDryRun'
+                  $ref: '#/components/schemas/DryRun'
                 type: array
           description: The list of expected results if the request is actually performed.
             The content displays the list of expected results in the same order as
@@ -3998,80 +3998,20 @@ components:
       description: Unique identifier (textual or numeric) of resources
       example: "1234"
       type: string
-    AssetDryRun:
-      description: Information about asset try run
+    DryRun:
+      description: Information about dry run the operation
       example:
         expectedErrorMessage: "error: dependent resource not found"
         expectedStatusCode: 200
-        before:
-          globalAssetIdentifier: zurich_swiss
-          resourceId: 123e4567-e89b-12d3-a456-426655440000
-          deviceIds:
-          - XYZ0123
-          - 13:23:12:34:32
-          attachments:
-          - name: example.gif
-            encoding: base64
-            contentType: image/png
-            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
-          - name: example.gif
-            encoding: base64
-            contentType: image/png
-            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
-          latitude: 47.3667
-          description: "Weather station Zurich, Swiss"
-          childrenInfo:
-          - null
-          - null
-          assetType: assetType
-          parentLocationalAssetId: 4712
-          tags:
-          - weather
-          - location
-          name: Station Zurich
-          parentFunctionalAssetId: 4712
-          id: 4711
-          isTracker: false
-          projectId: "99"
-          longitude: 8.55
+        before: "{}"
         referencedBy: resourceId
-        after:
-          globalAssetIdentifier: zurich_swiss
-          resourceId: 123e4567-e89b-12d3-a456-426655440000
-          deviceIds:
-          - XYZ0123
-          - 13:23:12:34:32
-          attachments:
-          - name: example.gif
-            encoding: base64
-            contentType: image/png
-            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
-          - name: example.gif
-            encoding: base64
-            contentType: image/png
-            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
-          latitude: 47.3667
-          description: "Weather station Zurich, Swiss"
-          childrenInfo:
-          - null
-          - null
-          assetType: assetType
-          parentLocationalAssetId: 4712
-          tags:
-          - weather
-          - location
-          name: Station Zurich
-          parentFunctionalAssetId: 4712
-          id: 4711
-          isTracker: false
-          projectId: "99"
-          longitude: 8.55
+        after: "{}"
         referenceValue: 123e4567-e89b-12d3-a456-426655440000
       nullable: true
       properties:
         referencedBy:
           description: |
-            The field name in the request body that references the asset. Please refer to the
+            The field name in the request body that references the resource. Please refer to the
             'referencedBy' parameter for more details.
           example: resourceId
           nullable: false
@@ -4081,7 +4021,7 @@ components:
             The value used as reference depending on the field name defined as referencedBy parameter.
           example: 123e4567-e89b-12d3-a456-426655440000
           nullable: true
-          type: object
+          type: string
         expectedStatusCode:
           description: "The status code expecting when actually perform the operation.\
             \ Some values are\n- 200: updated (ok) \n- 201: created\n- 204: deleted\
@@ -4097,9 +4037,16 @@ components:
           nullable: true
           type: string
         before:
-          $ref: '#/components/schemas/Asset'
+          description: |
+            The resource that exists before the operation is actually performed. This can
+            be null in case of, that no resource exists.
+          nullable: true
+          type: object
         after:
-          $ref: '#/components/schemas/Asset'
+          description: "The resource after the operation is actually performed.  \
+            \ \n"
+          nullable: true
+          type: object
       type: object
     AttributeDisplay:
       description: How attributes are displayed for specific assets
