@@ -47,7 +47,7 @@ post:
         schema:
           type: array
           items:
-            $ref: '../schemas/DryRun.yaml'
+            $ref: '../schemas/Asset.yaml'
   responses:
     200:
       description:

@@ -9,12 +9,8 @@ properties:
       'referencedBy' parameter for more details.
     nullable: false
     example: resourceId
-  referenceValue:
-    type: string
-    description: |
-      The value used as reference depending on the field name defined as referencedBy parameter.
-    nullable: true
-    example: 123e4567-e89b-12d3-a456-426655440000
+  identifier:
+    $ref: 'Identifier.yaml'
   expectedStatusCode:
     type: integer
     nullable: false

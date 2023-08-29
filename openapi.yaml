@@ -1030,7 +1030,7 @@ paths:
           application/json:
             schema:
               items:
-                $ref: '#/components/schemas/DryRun'
+                $ref: '#/components/schemas/Asset'
               type: array
         required: true
       responses:
@@ -4001,12 +4001,12 @@ components:
     DryRun:
       description: Information about dry run the operation
       example:
+        identifier: "1234"
         expectedErrorMessage: "error: dependent resource not found"
         expectedStatusCode: 200
         before: "{}"
         referencedBy: resourceId
         after: "{}"
-        referenceValue: 123e4567-e89b-12d3-a456-426655440000
       nullable: true
       properties:
         referencedBy:
@@ -4016,11 +4016,9 @@ components:
           example: resourceId
           nullable: false
           type: string
-        referenceValue:
-          description: |
-            The value used as reference depending on the field name defined as referencedBy parameter.
-          example: 123e4567-e89b-12d3-a456-426655440000
-          nullable: true
+        identifier:
+          description: Unique identifier (textual or numeric) of resources
+          example: "1234"
           type: string
         expectedStatusCode:
           description: "The status code expecting when actually perform the operation.\
