@@ -2119,9 +2119,6 @@ paths:
         name: acknowledged
         required: true
         schema:
-          enum:
-          - true
-          - false
           type: boolean
       - description: Sets the text for acknowledgement if acknowledged is set to true
         in: query
@@ -5445,22 +5442,155 @@ components:
     IosysAgentDevice:
       allOf:
       - $ref: '#/components/schemas/AgentDeviceGeneral'
-      - $ref: '#/components/schemas/IosysAgentDeviceSpecific'
+      - description: Specific device for IOSYS agents
+        nullable: true
+        properties:
+          port:
+            description: Port of device
+            nullable: true
+            type: integer
+          certificate:
+            description: Certificate of device
+            nullable: true
+            type: string
+          key:
+            description: Key for device
+            nullable: true
+            type: string
+          timeout:
+            description: Time in seconds
+            nullable: true
+            type: integer
+          reconnect:
+            description: Reconnect
+            example: 10
+            nullable: true
+            type: integer
+        title: IosysAgentDeviceSpecific
+        type: object
       x-all-of-name: IosysAgentDevice
     MbusAgentDevice:
       allOf:
       - $ref: '#/components/schemas/AgentDeviceGeneral'
-      - $ref: '#/components/schemas/MbusAgentDeviceSpecific'
+      - description: Specific device for MBUS agents
+        nullable: true
+        properties:
+          manufacturer:
+            nullable: true
+            type: string
+          model:
+            nullable: true
+            type: string
+          address:
+            nullable: true
+            type: integer
+          secAddress:
+            nullable: true
+            type: string
+          raster:
+            nullable: true
+            type: string
+          maxFail:
+            default: 4
+            nullable: true
+            type: integer
+          maxRetry:
+            default: 3
+            nullable: true
+            type: integer
+          sendNke:
+            default: false
+            nullable: true
+            type: boolean
+          appResetSubcode:
+            nullable: true
+            type: integer
+          multiFrames:
+            default: 0
+            nullable: true
+            type: integer
+        title: MbusAgentDeviceSpecific
+        type: object
       x-all-of-name: MbusAgentDevice
     IosysAgentDeviceMapping:
       allOf:
       - $ref: '#/components/schemas/AgentDeviceMappingGeneral'
-      - $ref: '#/components/schemas/IosysAgentDeviceMappingSpecific'
+      - description: Specific mapping for IOSYS agents
+        nullable: true
+        properties:
+          iosVar:
+            nullable: true
+            type: string
+          iosType:
+            enum:
+            - INT
+            - REAL
+            - STRING
+            nullable: true
+            type: string
+          down:
+            default: false
+            nullable: true
+            type: boolean
+          scale:
+            format: double
+            nullable: true
+            type: number
+          zero:
+            format: double
+            nullable: true
+            type: number
+          mask:
+            items:
+              format: int64
+              type: integer
+            nullable: true
+            type: array
+          maskAttributes:
+            items:
+              type: string
+            nullable: true
+            type: array
+          deadTime:
+            nullable: true
+            type: integer
+          deadBand:
+            format: double
+            nullable: true
+            type: number
+          filter:
+            enum:
+            - LPF1
+            - LPF2
+            - MOVA
+            nullable: true
+            type: string
+          tau:
+            format: double
+            nullable: true
+            type: number
+        title: IosysAgentDeviceMappingSpecific
+        type: object
       x-all-of-name: IosysAgentDeviceMapping
     MbusAgentDeviceMapping:
       allOf:
       - $ref: '#/components/schemas/AgentDeviceMappingGeneral'
-      - $ref: '#/components/schemas/MbusAgentDeviceMappingSpecific'
+      - description: Specific mapping for MBUS agents
+        nullable: true
+        properties:
+          field:
+            nullable: true
+            type: integer
+          scale:
+            format: double
+            nullable: true
+            type: number
+          zero:
+            format: double
+            nullable: true
+            type: number
+        title: MbusAgentDeviceMappingSpecific
+        type: object
       x-all-of-name: MbusAgentDeviceMapping
     AgentDeviceGeneral:
       description: A general device for an agent
@@ -5522,151 +5652,6 @@ components:
       - attribute
       - subtype
       type: object
-    IosysAgentDeviceSpecific:
-      description: Specific device for IOSYS agents
-      nullable: true
-      properties:
-        port:
-          description: Port of device
-          nullable: true
-          type: integer
-        certificate:
-          description: Certificate of device
-          nullable: true
-          type: string
-        key:
-          description: Key for device
-          nullable: true
-          type: string
-        timeout:
-          description: Time in seconds
-          nullable: true
-          type: integer
-        reconnect:
-          description: Reconnect
-          example: 10
-          nullable: true
-          type: integer
-      title: IosysAgentDeviceSpecific
-      type: object
-      example: null
-    MbusAgentDeviceSpecific:
-      description: Specific device for MBUS agents
-      nullable: true
-      properties:
-        manufacturer:
-          nullable: true
-          type: string
-        model:
-          nullable: true
-          type: string
-        address:
-          nullable: true
-          type: integer
-        secAddress:
-          nullable: true
-          type: string
-        raster:
-          nullable: true
-          type: string
-        maxFail:
-          default: 4
-          nullable: true
-          type: integer
-        maxRetry:
-          default: 3
-          nullable: true
-          type: integer
-        sendNke:
-          default: false
-          nullable: true
-          type: boolean
-        appResetSubcode:
-          nullable: true
-          type: integer
-        multiFrames:
-          default: 0
-          nullable: true
-          type: integer
-      title: MbusAgentDeviceSpecific
-      type: object
-      example: null
-    IosysAgentDeviceMappingSpecific:
-      description: Specific mapping for IOSYS agents
-      nullable: true
-      properties:
-        iosVar:
-          nullable: true
-          type: string
-        iosType:
-          enum:
-          - INT
-          - REAL
-          - STRING
-          nullable: true
-          type: string
-        down:
-          default: false
-          nullable: true
-          type: boolean
-        scale:
-          format: double
-          nullable: true
-          type: number
-        zero:
-          format: double
-          nullable: true
-          type: number
-        mask:
-          items:
-            format: int64
-            type: integer
-          nullable: true
-          type: array
-        maskAttributes:
-          items:
-            type: string
-          nullable: true
-          type: array
-        deadTime:
-          nullable: true
-          type: integer
-        deadBand:
-          format: double
-          nullable: true
-          type: number
-        filter:
-          enum:
-          - LPF1
-          - LPF2
-          - MOVA
-          nullable: true
-          type: string
-        tau:
-          format: double
-          nullable: true
-          type: number
-      title: IosysAgentDeviceMappingSpecific
-      type: object
-      example: null
-    MbusAgentDeviceMappingSpecific:
-      description: Specific mapping for MBUS agents
-      nullable: true
-      properties:
-        field:
-          nullable: true
-          type: integer
-        scale:
-          format: double
-          nullable: true
-          type: number
-        zero:
-          format: double
-          nullable: true
-          type: number
-      title: MbusAgentDeviceMappingSpecific
-      type: object
-      example: null
   securitySchemes:
     ApiKeyAuth:
       description: Use the API key as a secret for authorizing and identifying an
