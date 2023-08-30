@@ -37,7 +37,7 @@ put:
     - Assets
   summary: Update an asset
   description: |
-    Deprecated: use the 'PUT /asset' method and optionally the 'identifiedBy' parameter to update a specific asset.
+    Deprecated: use the 'PUT /asset' method and optionally the 'identifyBy' parameter to update a specific asset.
   operationId: putAssetById
   parameters:
     - $ref: '../parameters/asset-id.yaml'

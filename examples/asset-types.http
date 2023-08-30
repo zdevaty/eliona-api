@@ -1,5 +1,5 @@
 ### Get type
-GET {{api-server}}/v2/asset-types/weather_location/ddd
+GET {{api-server}}/v2/asset-types/abb_free_at_home_switch_sensor?expansions=AssetType.attributes
 X-Api-Key: {{read-write-token}}
 
 ### Delete type
@@ -16,41 +16,47 @@ X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
-  "vendor": "vendor",
-  "custom": true,
-  "name": "weather_location",
-  "translation": {
-    "de": "Das ist eine deutsche Beschreibung",
-    "en": "This is an english description",
-    "it": "Questa è una descrizione italiana",
-    "fr": "Ceci est une description français"
-  },
-  "icon": "weather",
-  "urldoc": "urldoc",
-  "model": "model",
   "attributes": [
     {
       "enable": true,
-      "name": "test",
+      "name": "switch_state",
       "subtype": "input",
+      "type": "inputs-and-switches",
+      "translation": {
+        "de": "Schalterzustand",
+        "en": "Switch state"
+      }
+    },
+    {
+      "enable": true,
+      "name": "switch",
+      "subtype": "output",
+      "type": "inputs-and-switches",
+      "translation": {
+        "de": "Schalter",
+        "en": "Switch"
+      },
       "map": [
         {
-          "map": {
-            "de": "keine",
-            "en": "none"
-          },
-          "value": -1
+          "value": 0,
+          "text": "OFF"
         },
         {
-          "map": {
-            "de": "voll",
-            "en": "full"
-          },
-          "value": 0
+          "value": 1,
+          "text": "ON"
         }
       ]
     }
-  ]
+  ],
+  "custom": false,
+  "icon": null,
+  "name": "abb_free_at_home_switch_sensor",
+  "translation": {
+    "de": "ABB-free@home Schaltsensor",
+    "en": "ABB-free@home Switch sensor"
+  },
+  "urldoc": "https://apim.eu.mybuildings.abb.com/adtg-api/v1/graphiql/?doc#definition-Channel",
+  "vendor": "ABB"
 }
 
 ### Insert new asset type

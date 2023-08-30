@@ -1,4 +1,4 @@
-name: identifiedBy
+name: identifyBy
 description: |
   Serves the field name send in the request body as a unique identifier for the asset, essential for
   operations like updates or deletions. Please refer to the Asset
@@ -11,8 +11,4 @@ in: query
 required: false
 example: resourceId
 schema:
-  type: string
-  enum:
-    - resourceId
-    - deviceId
-    - id
+  $ref: '../schemas/AssetIdentifyBy.yaml'

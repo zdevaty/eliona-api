@@ -7,7 +7,7 @@ put:
     persisting any changes.
   operationId: dryRunPutBulkAssets
   parameters:
-    - $ref: '../parameters/assetIdentifiedBy.yaml'
+    - $ref: '../parameters/assetIdentifyBy.yaml'
     - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true
@@ -27,7 +27,7 @@ put:
           schema:
             type: array
             items:
-              $ref: '../schemas/DryRun.yaml'
+              $ref: '../schemas/AssetDryRun.yaml'
 
 post:
   tags:
@@ -38,7 +38,7 @@ post:
     any changes.
   operationId: dryRunPostBulkAssets
   parameters:
-    - $ref: '../parameters/assetIdentifiedBy.yaml'
+    - $ref: '../parameters/assetIdentifyBy.yaml'
     - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true
@@ -58,7 +58,7 @@ post:
           schema:
             type: array
             items:
-              $ref: '../schemas/DryRun.yaml'
+              $ref: '../schemas/AssetDryRun.yaml'
 
 delete:
   tags:
@@ -69,7 +69,7 @@ delete:
     any changes.
   operationId: dryRunDeleteBulkAssets
   parameters:
-    - $ref: '../parameters/assetIdentifiedBy.yaml'
+    - $ref: '../parameters/assetIdentifyBy.yaml'
     - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true
@@ -89,4 +89,4 @@ delete:
           schema:
             type: array
             items:
-              $ref: '../schemas/DryRun.yaml'
+              $ref: '../schemas/AssetDryRun.yaml'

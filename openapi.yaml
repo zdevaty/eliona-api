@@ -525,7 +525,7 @@ paths:
     post:
       description: |
         This process involves creating an asset. The determination if the asset already exists and cannot be
-        created is done by the 'identifiedBy' parameter, which specifies the field used for identification.
+        created is done by the 'identifyBy' parameter, which specifies the field used for identification.
       operationId: postAsset
       parameters:
       - description: |
@@ -538,14 +538,10 @@ paths:
           used and when there is also no deviceId present the 'id' field (assetId) is used.
         example: resourceId
         in: query
-        name: identifiedBy
+        name: identifyBy
         required: false
         schema:
-          enum:
-          - resourceId
-          - deviceId
-          - id
-          type: string
+          $ref: '#/components/schemas/AssetIdentifyBy'
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -585,7 +581,7 @@ paths:
     put:
       description: |
         This process involves creating or updating an asset. The choice between updating or creating is determined
-        by the 'identifiedBy' parameter, which specifies the field used for identification.
+        by the 'identifyBy' parameter, which specifies the field used for identification.
       operationId: putAsset
       parameters:
       - description: |
@@ -598,14 +594,10 @@ paths:
           used and when there is also no deviceId present the 'id' field (assetId) is used.
         example: resourceId
         in: query
-        name: identifiedBy
+        name: identifyBy
         required: false
         schema:
-          enum:
-          - resourceId
-          - deviceId
-          - id
-          type: string
+          $ref: '#/components/schemas/AssetIdentifyBy'
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -698,7 +690,7 @@ paths:
     put:
       deprecated: true
       description: |
-        Deprecated: use the 'PUT /asset' method and optionally the 'identifiedBy' parameter to update a specific asset.
+        Deprecated: use the 'PUT /asset' method and optionally the 'identifyBy' parameter to update a specific asset.
       operationId: putAssetById
       parameters:
       - description: The id of the asset
@@ -741,7 +733,7 @@ paths:
   /assets-bulk:
     delete:
       description: Delete multiple assets based on the identifiers defined by the
-        'identifiedBy' parameter.
+        'identifyBy' parameter.
       operationId: deleteBulkAssets
       parameters:
       - description: |
@@ -754,14 +746,10 @@ paths:
           used and when there is also no deviceId present the 'id' field (assetId) is used.
         example: resourceId
         in: query
-        name: identifiedBy
+        name: identifyBy
         required: false
         schema:
-          enum:
-          - resourceId
-          - deviceId
-          - id
-          type: string
+          $ref: '#/components/schemas/AssetIdentifyBy'
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -798,7 +786,7 @@ paths:
       - Assets
     post:
       description: "This process involves creating the assets in the list. The determination\
-        \ if the asset already exists and cannot be created is done by the 'identifiedBy'\
+        \ if the asset already exists and cannot be created is done by the 'identifyBy'\
         \ parameter, which specifies the field used for identification."
       operationId: postBulkAssets
       parameters:
@@ -812,14 +800,10 @@ paths:
           used and when there is also no deviceId present the 'id' field (assetId) is used.
         example: resourceId
         in: query
-        name: identifiedBy
+        name: identifyBy
         required: false
         schema:
-          enum:
-          - resourceId
-          - deviceId
-          - id
-          type: string
+          $ref: '#/components/schemas/AssetIdentifyBy'
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -866,7 +850,7 @@ paths:
       - Assets
     put:
       description: "This process involves creating or updating assets. The choice\
-        \ between updating or creating an asset is determined by the 'identifiedBy'\
+        \ between updating or creating an asset is determined by the 'identifyBy'\
         \ parameter, which specifies the field used for identification."
       operationId: putBulkAssets
       parameters:
@@ -880,14 +864,10 @@ paths:
           used and when there is also no deviceId present the 'id' field (assetId) is used.
         example: resourceId
         in: query
-        name: identifiedBy
+        name: identifyBy
         required: false
         schema:
-          enum:
-          - resourceId
-          - deviceId
-          - id
-          type: string
+          $ref: '#/components/schemas/AssetIdentifyBy'
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -948,14 +928,10 @@ paths:
           used and when there is also no deviceId present the 'id' field (assetId) is used.
         example: resourceId
         in: query
-        name: identifiedBy
+        name: identifyBy
         required: false
         schema:
-          enum:
-          - resourceId
-          - deviceId
-          - id
-          type: string
+          $ref: '#/components/schemas/AssetIdentifyBy'
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -982,7 +958,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/DryRun'
+                  $ref: '#/components/schemas/AssetDryRun'
                 type: array
           description: The list of expected results if the request is actually performed.
             The content displays the list of expected results in the same order as
@@ -1005,14 +981,10 @@ paths:
           used and when there is also no deviceId present the 'id' field (assetId) is used.
         example: resourceId
         in: query
-        name: identifiedBy
+        name: identifyBy
         required: false
         schema:
-          enum:
-          - resourceId
-          - deviceId
-          - id
-          type: string
+          $ref: '#/components/schemas/AssetIdentifyBy'
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -1039,7 +1011,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/DryRun'
+                  $ref: '#/components/schemas/AssetDryRun'
                 type: array
           description: The list of expected results if the request is actually performed.
             The content displays the list of expected results in the same order as
@@ -1062,14 +1034,10 @@ paths:
           used and when there is also no deviceId present the 'id' field (assetId) is used.
         example: resourceId
         in: query
-        name: identifiedBy
+        name: identifyBy
         required: false
         schema:
-          enum:
-          - resourceId
-          - deviceId
-          - id
-          type: string
+          $ref: '#/components/schemas/AssetIdentifyBy'
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -1096,7 +1064,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/DryRun'
+                  $ref: '#/components/schemas/AssetDryRun'
                 type: array
           description: The list of expected results if the request is actually performed.
             The content displays the list of expected results in the same order as
@@ -3235,7 +3203,7 @@ components:
       schema:
         nullable: true
         type: string
-    assetIdentifiedBy:
+    assetIdentifyBy:
       description: |
         Serves the field name send in the request body as a unique identifier for the asset, essential for
         operations like updates or deletions. Please refer to the Asset
@@ -3246,14 +3214,10 @@ components:
         used and when there is also no deviceId present the 'id' field (assetId) is used.
       example: resourceId
       in: query
-      name: identifiedBy
+      name: identifyBy
       required: false
       schema:
-        enum:
-        - resourceId
-        - deviceId
-        - id
-        type: string
+        $ref: '#/components/schemas/AssetIdentifyBy'
     asset-id:
       description: The id of the asset
       example: 4711
@@ -3986,6 +3950,12 @@ components:
       - globalAssetIdentifier
       - projectId
       type: object
+    AssetIdentifyBy:
+      enum:
+      - resourceId
+      - deviceId
+      - id
+      type: string
     ErrorMessage422:
       description: An error message showing the issue occur during the operation.
       example: "error: dependent resource not found"
@@ -3995,54 +3965,21 @@ components:
       description: Unique identifier (textual or numeric) of resources
       example: "1234"
       type: string
-    DryRun:
-      description: Information about dry run the operation
-      example:
-        identifier: "1234"
-        expectedErrorMessage: "error: dependent resource not found"
-        expectedStatusCode: 200
-        before: "{}"
-        referencedBy: resourceId
-        after: "{}"
-      nullable: true
-      properties:
-        referencedBy:
-          description: |
-            The field name in the request body that references the resource. Please refer to the
-            'referencedBy' parameter for more details.
-          example: resourceId
-          nullable: false
-          type: string
-        identifier:
-          description: Unique identifier (textual or numeric) of resources
-          example: "1234"
-          type: string
-        expectedStatusCode:
-          description: "The status code expecting when actually perform the operation.\
-            \ Some values are\n- 200: updated (ok) \n- 201: created\n- 204: deleted\
-            \ (no content)\n- 304: unchanged (not modified)\n- 400: problem (bad request)\n\
-            - 404: not found\n- 409: duplicated (conflict)\n- 422: unprocessable\n"
-          example: 200
-          nullable: false
-          type: integer
-        expectedErrorMessage:
-          description: |
-            The error message expecting when actually perform the operation.
-          example: "error: dependent resource not found"
-          nullable: true
-          type: string
-        before:
-          description: |
-            The resource that exists before the operation is actually performed. This can
-            be null in case of, that no resource exists.
-          nullable: true
-          type: object
-        after:
-          description: "The resource after the operation is actually performed.  \
-            \ \n"
-          nullable: true
-          type: object
-      type: object
+    AssetDryRun:
+      allOf:
+      - $ref: '#/components/schemas/DryRunGeneral'
+      - description: Specific information for asset dry run
+        nullable: true
+        properties:
+          identifiedBy:
+            $ref: '#/components/schemas/AssetIdentifyBy'
+          before:
+            $ref: '#/components/schemas/Asset'
+          after:
+            $ref: '#/components/schemas/Asset'
+        title: AssetDryRun
+        type: object
+      x-all-of-name: AssetDryRun
     AttributeDisplay:
       description: How attributes are displayed for specific assets
       example:
@@ -5319,6 +5256,29 @@ components:
       required:
       - data
       - name
+      type: object
+    DryRunGeneral:
+      description: Information about dry run the operation
+      nullable: true
+      properties:
+        identifier:
+          description: Unique identifier (textual or numeric) of resources
+          example: "1234"
+          type: string
+        expectedStatusCode:
+          description: "The status code expecting when actually perform the operation.\
+            \ Some values are\n- 200: updated (ok) \n- 201: created\n- 204: deleted\
+            \ (no content)\n- 304: unchanged (not modified)\n- 400: problem (bad request)\n\
+            - 404: not found\n- 409: duplicated (conflict)\n- 422: unprocessable\n"
+          example: 200
+          nullable: false
+          type: integer
+        expectedErrorMessage:
+          description: |
+            The error message expecting when actually perform the operation.
+          example: "error: dependent resource not found"
+          nullable: true
+          type: string
       type: object
     WidgetTypeElement:
       description: An element for widget types

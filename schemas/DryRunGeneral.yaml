@@ -2,13 +2,6 @@ type: object
 description: Information about dry run the operation
 nullable: true
 properties:
-  referencedBy:
-    type: string
-    description: |
-      The field name in the request body that references the resource. Please refer to the
-      'referencedBy' parameter for more details.
-    nullable: false
-    example: resourceId
   identifier:
     $ref: 'Identifier.yaml'
   expectedStatusCode:
@@ -31,14 +24,3 @@ properties:
     description: |
       The error message expecting when actually perform the operation.
     example: "error: dependent resource not found"
-  before:
-    type: object
-    nullable: true
-    description: |
-      The resource that exists before the operation is actually performed. This can
-      be null in case of, that no resource exists.
-  after:
-    type: object
-    nullable: true
-    description: |
-      The resource after the operation is actually performed.   

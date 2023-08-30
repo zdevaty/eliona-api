@@ -24,10 +24,10 @@ put:
   summary: Create or update an asset
   description: |
     This process involves creating or updating an asset. The choice between updating or creating is determined
-    by the 'identifiedBy' parameter, which specifies the field used for identification.
+    by the 'identifyBy' parameter, which specifies the field used for identification.
   operationId: putAsset
   parameters:
-    - $ref: '../parameters/assetIdentifiedBy.yaml'
+    - $ref: '../parameters/assetIdentifyBy.yaml'
     - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true
@@ -56,10 +56,10 @@ post:
   summary: Create an asset
   description: |
     This process involves creating an asset. The determination if the asset already exists and cannot be
-    created is done by the 'identifiedBy' parameter, which specifies the field used for identification.
+    created is done by the 'identifyBy' parameter, which specifies the field used for identification.
   operationId: postAsset
   parameters:
-    - $ref: '../parameters/assetIdentifiedBy.yaml'
+    - $ref: '../parameters/assetIdentifyBy.yaml'
     - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true

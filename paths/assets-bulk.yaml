@@ -4,10 +4,10 @@ put:
   summary: Create or update a list of assets
   description:
     This process involves creating or updating assets. The choice between updating or creating an asset is determined
-    by the 'identifiedBy' parameter, which specifies the field used for identification.
+    by the 'identifyBy' parameter, which specifies the field used for identification.
   operationId: putBulkAssets
   parameters:
-    - $ref: '../parameters/assetIdentifiedBy.yaml'
+    - $ref: '../parameters/assetIdentifyBy.yaml'
     - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true
@@ -44,10 +44,10 @@ post:
   summary: Create a list of assets
   description:
     This process involves creating the assets in the list. The determination if the asset already exists and cannot be
-    created is done by the 'identifiedBy' parameter, which specifies the field used for identification.
+    created is done by the 'identifyBy' parameter, which specifies the field used for identification.
   operationId: postBulkAssets
   parameters:
-    - $ref: '../parameters/assetIdentifiedBy.yaml'
+    - $ref: '../parameters/assetIdentifyBy.yaml'
     - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true
@@ -82,10 +82,10 @@ delete:
   tags:
     - Assets
   summary: Delete a list of assets
-  description: Delete multiple assets based on the identifiers defined by the 'identifiedBy' parameter.
+  description: Delete multiple assets based on the identifiers defined by the 'identifyBy' parameter.
   operationId: deleteBulkAssets
   parameters:
-    - $ref: '../parameters/assetIdentifiedBy.yaml'
+    - $ref: '../parameters/assetIdentifyBy.yaml'
     - $ref: '../parameters/expansions.yaml'
   requestBody:
     required: true

@@ -1,0 +1,14 @@
+x-all-of-name: AssetDryRun
+allOf:
+  - $ref: 'DryRunGeneral.yaml'
+  - type: object
+    title: AssetDryRun
+    description: Specific information for asset dry run
+    nullable: true
+    properties:
+      identifiedBy:
+        $ref: 'AssetIdentifyBy.yaml'
+      before:
+        $ref: 'Asset.yaml'
+      after:
+        $ref: 'Asset.yaml'
