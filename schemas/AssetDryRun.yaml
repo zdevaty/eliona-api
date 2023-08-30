@@ -1,4 +1,3 @@
-x-all-of-name: AssetDryRun
 allOf:
   - $ref: 'DryRunGeneral.yaml'
   - type: object

@@ -541,7 +541,12 @@ paths:
         name: identifyBy
         required: false
         schema:
-          $ref: '#/components/schemas/AssetIdentifyBy'
+          enum:
+          - resourceId
+          - deviceId
+          - id
+          - gai-projId
+          type: string
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -597,7 +602,12 @@ paths:
         name: identifyBy
         required: false
         schema:
-          $ref: '#/components/schemas/AssetIdentifyBy'
+          enum:
+          - resourceId
+          - deviceId
+          - id
+          - gai-projId
+          type: string
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -749,7 +759,12 @@ paths:
         name: identifyBy
         required: false
         schema:
-          $ref: '#/components/schemas/AssetIdentifyBy'
+          enum:
+          - resourceId
+          - deviceId
+          - id
+          - gai-projId
+          type: string
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -803,7 +818,12 @@ paths:
         name: identifyBy
         required: false
         schema:
-          $ref: '#/components/schemas/AssetIdentifyBy'
+          enum:
+          - resourceId
+          - deviceId
+          - id
+          - gai-projId
+          type: string
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -867,7 +887,12 @@ paths:
         name: identifyBy
         required: false
         schema:
-          $ref: '#/components/schemas/AssetIdentifyBy'
+          enum:
+          - resourceId
+          - deviceId
+          - id
+          - gai-projId
+          type: string
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -931,7 +956,12 @@ paths:
         name: identifyBy
         required: false
         schema:
-          $ref: '#/components/schemas/AssetIdentifyBy'
+          enum:
+          - resourceId
+          - deviceId
+          - id
+          - gai-projId
+          type: string
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -984,7 +1014,12 @@ paths:
         name: identifyBy
         required: false
         schema:
-          $ref: '#/components/schemas/AssetIdentifyBy'
+          enum:
+          - resourceId
+          - deviceId
+          - id
+          - gai-projId
+          type: string
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -1037,7 +1072,12 @@ paths:
         name: identifyBy
         required: false
         schema:
-          $ref: '#/components/schemas/AssetIdentifyBy'
+          enum:
+          - resourceId
+          - deviceId
+          - id
+          - gai-projId
+          type: string
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -3217,7 +3257,12 @@ components:
       name: identifyBy
       required: false
       schema:
-        $ref: '#/components/schemas/AssetIdentifyBy'
+        enum:
+        - resourceId
+        - deviceId
+        - id
+        - gai-projId
+        type: string
     asset-id:
       description: The id of the asset
       example: 4711
@@ -3950,12 +3995,6 @@ components:
       - globalAssetIdentifier
       - projectId
       type: object
-    AssetIdentifyBy:
-      enum:
-      - resourceId
-      - deviceId
-      - id
-      type: string
     ErrorMessage422:
       description: An error message showing the issue occur during the operation.
       example: "error: dependent resource not found"
@@ -3979,7 +4018,6 @@ components:
             $ref: '#/components/schemas/Asset'
         title: AssetDryRun
         type: object
-      x-all-of-name: AssetDryRun
     AttributeDisplay:
       description: How attributes are displayed for specific assets
       example:
@@ -5280,6 +5318,18 @@ components:
           nullable: true
           type: string
       type: object
+    AssetIdentifyBy:
+      enum:
+      - resourceId
+      - deviceId
+      - id
+      - gai-projId
+      type: string
+      x-enum-varnames:
+      - ASSET_IDENTIFY_BY_RESOURCE_ID
+      - ASSET_IDENTIFY_BY_DEVICE_ID
+      - ASSET_IDENTIFY_BY_ID
+      - ASSET_IDENTIFY_BY_GAI_PROJ_ID
     WidgetTypeElement:
       description: An element for widget types
       example:
@@ -5423,9 +5473,8 @@ components:
             example: 10
             nullable: true
             type: integer
-        title: IosysAgentDeviceSpecific
+        title: IosysAgentDevice
         type: object
-      x-all-of-name: IosysAgentDevice
     MbusAgentDevice:
       allOf:
       - $ref: '#/components/schemas/AgentDeviceGeneral'
@@ -5466,9 +5515,8 @@ components:
             default: 0
             nullable: true
             type: integer
-        title: MbusAgentDeviceSpecific
+        title: MbusAgentDevice
         type: object
-      x-all-of-name: MbusAgentDevice
     IosysAgentDeviceMapping:
       allOf:
       - $ref: '#/components/schemas/AgentDeviceMappingGeneral'
@@ -5526,9 +5574,8 @@ components:
             format: double
             nullable: true
             type: number
-        title: IosysAgentDeviceMappingSpecific
+        title: IosysAgentDeviceMapping
         type: object
-      x-all-of-name: IosysAgentDeviceMapping
     MbusAgentDeviceMapping:
       allOf:
       - $ref: '#/components/schemas/AgentDeviceMappingGeneral'
@@ -5546,9 +5593,8 @@ components:
             format: double
             nullable: true
             type: number
-        title: MbusAgentDeviceMappingSpecific
+        title: MbusAgentDeviceMapping
         type: object
-      x-all-of-name: MbusAgentDeviceMapping
     AgentDeviceGeneral:
       description: A general device for an agent
       nullable: true

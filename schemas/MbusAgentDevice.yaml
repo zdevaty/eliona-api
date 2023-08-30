@@ -1,8 +1,7 @@
-x-all-of-name: MbusAgentDevice
 allOf:
   - $ref: 'AgentDeviceGeneral.yaml'
   - type: object
-    title: MbusAgentDeviceSpecific
+    title: MbusAgentDevice
     description: Specific device for MBUS agents
     nullable: true
     properties:

@@ -11,4 +11,9 @@ in: query
 required: false
 example: resourceId
 schema:
-  $ref: '../schemas/AssetIdentifyBy.yaml'
+  type: string
+  enum:
+    - resourceId
+    - deviceId
+    - id
+    - gai-projId

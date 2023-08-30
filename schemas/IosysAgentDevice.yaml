@@ -1,8 +1,7 @@
-x-all-of-name: IosysAgentDevice
 allOf:
   - $ref: 'AgentDeviceGeneral.yaml'
   - type: object
-    title: IosysAgentDeviceSpecific
+    title: IosysAgentDevice
     description: Specific device for IOSYS agents
     nullable: true
     properties:
