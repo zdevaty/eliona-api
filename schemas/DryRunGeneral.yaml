@@ -4,7 +4,7 @@ nullable: true
 properties:
   identifier:
     $ref: 'Identifier.yaml'
-  expectedStatusCode:
+  statusCode:
     type: integer
     nullable: false
     description: |
@@ -18,7 +18,7 @@ properties:
       - 409: duplicated (conflict)
       - 422: unprocessable
     example: 200
-  expectedErrorMessage:
+  errorMessage:
     type: string
     nullable: true
     description: |
