@@ -5303,7 +5303,7 @@ components:
           description: Unique identifier (textual or numeric) of resources
           example: "1234"
           type: string
-        expectedStatusCode:
+        statusCode:
           description: "The status code expecting when actually perform the operation.\
             \ Some values are\n- 200: updated (ok) \n- 201: created\n- 204: deleted\
             \ (no content)\n- 304: unchanged (not modified)\n- 400: problem (bad request)\n\
@@ -5311,7 +5311,7 @@ components:
           example: 200
           nullable: false
           type: integer
-        expectedErrorMessage:
+        errorMessage:
           description: |
             The error message expecting when actually perform the operation.
           example: "error: dependent resource not found"
