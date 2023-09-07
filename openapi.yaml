@@ -3862,6 +3862,9 @@ components:
       description: An asset
       example:
         globalAssetIdentifier: zurich_swiss
+        functionalAssetIdPath:
+        - 0
+        - 0
         resourceId: 123e4567-e89b-12d3-a456-426655440000
         deviceIds:
         - XYZ0123
@@ -3885,6 +3888,9 @@ components:
         tags:
         - weather
         - location
+        locationalAssetIdPath:
+        - 6
+        - 6
         name: Station Zurich
         parentFunctionalAssetId: 4712
         id: 4711
@@ -3962,12 +3968,26 @@ components:
           example: 4712
           nullable: true
           type: integer
+        functionalAssetIdPath:
+          description: The hierarchical path of functional ids of the asset
+          items:
+            type: integer
+          nullable: true
+          readOnly: true
+          type: array
         parentLocationalAssetId:
           description: The id of an asset which groups this asset as a locational
             child
           example: 4712
           nullable: true
           type: integer
+        locationalAssetIdPath:
+          description: The hierarchical path of locational ids of the asset
+          items:
+            type: integer
+          nullable: true
+          readOnly: true
+          type: array
         tags:
           description: List of associated tags
           example:
@@ -4596,6 +4616,9 @@ components:
         attribute: temperature
         assetInfo:
           globalAssetIdentifier: zurich_swiss
+          functionalAssetIdPath:
+          - 0
+          - 0
           resourceId: 123e4567-e89b-12d3-a456-426655440000
           deviceIds:
           - XYZ0123
@@ -4619,6 +4642,9 @@ components:
           tags:
           - weather
           - location
+          locationalAssetIdPath:
+          - 6
+          - 6
           name: Station Zurich
           parentFunctionalAssetId: 4712
           id: 4711
@@ -4745,6 +4771,9 @@ components:
           attribute: temperature
           assetInfo:
             globalAssetIdentifier: zurich_swiss
+            functionalAssetIdPath:
+            - 0
+            - 0
             resourceId: 123e4567-e89b-12d3-a456-426655440000
             deviceIds:
             - XYZ0123
@@ -4768,6 +4797,9 @@ components:
             tags:
             - weather
             - location
+            locationalAssetIdPath:
+            - 6
+            - 6
             name: Station Zurich
             parentFunctionalAssetId: 4712
             id: 4711
@@ -4780,6 +4812,9 @@ components:
         value: 38.7
         assetInfo:
           globalAssetIdentifier: zurich_swiss
+          functionalAssetIdPath:
+          - 0
+          - 0
           resourceId: 123e4567-e89b-12d3-a456-426655440000
           deviceIds:
           - XYZ0123
@@ -4803,6 +4838,9 @@ components:
           tags:
           - weather
           - location
+          locationalAssetIdPath:
+          - 6
+          - 6
           name: Station Zurich
           parentFunctionalAssetId: 4712
           id: 4711

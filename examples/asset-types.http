@@ -1,9 +1,9 @@
 ### Get type
-GET {{api-server}}/v2/asset-types/abb_free_at_home_switch_sensor?expansions=AssetType.attributes
+GET {{api-server}}/v2/asset-types?expansions=AssetType.attributes
 X-Api-Key: {{read-write-token}}
 
 ### Delete type
-DELETE {{api-server}}/v2/asset-types/weather_location
+DELETE {{api-server}}/v2/asset-types/TopBrewer
 X-Api-Key: {{read-write-token}}
 
 ### Selects asset type

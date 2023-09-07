@@ -66,11 +66,25 @@ properties:
     description: The id of an asset which groups this asset as a functional child
     example: 4712
     nullable: true
+  functionalAssetIdPath:
+    readOnly: true
+    type: array
+    description: The hierarchical path of functional ids of the asset
+    nullable: true
+    items:
+      type: integer
   parentLocationalAssetId:
     type: integer
     description: The id of an asset which groups this asset as a locational child
     example: 4712
     nullable: true
+  locationalAssetIdPath:
+    readOnly: true
+    type: array
+    description: The hierarchical path of locational ids of the asset
+    nullable: true
+    items:
+      type: integer
   tags:
     type: array
     description: List of associated tags
