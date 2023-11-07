@@ -26,4 +26,8 @@ properties:
     readOnly: true
     nullable: true
     example: weather_location
-
+  clientReference:
+    type: string
+    description: freely assignable by the client to identify self-created data
+    nullable: true
+    example: ABC123
