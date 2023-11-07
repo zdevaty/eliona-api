@@ -3,7 +3,7 @@ GET {{api-server}}/v2/dashboards
 X-Api-Key: {{read-only-token}}
 
 ### Get dashboard
-GET {{api-server}}/v2/dashboards/58?expansions=Dashboard.widgets,Widget.data
+GET {{api-server}}/v2/dashboards/396?expansions=Dashboard.widgets,Widget.data
 X-Api-Key: {{read-only-token}}
 
 ### Get dashboard widgets
@@ -15,4 +15,794 @@ X-Api-Key: {{read-only-token}}
 POST {{api-server}}/v2/dashboards?expansions=Dashboard.widgets,Widget.data
 X-Api-Key: {{read-write-token}}
 
-{"name":"KentixONE devices","projectId":"99","userId":"90","widgets":[{"data":[{"assetId":5624,"data":{"aggregatedDataType":"heap","attribute":"open","description":"DoorLock 1","key":"_SETPOINT","seq":0,"subtype":"output"},"elementSequence":1},{"assetId":5624,"data":{"aggregatedDataType":"heap","attribute":"open","description":"DoorLock 1","key":"_CURRENT","seq":0,"subtype":"output"},"elementSequence":1}],"details":{"size":1,"timespan":7},"widgetTypeName":"kentix_one_doolock"},{"data":[{"assetId":5624,"data":{"aggregatedDataType":"heap","attribute":"battery","description":"DoorLock 1 - Battery","subtype":"input"},"elementSequence":1}],"details":{"size":1,"timespan":7},"widgetTypeName":"kentix_one_multi_sensor"},{"assetId":5623,"data":[{"assetId":5623,"data":{"aggregatedDataField":null,"aggregatedDataType":"heap","attribute":"humidity","description":"Humidity","key":"","seq":0,"subtype":"input"},"elementSequence":1},{"assetId":5623,"data":{"aggregatedDataField":null,"aggregatedDataType":"heap","attribute":"air_quality","description":"Air quality","key":"","seq":0,"subtype":"input"},"elementSequence":1},{"assetId":5623,"data":{"aggregatedDataField":null,"aggregatedDataType":"heap","attribute":"co2","description":"CO₂","key":"","seq":0,"subtype":"input"},"elementSequence":1},{"assetId":5623,"data":{"aggregatedDataField":null,"aggregatedDataType":"heap","attribute":"temperature","description":"Temperature","key":"","seq":0,"subtype":"input"},"elementSequence":1}],"details":{"size":2,"timespan":7},"widgetTypeName":"kentix_one_multi_sensor"}]}
+{
+    "name": "Coffeecloud",
+    "projectId": "10",
+    "userId": "90",
+    "widgets": [
+        {
+            "assetId": 2950,
+            "data": [
+                {
+                    "assetId": 2950,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "cub_count",
+                        "description": "Cubs",
+                        "key": "",
+                        "seq": 0,
+                        "subtype": "input"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2950,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "hours_since_cleaned",
+                        "description": "Since clean",
+                        "key": "",
+                        "seq": 1,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2950,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "error_code",
+                        "description": "Status",
+                        "key": "",
+                        "seq": 2,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2950,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "error",
+                        "description": "Message",
+                        "key": "",
+                        "seq": 3,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                }
+            ],
+            "details": {
+                "388": {
+                    "tilesConfig": [
+                        {
+                            "defaultColorIndex": 3,
+                            "progressBar": null,
+                            "valueMapping": []
+                        },
+                        {
+                            "defaultColorIndex": 1,
+                            "progressBar": null,
+                            "valueMapping": []
+                        },
+                        {
+                            "defaultColorIndex": 5,
+                            "progressBar": null,
+                            "valueMapping": [
+                                [
+                                    "0",
+                                    "Healthy",
+                                    "#007305"
+                                ],
+                                [
+                                    "9999999",
+                                    "Error",
+                                    "#9E003D"
+                                ]
+                            ]
+                        },
+                        {
+                            "defaultColorIndex": 0,
+                            "progressBar": null,
+                            "valueMapping": []
+                        }
+                    ]
+                },
+                "size": 1,
+                "timespan": 7
+            },
+            "sequence": 2,
+            "widgetTypeName": "coffecloud"
+        },
+        {
+            "assetId": 2949,
+            "data": [
+                {
+                    "assetId": 2949,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "cub_count",
+                        "description": "Cubs",
+                        "key": "",
+                        "seq": 0,
+                        "subtype": "input"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2949,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "hours_since_cleaned",
+                        "description": "Since clean",
+                        "key": "",
+                        "seq": 1,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2949,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "error_code",
+                        "description": "Status",
+                        "key": "",
+                        "seq": 2,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2949,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "error",
+                        "description": "Message",
+                        "key": "",
+                        "seq": 3,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                }
+            ],
+            "details": {
+                "388": {
+                    "tilesConfig": [
+                        {
+                            "defaultColorIndex": 3,
+                            "progressBar": null,
+                            "valueMapping": []
+                        },
+                        {
+                            "defaultColorIndex": 1,
+                            "progressBar": null,
+                            "valueMapping": []
+                        },
+                        {
+                            "defaultColorIndex": 5,
+                            "progressBar": null,
+                            "valueMapping": [
+                                [
+                                    "0",
+                                    "Healthy",
+                                    "#007305"
+                                ],
+                                [
+                                    "9999999",
+                                    "Error",
+                                    "#9E003D"
+                                ]
+                            ]
+                        },
+                        {
+                            "defaultColorIndex": 0,
+                            "progressBar": null,
+                            "valueMapping": []
+                        }
+                    ]
+                },
+                "size": 1,
+                "timespan": 7
+            },
+            "sequence": 2,
+            "widgetTypeName": "coffecloud"
+        },
+        {
+            "assetId": 2953,
+            "data": [
+                {
+                    "assetId": 2953,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "cub_count",
+                        "description": "Cubs",
+                        "key": "",
+                        "seq": 0,
+                        "subtype": "input"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2953,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "hours_since_cleaned",
+                        "description": "Since clean",
+                        "key": "",
+                        "seq": 1,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2953,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "error_code",
+                        "description": "Status",
+                        "key": "",
+                        "seq": 2,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2953,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "error",
+                        "description": "Message",
+                        "key": "",
+                        "seq": 3,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                }
+            ],
+            "details": {
+                "388": {
+                    "tilesConfig": [
+                        {
+                            "defaultColorIndex": 3,
+                            "progressBar": null,
+                            "valueMapping": []
+                        },
+                        {
+                            "defaultColorIndex": 1,
+                            "progressBar": null,
+                            "valueMapping": []
+                        },
+                        {
+                            "defaultColorIndex": 5,
+                            "progressBar": null,
+                            "valueMapping": [
+                                [
+                                    "0",
+                                    "Healthy",
+                                    "#007305"
+                                ],
+                                [
+                                    "9999999",
+                                    "Error",
+                                    "#9E003D"
+                                ]
+                            ]
+                        },
+                        {
+                            "defaultColorIndex": 0,
+                            "progressBar": null,
+                            "valueMapping": []
+                        }
+                    ]
+                },
+                "size": 1,
+                "timespan": 7
+            },
+            "sequence": 2,
+            "widgetTypeName": "coffecloud"
+        },
+        {
+            "assetId": 2952,
+            "data": [
+                {
+                    "assetId": 2952,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "cub_count",
+                        "description": "Cubs",
+                        "key": "",
+                        "seq": 0,
+                        "subtype": "input"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2952,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "hours_since_cleaned",
+                        "description": "Since clean",
+                        "key": "",
+                        "seq": 1,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2952,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "error_code",
+                        "description": "Status",
+                        "key": "",
+                        "seq": 2,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2952,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "error",
+                        "description": "Message",
+                        "key": "",
+                        "seq": 3,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                }
+            ],
+            "details": {
+                "388": {
+                    "tilesConfig": [
+                        {
+                            "defaultColorIndex": 3,
+                            "progressBar": null,
+                            "valueMapping": []
+                        },
+                        {
+                            "defaultColorIndex": 1,
+                            "progressBar": null,
+                            "valueMapping": []
+                        },
+                        {
+                            "defaultColorIndex": 5,
+                            "progressBar": null,
+                            "valueMapping": [
+                                [
+                                    "0",
+                                    "Healthy",
+                                    "#007305"
+                                ],
+                                [
+                                    "9999999",
+                                    "Error",
+                                    "#9E003D"
+                                ]
+                            ]
+                        },
+                        {
+                            "defaultColorIndex": 0,
+                            "progressBar": null,
+                            "valueMapping": []
+                        }
+                    ]
+                },
+                "size": 1,
+                "timespan": 7
+            },
+            "sequence": 2,
+            "widgetTypeName": "coffecloud"
+        },
+        {
+            "assetId": 2951,
+            "data": [
+                {
+                    "assetId": 2951,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "cub_count",
+                        "description": "Cubs",
+                        "key": "",
+                        "seq": 0,
+                        "subtype": "input"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2951,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "hours_since_cleaned",
+                        "description": "Since clean",
+                        "key": "",
+                        "seq": 1,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2951,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "error_code",
+                        "description": "Status",
+                        "key": "",
+                        "seq": 2,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2951,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "error",
+                        "description": "Message",
+                        "key": "",
+                        "seq": 3,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                }
+            ],
+            "details": {
+                "388": {
+                    "tilesConfig": [
+                        {
+                            "defaultColorIndex": 3,
+                            "progressBar": null,
+                            "valueMapping": []
+                        },
+                        {
+                            "defaultColorIndex": 1,
+                            "progressBar": null,
+                            "valueMapping": []
+                        },
+                        {
+                            "defaultColorIndex": 5,
+                            "progressBar": null,
+                            "valueMapping": [
+                                [
+                                    "0",
+                                    "Healthy",
+                                    "#007305"
+                                ],
+                                [
+                                    "9999999",
+                                    "Error",
+                                    "#9E003D"
+                                ]
+                            ]
+                        },
+                        {
+                            "defaultColorIndex": 0,
+                            "progressBar": null,
+                            "valueMapping": []
+                        }
+                    ]
+                },
+                "size": 1,
+                "timespan": 7
+            },
+            "sequence": 2,
+            "widgetTypeName": "coffecloud"
+        },
+        {
+            "assetId": 2954,
+            "data": [
+                {
+                    "assetId": 2954,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "cub_count",
+                        "description": "Cubs",
+                        "key": "",
+                        "seq": 0,
+                        "subtype": "input"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2954,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "hours_since_cleaned",
+                        "description": "Since clean",
+                        "key": "",
+                        "seq": 1,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2954,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "error_code",
+                        "description": "Status",
+                        "key": "",
+                        "seq": 2,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2954,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "error",
+                        "description": "Message",
+                        "key": "",
+                        "seq": 3,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                }
+            ],
+            "details": {
+                "388": {
+                    "tilesConfig": [
+                        {
+                            "defaultColorIndex": 3,
+                            "progressBar": null,
+                            "valueMapping": []
+                        },
+                        {
+                            "defaultColorIndex": 1,
+                            "progressBar": null,
+                            "valueMapping": []
+                        },
+                        {
+                            "defaultColorIndex": 5,
+                            "progressBar": null,
+                            "valueMapping": [
+                                [
+                                    "0",
+                                    "Healthy",
+                                    "#007305"
+                                ],
+                                [
+                                    "9999999",
+                                    "Error",
+                                    "#9E003D"
+                                ]
+                            ]
+                        },
+                        {
+                            "defaultColorIndex": 0,
+                            "progressBar": null,
+                            "valueMapping": []
+                        }
+                    ]
+                },
+                "size": 1,
+                "timespan": 7
+            },
+            "sequence": 2,
+            "widgetTypeName": "coffecloud"
+        },
+        {
+            "assetId": 2947,
+            "data": [
+                {
+                    "assetId": 2947,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "cub_count",
+                        "description": "Cubs",
+                        "key": "",
+                        "seq": 0,
+                        "subtype": "input"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2947,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "hours_since_cleaned",
+                        "description": "Since clean",
+                        "key": "",
+                        "seq": 1,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2947,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "error_code",
+                        "description": "Status",
+                        "key": "",
+                        "seq": 2,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2947,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "error",
+                        "description": "Message",
+                        "key": "",
+                        "seq": 3,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                }
+            ],
+            "details": {
+                "388": {
+                    "tilesConfig": [
+                        {
+                            "defaultColorIndex": 3,
+                            "progressBar": null,
+                            "valueMapping": []
+                        },
+                        {
+                            "defaultColorIndex": 1,
+                            "progressBar": null,
+                            "valueMapping": []
+                        },
+                        {
+                            "defaultColorIndex": 5,
+                            "progressBar": null,
+                            "valueMapping": [
+                                [
+                                    "0",
+                                    "Healthy",
+                                    "#007305"
+                                ],
+                                [
+                                    "9999999",
+                                    "Error",
+                                    "#9E003D"
+                                ]
+                            ]
+                        },
+                        {
+                            "defaultColorIndex": 0,
+                            "progressBar": null,
+                            "valueMapping": []
+                        }
+                    ]
+                },
+                "size": 1,
+                "timespan": 7
+            },
+            "sequence": 2,
+            "widgetTypeName": "coffecloud"
+        },
+        {
+            "assetId": 2948,
+            "data": [
+                {
+                    "assetId": 2948,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "cub_count",
+                        "description": "Cubs",
+                        "key": "",
+                        "seq": 0,
+                        "subtype": "input"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2948,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "hours_since_cleaned",
+                        "description": "Since clean",
+                        "key": "",
+                        "seq": 1,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2948,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "error_code",
+                        "description": "Status",
+                        "key": "",
+                        "seq": 2,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                },
+                {
+                    "assetId": 2948,
+                    "data": {
+                        "aggregatedDataField": null,
+                        "aggregatedDataType": "heap",
+                        "attribute": "error",
+                        "description": "Message",
+                        "key": "",
+                        "seq": 3,
+                        "subtype": "status"
+                    },
+                    "elementSequence": 1
+                }
+            ],
+            "details": {
+                "388": {
+                    "tilesConfig": [
+                        {
+                            "defaultColorIndex": 3,
+                            "progressBar": null,
+                            "valueMapping": []
+                        },
+                        {
+                            "defaultColorIndex": 1,
+                            "progressBar": null,
+                            "valueMapping": []
+                        },
+                        {
+                            "defaultColorIndex": 5,
+                            "progressBar": null,
+                            "valueMapping": [
+                                [
+                                    "0",
+                                    "Healthy",
+                                    "#007305"
+                                ],
+                                [
+                                    "9999999",
+                                    "Error",
+                                    "#9E003D"
+                                ]
+                            ]
+                        },
+                        {
+                            "defaultColorIndex": 0,
+                            "progressBar": null,
+                            "valueMapping": []
+                        }
+                    ]
+                },
+                "size": 1,
+                "timespan": 7
+            },
+            "sequence": 2,
+            "widgetTypeName": "coffecloud"
+        }
+    ]
+}

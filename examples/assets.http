@@ -20,12 +20,10 @@ X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
-  "projectId": "99",
-  "globalAssetIdentifier": "GAI 4714",
+  "projectId": "10",
+  "globalAssetIdentifier": "K0445587_CTA_WP1XXX",
   "name": "Test Asset",
-  "assetType": "VIRTUAL Light",
-  "isTracker": true,
-  "tags": ["A", "B"]
+  "assetType": "VIRTUAL Light"
 }
 
 ### Insert asset
@@ -91,3 +89,24 @@ Content-Type: application/json
     }
   ]
 }
+
+
+### Update new asset in bulk
+PUT {{api-server}}/v2/assets-bulk
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+[
+  {
+    "projectId": "1",
+    "globalAssetIdentifier": "GAI 4711",
+    "name": "Test Asset",
+    "assetType": "VIRTUAL Light"
+  },
+  {
+    "projectId": "1",
+    "globalAssetIdentifier": "GAI 4712",
+    "name": "Test Asset",
+    "assetType": "VIRTUAL Light"
+  }
+]

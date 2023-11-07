@@ -7,7 +7,7 @@ GET {{api-server}}/v2/widget-types/Weather Station?expansions=WidgetType.element
 X-Api-Key: {{read-only-token}}
 
 ### Select widget type
-GET {{api-server}}/v2/widget-types/fjjhjdhjfd
+GET {{api-server}}/v2/widget-types/coffecloud?expansions=WidgetType.elements
 X-Api-Key: {{read-only-token}}
 
 ### Insert widget type
@@ -45,24 +45,22 @@ X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
-  "name": "Weather Station",
+  "name": "coffecloud",
   "custom": true,
   "translation": {
-    "en": "Weather Station"
+    "de": "Coffecloud",
+    "en": "Coffecloud"
   },
+  "withAlarm": true,
+  "withTimespan": true,
+  "icon": "silo-fill",
   "elements": [
     {
-      "category": "progress",
+      "category": "value",
       "sequence": 1,
       "config": {
-        "showLegend": true
-      }
-    },
-    {
-      "category": "radar",
-      "sequence": 2,
-      "config": {
-        "showLegend": true
+        "description": "",
+        "variant": "tiles"
       }
     }
   ]
