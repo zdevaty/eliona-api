@@ -6,6 +6,7 @@ get:
   operationId: getData
   parameters:
     - $ref: '../parameters/assetId.yaml'
+    - $ref: '../parameters/parentAssetId.yaml'
     - $ref: '../parameters/dataSubtype.yaml'
     - $ref: '../parameters/assetTypeName.yaml'
   responses:

@@ -19,7 +19,7 @@ GET {{api-server}}/v2/data-trends?assetTypeName=VIRTUAL Battery&fromDate=2022-07
 X-Api-Key: {{read-only-token}}
 
 ### Get data aggs
-GET {{api-server}}/v2/data-aggregated?assetId=62
+GET {{api-server}}/v2/data-aggregated?assetId=5208
 X-Api-Key: {{read-only-token}}
 
 ### Get data aggs with timestamp
@@ -41,33 +41,30 @@ X-Api-Key: {{read-write-token}}
     "assetTypeName": "thingdust_space"
   }
 
+### Put data
+PUT {{api-server}}/v2/data
+X-Api-Key: {{read-write-token}}
+
+  {
+    "assetId": 8514,
+    "subtype": "input",
+    "data": {
+    "brightness": 188
+    },
+    "clientReference": "42"
+  }
+
 ### Put data bulk
-PUT {{api-server}}/v2/data/bulk
+PUT {{api-server}}/v2/data-bulk
 X-Api-Key: {{read-write-token}}
 
   [
   {
-    "assetId": 3613,
+    "assetId": 8514,
     "subtype": "input",
     "data": {
-      "humidity": 10
+    "brightness": 222
     },
-    "assetTypeName": "thingdust_space"
-  },
-  {
-    "assetId": 3613,
-    "subtype": "input",
-    "data": {
-      "occupancy": 20
-    },
-    "assetTypeName": "thingdust_space"
-  },
-  {
-    "assetId": 3613,
-    "subtype": "input",
-    "data": {
-      "temperature": 30
-    },
-    "assetTypeName": "thingdust_space"
+    "clientReference": "42"
   }
   ]

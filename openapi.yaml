@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.5.5
+  version: 2.5.6
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -1156,6 +1156,13 @@ paths:
         example: 4711
         in: query
         name: assetId
+        required: false
+        schema:
+          type: integer
+      - description: Filter for a specific parent asset id
+        example: 4711
+        in: query
+        name: parentAssetId
         required: false
         schema:
           type: integer
@@ -3279,6 +3286,14 @@ components:
       required: false
       schema:
         type: integer
+    parentAssetId:
+      description: Filter for a specific parent asset id
+      example: 4711
+      in: query
+      name: parentAssetId
+      required: false
+      schema:
+        type: integer
     dataSubtype:
       description: Filter for a specific type of asset data
       example: input
@@ -4600,6 +4615,7 @@ components:
     AlarmRule:
       description: Rule for an alarm
       example:
+        checkType: limits
         requiresAcknowledge: false
         subject: subject
         urldoc: urldoc
@@ -4734,6 +4750,16 @@ components:
           description: Do not mask
           nullable: true
           type: boolean
+        checkType:
+          default: limits
+          description: Check type
+          enum:
+          - limits
+          - validity
+          - custom
+          example: limits
+          nullable: true
+          type: string
         assetInfo:
           $ref: '#/components/schemas/Asset'
       required:
@@ -4755,6 +4781,7 @@ components:
         subtype: input
         assetId: 4711
         ruleInfo:
+          checkType: limits
           requiresAcknowledge: false
           subject: subject
           urldoc: urldoc

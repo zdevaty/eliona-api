@@ -84,5 +84,15 @@ properties:
     description: Do not mask
     default: false
     nullable: true
+  checkType:
+    type: string
+    description: Check type
+    nullable: true
+    default: limits
+    example: limits
+    enum:
+      - limits
+      - validity
+      - custom
   assetInfo:
     $ref: 'Asset.yaml'

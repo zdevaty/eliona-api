@@ -1,0 +1,7 @@
+name: parentAssetId
+description: Filter for a specific parent asset id
+in: query
+required: false
+example: 4711
+schema:
+  type: integer
