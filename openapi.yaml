@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.5.6
+  version: 2.5.7
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -5500,12 +5500,14 @@ components:
       - 1
       - 2
       - 3
+      - 10
       example: 2
       type: integer
       x-enum-varnames:
-      - ALARM_PRIORITY_LOW
-      - ALARM_PRIORITY_MEDIUM
       - ALARM_PRIORITY_HEIGHT
+      - ALARM_PRIORITY_MEDIUM
+      - ALARM_PRIORITY_LOW
+      - ALARM_PRIORITY_INFO
     AgentClass:
       description: The class of an agent
       enum:
