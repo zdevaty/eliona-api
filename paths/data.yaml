@@ -31,6 +31,8 @@ put:
       application/json:
         schema:
           $ref: '../schemas/Data.yaml'
+  parameters:
+    - $ref: '../parameters/directMode.yaml'
   responses:
     201:
       description: Successfully created a new or updated existing asset data
