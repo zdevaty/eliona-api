@@ -1229,6 +1229,17 @@ paths:
       description: Create multiple asset data or update data if already exists. Uses
         the unique combination of asset id and subtype for updating.
       operationId: putBulkData
+      parameters:
+      - description: Executes the operation directly without using other services.
+        example: true
+        in: query
+        name: directMode
+        required: false
+        schema:
+          enum:
+          - "true"
+          - "false"
+          type: string
       requestBody:
         content:
           application/json:

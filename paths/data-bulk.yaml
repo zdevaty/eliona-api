@@ -12,6 +12,8 @@ put:
           type: array
           items:
             $ref: '../schemas/Data.yaml'
+  parameters:
+    - $ref: '../parameters/directMode.yaml'
   responses:
     201:
       description: Successfully created multiple asset data
