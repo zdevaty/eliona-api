@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.5.9
+  version: 2.5.10
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -4788,13 +4788,11 @@ components:
           nullable: true
           type: boolean
         checkType:
-          default: limits
           description: Check type
           enum:
           - limits
           - validity
           - custom
-          example: limits
           nullable: true
           type: string
         assetInfo:

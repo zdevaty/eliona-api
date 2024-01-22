@@ -88,8 +88,6 @@ properties:
     type: string
     description: Check type
     nullable: true
-    default: limits
-    example: limits
     enum:
       - limits
       - validity
