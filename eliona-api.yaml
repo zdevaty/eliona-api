@@ -35,7 +35,16 @@ servers:
       environment:
         default: name
         description: Environment name to define the server URL
-
+  - url: https://{server}/v2
+    variables:
+      server:
+        default: somewhere:3000
+        description: Server of the API
+  - url: http://{server}/v2
+    variables:
+      server:
+        default: localhost:3000
+        description: Server of the API
 security:
   - ApiKeyAuth: []
   - BearerAuth: []
