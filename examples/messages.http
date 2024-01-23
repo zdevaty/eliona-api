@@ -23,3 +23,19 @@ Content-Type: application/json
 ### Get mail status
 GET {{api-server}}/v2/message-receipts/1320
 X-Api-Key: {{read-only-token}}
+
+### Send notification
+POST {{api-server}}/v2/send-notification
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "message": {
+    "de": "Das ist ein deutscher Text",
+    "en": "This is an english text",
+    "it": "Questo è nel testo inglese",
+    "fr": "Ceci est en texte anglais"
+  },
+  "user": "90",
+  "projectId": "10"
+}
