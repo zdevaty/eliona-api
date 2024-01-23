@@ -5211,7 +5211,7 @@ components:
         projectId: "99"
       properties:
         user:
-          description: E-Mail address of the Eliona user
+          description: E-Mail address or internal ID of the Eliona user
           example: peter.fox@example.com
           type: string
         projectId:
