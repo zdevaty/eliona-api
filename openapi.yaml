@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.5.10
+  version: 2.6.0
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -1126,6 +1126,43 @@ paths:
       summary: Dry-run for creating or updating a list of assets
       tags:
       - Assets
+  /asset-listener:
+    get:
+      description: "Open a WebSocket connection to get informed when asset is created,\
+        \ updated or deleted."
+      operationId: listenAssets
+      parameters:
+      - description: Filter for a specific asset id
+        example: 4711
+        in: query
+        name: assetId
+        required: false
+        schema:
+          type: integer
+      - description: Filter the name of the asset type
+        example: weather_location
+        in: query
+        name: assetTypeName
+        required: false
+        schema:
+          type: string
+      - description: Filter the tag
+        example: building
+        in: query
+        name: tag
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetListen'
+          description: Successfully opened a connection to asset WebSocket
+      summary: WebSocket connection for asset changes
+      tags:
+      - Assets
   /attribute-display:
     get:
       description: Gets information about how attributes for specific assets are displayed
@@ -1355,7 +1392,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Data'
+                $ref: '#/components/schemas/DataListen'
           description: Successfully opened a connection to asset data WebSocket
       summary: WebSocket connection for asset data changes
       tags:
@@ -2304,7 +2341,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Alarm'
+                $ref: '#/components/schemas/AlarmListen'
           description: Successfully opened a connection to alarm WebSocket
       summary: WebSocket connection for alarm changes
       tags:
@@ -3322,6 +3359,14 @@ components:
       required: false
       schema:
         type: integer
+    tag:
+      description: Filter the tag
+      example: building
+      in: query
+      name: tag
+      required: false
+      schema:
+        type: string
     parentAssetId:
       description: Filter for a specific parent asset id
       example: 4711
@@ -4100,6 +4145,15 @@ components:
             $ref: '#/components/schemas/Asset'
         title: AssetDryRun
         type: object
+    AssetListen:
+      allOf:
+      - description: Information about asset listener
+        nullable: true
+        properties:
+          statusCode:
+            $ref: '#/components/schemas/StatusCode'
+        type: object
+      - $ref: '#/components/schemas/Asset'
     AttributeDisplay:
       description: How attributes are displayed for specific assets
       example:
@@ -4221,6 +4275,15 @@ components:
       - data
       - subtype
       type: object
+    DataListen:
+      allOf:
+      - description: Information about asset data listener
+        nullable: true
+        properties:
+          statusCode:
+            $ref: '#/components/schemas/StatusCode'
+        type: object
+      - $ref: '#/components/schemas/Data'
     DataAggregated:
       description: Aggregated data combines multiple data points for a periodical
         raster
@@ -4999,6 +5062,15 @@ components:
       - subtype
       - timestamp
       type: object
+    AlarmListen:
+      allOf:
+      - description: Information about alarm listener
+        nullable: true
+        properties:
+          statusCode:
+            $ref: '#/components/schemas/StatusCode'
+        type: object
+      - $ref: '#/components/schemas/Alarm'
     Node:
       description: An edge node
       example:
@@ -5446,6 +5518,14 @@ components:
       - ASSET_IDENTIFY_BY_DEVICE_ID
       - ASSET_IDENTIFY_BY_ID
       - ASSET_IDENTIFY_BY_GAI_PROJ_ID
+    StatusCode:
+      description: "The status code expecting when actually perform the operation.\
+        \ Some values are\n- 200: updated (ok) \n- 201: created\n- 204: deleted (no\
+        \ content)\n- 304: unchanged (not modified)\n- 400: problem (bad request)\n\
+        - 404: not found\n- 409: duplicated (conflict)\n- 422: unprocessable\n"
+      example: 200
+      nullable: false
+      type: integer
     WidgetTypeElement:
       description: An element for widget types
       example:

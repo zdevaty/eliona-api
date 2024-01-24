@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Assets
+  summary: WebSocket connection for asset changes
+  description: Open a WebSocket connection to get informed when asset is created, updated or deleted.
+  operationId: listenAssets
+  parameters:
+    - $ref: '../parameters/assetId.yaml'
+    - $ref: '../parameters/assetTypeName.yaml'
+    - $ref: '../parameters/tag.yaml'
+  responses:
+    200:
+      description: Successfully opened a connection to asset WebSocket
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/AssetListen.yaml'

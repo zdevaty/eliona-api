@@ -1,0 +1,8 @@
+allOf:
+  - type: object
+    description: Information about asset data listener
+    nullable: true
+    properties:
+      statusCode:
+        $ref: '../schemas/StatusCode.yaml'
+  - $ref: '../schemas/Data.yaml'
