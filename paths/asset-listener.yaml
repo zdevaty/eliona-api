@@ -8,6 +8,7 @@ get:
     - $ref: '../parameters/assetId.yaml'
     - $ref: '../parameters/assetTypeName.yaml'
     - $ref: '../parameters/tag.yaml'
+    - $ref: '../parameters/expansions.yaml'
   responses:
     200:
       description: Successfully opened a connection to asset WebSocket
