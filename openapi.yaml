@@ -1132,27 +1132,6 @@ paths:
         \ updated or deleted."
       operationId: listenAsset
       parameters:
-      - description: Filter for a specific asset id
-        example: 4711
-        in: query
-        name: assetId
-        required: false
-        schema:
-          type: integer
-      - description: Filter the name of the asset type
-        example: weather_location
-        in: query
-        name: assetTypeName
-        required: false
-        schema:
-          type: string
-      - description: Filter the tag
-        example: building
-        in: query
-        name: tag
-        required: false
-        schema:
-          type: string
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -3371,14 +3350,6 @@ components:
       required: false
       schema:
         type: integer
-    tag:
-      description: Filter the tag
-      example: building
-      in: query
-      name: tag
-      required: false
-      schema:
-        type: string
     parentAssetId:
       description: Filter for a specific parent asset id
       example: 4711

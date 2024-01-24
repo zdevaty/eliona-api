@@ -5,9 +5,6 @@ get:
   description: Open a WebSocket connection to get informed when asset is created, updated or deleted.
   operationId: listenAsset
   parameters:
-    - $ref: '../parameters/assetId.yaml'
-    - $ref: '../parameters/assetTypeName.yaml'
-    - $ref: '../parameters/tag.yaml'
     - $ref: '../parameters/expansions.yaml'
   responses:
     200:

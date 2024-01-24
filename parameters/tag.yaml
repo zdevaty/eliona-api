@@ -1,7 +1,0 @@
-name: tag
-description: Filter the tag
-in: query
-required: false
-example: building
-schema:
-  type: string
