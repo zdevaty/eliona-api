@@ -1130,7 +1130,7 @@ paths:
     get:
       description: "Open a WebSocket connection to get informed when asset is created,\
         \ updated or deleted."
-      operationId: listenAssets
+      operationId: listenAsset
       parameters:
       - description: Filter for a specific asset id
         example: 4711
