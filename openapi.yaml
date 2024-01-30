@@ -14,6 +14,11 @@ externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
 servers:
+- url: "https://{environment}.eliona.io/v2"
+  variables:
+    environment:
+      default: name
+      description: Environment name to define the server URL
 - url: "https://{environment}.eliona.io/api/v2"
   variables:
     environment:
