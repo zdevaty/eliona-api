@@ -16,7 +16,7 @@ openapi: 3.0.3
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 info:
-  version: 2.6.0
+  version: 2.6.1
   title: Eliona REST API
   description:
     The Eliona REST API enables unified access to the resources and data of an Eliona environment.
