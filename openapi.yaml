@@ -3631,10 +3631,8 @@ components:
             it: Questo è nel testo inglese
             fr: Ceci est en texte anglais
           map:
-          - text: five
-            value: 5
-          - text: five
-            value: 5
+          - "{}"
+          - "{}"
           aggregationMode: avg
           aggregationRasters:
           - DAY
@@ -3664,10 +3662,8 @@ components:
             it: Questo è nel testo inglese
             fr: Ceci est en texte anglais
           map:
-          - text: five
-            value: 5
-          - text: five
-            value: 5
+          - "{}"
+          - "{}"
           aggregationMode: avg
           aggregationRasters:
           - DAY
@@ -3770,10 +3766,8 @@ components:
           it: Questo è nel testo inglese
           fr: Ceci est en texte anglais
         map:
-        - text: five
-          value: 5
-        - text: five
-          value: 5
+        - "{}"
+        - "{}"
         aggregationMode: avg
         aggregationRasters:
         - DAY
@@ -3936,7 +3930,7 @@ components:
         map:
           description: list of mapping between value and custom text
           items:
-            $ref: '#/components/schemas/ValueMapping'
+            type: object
           nullable: true
           type: array
         sourcePath:
@@ -4156,10 +4150,8 @@ components:
         precision: 1
         attribute: temperature
         map:
-        - text: five
-          value: 5
-        - text: five
-          value: 5
+        - "{}"
+        - "{}"
       properties:
         assetId:
           description: ID of the corresponding asset
@@ -4214,7 +4206,7 @@ components:
         map:
           description: list of mapping between value and custom text
           items:
-            $ref: '#/components/schemas/ValueMapping'
+            type: object
           nullable: true
           type: array
       required:
@@ -5417,21 +5409,6 @@ components:
       - SUBTYPE_INFO
       - SUBTYPE_STATUS
       - SUBTYPE_OUTPUT
-    ValueMapping:
-      description: Mapping between value and custom text
-      example:
-        text: five
-        value: 5
-      properties:
-        value:
-          description: Value that should be mapped
-          example: 5
-          type: integer
-        text:
-          description: Custom text to display instead of value
-          example: five
-          type: string
-      type: object
     ResourceId:
       description: "A custom identifier for the resource, which can be utilized to\
         \ identify it for various operations such as updates, deletions, and other\

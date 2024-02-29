@@ -60,4 +60,4 @@ properties:
     description: list of mapping between value and custom text
     nullable: true
     items:
-      $ref: 'ValueMapping.yaml'
+      type: object

@@ -21,9 +21,11 @@ Content-Type: application/json
 
 {
   "projectId": "10",
-  "globalAssetIdentifier": "K0445587_CTA_WP1XXX",
+  "globalAssetIdentifier": "GAI 4711112ds",
   "name": "Test Asset",
-  "assetType": "VIRTUAL Light"
+  "assetType": "Space",
+  "parentLocationalAssetId": 15879,
+  "parentFunctionalAssetId": -1
 }
 
 ### Insert asset
@@ -32,10 +34,12 @@ X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
-  "projectId": "99",
-  "globalAssetIdentifier": "GAI 4711",
+  "projectId": "10",
+  "globalAssetIdentifier": "GAI 4711112ds",
   "name": "Test Asset",
-  "assetType": "weather_location"
+  "assetType": "Space",
+  "parentLocationalAssetId": 15879,
+  "parentFunctionalAssetId": 15877
 }
 
 ### Insert asset with attachment
