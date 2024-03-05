@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.6.5
+  version: 2.6.6
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -3696,29 +3696,10 @@ components:
           nullable: true
           type: string
         icon:
-          description: Icon name corresponding to assets of this type
-          enum:
-          - blind
-          - building
-          - button
-          - closable
-          - elevator
-          - environment
-          - fallback
-          - filling
-          - gateway
-          - light
-          - mailbox
-          - parking
-          - people
-          - power
-          - rack
-          - storey
-          - trash
-          - ventilation
-          - vibration
-          - water
-          - weather
+          description: "Icon name corresponding to assets of this type: blind, building,\
+            \ button, closable, elevator, environment, fallback, filling, gateway,\
+            \ light, mailbox, parking, people, power, rack, storey, trash, ventilation,\
+            \ vibration, water, weather"
           example: weather
           nullable: true
           type: string
