@@ -17,34 +17,9 @@ properties:
     $ref: 'DataSubtype.yaml'
   type:
     type: string
-    description: Name of the type for this attribute
-    nullable: true
+    description: "Name of the type for this attribute: air_quality, battery-voltage, brightness, co2, current, device-info, device-status, energy, flow, frequency, humidity, inputs-and-switches, level, motion, operating-status, people-count, power, presence, pressure, temperature, vehicle-detector, voltage, weather, voc"
     example: temperature
-    enum:
-      - air_quality
-      - battery-voltage
-      - brightness
-      - co2
-      - current
-      - device-info
-      - device-status
-      - energy
-      - flow
-      - frequency
-      - humidity
-      - inputs-and-switches
-      - level
-      - motion
-      - operating-status
-      - people-count
-      - power
-      - presence
-      - pressure
-      - temperature
-      - vehicle-detector
-      - voltage
-      - weather
-      - voc
+    nullable: true
   enable:
     type: boolean
     default: true

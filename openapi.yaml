@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.6.6
+  version: 2.6.7
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -3769,32 +3769,11 @@ components:
         subtype:
           $ref: '#/components/schemas/DataSubtype'
         type:
-          description: Name of the type for this attribute
-          enum:
-          - air_quality
-          - battery-voltage
-          - brightness
-          - co2
-          - current
-          - device-info
-          - device-status
-          - energy
-          - flow
-          - frequency
-          - humidity
-          - inputs-and-switches
-          - level
-          - motion
-          - operating-status
-          - people-count
-          - power
-          - presence
-          - pressure
-          - temperature
-          - vehicle-detector
-          - voltage
-          - weather
-          - voc
+          description: "Name of the type for this attribute: air_quality, battery-voltage,\
+            \ brightness, co2, current, device-info, device-status, energy, flow,\
+            \ frequency, humidity, inputs-and-switches, level, motion, operating-status,\
+            \ people-count, power, presence, pressure, temperature, vehicle-detector,\
+            \ voltage, weather, voc"
           example: temperature
           nullable: true
           type: string
