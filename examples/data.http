@@ -31,14 +31,11 @@ PUT {{api-server}}/v2/data
 X-Api-Key: {{read-write-token}}
 
   {
-    "assetId": 3613,
+    "assetId": 16297,
     "subtype": "input",
     "data": {
-      "humidity": 1,
-      "occupancy": 2,
-      "temperature": 3
-    },
-    "assetTypeName": "thingdust_space"
+      "session_count": 1
+    }
   }
 
 ### Put data

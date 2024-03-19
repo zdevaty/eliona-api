@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.6.7
+  version: 2.6.8
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -3630,6 +3630,7 @@ components:
             en: This is an english text
             it: Questo è nel testo inglese
             fr: Ceci est en texte anglais
+          formula: "{seconds} * 60"
           map:
           - "{}"
           - "{}"
@@ -3661,6 +3662,7 @@ components:
             en: This is an english text
             it: Questo è nel testo inglese
             fr: Ceci est en texte anglais
+          formula: "{seconds} * 60"
           map:
           - "{}"
           - "{}"
@@ -3746,6 +3748,7 @@ components:
           en: This is an english text
           it: Questo è nel testo inglese
           fr: Ceci est en texte anglais
+        formula: "{seconds} * 60"
         map:
         - "{}"
         - "{}"
@@ -3879,6 +3882,11 @@ components:
           description: Is the attribute virtual or not
           nullable: true
           type: boolean
+        formula:
+          description: calculation rule to calculate the value for this attribute
+          example: "{seconds} * 60"
+          nullable: true
+          type: string
         scale:
           description: value scale
           nullable: true
@@ -4520,6 +4528,7 @@ components:
       description: A frontend dashboard
       example:
         sequence: 1
+        public: false
         name: Weather info
         id: 4711
         widgets:
@@ -4586,6 +4595,7 @@ components:
           type: string
         sequence:
           default: 0
+          deprecated: true
           description: The sequence of the dashboard
           example: 1
           nullable: true
@@ -4597,6 +4607,11 @@ components:
             $ref: '#/components/schemas/Widget'
           nullable: true
           type: array
+        public:
+          default: false
+          description: Is the dashboard public and not bound to a dedicated user
+          nullable: true
+          type: boolean
       required:
       - name
       - projectId

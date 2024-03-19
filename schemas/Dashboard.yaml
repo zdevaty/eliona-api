@@ -29,9 +29,15 @@ properties:
     example: 1
     default: 0
     nullable: true
+    deprecated: true
   widgets:
     type: array
     description: List of widgets on this dashboard (order matches the order of widgets on the dashboard)
     nullable: true
     items:
       $ref: 'Widget.yaml'
+  public:
+    type: boolean
+    default: false
+    description: Is the dashboard public and not bound to a dedicated user
+    nullable: true

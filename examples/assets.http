@@ -3,8 +3,8 @@ GET {{api-server}}/v2/assets
 X-Api-Key: {{read-only-token}}
 
 ### Select asset with id
-GET {{api-server}}/v2/assets/16180
-X-Api-Key: {{read-only-token}}
+GET {{api-server}}/v2/assets/16042
+X-Api-Key: {{read-write-token}}
 
 ### Select asset with id and attachments
 GET {{api-server}}/v2/assets?expansions=Asset.attributes

@@ -3,8 +3,12 @@ GET {{api-server}}/v2/alarm-rules
 X-Api-Key: {{read-only-token}}
 
 ### Get alarm rule
-GET {{api-server}}/v2/alarm-rules/2
-X-Api-Key: {{read-only-token}}
+GET {{api-server}}/v2/alarm-rules/1669
+X-Api-Key: {{read-write-token}}
+
+### Get alarm rule
+GET {{api-server}}/v2/alarm-rules/1628?expansions=AlarmRule.assetInfo
+X-Api-Key: {{read-write-token}}
 
 ### Delete alarm rule
 DELETE {{api-server}}/v2/alarm-rules/2
