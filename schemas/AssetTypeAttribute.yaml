@@ -122,6 +122,11 @@ properties:
     type: boolean
     description: Is the attribute virtual or not
     nullable: true
+  formula:
+    type: string
+    description: calculation rule to calculate the value for this attribute
+    example: "{seconds} * 60"
+    nullable: true
   scale:
     type: number
     description: value scale

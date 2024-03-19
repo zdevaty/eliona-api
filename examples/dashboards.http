@@ -3,7 +3,7 @@ GET {{api-server}}/v2/dashboards
 X-Api-Key: {{read-only-token}}
 
 ### Get dashboard
-GET {{api-server}}/v2/dashboards/407?expansions=Dashboard.widgets,Widget.data
+GET {{api-server}}/v2/dashboards/473?expansions=Dashboard.widgets,Widget.data
 X-Api-Key: {{read-only-token}}
 
 ### Get dashboard widgets
@@ -58,7 +58,6 @@ X-Api-Key: {{read-write-token}}
         "timespan": 7
       },
       "assetId": 12593,
-      "sequence": 1,
       "data": [
         {
           "elementSequence": 1,
@@ -128,7 +127,6 @@ X-Api-Key: {{read-write-token}}
         "timespan": 7
       },
       "assetId": 3446,
-      "sequence": 2,
       "data": null
     }
   ]
