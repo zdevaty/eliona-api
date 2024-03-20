@@ -1,5 +1,5 @@
 ### Get all apps
-GET {{api-server}}/v2/apps/example
+GET {{api-server}}/v2/apps
 X-Api-Key: {{read-only-token}}
 
 ### Set registered

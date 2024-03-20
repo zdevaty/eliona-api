@@ -1,0 +1,11 @@
+name: calculationRuleIds
+description: List of calculation rule ids for filtering
+in: query
+required: false
+style: form
+explode: false
+schema:
+  type: array
+  nullable: true
+  items:
+    type: integer

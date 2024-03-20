@@ -16,7 +16,7 @@ openapi: 3.0.3
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 info:
-  version: 2.6.8
+  version: 2.6.9
   title: Eliona REST API
   description:
     The Eliona REST API enables unified access to the resources and data of an Eliona environment.
@@ -141,6 +141,12 @@ paths:
   /alarm-rules/{alarm-rule-id}:
     $ref: './paths/alarm-rules-id.yaml'
 
+  /calculation-rules:
+    $ref: './paths/calculation-rules.yaml'
+
+  /calculation-rules/{calculation-rule-id}:
+    $ref: './paths/calculation-rules-id.yaml'
+
   /alarms:
     $ref: './paths/alarms.yaml'
 
@@ -252,6 +258,10 @@ tags:
       url: https://www.eliona.io
   - name: Data
     description: Handle asset data
+    externalDocs:
+      url: https://www.eliona.io
+  - name: Calculation rules
+    description: Handle calculation rules
     externalDocs:
       url: https://www.eliona.io
   - name: Dashboards

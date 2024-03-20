@@ -1,0 +1,55 @@
+get:
+  tags:
+    - Calculation rules
+  summary: Information about an calculation rules rule
+  description: Gets information about an calculation rule.
+  operationId: getCalculationRuleById
+  parameters:
+    - $ref: '../parameters/calculation-rule-id.yaml'
+  responses:
+    200:
+      description: Successfully returned an calculation rule
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/CalculationRule.yaml'
+    404:
+      description: Calculation rule with id not found
+
+delete:
+  tags:
+    - Calculation rules
+  summary: Delete an calculation rule
+  description: Deletes an calculation rule.
+  operationId: deleteCalculationRuleById
+  parameters:
+    - $ref: '../parameters/calculation-rule-id.yaml'
+  responses:
+    204:
+      description: Successfully deleted the calculation rule
+    404:
+      description: Calculation rule with id not found
+
+put:
+  tags:
+    - Calculation rules
+  summary: Update an calculation rule
+  description: Update an calculation rule.
+  operationId: putCalculationRuleById
+  parameters:
+    - $ref: '../parameters/calculation-rule-id.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/CalculationRule.yaml'
+  responses:
+    200:
+      description: Successfully updated an existing calculation rule
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/CalculationRule.yaml'
+    404:
+      description: Calculation rule with id not found

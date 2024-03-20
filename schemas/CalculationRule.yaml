@@ -1,0 +1,50 @@
+type: object
+description: Calculation rule to calculate asset attribute data
+nullable: true
+required:
+  - assetId
+  - subtype
+  - attribute
+properties:
+  id:
+    type: integer
+    description: The id of the rule
+    example: 123
+    nullable: true
+    readOnly: true
+  assetId:
+    type: integer
+    description: ID of the corresponding asset
+    example: 4711
+  subtype:
+    $ref: 'DataSubtype.yaml'
+  attribute:
+    type: string
+    description: Name of the attribute of the asset type to be calculated
+    example: "temperature"
+  virtual:
+    type: boolean
+    description: Is the calculation attribute virtual or not
+    nullable: true
+  formula:
+    type: string
+    description: calculation rule to calculate the value for the attribute
+    example: "{seconds} * 60"
+    nullable: true
+  unit:
+    type: string
+    description: Physical unit of calculated data
+    example: °C
+    nullable: true
+  filter:
+    type: object
+    description: Filter definition for calculation rule
+    nullable: true
+    example: {
+      "type": "deadband",
+      "params": {
+        "tolerance":123,
+        "value_min":1,
+        "value_max":2
+      }
+    }

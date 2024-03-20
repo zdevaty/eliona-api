@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.6.8
+  version: 2.6.9
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -74,6 +74,10 @@ tags:
   externalDocs:
     url: https://www.eliona.io
   name: Data
+- description: Handle calculation rules
+  externalDocs:
+    url: https://www.eliona.io
+  name: Calculation rules
 - description: Handle dashboards
   externalDocs:
     url: https://www.eliona.io
@@ -1986,7 +1990,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/AlarmRule'
                 type: array
-          description: Successfully returned a list of alarms
+          description: Successfully returned a list of alarm rules
       summary: Information about alarm rules
       tags:
       - Alarm rules
@@ -2114,6 +2118,125 @@ paths:
       summary: Update an alarm rule
       tags:
       - Alarm rules
+  /calculation-rules:
+    get:
+      description: Gets information about calculation rules.
+      operationId: getCalculationRules
+      parameters:
+      - description: List of calculation rule ids for filtering
+        explode: false
+        in: query
+        name: calculationRuleIds
+        required: false
+        schema:
+          items:
+            type: integer
+          nullable: true
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CalculationRule'
+                type: array
+          description: Successfully returned a list of calculation rules
+      summary: Information about calculation rules
+      tags:
+      - Calculation rules
+    post:
+      description: Create a new calculation rule.
+      operationId: postCalculationRule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalculationRule'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculationRule'
+          description: Successfully created a new calculation rule
+      summary: Create an calculation rule
+      tags:
+      - Calculation rules
+  /calculation-rules/{calculation-rule-id}:
+    delete:
+      description: Deletes an calculation rule.
+      operationId: deleteCalculationRuleById
+      parameters:
+      - description: The id of the calculation rule
+        example: 4711
+        in: path
+        name: calculation-rule-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: Successfully deleted the calculation rule
+        "404":
+          description: Calculation rule with id not found
+      summary: Delete an calculation rule
+      tags:
+      - Calculation rules
+    get:
+      description: Gets information about an calculation rule.
+      operationId: getCalculationRuleById
+      parameters:
+      - description: The id of the calculation rule
+        example: 4711
+        in: path
+        name: calculation-rule-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculationRule'
+          description: Successfully returned an calculation rule
+        "404":
+          description: Calculation rule with id not found
+      summary: Information about an calculation rules rule
+      tags:
+      - Calculation rules
+    put:
+      description: Update an calculation rule.
+      operationId: putCalculationRuleById
+      parameters:
+      - description: The id of the calculation rule
+        example: 4711
+        in: path
+        name: calculation-rule-id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalculationRule'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculationRule'
+          description: Successfully updated an existing calculation rule
+        "404":
+          description: Calculation rule with id not found
+      summary: Update an calculation rule
+      tags:
+      - Calculation rules
   /alarms:
     get:
       description: Gets information about alarms
@@ -3452,6 +3575,26 @@ components:
       example: 4711
       in: path
       name: alarm-rule-id
+      required: true
+      schema:
+        type: integer
+    calculationRuleIds:
+      description: List of calculation rule ids for filtering
+      explode: false
+      in: query
+      name: calculationRuleIds
+      required: false
+      schema:
+        items:
+          type: integer
+        nullable: true
+        type: array
+      style: form
+    calculation-rule-id:
+      description: The id of the calculation rule
+      example: 4711
+      in: path
+      name: calculation-rule-id
       required: true
       schema:
         type: integer
@@ -4829,6 +4972,69 @@ components:
       - assetId
       - attribute
       - priority
+      - subtype
+      type: object
+    CalculationRule:
+      description: Calculation rule to calculate asset attribute data
+      example:
+        filter:
+          type: deadband
+          params:
+            tolerance: 123
+            value_min: 1
+            value_max: 2
+        virtual: true
+        unit: °C
+        subtype: input
+        assetId: 4711
+        formula: "{seconds} * 60"
+        id: 123
+        attribute: temperature
+      nullable: true
+      properties:
+        id:
+          description: The id of the rule
+          example: 123
+          nullable: true
+          readOnly: true
+          type: integer
+        assetId:
+          description: ID of the corresponding asset
+          example: 4711
+          type: integer
+        subtype:
+          $ref: '#/components/schemas/DataSubtype'
+        attribute:
+          description: Name of the attribute of the asset type to be calculated
+          example: temperature
+          type: string
+        virtual:
+          description: Is the calculation attribute virtual or not
+          nullable: true
+          type: boolean
+        formula:
+          description: calculation rule to calculate the value for the attribute
+          example: "{seconds} * 60"
+          nullable: true
+          type: string
+        unit:
+          description: Physical unit of calculated data
+          example: °C
+          nullable: true
+          type: string
+        filter:
+          description: Filter definition for calculation rule
+          example:
+            type: deadband
+            params:
+              tolerance: 123
+              value_min: 1
+              value_max: 2
+          nullable: true
+          type: object
+      required:
+      - assetId
+      - attribute
       - subtype
       type: object
     Alarm:

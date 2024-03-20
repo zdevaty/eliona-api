@@ -1,0 +1,37 @@
+get:
+  tags:
+    - Calculation rules
+  summary: Information about calculation rules
+  description: Gets information about calculation rules.
+  operationId: getCalculationRules
+  parameters:
+    - $ref: '../parameters/calculationRuleIds.yaml'
+  responses:
+    200:
+      description: Successfully returned a list of calculation rules
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/CalculationRule.yaml'
+
+post:
+  tags:
+    - Calculation rules
+  summary: Create an calculation rule
+  description: Create a new calculation rule.
+  operationId: postCalculationRule
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/CalculationRule.yaml'
+  responses:
+    201:
+      description: Successfully created a new calculation rule
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/CalculationRule.yaml'

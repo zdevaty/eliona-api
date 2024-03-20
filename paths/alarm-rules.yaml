@@ -9,7 +9,7 @@ get:
     - $ref: '../parameters/expansions.yaml'
   responses:
     200:
-      description: Successfully returned a list of alarms
+      description: Successfully returned a list of alarm rules
       content:
         application/json:
           schema:

@@ -3,7 +3,7 @@ GET {{api-server}}/v2/asset-types/abb_free_at_home_switch_sensor?expansions=Asse
 X-Api-Key: {{read-write-token}}
 
 ### Delete type
-DELETE {{api-server}}/v2/asset-types/
+GET {{api-server}}/v2/asset-types
 X-Api-Key: {{read-write-token}}
 
 ### Selects asset type
