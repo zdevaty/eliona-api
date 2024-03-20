@@ -1,14 +1,14 @@
 get:
   tags:
     - Calculation rules
-  summary: Information about an calculation rules rule
-  description: Gets information about an calculation rule.
+  summary: Information about a calculation rules rule
+  description: Gets information about a calculation rule.
   operationId: getCalculationRuleById
   parameters:
     - $ref: '../parameters/calculation-rule-id.yaml'
   responses:
     200:
-      description: Successfully returned an calculation rule
+      description: Successfully returned ancalculation rule
       content:
         application/json:
           schema:
@@ -19,8 +19,8 @@ get:
 delete:
   tags:
     - Calculation rules
-  summary: Delete an calculation rule
-  description: Deletes an calculation rule.
+  summary: Delete a calculation rule
+  description: Deletes a calculation rule.
   operationId: deleteCalculationRuleById
   parameters:
     - $ref: '../parameters/calculation-rule-id.yaml'
@@ -33,8 +33,8 @@ delete:
 put:
   tags:
     - Calculation rules
-  summary: Update an calculation rule
-  description: Update an calculation rule.
+  summary: Update a calculation rule
+  description: Update a calculation rule.
   operationId: putCalculationRuleById
   parameters:
     - $ref: '../parameters/calculation-rule-id.yaml'

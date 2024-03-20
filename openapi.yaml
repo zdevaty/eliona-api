@@ -2146,9 +2146,9 @@ paths:
       summary: Information about calculation rules
       tags:
       - Calculation rules
-    post:
-      description: Create a new calculation rule.
-      operationId: postCalculationRule
+    put:
+      description: Creates a new or updates an existing calculation rule.
+      operationId: putCalculationRule
       requestBody:
         content:
           application/json:
@@ -2156,18 +2156,18 @@ paths:
               $ref: '#/components/schemas/CalculationRule'
         required: true
       responses:
-        "201":
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CalculationRule'
-          description: Successfully created a new calculation rule
-      summary: Create an calculation rule
+          description: Successfully created or updated a calculation rule
+      summary: Creates or updates a calculation rule
       tags:
       - Calculation rules
   /calculation-rules/{calculation-rule-id}:
     delete:
-      description: Deletes an calculation rule.
+      description: Deletes a calculation rule.
       operationId: deleteCalculationRuleById
       parameters:
       - description: The id of the calculation rule
@@ -2182,11 +2182,11 @@ paths:
           description: Successfully deleted the calculation rule
         "404":
           description: Calculation rule with id not found
-      summary: Delete an calculation rule
+      summary: Delete a calculation rule
       tags:
       - Calculation rules
     get:
-      description: Gets information about an calculation rule.
+      description: Gets information about a calculation rule.
       operationId: getCalculationRuleById
       parameters:
       - description: The id of the calculation rule
@@ -2202,14 +2202,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CalculationRule'
-          description: Successfully returned an calculation rule
+          description: Successfully returned ancalculation rule
         "404":
           description: Calculation rule with id not found
-      summary: Information about an calculation rules rule
+      summary: Information about a calculation rules rule
       tags:
       - Calculation rules
     put:
-      description: Update an calculation rule.
+      description: Update a calculation rule.
       operationId: putCalculationRuleById
       parameters:
       - description: The id of the calculation rule
@@ -2234,7 +2234,7 @@ paths:
           description: Successfully updated an existing calculation rule
         "404":
           description: Calculation rule with id not found
-      summary: Update an calculation rule
+      summary: Update a calculation rule
       tags:
       - Calculation rules
   /alarms:

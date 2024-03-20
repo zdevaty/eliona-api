@@ -16,12 +16,12 @@ get:
             items:
               $ref: '../schemas/CalculationRule.yaml'
 
-post:
+put:
   tags:
     - Calculation rules
-  summary: Create an calculation rule
-  description: Create a new calculation rule.
-  operationId: postCalculationRule
+  summary: Creates or updates a calculation rule
+  description: Creates a new or updates an existing calculation rule.
+  operationId: putCalculationRule
   requestBody:
     required: true
     content:
@@ -29,8 +29,8 @@ post:
         schema:
           $ref: '../schemas/CalculationRule.yaml'
   responses:
-    201:
-      description: Successfully created a new calculation rule
+    200:
+      description: Successfully created or updated a calculation rule
       content:
         application/json:
           schema:
