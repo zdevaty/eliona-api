@@ -1,14 +1,46 @@
 ### Get type
-GET {{api-server}}/v2/asset-types/abb_free_at_home_switch_sensor?expansions=AssetType.attributes
+GET {{api-server}}/v2/asset-types/Test Type?expansions=AssetType.attributes
 X-Api-Key: {{read-write-token}}
 
 ### Delete type
-GET {{api-server}}/v2/asset-types
+DELETE {{api-server}}/v2/asset-types/Test Type
 X-Api-Key: {{read-write-token}}
 
 ### Selects asset type
 GET {{api-server}}/v2/asset-types/gp_joule_resent_sessions?expansions=AssetType.attributes
 X-Api-Key: {{read-only-token}}
+
+### Inserts
+POST {{api-server}}/v2/asset-types?expansions=AssetType.attributes
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "name": "Test Type",
+  "custom": true,
+  "translation": {
+    "de": "Test Typ",
+    "en": "Test Type"
+  },
+  "icon": "vibration",
+  "attributes": [
+    {
+      "assetTypeName": "Test Type",
+      "name": "test_attr",
+      "subtype": "input",
+      "type": "pressure",
+      "enable": true,
+      "translation": {
+        "de": "Test Attribut",
+        "en": "Test Attribute"
+      },
+      "viewer": false,
+      "ar": false,
+      "isDigital": false
+    }
+  ]
+}
+
 
 ### Upserts new asset type
 PUT {{api-server}}/v2/asset-types?expansions=AssetType.attributes

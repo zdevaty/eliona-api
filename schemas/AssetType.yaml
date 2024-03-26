@@ -40,6 +40,11 @@ properties:
     format: duration
     example: 0 hours 5 mins
     nullable: true
+  isTracker:
+    type: boolean
+    description: Function as a tracker
+    default: false
+    nullable: true
   attributes:
     type: array
     description: List of named attributes

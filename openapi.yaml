@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.6.9
+  version: 2.6.10
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -3817,6 +3817,7 @@ components:
           - sourcePath
           - sourcePath
         payloadFunction: PLS
+        isTracker: false
       properties:
         name:
           description: The unique name for this asset type
@@ -3858,6 +3859,11 @@ components:
           format: duration
           nullable: true
           type: string
+        isTracker:
+          default: false
+          description: Function as a tracker
+          nullable: true
+          type: boolean
         attributes:
           description: List of named attributes
           items:
@@ -4091,6 +4097,7 @@ components:
         locationalAssetIdPath:
         - 6
         - 6
+        trackerId: 4711
         name: Station Zurich
         parentFunctionalAssetId: 4712
         id: 4711
@@ -4153,10 +4160,16 @@ components:
           type: number
         isTracker:
           default: false
+          deprecated: true
           description: Does the asset function as a tracker and capture its position
             by itself
           nullable: true
           type: boolean
+        trackerId:
+          description: Tracker Asset Id
+          example: 4711
+          nullable: true
+          type: integer
         description:
           description: Textual description for this asset
           example: "Weather station Zurich, Swiss"
@@ -4875,6 +4888,7 @@ components:
           locationalAssetIdPath:
           - 6
           - 6
+          trackerId: 4711
           name: Station Zurich
           parentFunctionalAssetId: 4712
           id: 4711
@@ -5102,6 +5116,7 @@ components:
             locationalAssetIdPath:
             - 6
             - 6
+            trackerId: 4711
             name: Station Zurich
             parentFunctionalAssetId: 4712
             id: 4711
@@ -5143,6 +5158,7 @@ components:
           locationalAssetIdPath:
           - 6
           - 6
+          trackerId: 4711
           name: Station Zurich
           parentFunctionalAssetId: 4712
           id: 4711
