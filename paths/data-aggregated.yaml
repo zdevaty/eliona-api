@@ -11,6 +11,7 @@ get:
     - $ref: '../parameters/dataSubtype.yaml'
     - $ref: '../parameters/assetTypeName.yaml'
     - $ref: '../parameters/aggregationId.yaml'
+    - $ref: '../parameters/aggregationRaster.yaml'
   responses:
     200:
       description: Successfully returned aggregated data sets
