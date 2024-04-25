@@ -10,3 +10,4 @@ schema:
     - info
     - status
     - output
+    - property

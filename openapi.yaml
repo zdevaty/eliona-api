@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.6.10
+  version: 2.6.11
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -1228,6 +1228,7 @@ paths:
           - info
           - status
           - output
+          - property
           type: string
       - description: Filter the name of the asset type
         example: weather_location
@@ -1342,6 +1343,7 @@ paths:
           - info
           - status
           - output
+          - property
           type: string
       - description: Filter the name of the asset type
         example: weather_location
@@ -1386,6 +1388,7 @@ paths:
           - info
           - status
           - output
+          - property
           type: string
       responses:
         "200":
@@ -1435,6 +1438,7 @@ paths:
           - info
           - status
           - output
+          - property
           type: string
       - description: Filter the name of the asset type
         example: weather_location
@@ -3498,6 +3502,7 @@ components:
         - info
         - status
         - output
+        - property
         type: string
     directMode:
       description: Executes the operation directly without using other services.
@@ -5594,6 +5599,7 @@ components:
       - info
       - status
       - output
+      - property
       example: input
       type: string
       x-enum-descriptions:
@@ -5601,11 +5607,13 @@ components:
       - Info subtype for data values
       - Status subtype for data values
       - Output subtype for data values
+      - Property subtype for data values
       x-enum-varnames:
       - SUBTYPE_INPUT
       - SUBTYPE_INFO
       - SUBTYPE_STATUS
       - SUBTYPE_OUTPUT
+      - SUBTYPE_PROPERTY
     ResourceId:
       description: "A custom identifier for the resource, which can be utilized to\
         \ identify it for various operations such as updates, deletions, and other\
