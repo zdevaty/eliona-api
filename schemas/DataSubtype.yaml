@@ -6,6 +6,7 @@ enum:
   - info
   - status
   - output
+  - property
 example:
   input
 x-enum-descriptions:
@@ -13,8 +14,10 @@ x-enum-descriptions:
   - Info subtype for data values
   - Status subtype for data values
   - Output subtype for data values
+  - Property subtype for data values
 x-enum-varnames:
   - SUBTYPE_INPUT
   - SUBTYPE_INFO
   - SUBTYPE_STATUS
   - SUBTYPE_OUTPUT
+  - SUBTYPE_PROPERTY
