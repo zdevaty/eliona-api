@@ -7,8 +7,8 @@ DELETE {{api-server}}/v2/asset-types/Test Type
 X-Api-Key: {{read-write-token}}
 
 ### Selects asset type
-GET {{api-server}}/v2/asset-types/gp_joule_resent_sessions?expansions=AssetType.attributes
-X-Api-Key: {{read-only-token}}
+GET {{api-server}}/v2/asset-types/Niagara Watchdog?expansions=AssetType.attributes
+X-Api-Key: {{read-write-token}}
 
 ### Inserts
 POST {{api-server}}/v2/asset-types?expansions=AssetType.attributes

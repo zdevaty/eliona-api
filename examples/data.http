@@ -3,7 +3,7 @@ GET {{api-server}}/v2/data
 X-Api-Key: {{read-only-token}}
 
 ### Get all data based on asset id
-GET {{api-server}}/v2/data?assetId=3613
+GET {{api-server}}/v2/data?assetId=927&
 X-Api-Key: {{read-only-token}}
 
 ### Get all data based on subtype
@@ -15,7 +15,7 @@ GET {{api-server}}/v2/data?assetTypeName=VIRTUAL Battery
 X-Api-Key: {{read-only-token}}
 
 ### Get data trends
-GET {{api-server}}/v2/data-trends?assetTypeName=VIRTUAL Battery&fromDate=2022-07-30T20:00:00.000%2B02:00&toDate=2022-07-30T21:00:00.000%2B02:00
+GET {{api-server}}/v2/data-trends?assetId=102&dataSubtype=input&fromDate=2024-04-03T00:00:00.000%2B02:00
 X-Api-Key: {{read-only-token}}
 
 ### Get data aggs
@@ -31,10 +31,10 @@ PUT {{api-server}}/v2/data
 X-Api-Key: {{read-write-token}}
 
   {
-    "assetId": 16297,
+    "assetId": 17534,
     "subtype": "input",
     "data": {
-      "session_count": 1
+      "value": null
     }
   }
 
@@ -42,14 +42,13 @@ X-Api-Key: {{read-write-token}}
 PUT {{api-server}}/v2/data
 X-Api-Key: {{read-write-token}}
 
-  {
-    "assetId": 8514,
-    "subtype": "input",
-    "data": {
-    "brightness": 188
-    },
-    "clientReference": "42"
-  }
+{
+     "data": {
+       "value":99
+         },
+"subtype":"input",
+"assetId":17501
+}
 
 ### Put data bulk
 PUT {{api-server}}/v2/data-bulk

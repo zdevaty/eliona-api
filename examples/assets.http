@@ -3,7 +3,7 @@ GET {{api-server}}/v2/assets
 X-Api-Key: {{read-only-token}}
 
 ### Select asset with id
-GET {{api-server}}/v2/assets/16042
+GET {{api-server}}/v2/assets/7
 X-Api-Key: {{read-write-token}}
 
 ### Select asset with id and attachments
@@ -35,11 +35,21 @@ Content-Type: application/json
 
 {
   "projectId": "10",
-  "globalAssetIdentifier": "GAI 4711112ds",
+  "globalAssetIdentifier": "1234567890",
   "name": "Test Asset",
-  "assetType": "Space",
-  "parentLocationalAssetId": 15879,
-  "parentFunctionalAssetId": 15877
+  "assetType": "Space"
+}
+
+### Update asset
+PUT {{api-server}}/v2/assets
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "projectId": "10",
+  "globalAssetIdentifier": "1234567890",
+  "name": "Test Asset 1",
+  "assetType": "Space"
 }
 
 ### Insert asset with attachment
