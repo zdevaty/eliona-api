@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.6.12
+  version: 2.7.0
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -2018,6 +2018,13 @@ paths:
           nullable: true
           type: array
         style: form
+      - description: Filter for a specific asset id
+        example: 4711
+        in: query
+        name: assetId
+        required: false
+        schema:
+          type: integer
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -4345,6 +4352,87 @@ components:
             $ref: '#/components/schemas/Asset'
         title: AssetDryRun
         type: object
+      example:
+        identifier: "1234"
+        before:
+          globalAssetIdentifier: zurich_swiss
+          functionalAssetIdPath:
+          - 0
+          - 0
+          resourceId: 123e4567-e89b-12d3-a456-426655440000
+          deviceIds:
+          - XYZ0123
+          - 13:23:12:34:32
+          attachments:
+          - name: example.gif
+            encoding: base64
+            contentType: image/png
+            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          - name: example.gif
+            encoding: base64
+            contentType: image/png
+            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          latitude: 47.3667
+          description: "Weather station Zurich, Swiss"
+          childrenInfo:
+          - null
+          - null
+          assetType: assetType
+          parentLocationalAssetId: 4712
+          tags:
+          - weather
+          - location
+          locationalAssetIdPath:
+          - 6
+          - 6
+          trackerId: 4711
+          name: Station Zurich
+          parentFunctionalAssetId: 4712
+          id: 4711
+          isTracker: false
+          projectId: "99"
+          longitude: 8.55
+        errorMessage: "error: dependent resource not found"
+        after:
+          globalAssetIdentifier: zurich_swiss
+          functionalAssetIdPath:
+          - 0
+          - 0
+          resourceId: 123e4567-e89b-12d3-a456-426655440000
+          deviceIds:
+          - XYZ0123
+          - 13:23:12:34:32
+          attachments:
+          - name: example.gif
+            encoding: base64
+            contentType: image/png
+            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          - name: example.gif
+            encoding: base64
+            contentType: image/png
+            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          latitude: 47.3667
+          description: "Weather station Zurich, Swiss"
+          childrenInfo:
+          - null
+          - null
+          assetType: assetType
+          parentLocationalAssetId: 4712
+          tags:
+          - weather
+          - location
+          locationalAssetIdPath:
+          - 6
+          - 6
+          trackerId: 4711
+          name: Station Zurich
+          parentFunctionalAssetId: 4712
+          id: 4711
+          isTracker: false
+          projectId: "99"
+          longitude: 8.55
+        identifiedBy: resourceId
+        statusCode: 200
     AssetListen:
       allOf:
       - description: Information about asset listener
@@ -4354,6 +4442,117 @@ components:
             $ref: '#/components/schemas/StatusCode'
         type: object
       - $ref: '#/components/schemas/Asset'
+      example:
+        globalAssetIdentifier: zurich_swiss
+        functionalAssetIdPath:
+        - 0
+        - 0
+        resourceId: 123e4567-e89b-12d3-a456-426655440000
+        deviceIds:
+        - XYZ0123
+        - 13:23:12:34:32
+        attachments:
+        - name: example.gif
+          encoding: base64
+          contentType: image/png
+          content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+        - name: example.gif
+          encoding: base64
+          contentType: image/png
+          content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+        latitude: 47.3667
+        description: "Weather station Zurich, Swiss"
+        childrenInfo:
+        - globalAssetIdentifier: zurich_swiss
+          functionalAssetIdPath:
+          - 0
+          - 0
+          resourceId: 123e4567-e89b-12d3-a456-426655440000
+          deviceIds:
+          - XYZ0123
+          - 13:23:12:34:32
+          attachments:
+          - name: example.gif
+            encoding: base64
+            contentType: image/png
+            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          - name: example.gif
+            encoding: base64
+            contentType: image/png
+            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          latitude: 47.3667
+          description: "Weather station Zurich, Swiss"
+          childrenInfo:
+          - null
+          - null
+          assetType: assetType
+          parentLocationalAssetId: 4712
+          tags:
+          - weather
+          - location
+          locationalAssetIdPath:
+          - 6
+          - 6
+          trackerId: 4711
+          name: Station Zurich
+          parentFunctionalAssetId: 4712
+          id: 4711
+          isTracker: false
+          projectId: "99"
+          longitude: 8.55
+        - globalAssetIdentifier: zurich_swiss
+          functionalAssetIdPath:
+          - 0
+          - 0
+          resourceId: 123e4567-e89b-12d3-a456-426655440000
+          deviceIds:
+          - XYZ0123
+          - 13:23:12:34:32
+          attachments:
+          - name: example.gif
+            encoding: base64
+            contentType: image/png
+            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          - name: example.gif
+            encoding: base64
+            contentType: image/png
+            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          latitude: 47.3667
+          description: "Weather station Zurich, Swiss"
+          childrenInfo:
+          - null
+          - null
+          assetType: assetType
+          parentLocationalAssetId: 4712
+          tags:
+          - weather
+          - location
+          locationalAssetIdPath:
+          - 6
+          - 6
+          trackerId: 4711
+          name: Station Zurich
+          parentFunctionalAssetId: 4712
+          id: 4711
+          isTracker: false
+          projectId: "99"
+          longitude: 8.55
+        assetType: assetType
+        parentLocationalAssetId: 4712
+        tags:
+        - weather
+        - location
+        locationalAssetIdPath:
+        - 6
+        - 6
+        trackerId: 4711
+        name: Station Zurich
+        parentFunctionalAssetId: 4712
+        id: 4711
+        isTracker: false
+        projectId: "99"
+        statusCode: 200
+        longitude: 8.55
     AttributeDisplay:
       description: How attributes are displayed for specific assets
       example:
@@ -4482,6 +4681,14 @@ components:
             $ref: '#/components/schemas/StatusCode'
         type: object
       - $ref: '#/components/schemas/Data'
+      example:
+        data: {}
+        subtype: input
+        assetId: 4711
+        assetTypeName: weather_location
+        clientReference: ABC123
+        statusCode: 200
+        timestamp: 2000-01-23T04:56:07.000+00:00
     DataAggregated:
       description: Aggregated data combines multiple data points for a periodical
         raster
@@ -5342,6 +5549,120 @@ components:
             $ref: '#/components/schemas/StatusCode'
         type: object
       - $ref: '#/components/schemas/Alarm'
+      example:
+        occurrences: 1
+        requiresAcknowledge: false
+        acknowledgeText: acknowledgeText
+        priority: 2
+        message: {}
+        goneTimestamp: 2000-01-23T04:56:07.000+00:00
+        acknowledgeTimestamp: 2000-01-23T04:56:07.000+00:00
+        subtype: input
+        assetId: 4711
+        ruleInfo:
+          checkType: limits
+          requiresAcknowledge: false
+          subject: subject
+          urldoc: urldoc
+          priority: 2
+          message:
+            come:
+              en: AC fan defect
+          tags:
+          - tags
+          - tags
+          equal: 38.7
+          high: 38.7
+          subtype: input
+          low: 38.7
+          assetId: 4711
+          enable: true
+          notifyOn: R
+          dontMask: false
+          id: 123
+          attribute: temperature
+          assetInfo:
+            globalAssetIdentifier: zurich_swiss
+            functionalAssetIdPath:
+            - 0
+            - 0
+            resourceId: 123e4567-e89b-12d3-a456-426655440000
+            deviceIds:
+            - XYZ0123
+            - 13:23:12:34:32
+            attachments:
+            - name: example.gif
+              encoding: base64
+              contentType: image/png
+              content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+            - name: example.gif
+              encoding: base64
+              contentType: image/png
+              content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+            latitude: 47.3667
+            description: "Weather station Zurich, Swiss"
+            childrenInfo:
+            - null
+            - null
+            assetType: assetType
+            parentLocationalAssetId: 4712
+            tags:
+            - weather
+            - location
+            locationalAssetIdPath:
+            - 6
+            - 6
+            trackerId: 4711
+            name: Station Zurich
+            parentFunctionalAssetId: 4712
+            id: 4711
+            isTracker: false
+            projectId: "99"
+            longitude: 8.55
+        acknowledgeUserId: acknowledgeUserId
+        attribute: temperature
+        ruleId: 123
+        value: 38.7
+        assetInfo:
+          globalAssetIdentifier: zurich_swiss
+          functionalAssetIdPath:
+          - 0
+          - 0
+          resourceId: 123e4567-e89b-12d3-a456-426655440000
+          deviceIds:
+          - XYZ0123
+          - 13:23:12:34:32
+          attachments:
+          - name: example.gif
+            encoding: base64
+            contentType: image/png
+            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          - name: example.gif
+            encoding: base64
+            contentType: image/png
+            content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          latitude: 47.3667
+          description: "Weather station Zurich, Swiss"
+          childrenInfo:
+          - null
+          - null
+          assetType: assetType
+          parentLocationalAssetId: 4712
+          tags:
+          - weather
+          - location
+          locationalAssetIdPath:
+          - 6
+          - 6
+          trackerId: 4711
+          name: Station Zurich
+          parentFunctionalAssetId: 4712
+          id: 4711
+          isTracker: false
+          projectId: "99"
+          longitude: 8.55
+        statusCode: 200
+        timestamp: 2000-01-23T04:56:07.000+00:00
     Node:
       description: An edge node
       example:
@@ -5403,7 +5724,7 @@ components:
         description: IOSYS Agent east plant
         id: 4711
         nodeId: "1234"
-        class: null
+        class: iosys
         config: {}
       nullable: true
       properties:
@@ -5932,6 +6253,16 @@ components:
             type: integer
         title: IosysAgentDevice
         type: object
+      example:
+        agentId: 4711
+        reconnect: 10
+        port: 0
+        enable: false
+        certificate: certificate
+        id: 1234
+        class: iosys
+        key: key
+        timeout: 6
     MbusAgentDevice:
       allOf:
       - $ref: '#/components/schemas/AgentDeviceGeneral'
@@ -6033,6 +6364,29 @@ components:
             type: number
         title: IosysAgentDeviceMapping
         type: object
+      example:
+        iosVar: iosVar
+        deadTime: 5
+        deadBand: 5.637376656633329
+        scale: 0.8008281904610115
+        tau: 2.3021358869347655
+        deviceId: 4711
+        down: false
+        zero: 6.027456183070403
+        filter: LPF1
+        iosType: INT
+        maskAttributes:
+        - maskAttributes
+        - maskAttributes
+        subtype: input
+        enable: true
+        assetId: 4711
+        id: 1234
+        attribute: temperature
+        class: iosys
+        mask:
+        - 1
+        - 1
     MbusAgentDeviceMapping:
       allOf:
       - $ref: '#/components/schemas/AgentDeviceMappingGeneral'
