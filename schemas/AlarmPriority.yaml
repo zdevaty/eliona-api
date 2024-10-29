@@ -1,5 +1,5 @@
 type: integer
-description: The priority of the alarm. The higher this value the higher the priority.
+description: The priority of the alarm. The lower this value the higher the priority.
 example: 2
 enum:
   - 1

@@ -92,5 +92,7 @@ properties:
       - limits
       - validity
       - custom
+      - ruleengine
+      - external
   assetInfo:
     $ref: 'Asset.yaml'

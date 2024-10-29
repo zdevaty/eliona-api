@@ -15,7 +15,7 @@ GET {{api-server}}/v2/data?assetTypeName=VIRTUAL Battery
 X-Api-Key: {{read-only-token}}
 
 ### Get data trends
-GET {{api-server}}/v2/data-trends?assetId=102&dataSubtype=input&fromDate=2024-04-03T00:00:00.000%2B02:00
+GET {{api-server}}/v2/data-trends?dataSubtype=input&fromDate=2024-09-18T11:58:00.000%2B02:00
 X-Api-Key: {{read-only-token}}
 
 ### Get data aggs

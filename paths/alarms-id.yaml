@@ -43,3 +43,17 @@ patch:
   responses:
     200:
       description: Successfully updated the alarm
+
+delete:
+  tags:
+    - Alarms
+  summary: Removes an alarm
+  description: Marks an alarm as gone
+  operationId: deleteAlarmById
+  parameters:
+    - $ref: '../parameters/alarm-rule-id.yaml'
+  responses:
+    204:
+      description: Successfully removes an alarm
+    404:
+      description: Alarm with alarm rule id not found

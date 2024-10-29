@@ -2328,7 +2328,45 @@ paths:
       summary: Information about alarms
       tags:
       - Alarms
+    put:
+      description: Creates or updates an alarm
+      operationId: putAlarm
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Alarm'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alarm'
+          description: Successfully created a new or updated an existing alarm
+      summary: Create or update an alarm
+      tags:
+      - Alarms
   /alarms/{alarm-rule-id}:
+    delete:
+      description: Marks an alarm as gone
+      operationId: deleteAlarmById
+      parameters:
+      - description: The id of the alarm rule
+        example: 4711
+        in: path
+        name: alarm-rule-id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: Successfully removes an alarm
+        "404":
+          description: Alarm with alarm rule id not found
+      summary: Removes an alarm
+      tags:
+      - Alarms
     get:
       description: Gets information about alarm.
       operationId: getAlarmById
@@ -5279,6 +5317,8 @@ components:
           - limits
           - validity
           - custom
+          - ruleengine
+          - external
           nullable: true
           type: string
         assetInfo:
@@ -5358,7 +5398,7 @@ components:
         occurrences: 1
         requiresAcknowledge: false
         acknowledgeText: acknowledgeText
-        priority: 2
+        priority: 1
         message: {}
         goneTimestamp: 2000-01-23T04:56:07.000+00:00
         acknowledgeTimestamp: 2000-01-23T04:56:07.000+00:00
@@ -5472,24 +5512,36 @@ components:
         ruleId:
           description: The id of the corresponding rule
           example: 123
-          nullable: true
+          readOnly: true
           type: integer
         assetId:
           description: ID of the corresponding asset
           example: 4711
+          nullable: true
+          readOnly: true
           type: integer
         subtype:
-          $ref: '#/components/schemas/DataSubtype'
+          description: Type of asset data
+          example: input
+          nullable: true
+          readOnly: true
+          type: string
         attribute:
           description: Name of the attribute of the asset type
           example: temperature
           nullable: true
+          readOnly: true
           type: string
         priority:
-          $ref: '#/components/schemas/AlarmPriority'
+          description: The priority of the alarm. The lower this value the higher
+            the priority.
+          example: 1
+          nullable: true
+          type: integer
         requiresAcknowledge:
           default: false
           description: Requires the alarm an acknowledgment
+          nullable: true
           type: boolean
         value:
           description: The value which triggers the alarm
@@ -5500,29 +5552,36 @@ components:
         timestamp:
           description: Timestamp of the latest data change
           format: date-time
+          nullable: true
           type: string
         goneTimestamp:
           description: Timestamp of the latest data change
           format: date-time
           nullable: true
+          readOnly: true
           type: string
         acknowledgeTimestamp:
           description: Timestamp of the latest data change
           format: date-time
           nullable: true
+          readOnly: true
           type: string
         occurrences:
           description: How often this alarm is triggered
           example: 1
+          nullable: true
+          readOnly: true
           type: integer
         acknowledgeText:
           description: Text of acknowledgement
           nullable: true
+          readOnly: true
           type: string
         acknowledgeUserId:
           description: User who acknowledged the alarm
           format: text
           nullable: true
+          readOnly: true
           type: string
         message:
           description: Message.yaml texts for alarm
@@ -5534,11 +5593,8 @@ components:
         ruleInfo:
           $ref: '#/components/schemas/AlarmRule'
       required:
-      - assetId
-      - occurrences
-      - priority
-      - subtype
-      - timestamp
+      - message
+      - ruleId
       type: object
     AlarmListen:
       allOf:
@@ -5553,7 +5609,7 @@ components:
         occurrences: 1
         requiresAcknowledge: false
         acknowledgeText: acknowledgeText
-        priority: 2
+        priority: 1
         message: {}
         goneTimestamp: 2000-01-23T04:56:07.000+00:00
         acknowledgeTimestamp: 2000-01-23T04:56:07.000+00:00
@@ -6199,7 +6255,7 @@ components:
           type: object
       type: object
     AlarmPriority:
-      description: The priority of the alarm. The higher this value the higher the
+      description: The priority of the alarm. The lower this value the higher the
         priority.
       enum:
       - 1

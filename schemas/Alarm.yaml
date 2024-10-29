@@ -2,34 +2,42 @@ type: object
 description: An alarm
 nullable: true
 required:
-  - assetId
-  - subtype
-  - priority
-  - timestamp
-  - occurrences
+  - ruleId
+  - message
 properties:
   ruleId:
     type: integer
     description: The id of the corresponding rule
     example: 123
-    nullable: true
+    readOnly: true
   assetId:
     type: integer
     description: ID of the corresponding asset
+    readOnly: true
+    nullable: true
     example: 4711
   subtype:
-    $ref: 'DataSubtype.yaml'
+    type: string
+    description: Type of asset data
+    example: input
+    readOnly: true
+    nullable: true
   attribute:
     type: string
     description: Name of the attribute of the asset type
     example: temperature
+    readOnly: true
     nullable: true
   priority:
-    $ref: 'AlarmPriority.yaml'
+    type: integer
+    description: The priority of the alarm. The lower this value the higher the priority.
+    example: 1
+    nullable: true
   requiresAcknowledge:
     type: boolean
     description: Requires the alarm an acknowledgment
     default: false
+    nullable: true
   value:
     type: number
     format: double
@@ -40,29 +48,36 @@ properties:
     type: string
     format: date-time
     description: Timestamp of the latest data change
+    nullable: true
   goneTimestamp:
     type: string
     format: date-time
     description: Timestamp of the latest data change
     nullable: true
+    readOnly: true
   acknowledgeTimestamp:
     type: string
     format: date-time
     description: Timestamp of the latest data change
     nullable: true
+    readOnly: true
   occurrences:
     type: integer
     description: How often this alarm is triggered
     example: 1
+    nullable: true
+    readOnly: true
   acknowledgeText:
     type: string
     description: Text of acknowledgement
     nullable: true
+    readOnly: true
   acknowledgeUserId:
     type: string
     format: text
     description: User who acknowledged the alarm
     nullable: true
+    readOnly: true
   message:
     type: object
     description: Message.yaml texts for alarm

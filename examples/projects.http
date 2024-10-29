@@ -1,0 +1,3 @@
+### Get node by ident
+GET {{api-server}}/v2/projects/404
+X-Api-Key: {{read-write-token}}

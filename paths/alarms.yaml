@@ -16,3 +16,23 @@ get:
             type: array
             items:
               $ref: '../schemas/Alarm.yaml'
+
+put:
+  tags:
+    - Alarms
+  summary: Create or update an alarm
+  description: Creates or updates an alarm
+  operationId: putAlarm
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Alarm.yaml'
+  responses:
+    200:
+      description: Successfully created a new or updated an existing alarm
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Alarm.yaml'

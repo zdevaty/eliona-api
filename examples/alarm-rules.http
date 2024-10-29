@@ -1,9 +1,13 @@
 ### Get all alarm rules
 GET {{api-server}}/v2/alarm-rules
-X-Api-Key: {{read-only-token}}
+X-Api-Key: {{read-write-token}}
+
+### Get alarm rules for asset
+GET {{api-server}}/v2/alarm-rules?assetId=12323
+X-Api-Key: {{read-write-token}}
 
 ### Get alarm rule
-GET {{api-server}}/v2/alarm-rules/1669
+GET {{api-server}}/v2/alarm-rules/1822
 X-Api-Key: {{read-write-token}}
 
 ### Get alarm rule
