@@ -91,6 +91,16 @@ properties:
     nullable: true
     items:
       type: integer
+  parentFunctionalIdentifier:
+    type: string
+    description: The identifier specified by the identifiedBy parameter classifies this asset as a functional child.
+    example: 4712
+    nullable: true
+  parentLocationalIdentifier:
+    type: string
+    description: The identifier specified by the identifiedBy parameter classifies this asset as a locational child
+    example: 4712
+    nullable: true
   tags:
     type: array
     description: List of associated tags

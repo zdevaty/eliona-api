@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.7.2
+  version: 2.7.3
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -4214,6 +4214,7 @@ components:
         deviceIds:
         - XYZ0123
         - 13:23:12:34:32
+        parentLocationalIdentifier: "4712"
         attachments:
         - name: example.gif
           encoding: base64
@@ -4225,6 +4226,7 @@ components:
           content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
         latitude: 47.3667
         description: "Weather station Zurich, Swiss"
+        parentFunctionalIdentifier: "4712"
         childrenInfo:
         - null
         - null
@@ -4340,6 +4342,18 @@ components:
           nullable: true
           readOnly: true
           type: array
+        parentFunctionalIdentifier:
+          description: The identifier specified by the identifiedBy parameter classifies
+            this asset as a functional child.
+          example: "4712"
+          nullable: true
+          type: string
+        parentLocationalIdentifier:
+          description: The identifier specified by the identifiedBy parameter classifies
+            this asset as a locational child
+          example: "4712"
+          nullable: true
+          type: string
         tags:
           description: List of associated tags
           example:
@@ -4401,6 +4415,7 @@ components:
           deviceIds:
           - XYZ0123
           - 13:23:12:34:32
+          parentLocationalIdentifier: "4712"
           attachments:
           - name: example.gif
             encoding: base64
@@ -4412,6 +4427,7 @@ components:
             content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
           latitude: 47.3667
           description: "Weather station Zurich, Swiss"
+          parentFunctionalIdentifier: "4712"
           childrenInfo:
           - null
           - null
@@ -4440,6 +4456,7 @@ components:
           deviceIds:
           - XYZ0123
           - 13:23:12:34:32
+          parentLocationalIdentifier: "4712"
           attachments:
           - name: example.gif
             encoding: base64
@@ -4451,6 +4468,7 @@ components:
             content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
           latitude: 47.3667
           description: "Weather station Zurich, Swiss"
+          parentFunctionalIdentifier: "4712"
           childrenInfo:
           - null
           - null
@@ -4489,6 +4507,7 @@ components:
         deviceIds:
         - XYZ0123
         - 13:23:12:34:32
+        parentLocationalIdentifier: "4712"
         attachments:
         - name: example.gif
           encoding: base64
@@ -4500,6 +4519,7 @@ components:
           content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
         latitude: 47.3667
         description: "Weather station Zurich, Swiss"
+        parentFunctionalIdentifier: "4712"
         childrenInfo:
         - globalAssetIdentifier: zurich_swiss
           functionalAssetIdPath:
@@ -4509,6 +4529,7 @@ components:
           deviceIds:
           - XYZ0123
           - 13:23:12:34:32
+          parentLocationalIdentifier: "4712"
           attachments:
           - name: example.gif
             encoding: base64
@@ -4520,6 +4541,7 @@ components:
             content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
           latitude: 47.3667
           description: "Weather station Zurich, Swiss"
+          parentFunctionalIdentifier: "4712"
           childrenInfo:
           - null
           - null
@@ -4546,6 +4568,7 @@ components:
           deviceIds:
           - XYZ0123
           - 13:23:12:34:32
+          parentLocationalIdentifier: "4712"
           attachments:
           - name: example.gif
             encoding: base64
@@ -4557,6 +4580,7 @@ components:
             content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
           latitude: 47.3667
           description: "Weather station Zurich, Swiss"
+          parentFunctionalIdentifier: "4712"
           childrenInfo:
           - null
           - null
@@ -5205,6 +5229,7 @@ components:
           deviceIds:
           - XYZ0123
           - 13:23:12:34:32
+          parentLocationalIdentifier: "4712"
           attachments:
           - name: example.gif
             encoding: base64
@@ -5216,6 +5241,7 @@ components:
             content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
           latitude: 47.3667
           description: "Weather station Zurich, Swiss"
+          parentFunctionalIdentifier: "4712"
           childrenInfo:
           - null
           - null
@@ -5435,6 +5461,7 @@ components:
             deviceIds:
             - XYZ0123
             - 13:23:12:34:32
+            parentLocationalIdentifier: "4712"
             attachments:
             - name: example.gif
               encoding: base64
@@ -5446,6 +5473,7 @@ components:
               content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
             latitude: 47.3667
             description: "Weather station Zurich, Swiss"
+            parentFunctionalIdentifier: "4712"
             childrenInfo:
             - null
             - null
@@ -5477,6 +5505,7 @@ components:
           deviceIds:
           - XYZ0123
           - 13:23:12:34:32
+          parentLocationalIdentifier: "4712"
           attachments:
           - name: example.gif
             encoding: base64
@@ -5488,6 +5517,7 @@ components:
             content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
           latitude: 47.3667
           description: "Weather station Zurich, Swiss"
+          parentFunctionalIdentifier: "4712"
           childrenInfo:
           - null
           - null
@@ -5645,6 +5675,7 @@ components:
             deviceIds:
             - XYZ0123
             - 13:23:12:34:32
+            parentLocationalIdentifier: "4712"
             attachments:
             - name: example.gif
               encoding: base64
@@ -5656,6 +5687,7 @@ components:
               content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
             latitude: 47.3667
             description: "Weather station Zurich, Swiss"
+            parentFunctionalIdentifier: "4712"
             childrenInfo:
             - null
             - null
@@ -5687,6 +5719,7 @@ components:
           deviceIds:
           - XYZ0123
           - 13:23:12:34:32
+          parentLocationalIdentifier: "4712"
           attachments:
           - name: example.gif
             encoding: base64
@@ -5698,6 +5731,7 @@ components:
             content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
           latitude: 47.3667
           description: "Weather station Zurich, Swiss"
+          parentFunctionalIdentifier: "4712"
           childrenInfo:
           - null
           - null
