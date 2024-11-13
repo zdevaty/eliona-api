@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.7.3
+  version: 2.7.4
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -5207,6 +5207,7 @@ components:
         message:
           come:
             en: AC fan defect
+        params: {}
         tags:
         - tags
         - tags
@@ -5320,6 +5321,7 @@ components:
           nullable: true
           type: array
         subject:
+          deprecated: true
           description: The subject for the alarm
           nullable: true
           type: string
@@ -5327,6 +5329,11 @@ components:
           description: The url describing the alarm
           nullable: true
           type: string
+        params:
+          description: Parameter for aggregated alarms
+          example: {}
+          nullable: true
+          type: object
         notifyOn:
           description: Notification
           example: R
@@ -5344,6 +5351,7 @@ components:
           - validity
           - custom
           - ruleengine
+          - aggregate
           - external
           nullable: true
           type: string
@@ -5439,6 +5447,7 @@ components:
           message:
             come:
               en: AC fan defect
+          params: {}
           tags:
           - tags
           - tags
@@ -5653,6 +5662,7 @@ components:
           message:
             come:
               en: AC fan defect
+          params: {}
           tags:
           - tags
           - tags

@@ -67,6 +67,7 @@ properties:
     items:
       type: string
   subject:
+    deprecated: true
     type: string
     description: The subject for the alarm
     nullable: true
@@ -74,6 +75,11 @@ properties:
     type: string
     description: The url describing the alarm
     nullable: true
+  params:
+    type: object
+    description: Parameter for aggregated alarms
+    nullable: true
+    example: {}
   notifyOn:
     type: string
     description: Notification
@@ -93,6 +99,7 @@ properties:
       - validity
       - custom
       - ruleengine
+      - aggregate
       - external
   assetInfo:
     $ref: 'Asset.yaml'
