@@ -1,0 +1,11 @@
+name: sumMethod
+description: Method for summarize data
+in: query
+required: false
+example: sum
+default: sum
+schema:
+  type: string
+  enum:
+    - sum
+    - cusum

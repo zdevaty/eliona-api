@@ -1,16 +1,8 @@
-deprecated: true
 type: object
-description: Aggregated data combines multiple data points for a periodical raster
+description: Aggregated data with multiple data points for a periodical raster
 required:
-  - id
   - assetId
-  - subtype
-  - raster
 properties:
-  aggregationId:
-    type: integer
-    description: ID of the aggregation
-    example: 815
   assetId:
     type: integer
     description: ID of the corresponding asset
@@ -21,47 +13,6 @@ properties:
     type: string
     description: Name of the attribute which holds the data points
     example: temperature
-  raster:
-    type: string
-    description: Calculation intervals.
-    example: DAY
-    enum:
-      - S1
-      - S2
-      - S3
-      - S4
-      - S5
-      - S6
-      - S10
-      - S12
-      - S15
-      - S20
-      - S30
-      - M1
-      - M2
-      - M3
-      - M4
-      - M5
-      - M6
-      - M10
-      - M12
-      - M15
-      - M20
-      - M30
-      - H1
-      - H2
-      - H3
-      - H4
-      - H6
-      - H8
-      - H12
-      - DAY
-      - WEEK
-      - MONTH
-      - QUARTER
-      - YEAR
-      - DECADE
-      - CENTURY
   timestamp:
     type: string
     format: date-time
@@ -109,15 +60,3 @@ properties:
     description: Latest data point in this aggregated data set
     nullable: true
     example: 3.0
-  lastTimestamp:
-    type: string
-    format: date-time
-    description: Timestamp of the latest data point
-    nullable: true
-  assetTypeName:
-    type: string
-    description: The name of the corresponding asset type
-    readOnly: true
-    nullable: true
-    example: weather_location
-

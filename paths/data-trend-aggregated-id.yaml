@@ -9,6 +9,7 @@ get:
     - $ref: '../parameters/dataSubtypeRequired.yaml'
     - $ref: '../parameters/attributeNameRequired.yaml'
     - $ref: '../parameters/aggregationRasterRequired.yaml'
+    - $ref: '../parameters/sumMethod.yaml'
     - $ref: '../parameters/fromDateRequired.yaml'
     - $ref: '../parameters/toDateRequired.yaml'
   responses:
@@ -19,4 +20,4 @@ get:
           schema:
             type: array
             items:
-              $ref: '../schemas/DataAggregated.yaml'
+              $ref: '../schemas/DataTrendAggregated.yaml'

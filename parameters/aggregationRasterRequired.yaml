@@ -2,7 +2,6 @@ name: aggregationRaster
 description: Aggregation calculation period
 in: query
 required: true
-example: "1d"
 examples:
   one_day:
     summary: One day interval
