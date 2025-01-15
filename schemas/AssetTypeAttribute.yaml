@@ -52,6 +52,7 @@ properties:
     description: Upper limit
     nullable: true
   aggregationMode:
+    deprecated: true
     type: string
     enum:
       - avg
@@ -59,12 +60,17 @@ properties:
       - cusum
       - avg-on-change
     nullable: true
-    description: Aggregation calculation mode
+    description: |
+      Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+      Aggregation calculation mode.
   aggregationRasters:
+    deprecated: true
     type: array
     items:
       type: string
-      description: Aggregation calculation intervals
+      description: |
+        Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+        Aggregation calculation intervals.
       example: DAY
       enum:
         - S1

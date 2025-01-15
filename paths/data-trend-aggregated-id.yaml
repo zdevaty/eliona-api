@@ -1,0 +1,22 @@
+get:
+  tags:
+    - Data
+  summary: Get aggregated trend of historical data
+  description: Gets aggregated trend of historical data for a period and time grid for an asset
+  operationId: getDataTrendAggregatedById
+  parameters:
+    - $ref: '../parameters/asset-id.yaml'
+    - $ref: '../parameters/dataSubtypeRequired.yaml'
+    - $ref: '../parameters/attributeNameRequired.yaml'
+    - $ref: '../parameters/aggregationRasterRequired.yaml'
+    - $ref: '../parameters/fromDateRequired.yaml'
+    - $ref: '../parameters/toDateRequired.yaml'
+  responses:
+    200:
+      description: Successfully returned aggregated data sets for an asset
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/DataAggregated.yaml'

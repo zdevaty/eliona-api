@@ -1,8 +1,11 @@
 get:
+  deprecated: true
   tags:
     - Aggregations
   summary: Information about an aggregation
-  description: Gets information about an aggregation by the given id.
+  description: |
+    Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+    Gets information about an aggregation by the given id.
   operationId: getAggregationById
   parameters:
     - $ref: '../parameters/aggregation-id.yaml'
@@ -17,10 +20,13 @@ get:
       description: Aggregation with id not found
 
 delete:
+  deprecated: true
   tags:
     - Aggregations
   summary: Delete an aggregation
-  description: Deletes an aggregation by the given id.
+  description: |
+    Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+    Deletes an aggregation by the given id.
   operationId: deleteAggregationById
   parameters:
     - $ref: '../parameters/aggregation-id.yaml'
@@ -31,10 +37,13 @@ delete:
       description: Aggregation with id not found
 
 put:
+  deprecated: true
   tags:
     - Aggregations
   summary: Updates an aggregation
-  description: Updates an aggregation.
+  description: |
+    Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+    Updates an aggregation.
   operationId: putAggregationById
   parameters:
     - $ref: '../parameters/aggregation-id.yaml'

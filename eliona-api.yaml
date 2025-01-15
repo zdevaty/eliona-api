@@ -16,7 +16,7 @@ openapi: 3.0.3
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 info:
-  version: 2.7.4
+  version: 2.8.0
   title: Eliona REST API
   description:
     The Eliona REST API enables unified access to the resources and data of an Eliona environment.
@@ -105,11 +105,17 @@ paths:
   /data-bulk:
     $ref: './paths/data-bulk.yaml'
 
-  /data-trends:
-    $ref: './paths/data-trends.yaml'
+  /data-trend/{asset-id}:
+    $ref: './paths/data-trend-id.yaml'
+
+  /data-trend-aggregated/{asset-id}:
+    $ref: './paths/data-trend-aggregated-id.yaml'
 
   /data-listener:
     $ref: './paths/data-listener.yaml'
+
+  /data-trends:
+    $ref: './paths/data-trends.yaml'
 
   /data-aggregated:
     $ref: './paths/data-aggregated.yaml'

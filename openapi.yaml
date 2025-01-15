@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.7.4
+  version: 2.8.0
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -1306,9 +1306,182 @@ paths:
       summary: Create or update multiple asset data
       tags:
       - Data
+  /data-trend/{asset-id}:
+    get:
+      description: Gets trend information about historical data for an asset
+      operationId: getDataTrendById
+      parameters:
+      - description: The id of the asset
+        example: 4711
+        in: path
+        name: asset-id
+        required: true
+        schema:
+          type: integer
+      - description: Type of asset data
+        example: input
+        in: query
+        name: dataSubtype
+        required: true
+        schema:
+          enum:
+          - input
+          - info
+          - status
+          - output
+          - property
+          type: string
+      - description: Data attribute name
+        example: temperature
+        in: query
+        name: attributeName
+        required: true
+        schema:
+          type: string
+      - description: Lower date time (RFC3339) limit inclusive
+        example: 2020-01-01T09:00:00.000Z
+        in: query
+        name: fromDate
+        required: true
+        schema:
+          type: string
+      - description: Upper date time (RFC3339) limit inclusive
+        example: 2021-12-31T23:00:00.000Z
+        in: query
+        name: toDate
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Data'
+                type: array
+          description: Successfully returned historical data for an asset
+      summary: Get trend of historical data
+      tags:
+      - Data
+  /data-trend-aggregated/{asset-id}:
+    get:
+      description: Gets aggregated trend of historical data for a period and time
+        grid for an asset
+      operationId: getDataTrendAggregatedById
+      parameters:
+      - description: The id of the asset
+        example: 4711
+        in: path
+        name: asset-id
+        required: true
+        schema:
+          type: integer
+      - description: Type of asset data
+        example: input
+        in: query
+        name: dataSubtype
+        required: true
+        schema:
+          enum:
+          - input
+          - info
+          - status
+          - output
+          - property
+          type: string
+      - description: Data attribute name
+        example: temperature
+        in: query
+        name: attributeName
+        required: true
+        schema:
+          type: string
+      - description: Aggregation calculation period
+        example: 1d
+        examples:
+          one_day:
+            summary: One day interval
+            value: 1d
+          two_hours_thirty_minutes:
+            summary: Two hours and thirty minutes
+            value: 2h30m
+          one_year_two_months_three_days:
+            summary: "One year, two months, and three days"
+            value: 1y2mon3d
+        in: query
+        name: aggregationRaster
+        required: true
+        schema:
+          type: string
+      - description: Lower date time (RFC3339) limit inclusive
+        example: 2020-01-01T09:00:00.000Z
+        in: query
+        name: fromDate
+        required: true
+        schema:
+          type: string
+      - description: Upper date time (RFC3339) limit inclusive
+        example: 2021-12-31T23:00:00.000Z
+        in: query
+        name: toDate
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/DataAggregated'
+                type: array
+          description: Successfully returned aggregated data sets for an asset
+      summary: Get aggregated trend of historical data
+      tags:
+      - Data
+  /data-listener:
+    get:
+      description: Open a WebSocket connection to get informed when new asset data
+        is written or anything changes.
+      operationId: listenData
+      parameters:
+      - description: Filter for a specific asset id
+        example: 4711
+        in: query
+        name: assetId
+        required: false
+        schema:
+          type: integer
+      - description: Filter for a specific type of asset data
+        example: input
+        in: query
+        name: dataSubtype
+        required: false
+        schema:
+          enum:
+          - input
+          - info
+          - status
+          - output
+          - property
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataListen'
+          description: Successfully opened a connection to asset data WebSocket
+      summary: WebSocket connection for asset data changes
+      tags:
+      - Data
   /data-trends:
     get:
-      description: Gets trend information about historical data for assets.
+      deprecated: true
+      description: |
+        Deprecated: Use 'GET /data-trend/{asset-id}' instead.
+        Gets trend information about historical data for assets.
       operationId: getDataTrends
       parameters:
       - description: Filter by lower date time (RFC3339) limit inclusive
@@ -1364,46 +1537,12 @@ paths:
       summary: Get trend of historical data
       tags:
       - Data
-  /data-listener:
-    get:
-      description: Open a WebSocket connection to get informed when new asset data
-        is written or anything changes.
-      operationId: listenData
-      parameters:
-      - description: Filter for a specific asset id
-        example: 4711
-        in: query
-        name: assetId
-        required: false
-        schema:
-          type: integer
-      - description: Filter for a specific type of asset data
-        example: input
-        in: query
-        name: dataSubtype
-        required: false
-        schema:
-          enum:
-          - input
-          - info
-          - status
-          - output
-          - property
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DataListen'
-          description: Successfully opened a connection to asset data WebSocket
-      summary: WebSocket connection for asset data changes
-      tags:
-      - Data
   /data-aggregated:
     get:
-      description: Gets aggregated data sets which combines a set of data points for
-        a defined periodical raster
+      deprecated: true
+      description: |
+        Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+        Gets aggregated data sets which combines a set of data points for a defined periodical raster.
       operationId: getDataAggregated
       parameters:
       - description: Filter by lower date time (RFC3339) limit inclusive
@@ -1512,7 +1651,10 @@ paths:
       - Data
   /aggregations:
     get:
-      description: Gets a list of aggregations
+      deprecated: true
+      description: |
+        Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+        Gets a list of aggregations.
       operationId: getAggregations
       responses:
         "200":
@@ -1527,7 +1669,10 @@ paths:
       tags:
       - Aggregations
     post:
-      description: Creates a new aggregation.
+      deprecated: true
+      description: |
+        Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+        Creates a new aggregation.
       operationId: postAggregation
       requestBody:
         content:
@@ -1549,8 +1694,10 @@ paths:
       tags:
       - Aggregations
     put:
-      description: "Creates an aggregation or updates if already exists. Uses the\
-        \ unique combination of asset id, subtype, attribute and raster for updating."
+      deprecated: true
+      description: |
+        Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+        Creates an aggregation or updates if already exists. Uses the unique combination of asset id, subtype, attribute and raster for updating.
       operationId: putAggregation
       requestBody:
         content:
@@ -1570,7 +1717,10 @@ paths:
       - Aggregations
   /aggregations/{aggregation-id}:
     delete:
-      description: Deletes an aggregation by the given id.
+      deprecated: true
+      description: |
+        Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+        Deletes an aggregation by the given id.
       operationId: deleteAggregationById
       parameters:
       - description: The id of the aggregation
@@ -1589,7 +1739,10 @@ paths:
       tags:
       - Aggregations
     get:
-      description: Gets information about an aggregation by the given id.
+      deprecated: true
+      description: |
+        Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+        Gets information about an aggregation by the given id.
       operationId: getAggregationById
       parameters:
       - description: The id of the aggregation
@@ -1612,7 +1765,10 @@ paths:
       tags:
       - Aggregations
     put:
-      description: Updates an aggregation.
+      deprecated: true
+      description: |
+        Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+        Updates an aggregation.
       operationId: putAggregationById
       parameters:
       - description: The id of the aggregation
@@ -3604,6 +3760,62 @@ components:
         - "true"
         - "false"
         type: string
+    dataSubtypeRequired:
+      description: Type of asset data
+      example: input
+      in: query
+      name: dataSubtype
+      required: true
+      schema:
+        enum:
+        - input
+        - info
+        - status
+        - output
+        - property
+        type: string
+    attributeNameRequired:
+      description: Data attribute name
+      example: temperature
+      in: query
+      name: attributeName
+      required: true
+      schema:
+        type: string
+    fromDateRequired:
+      description: Lower date time (RFC3339) limit inclusive
+      example: 2020-01-01T09:00:00.000Z
+      in: query
+      name: fromDate
+      required: true
+      schema:
+        type: string
+    toDateRequired:
+      description: Upper date time (RFC3339) limit inclusive
+      example: 2021-12-31T23:00:00.000Z
+      in: query
+      name: toDate
+      required: true
+      schema:
+        type: string
+    aggregationRasterRequired:
+      description: Aggregation calculation period
+      example: 1d
+      examples:
+        one_day:
+          summary: One day interval
+          value: 1d
+        two_hours_thirty_minutes:
+          summary: Two hours and thirty minutes
+          value: 2h30m
+        one_year_two_months_three_days:
+          summary: "One year, two months, and three days"
+          value: 1y2mon3d
+      in: query
+      name: aggregationRaster
+      required: true
+      schema:
+        type: string
     fromDate:
       description: Filter by lower date time (RFC3339) limit inclusive
       example: 2020-01-01T09:00:00.000Z
@@ -4100,7 +4312,10 @@ components:
           type: number
           example: null
         aggregationMode:
-          description: Aggregation calculation mode
+          deprecated: true
+          description: |
+            Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+            Aggregation calculation mode.
           enum:
           - avg
           - sum
@@ -4109,8 +4324,11 @@ components:
           nullable: true
           type: string
         aggregationRasters:
+          deprecated: true
           items:
-            description: Aggregation calculation intervals
+            description: |
+              Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+              Aggregation calculation intervals.
             enum:
             - S1
             - S2
@@ -4734,23 +4952,6 @@ components:
       - data
       - subtype
       type: object
-    DataListen:
-      allOf:
-      - description: Information about asset data listener
-        nullable: true
-        properties:
-          statusCode:
-            $ref: '#/components/schemas/StatusCode'
-        type: object
-      - $ref: '#/components/schemas/Data'
-      example:
-        data: {}
-        subtype: input
-        assetId: 4711
-        assetTypeName: weather_location
-        clientReference: ABC123
-        statusCode: 200
-        timestamp: 2000-01-23T04:56:07.000+00:00
     DataAggregated:
       description: Aggregated data combines multiple data points for a periodical
         raster
@@ -4893,6 +5094,23 @@ components:
       - raster
       - subtype
       type: object
+    DataListen:
+      allOf:
+      - description: Information about asset data listener
+        nullable: true
+        properties:
+          statusCode:
+            $ref: '#/components/schemas/StatusCode'
+        type: object
+      - $ref: '#/components/schemas/Data'
+      example:
+        data: {}
+        subtype: input
+        assetId: 4711
+        assetTypeName: weather_location
+        clientReference: ABC123
+        statusCode: 200
+        timestamp: 2000-01-23T04:56:07.000+00:00
     Aggregation:
       description: Defines the aggregation of data points
       example:

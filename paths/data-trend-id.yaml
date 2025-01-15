@@ -1,0 +1,21 @@
+get:
+  tags:
+    - Data
+  summary: Get trend of historical data
+  description: Gets trend information about historical data for an asset
+  operationId: getDataTrendById
+  parameters:
+    - $ref: '../parameters/asset-id.yaml'
+    - $ref: '../parameters/dataSubtypeRequired.yaml'
+    - $ref: '../parameters/attributeNameRequired.yaml'
+    - $ref: '../parameters/fromDateRequired.yaml'
+    - $ref: '../parameters/toDateRequired.yaml'
+  responses:
+    200:
+      description: Successfully returned historical data for an asset
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/Data.yaml'

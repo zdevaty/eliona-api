@@ -1,8 +1,11 @@
 get:
+  deprecated: true
   tags:
     - Data
   summary: Get trend of historical data
-  description: Gets trend information about historical data for assets.
+  description: |
+    Deprecated: Use 'GET /data-trend/{asset-id}' instead.
+    Gets trend information about historical data for assets.
   operationId: getDataTrends
   parameters:
     - $ref: '../parameters/fromDate.yaml'

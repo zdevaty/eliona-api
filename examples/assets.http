@@ -20,12 +20,11 @@ X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
-  "projectId": "10",
-  "globalAssetIdentifier": "GAI 4711112ds",
+  "projectId": "404",
+  "globalAssetIdentifier": "GAI 4711112 404 3",
   "name": "Test Asset",
   "assetType": "Space",
-  "parentLocationalAssetId": 15879,
-  "parentFunctionalAssetId": -1
+  "parentFunctionalAssetId": 47724
 }
 
 ### Insert asset
@@ -90,10 +89,10 @@ X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
-  "projectId": "99",
-  "globalAssetIdentifier": "GAI 4711",
+  "projectId": "404",
+  "globalAssetIdentifier": "GAI 4711#1",
   "name": "Test Asset",
-  "assetType": "weather_location",
+  "assetType": "Space",
   "attachments": [
     {
       "name": "example.gif",
@@ -112,15 +111,16 @@ Content-Type: application/json
 
 [
   {
-    "projectId": "1",
+    "projectId": "404",
     "globalAssetIdentifier": "GAI 4711",
     "name": "Test Asset",
     "assetType": "VIRTUAL Light"
   },
   {
-    "projectId": "1",
+    "projectId": "404",
     "globalAssetIdentifier": "GAI 4712",
     "name": "Test Asset",
-    "assetType": "VIRTUAL Light"
+    "assetType": "VIRTUAL Light",
+    "parentFunctionalIdentifier": "GAI 4711"
   }
 ]

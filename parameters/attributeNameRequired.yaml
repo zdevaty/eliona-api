@@ -1,0 +1,7 @@
+name: attributeName
+description: Data attribute name
+in: query
+required: true
+example: temperature
+schema:
+  type: string

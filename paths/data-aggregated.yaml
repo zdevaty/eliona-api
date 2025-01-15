@@ -1,8 +1,11 @@
 get:
+  deprecated: true
   tags:
     - Data
   summary: Get aggregated data
-  description: Gets aggregated data sets which combines a set of data points for a defined periodical raster
+  description: |
+    Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+    Gets aggregated data sets which combines a set of data points for a defined periodical raster.
   operationId: getDataAggregated
   parameters:
     - $ref: '../parameters/fromDate.yaml'

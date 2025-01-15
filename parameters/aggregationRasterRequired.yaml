@@ -1,0 +1,17 @@
+name: aggregationRaster
+description: Aggregation calculation period
+in: query
+required: true
+example: "1d"
+examples:
+  one_day:
+    summary: One day interval
+    value: "1d"
+  two_hours_thirty_minutes:
+    summary: Two hours and thirty minutes
+    value: "2h30m"
+  one_year_two_months_three_days:
+    summary: One year, two months, and three days
+    value: "1y2mon3d"
+schema:
+  type: string

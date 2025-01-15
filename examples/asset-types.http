@@ -1,9 +1,9 @@
 ### Get type
-GET {{api-server}}/v2/asset-types/Test Type?expansions=AssetType.attributes
+GET {{api-server}}/v2/asset-types/niagara_station?expansions=AssetType.attributes
 X-Api-Key: {{read-write-token}}
 
 ### Delete type
-DELETE {{api-server}}/v2/asset-types/Test Type
+DELETE {{api-server}}/v2/asset-types/Niagara Test
 X-Api-Key: {{read-write-token}}
 
 ### Selects asset type

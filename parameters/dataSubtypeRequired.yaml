@@ -1,0 +1,13 @@
+name: dataSubtype
+description: Type of asset data
+in: query
+required: true
+example: input
+schema:
+  type: string
+  enum:
+    - input
+    - info
+    - status
+    - output
+    - property
