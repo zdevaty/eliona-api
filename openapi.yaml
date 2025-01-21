@@ -1354,9 +1354,6 @@ paths:
           type: string
       - description: |
           Specifies the starting point for pagination by indicating the number of items to skip.
-          If neither the offset nor size parameters are provided, pagination is disabled.
-          However, if either offset or size is specified,
-          default values will be applied to the missing parameter to enable pagination.
         example: 3
         in: query
         name: offset
@@ -1365,9 +1362,6 @@ paths:
           type: integer
       - description: |
           Specifies the number of items per page for pagination.
-          If neither the offset nor size parameters are provided, pagination is disabled.
-          However, if either offset or size is specified,
-          default values will be applied to the missing parameter to enable pagination.
         example: 10
         in: query
         name: size
@@ -1461,9 +1455,6 @@ paths:
           type: string
       - description: |
           Specifies the starting point for pagination by indicating the number of items to skip.
-          If neither the offset nor size parameters are provided, pagination is disabled.
-          However, if either offset or size is specified,
-          default values will be applied to the missing parameter to enable pagination.
         example: 3
         in: query
         name: offset
@@ -1472,9 +1463,6 @@ paths:
           type: integer
       - description: |
           Specifies the number of items per page for pagination.
-          If neither the offset nor size parameters are provided, pagination is disabled.
-          However, if either offset or size is specified,
-          default values will be applied to the missing parameter to enable pagination.
         example: 10
         in: query
         name: size
@@ -3854,9 +3842,6 @@ components:
     offset:
       description: |
         Specifies the starting point for pagination by indicating the number of items to skip.
-        If neither the offset nor size parameters are provided, pagination is disabled.
-        However, if either offset or size is specified,
-        default values will be applied to the missing parameter to enable pagination.
       example: 3
       in: query
       name: offset
@@ -3866,9 +3851,6 @@ components:
     size:
       description: |
         Specifies the number of items per page for pagination.
-        If neither the offset nor size parameters are provided, pagination is disabled.
-        However, if either offset or size is specified,
-        default values will be applied to the missing parameter to enable pagination.
       example: 10
       in: query
       name: size
