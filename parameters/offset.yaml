@@ -1,0 +1,12 @@
+name: offset
+description: |
+  Specifies the starting point for pagination by indicating the number of items to skip.
+  If neither the offset nor size parameters are provided, pagination is disabled.
+  However, if either offset or size is specified,
+  default values will be applied to the missing parameter to enable pagination.
+in: query
+required: false
+example: 3
+default: 0
+schema:
+  type: integer

@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.8.0
+  version: 2.8.1
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -1352,6 +1352,28 @@ paths:
         required: true
         schema:
           type: string
+      - description: |
+          Specifies the starting point for pagination by indicating the number of items to skip.
+          If neither the offset nor size parameters are provided, pagination is disabled.
+          However, if either offset or size is specified,
+          default values will be applied to the missing parameter to enable pagination.
+        example: 3
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+      - description: |
+          Specifies the number of items per page for pagination.
+          If neither the offset nor size parameters are provided, pagination is disabled.
+          However, if either offset or size is specified,
+          default values will be applied to the missing parameter to enable pagination.
+        example: 10
+        in: query
+        name: size
+        required: false
+        schema:
+          type: integer
       responses:
         "200":
           content:
@@ -1437,6 +1459,28 @@ paths:
         required: true
         schema:
           type: string
+      - description: |
+          Specifies the starting point for pagination by indicating the number of items to skip.
+          If neither the offset nor size parameters are provided, pagination is disabled.
+          However, if either offset or size is specified,
+          default values will be applied to the missing parameter to enable pagination.
+        example: 3
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+      - description: |
+          Specifies the number of items per page for pagination.
+          If neither the offset nor size parameters are provided, pagination is disabled.
+          However, if either offset or size is specified,
+          default values will be applied to the missing parameter to enable pagination.
+        example: 10
+        in: query
+        name: size
+        required: false
+        schema:
+          type: integer
       responses:
         "200":
           content:
@@ -3807,6 +3851,30 @@ components:
       required: true
       schema:
         type: string
+    offset:
+      description: |
+        Specifies the starting point for pagination by indicating the number of items to skip.
+        If neither the offset nor size parameters are provided, pagination is disabled.
+        However, if either offset or size is specified,
+        default values will be applied to the missing parameter to enable pagination.
+      example: 3
+      in: query
+      name: offset
+      required: false
+      schema:
+        type: integer
+    size:
+      description: |
+        Specifies the number of items per page for pagination.
+        If neither the offset nor size parameters are provided, pagination is disabled.
+        However, if either offset or size is specified,
+        default values will be applied to the missing parameter to enable pagination.
+      example: 10
+      in: query
+      name: size
+      required: false
+      schema:
+        type: integer
     aggregationRasterRequired:
       description: Aggregation calculation period
       examples:

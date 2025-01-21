@@ -12,6 +12,8 @@ get:
     - $ref: '../parameters/sumMethod.yaml'
     - $ref: '../parameters/fromDateRequired.yaml'
     - $ref: '../parameters/toDateRequired.yaml'
+    - $ref: '../parameters/offset.yaml'
+    - $ref: '../parameters/size.yaml'
   responses:
     200:
       description: Successfully returned aggregated data sets for an asset

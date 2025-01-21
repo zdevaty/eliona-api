@@ -10,6 +10,8 @@ get:
     - $ref: '../parameters/attributeNameRequired.yaml'
     - $ref: '../parameters/fromDateRequired.yaml'
     - $ref: '../parameters/toDateRequired.yaml'
+    - $ref: '../parameters/offset.yaml'
+    - $ref: '../parameters/size.yaml'
   responses:
     200:
       description: Successfully returned historical data for an asset
