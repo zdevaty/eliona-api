@@ -1,6 +1,7 @@
 allOf:
   - $ref: 'AgentDeviceMappingGeneral.yaml'
   - type: object
+    deprecated: true
     title: MbusAgentDeviceMapping
     description: Specific mapping for MBUS agents
     nullable: true

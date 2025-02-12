@@ -1,6 +1,7 @@
 allOf:
   - $ref: 'AgentDeviceGeneral.yaml'
   - type: object
+    deprecated: true
     title: MbusAgentDevice
     description: Specific device for MBUS agents
     nullable: true
