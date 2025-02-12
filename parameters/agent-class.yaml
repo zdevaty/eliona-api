@@ -7,4 +7,3 @@ schema:
   type: string
   enum:
     - iosys
-    - mbus
