@@ -1,6 +1,6 @@
 ### Select assets
 GET {{api-server}}/v2/assets
-X-Api-Key: {{read-only-token}}
+X-Api-Key: {{read-write-token}}
 
 ### Select asset with id
 GET {{api-server}}/v2/assets/7

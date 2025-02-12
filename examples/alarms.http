@@ -4,8 +4,12 @@ X-Api-Key: {{read-write-token}}
 
 ### Get alarms
 GET {{api-server}}/v2/alarms
-X-Api-Key: {{read-only-token}}
+X-Api-Key: {{read-write-token}}
 
 ### Get alarm
 GET {{api-server}}/v2/alarms/894
 X-Api-Key: {{read-only-token}}
+
+### Get alarm history
+GET {{api-server}}/v2/alarms-history?expansions=Alarm.ruleInfo,Alarm.assetInfo
+X-Api-Key: {{read-write-token}}
