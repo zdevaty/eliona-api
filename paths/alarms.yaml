@@ -6,6 +6,9 @@ get:
   operationId: getAlarms
   parameters:
     - $ref: '../parameters/projectId.yaml'
+    - $ref: '../parameters/fromDate.yaml'
+    - $ref: '../parameters/toDate.yaml'
+    - $ref: '../parameters/tags.yaml'
     - $ref: '../parameters/expansions.yaml'
   responses:
     200:

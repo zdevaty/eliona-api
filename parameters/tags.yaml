@@ -1,0 +1,10 @@
+name: tags
+description: A list of defined tags. Result must include all of these tags, not just some.
+in: query
+style: form
+explode: false
+schema:
+  type: array
+  nullable: true
+  items:
+    type: string

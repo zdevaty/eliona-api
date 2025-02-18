@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.8.3
+  version: 2.8.4
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -2501,6 +2501,31 @@ paths:
         schema:
           nullable: true
           type: string
+      - description: Filter by lower date time (RFC3339) limit inclusive
+        example: 2020-01-01T09:00:00.000Z
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          type: string
+      - description: Filter by upper date time (RFC3339) limit exclusive
+        example: 2021-12-31T23:00:00.000Z
+        in: query
+        name: toDate
+        required: false
+        schema:
+          type: string
+      - description: "A list of defined tags. Result must include all of these tags,\
+          \ not just some."
+        explode: false
+        in: query
+        name: tags
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -2642,6 +2667,31 @@ paths:
         schema:
           nullable: true
           type: string
+      - description: Filter by lower date time (RFC3339) limit inclusive
+        example: 2020-01-01T09:00:00.000Z
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          type: string
+      - description: Filter by upper date time (RFC3339) limit exclusive
+        example: 2021-12-31T23:00:00.000Z
+        in: query
+        name: toDate
+        required: false
+        schema:
+          type: string
+      - description: "A list of defined tags. Result must include all of these tags,\
+          \ not just some."
+        explode: false
+        in: query
+        name: tags
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -2679,6 +2729,31 @@ paths:
         required: true
         schema:
           type: integer
+      - description: Filter by lower date time (RFC3339) limit inclusive
+        example: 2020-01-01T09:00:00.000Z
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          type: string
+      - description: Filter by upper date time (RFC3339) limit exclusive
+        example: 2021-12-31T23:00:00.000Z
+        in: query
+        name: toDate
+        required: false
+        schema:
+          type: string
+      - description: "A list of defined tags. Result must include all of these tags,\
+          \ not just some."
+        explode: false
+        in: query
+        name: tags
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -2716,6 +2791,31 @@ paths:
         schema:
           nullable: true
           type: string
+      - description: Filter by lower date time (RFC3339) limit inclusive
+        example: 2020-01-01T09:00:00.000Z
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          type: string
+      - description: Filter by upper date time (RFC3339) limit exclusive
+        example: 2021-12-31T23:00:00.000Z
+        in: query
+        name: toDate
+        required: false
+        schema:
+          type: string
+      - description: "A list of defined tags. Result must include all of these tags,\
+          \ not just some."
+        explode: false
+        in: query
+        name: tags
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       - description: "List of referenced data to load, insert or update. Each entry\
           \ defines the full qualified name of the field to be expanded as follows\
           \ 'ObjectName.fieldName'."
@@ -4003,6 +4103,18 @@ components:
       required: true
       schema:
         type: integer
+    tags:
+      description: "A list of defined tags. Result must include all of these tags,\
+        \ not just some."
+      explode: false
+      in: query
+      name: tags
+      schema:
+        items:
+          type: string
+        nullable: true
+        type: array
+      style: form
     node-ident:
       description: The UUID identifier of the node
       example: 4711
