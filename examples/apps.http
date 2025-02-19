@@ -1,7 +1,15 @@
-### Get all apps
-GET {{api-server}}/v2/apps
+### [Apps] Get app details by name (read-only)
+GET {{api-server}}/v2/apps/booking HTTP/1.1
 X-Api-Key: {{read-only-token}}
 
-### Set registered
-PATCH {{api-server}}/v2/apps/example?registered=false
+### [Apps] Update app properties (read–write)
+PATCH {{api-server}}/v2/apps/booking?registered=true HTTP/1.1
+X-Api-Key: {{read-write-token}}
+
+### [Apps] Get details for a specific patch (read-only)
+GET {{api-server}}/v2/apps/booking/patches/2.0.0 HTTP/1.1
+X-Api-Key: {{read-only-token}}
+
+### [Apps] Update patch with additional query parameter (read–write)
+PATCH {{api-server}}/v2/apps/booking/patches/2.0.0?apply=true HTTP/1.1
 X-Api-Key: {{read-write-token}}
