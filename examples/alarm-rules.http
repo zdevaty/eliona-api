@@ -1,63 +1,68 @@
-### Get all alarm rules
-GET {{api-server}}/v2/alarm-rules
-X-Api-Key: {{read-write-token}}
+### [Alarm rules] List alarm rules (read-only)
+GET {{api-server}}/v2/alarm-rules?expansions=AlarmRule.assetInfo HTTP/1.1
+X-Api-Key: {{read-only-token}}
 
-### Get alarm rules for asset
-GET {{api-server}}/v2/alarm-rules?assetId=12323
-X-Api-Key: {{read-write-token}}
+### [Alarm rules] List alarm rules with filter parameters (read-only)
+GET {{api-server}}/v2/alarm-rules?assetId=61894&alarmRuleIds=4621,4620&expansions=AlarmRule.assetInfo HTTP/1.1
+X-Api-Key: {{read-only-token}}
 
-### Get alarm rule
-GET {{api-server}}/v2/alarm-rules/1822
+### [Alarm rules] Create a new alarm rule with detailed parameters (read–write)
+POST {{api-server}}/v2/alarm-rules HTTP/1.1
 X-Api-Key: {{read-write-token}}
-
-### Get alarm rule
-GET {{api-server}}/v2/alarm-rules/1628?expansions=AlarmRule.assetInfo
-X-Api-Key: {{read-write-token}}
-
-### Delete alarm rule
-DELETE {{api-server}}/v2/alarm-rules/2
-X-Api-Key: {{read-write-token}}
-
-### Insert new alarm rule
-POST {{api-server}}/v2/alarm-rules
 Content-Type: application/json
-X-Api-Key: {{read-write-token}}
 
 {
-  "assetId": 1,
-  "subtype": "output",
-  "attribute": "temperature_setpoint",
+  "assetId": 61894,
+  "subtype": "input",
+  "attribute": "temperature",
   "enable": true,
-  "priority": 1,
-  "requiresAcknowledge": true,
-  "high": 2,
+  "priority": 2,
+  "requiresAcknowledge": false,
+  "equal": 38.7,
+  "low": 38.0,
+  "high": 39.5,
   "message": {
-    "come": "Test",
-    "gone": null
+    "come": {
+      "en": "Warning: Temperature out of range!"
+    },
+    "fallback": {
+      "en": "Please check the sensor."
+    }
   },
-  "tags": null,
+  "tags": ["critical", "sensor"],
   "notifyOn": "R",
   "dontMask": false
 }
 
-### Update alarm rule
-PUT {{api-server}}/v2/alarm-rules/66
-Content-Type: application/json
+### [Alarm rules] Get an alarm rule by id with expansions (read-only)
+GET {{api-server}}/v2/alarm-rules/4623?expansions=AlarmRule.assetInfo HTTP/1.1
+X-Api-Key: {{read-only-token}}
+
+### [Alarm rules] Update an alarm rule (read–write)
+PUT {{api-server}}/v2/alarm-rules/4623 HTTP/1.1
 X-Api-Key: {{read-write-token}}
+Content-Type: application/json
 
 {
-  "assetId": 143,
-  "subtype": "output",
-  "attribute": "temperature_setpoint",
+  "assetId": 61894,
+  "subtype": "input",
+  "attribute": "temperature",
   "enable": true,
   "priority": 1,
   "requiresAcknowledge": true,
-  "high": 2,
+  "equal": 39.0,
+  "low": 38.5,
+  "high": 40.0,
   "message": {
-    "come": "Test",
-    "gone": null
+    "come": {
+      "en": "Critical: Temperature threshold exceeded"
+    }
   },
-  "tags": null,
+  "tags": ["critical", "update"],
   "notifyOn": "R",
   "dontMask": false
 }
+
+### [Alarm rules] Delete an alarm rule by id (read–write)
+DELETE {{api-server}}/v2/alarm-rules/4623 HTTP/1.1
+X-Api-Key: {{read-write-token}}
