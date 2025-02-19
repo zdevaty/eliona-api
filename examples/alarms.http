@@ -1,15 +1,16 @@
-### Acknow an alarm
-PATCH {{api-server}}/v2/alarms/317?acknowledgeText=Test Andreas Göbel from APIv2&acknowledged=true
-X-Api-Key: {{read-write-token}}
-
-### Get alarms
-GET {{api-server}}/v2/alarms
-X-Api-Key: {{read-write-token}}
-
-### Get alarm
-GET {{api-server}}/v2/alarms/894
+### [Alarms] List alarms (read-only)
+GET {{api-server}}/v2/alarms?expansions=Alarm.assetInfo,Alarm.ruleInfo HTTP/1.1
 X-Api-Key: {{read-only-token}}
 
-### Get alarm history
-GET {{api-server}}/v2/alarms-history?expansions=Alarm.ruleInfo,Alarm.assetInfo
+### [Alarms] List alarms with tag filter and date filters (read-only)
+GET {{api-server}}/v2/alarms?projectId=99&fromDate=2025-01-01T09:00:00.000Z&toDate=2025-12-31T23:00:00.000Z&tags=critical,warning&expansions=Alarm.assetInfo HTTP/1.1
+X-Api-Key: {{read-only-token}}
+
+### [Alarms] Acknowledge an alarm (using PATCH) with additional parameters (read–write)
+PATCH {{api-server}}/v2/alarms/4618?acknowledged=true&acknowledgeText=Operator%20has%20checked%20the%20issue HTTP/1.1
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+### [Alarms] Mark an alarm as gone (DELETE) (read–write)
+DELETE {{api-server}}/v2/alarms/4618 HTTP/1.1
 X-Api-Key: {{read-write-token}}
