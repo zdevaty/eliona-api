@@ -1,133 +1,15 @@
-### Get all dashboards
-GET {{api-server}}/v2/dashboards
+### [Dashboards] List dashboards with expansion (read-only)
+GET {{api-server}}/v2/dashboards?expansions=Dashboard.widgets HTTP/1.1
 X-Api-Key: {{read-only-token}}
 
-### Get dashboard
-GET {{api-server}}/v2/dashboards/473?expansions=Dashboard.widgets,Widget.data
-X-Api-Key: {{read-only-token}}
-
-### Get dashboard widgets
-GET {{api-server}}/v2/dashboards/53/widgets
-X-Api-Key: {{read-only-token}}
-
-
-### Get dashboard
-POST {{api-server}}/v2/dashboards?expansions=Dashboard.widgets,Widget.data
+### [Dashboards] Create a new dashboard with public flag (read–write)
+POST {{api-server}}/v2/dashboards HTTP/1.1
 X-Api-Key: {{read-write-token}}
+Content-Type: application/json
 
 {
-  "name": "CoffeeCloud Test",
-  "projectId": "10",
-  "userId": "90",
-  "widgets": [
-    {
-      "widgetTypeName": "coffecloud",
-      "details": {
-        "1": {
-          "tilesConfig": [
-            {
-              "defaultColorIndex": 2,
-              "progressBar": null,
-              "valueMapping": [
-                [
-                  "",
-                  "0",
-                  "#007305"
-                ],
-                [
-                  "",
-                  "3",
-                  "#EE9D4C"
-                ]
-              ]
-            },
-            {
-              "defaultColorIndex": 3,
-              "progressBar": null,
-              "valueMapping": [
-                [
-                  "",
-                  "",
-                  "#EE9D4C"
-                ]
-              ]
-            }
-          ]
-        },
-        "size": 1,
-        "timespan": 7
-      },
-      "assetId": 12593,
-      "data": [
-        {
-          "elementSequence": 1,
-          "assetId": 12593,
-          "data": {
-            "aggregatedDataType": "heap",
-            "attribute": "Alarm",
-            "description": "Niagara Device, Alarm",
-            "key": "",
-            "seq": 0,
-            "subtype": "input"
-          }
-        },
-        {
-          "elementSequence": 1,
-          "assetId": 12593,
-          "data": {
-            "aggregatedDataType": "heap",
-            "attribute": "Alarm",
-            "description": "Niagara Device, Alarm",
-            "key": "",
-            "seq": 1,
-            "subtype": "input"
-          }
-        }
-      ]
-    },
-    {
-      "widgetTypeName": "coffecloud",
-      "details": {
-        "388": {
-          "tilesConfig": [
-            {
-              "defaultColorIndex": 3,
-              "progressBar": null,
-              "valueMapping": []
-            },
-            {
-              "defaultColorIndex": 1,
-              "progressBar": null,
-              "valueMapping": []
-            },
-            {
-              "defaultColorIndex": 5,
-              "progressBar": null,
-              "valueMapping": [
-                [
-                  "0",
-                  "Healthy",
-                  "#007305"
-                ],
-                [
-                  "9999999",
-                  "Error",
-                  "#9E003D"
-                ]
-              ]
-            },
-            {
-              "defaultColorIndex": 0,
-              "progressBar": null,
-              "valueMapping": []
-            }
-          ]
-        },
-        "size": 1,
-        "timespan": 7
-      },
-      "assetId": 3446,
-      "data": null
-    }
-  ]
+  "name": "Example Dashboard",
+  "projectId": "99",
+  "userId": "1",
+  "public": true
 }

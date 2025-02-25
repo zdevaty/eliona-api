@@ -1,3 +1,3 @@
-### Select QR codes
-GET {{api-server}}/v2/qr-codes/assets/154
+### [QR codes] Generate QR code linking to an asset in the frontend (read-only)
+GET {{api-server}}/v2/qr-codes/assets/4711 HTTP/1.1
 X-Api-Key: {{read-only-token}}

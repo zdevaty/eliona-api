@@ -1,18 +1,18 @@
-### Get tags
-GET {{api-server}}/v2/tags
+### [Tags] List all tags (read-only)
+GET {{api-server}}/v2/tags HTTP/1.1
 X-Api-Key: {{read-only-token}}
 
-### Get tag
-GET {{api-server}}/v2/tags/Test Eduard tag rename
-X-Api-Key: {{read-only-token}}
-
-### Insert new tag
-PUT {{api-server}}/v2/tags
-Content-Type: application/json
+### [Tags] Create or update a tag with extra parameters (read–write)
+PUT {{api-server}}/v2/tags HTTP/1.1
 X-Api-Key: {{read-write-token}}
+Content-Type: application/json
 
 {
-  "name": "Test Eduard tag rename",
+  "name": "Support",
   "colorId": 3,
   "custom": true
 }
+
+### [Tags] Get a tag by name (read-only)
+GET {{api-server}}/v2/tags/Support HTTP/1.1
+X-Api-Key: {{read-only-token}}

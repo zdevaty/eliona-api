@@ -1,3 +1,17 @@
-### Get node by ident
-GET {{api-server}}/v2/projects/404
+### [Projects] List all projects (read-only)
+GET {{api-server}}/v2/projects HTTP/1.1
+X-Api-Key: {{read-only-token}}
+
+### [Projects] Create or update a project with detailed info (read–write)
+PUT {{api-server}}/v2/projects HTTP/1.1
 X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "id": "99",
+  "title": "My Project - Updated"
+}
+
+### [Projects] Get project details by id (read-only)
+GET {{api-server}}/v2/projects/99 HTTP/1.1
+X-Api-Key: {{read-only-token}}

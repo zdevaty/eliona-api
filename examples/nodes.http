@@ -1,34 +1,35 @@
-### Get all nodes
-GET {{api-server}}/v2/nodes
+### [Nodes] List nodes (read-only)
+GET {{api-server}}/v2/nodes HTTP/1.1
 X-Api-Key: {{read-only-token}}
 
-### Get node by ident
-GET {{api-server}}/v2/nodes/9ff259f4-fa1e-4364-98a6-f94c14ba6d425
-X-Api-Key: {{read-only-token}}
-
-### Insert new node
-POST {{api-server}}/v2/nodes
+### [Nodes] Create a new node with detailed information (read–write)
+POST {{api-server}}/v2/nodes HTTP/1.1
 X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
-  "password": "string",
-  "vendor": "string",
-  "model": "string",
-  "description": "Node east plant",
-  "enable": false,
-  "assetId": 12345
+  "ident": "fef0a0d3-acad-4611-ac03-1fd842d72505",
+  "assetId": 4711,
+  "vendor": "VendorName",
+  "model": "NodeModelX",
+  "description": "Edge node for West Plant",
+  "enable": true
 }
 
-### Update node
-PUT {{api-server}}/v2/nodes/9ff259f4-fa1e-4364-98a6-f94c14ba6d42
+### [Nodes] Get node by ident (read-only)
+GET {{api-server}}/v2/nodes/fef0a0d3-acad-4611-ac03-1fd842d72505 HTTP/1.1
+X-Api-Key: {{read-only-token}}
+
+### [Nodes] Update node with additional optional fields (read–write)
+PUT {{api-server}}/v2/nodes/fef0a0d3-acad-4611-ac03-1fd842d72505 HTTP/1.1
 X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
-  "password": "string",
-  "vendor": "string3",
-  "model": "string",
-  "description": "Node east plant",
-  "enable": false
+  "ident": "fef0a0d3-acad-4611-ac03-1fd842d72505",
+  "assetId": 4711,
+  "vendor": "VendorName",
+  "model": "NodeModelX",
+  "description": "Updated description for node at West Plant",
+  "enable": true
 }

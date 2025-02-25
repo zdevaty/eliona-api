@@ -1,0 +1,32 @@
+### [Widgets] Add a widget to a dashboard with detailed element data (read–write)
+POST {{api-server}}/v2/dashboards/505/widgets HTTP/1.1
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "widgetTypeName": "Weather",
+  "assetId": 64384,
+  "details": {
+    "title": "Current Weather"
+  },
+  "data": [
+    {
+      "elementSequence": 1,
+      "data": {
+        "subtype": "input",
+        "attribute": "temperature",
+        "key": "temp"
+      },
+      "assetId": 64384
+    },
+    {
+      "elementSequence": 2,
+      "data": {
+        "subtype": "input",
+        "attribute": "humidity",
+        "key": "humidity"
+      },
+      "assetId": 64384
+    }
+  ]
+}

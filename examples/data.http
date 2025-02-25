@@ -1,54 +1,30 @@
-### Get all data
-GET {{api-server}}/v2/data
+### [Data] Get data for asset 4711 filtered by data subtype (read-only)
+GET {{api-server}}/v2/data?assetId=4711&dataSubtype=input HTTP/1.1
 X-Api-Key: {{read-only-token}}
 
-### Get all data based on asset id
-GET {{api-server}}/v2/data?assetId=927&
+### [Data] Get data for asset 4711 with multiple filters (read-only)
+GET {{api-server}}/v2/data?assetId=4711&parentAssetId=4700&dataSubtype=info HTTP/1.1
 X-Api-Key: {{read-only-token}}
 
-### Get all data based on subtype
-GET {{api-server}}/v2/data?dataSubtype=input
-X-Api-Key: {{read-only-token}}
-
-### Get all data based on asset type
-GET {{api-server}}/v2/data?assetTypeName=VIRTUAL Battery
-X-Api-Key: {{read-only-token}}
-
-### Put data
-PUT {{api-server}}/v2/data
+### [Data] Create or update asset data with a client reference (read–write)
+PUT {{api-server}}/v2/data?directMode=true HTTP/1.1
 X-Api-Key: {{read-write-token}}
-
-  {
-    "assetId": 17534,
-    "subtype": "input",
-    "data": {
-      "value": null
-    }
-  }
-
-### Put data
-PUT {{api-server}}/v2/data
-X-Api-Key: {{read-write-token}}
+Content-Type: application/json
 
 {
-     "data": {
-       "value":99
-         },
-"subtype":"input",
-"assetId":17501
+  "assetId": 4711,
+  "subtype": "input",
+  "data": {
+    "temperature": 22.5,
+    "humidity": 55
+  },
+  "clientReference": "ABC123"
 }
 
-### Put data bulk
-PUT {{api-server}}/v2/data-bulk
-X-Api-Key: {{read-write-token}}
+### [Data] Get trend of historical data for an asset (data-trend)
+GET {{api-server}}/v2/data-trend/4711?dataSubtype=input&attributeName=temperature&fromDate=2020-01-01T09:00:00.000Z&toDate=2021-12-31T23:00:00.000Z&offset=0&size=20 HTTP/1.1
+X-Api-Key: {{read-only-token}}
 
-  [
-  {
-    "assetId": 8514,
-    "subtype": "input",
-    "data": {
-    "brightness": 222
-    },
-    "clientReference": "42"
-  }
-  ]
+### [Data] Get aggregated trend of historical data for an asset (data-trend-aggregated)
+GET {{api-server}}/v2/data-trend-aggregated/4711?dataSubtype=input&attributeName=temperature&aggregationRaster=1d&sumMethod=sum&fromDate=2020-01-01T09:00:00.000Z&toDate=2021-12-31T23:00:00.000Z&offset=0&size=20 HTTP/1.1
+X-Api-Key: {{read-only-token}}

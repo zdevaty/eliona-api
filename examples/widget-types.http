@@ -1,97 +1,34 @@
-### Select all widget types
-GET {{api-server}}/v2/widget-types?expansions=WidgetType.elements
+### [Widget types] List widget types (read-only)
+GET {{api-server}}/v2/widget-types HTTP/1.1
 X-Api-Key: {{read-only-token}}
 
-### Select widget type
-GET {{api-server}}/v2/widget-types/gp_joule_value_map?expansions=WidgetType.elements
-X-Api-Key: {{read-only-token}}
-
-### Select widget type
-GET {{api-server}}/v2/widget-types/coffecloud?expansions=WidgetType.elements
-X-Api-Key: {{read-only-token}}
-
-### Insert widget type
-POST {{api-server}}/v2/widget-types?expansions=WidgetType.elements
+### [Widget types] Create or update a new widget type with multiple elements (read–write)
+PUT {{api-server}}/v2/widget-types HTTP/1.1
 X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
-  "name": "Weather Station",
+  "name": "Weather",
   "custom": true,
   "translation": {
-    "en": "Weather Station"
+    "en": "Weather Widget",
+    "de": "Wetter Widget"
   },
+  "icon": "weather",
   "elements": [
     {
-      "category": "progress",
       "sequence": 1,
+      "category": "weather",
       "config": {
-        "showLegend": true
+        "variant": "todayAndForecast"
       }
     },
     {
-      "category": "radar",
       "sequence": 2,
+      "category": "trend",
       "config": {
-        "showLegend": true
+        "timeSpan": "24h"
       }
     }
   ]
 }
-
-### Upserts widget type
-PUT {{api-server}}/v2/widget-types?expansions=WidgetType.elements
-X-Api-Key: {{read-write-token}}
-Content-Type: application/json
-
-{
-  "name": "coffecloud",
-  "custom": true,
-  "translation": {
-    "de": "Coffecloud",
-    "en": "Coffecloud"
-  },
-  "withAlarm": true,
-  "withTimespan": true,
-  "icon": "silo-fill",
-  "elements": [
-    {
-      "category": "value",
-      "sequence": 1,
-      "config": {
-        "description": "",
-        "variant": "tiles"
-      }
-    }
-  ]
-}
-
-### Updates widget type
-PUT {{api-server}}/v2/widget-types/Weather Station?expansions=WidgetType.elements
-X-Api-Key: {{read-write-token}}
-Content-Type: application/json
-
-{
-  "name": "Weather Station",
-  "custom": true,
-  "translation": {
-    "en": "Weather Station"
-  },
-  "elements": [
-    {
-      "category": "progress",
-      "sequence": 1,
-      "config": {
-        "showLegend": true
-      }
-    },
-    {
-      "category": "radar",
-      "sequence": 2,
-      "config": {
-        "showLegend": true
-      }
-    }
-  ]
-}
-
