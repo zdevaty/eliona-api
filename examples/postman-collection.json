@@ -1,0 +1,1549 @@
+{
+	"info": {
+		"_postman_id": "70661077-b728-41f9-964a-3d06543026f3",
+		"name": "Eliona APIv2 Examples",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24337231"
+	},
+	"item": [
+		{
+			"name": "asset-types",
+			"item": [
+				{
+					"name": "[Asset types] List all asset types with attributes (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/asset-types?expansions=AssetType.attributes",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"asset-types"
+							],
+							"query": [
+								{
+									"key": "expansions",
+									"value": "AssetType.attributes"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Asset types] Create or update a new asset type (read–write)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"weather_location2\",\n    \"custom\": true,\n    \"vendor\": \"Acme Weather Inc.\",\n    \"model\": \"WX-100\",\n    \"translation\": {\n        \"en\": \"Weather Location\",\n        \"de\": \"Wetter Ort\"\n    },\n    \"urldoc\": \"https://example.com/docs/weather_location\",\n    \"icon\": \"weather\",\n    \"payloadFunction\": \"PLS\",\n    \"allowedInactivity\": \"0 hours 5 mins\",\n    \"isTracker\": false,\n    \"attributes\": [\n        {\n            \"name\": \"temperature\",\n            \"subtype\": \"input\",\n            \"type\": \"temperature\",\n            \"enable\": true,\n            \"virtual\": false,\n            \"unit\": \"\\u00b0C\",\n            \"precision\": 1,\n            \"min\": 0.0,\n            \"max\": 50.0,\n            \"translation\": {\n                \"en\": \"Temperature\",\n                \"de\": \"Temperatur\"\n            }\n        },\n        {\n            \"name\": \"humidity\",\n            \"subtype\": \"input\",\n            \"type\": \"humidity\",\n            \"enable\": true,\n            \"virtual\": false,\n            \"unit\": \"%\",\n            \"precision\": 0,\n            \"min\": 0,\n            \"max\": 100,\n            \"translation\": {\n                \"en\": \"Humidity\",\n                \"de\": \"Luftfeuchtigkeit\"\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/asset-types?expansions=AssetType.attributes",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"asset-types"
+							],
+							"query": [
+								{
+									"key": "expansions",
+									"value": "AssetType.attributes"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Asset types] Get an asset type by name with expansions (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/asset-types/weather_location?expansions=attributes",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"asset-types",
+								"weather_location"
+							],
+							"query": [
+								{
+									"key": "expansions",
+									"value": "attributes"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Asset types] Delete an asset type by name (read–write)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/asset-types/weather_location",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"asset-types",
+								"weather_location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Asset types] Create a new attribute for an asset type (read–write)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"pressure\",\n    \"subtype\": \"input\",\n    \"type\": \"pressure\",\n    \"enable\": true,\n    \"virtual\": false,\n    \"unit\": \"hPa\",\n    \"precision\": 0,\n    \"min\": 950,\n    \"max\": 1050,\n    \"translation\": {\n        \"en\": \"Pressure\",\n        \"de\": \"Luftdruck\"\n    },\n    \"formula\": \"value * 1.0\"\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/asset-types/weather_location/attributes",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"asset-types",
+								"weather_location",
+								"attributes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Asset types] Update an attribute for an asset type (read–write)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"pressure\",\n    \"subtype\": \"input\",\n    \"type\": \"pressure\",\n    \"enable\": true,\n    \"virtual\": false,\n    \"unit\": \"hPa\",\n    \"precision\": 0,\n    \"min\": 960,\n    \"max\": 1040,\n    \"translation\": {\n        \"en\": \"Pressure Updated\",\n        \"de\": \"Luftdruck Aktualisiert\"\n    },\n    \"formula\": \"value * 1.0\"\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/asset-types/weather_location/attributes",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"asset-types",
+								"weather_location",
+								"attributes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "communication",
+			"item": [
+				{
+					"name": "[Communication] Send an e-mail with attachments (read–write)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"recipients\": [\n        \"peter.fox@example.com\"\n    ],\n    \"subject\": \"This is an example message\",\n    \"content\": \"Hello!<br><br>This is a test message.<br><br>Regards\",\n    \"attachments\": [\n        {\n            \"name\": \"example.gif\",\n            \"encoding\": \"base64\",\n            \"contentType\": \"image/png\",\n            \"content\": \"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/send-mail",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"send-mail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Communication] Send a notification with project scoping (read–write)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": {\n        \"de\": \"Das ist ein deutscher Text\",\n        \"en\": \"This is an english text\",\n        \"it\": \"Questo \\u00e8 nel testo inglese\",\n        \"fr\": \"Ceci est en texte anglais\"\n    },\n    \"user\": \"90\",\n    \"projectId\": \"10\"\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/send-notification",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"send-notification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Communication] Get message receipt by message id (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/message-receipts/N317901",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"message-receipts",
+								"N317901"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "dashboards",
+			"item": [
+				{
+					"name": "[Dashboards] List dashboards with expansion (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/dashboards?expansions=Dashboard.widgets",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"dashboards"
+							],
+							"query": [
+								{
+									"key": "expansions",
+									"value": "Dashboard.widgets"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Dashboards] Create a new dashboard with public flag (read–write)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Example Dashboard\",\n    \"projectId\": \"99\",\n    \"userId\": \"1\",\n    \"public\": true\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/dashboards",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"dashboards"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "data",
+			"item": [
+				{
+					"name": "[Data] Get data for asset 4711 filtered by data subtype (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/data?assetId=4711&dataSubtype=input",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"data"
+							],
+							"query": [
+								{
+									"key": "assetId",
+									"value": "4711"
+								},
+								{
+									"key": "dataSubtype",
+									"value": "input"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Data] Get data for asset 4711 with multiple filters (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/data?assetId=4711&parentAssetId=4700&dataSubtype=info",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"data"
+							],
+							"query": [
+								{
+									"key": "assetId",
+									"value": "4711"
+								},
+								{
+									"key": "parentAssetId",
+									"value": "4700"
+								},
+								{
+									"key": "dataSubtype",
+									"value": "info"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Data] Create or update asset data with a client reference (read–write)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"assetId\": 4711,\n    \"subtype\": \"input\",\n    \"data\": {\n        \"temperature\": 22.5,\n        \"humidity\": 55\n    },\n    \"clientReference\": \"ABC123\"\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/data?directMode=true",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"data"
+							],
+							"query": [
+								{
+									"key": "directMode",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Data] Get trend of historical data for an asset (data-trend)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/data-trend/4711?dataSubtype=input&attributeName=temperature&fromDate=2020-01-01T09:00:00.000Z&toDate=2021-12-31T23:00:00.000Z&offset=0&size=20",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"data-trend",
+								"4711"
+							],
+							"query": [
+								{
+									"key": "dataSubtype",
+									"value": "input"
+								},
+								{
+									"key": "attributeName",
+									"value": "temperature"
+								},
+								{
+									"key": "fromDate",
+									"value": "2020-01-01T09:00:00.000Z"
+								},
+								{
+									"key": "toDate",
+									"value": "2021-12-31T23:00:00.000Z"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Data] Get aggregated trend of historical data for an asset (data-trend-aggregated)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/data-trend-aggregated/4711?dataSubtype=input&attributeName=temperature&aggregationRaster=1d&sumMethod=sum&fromDate=2020-01-01T09:00:00.000Z&toDate=2021-12-31T23:00:00.000Z&offset=0&size=20",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"data-trend-aggregated",
+								"4711"
+							],
+							"query": [
+								{
+									"key": "dataSubtype",
+									"value": "input"
+								},
+								{
+									"key": "attributeName",
+									"value": "temperature"
+								},
+								{
+									"key": "aggregationRaster",
+									"value": "1d"
+								},
+								{
+									"key": "sumMethod",
+									"value": "sum"
+								},
+								{
+									"key": "fromDate",
+									"value": "2020-01-01T09:00:00.000Z"
+								},
+								{
+									"key": "toDate",
+									"value": "2021-12-31T23:00:00.000Z"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "nodes",
+			"item": [
+				{
+					"name": "[Nodes] List nodes (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/nodes",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Nodes] Create a new node with detailed information (read–write)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ident\": \"fef0a0d3-acad-4611-ac03-1fd842d72505\",\n    \"assetId\": 4711,\n    \"vendor\": \"VendorName\",\n    \"model\": \"NodeModelX\",\n    \"description\": \"Edge node for West Plant\",\n    \"enable\": true\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/nodes",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Nodes] Get node by ident (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/nodes/fef0a0d3-acad-4611-ac03-1fd842d72505",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"nodes",
+								"fef0a0d3-acad-4611-ac03-1fd842d72505"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Nodes] Update node with additional optional fields (read–write)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ident\": \"fef0a0d3-acad-4611-ac03-1fd842d72505\",\n    \"assetId\": 4711,\n    \"vendor\": \"VendorName\",\n    \"model\": \"NodeModelX\",\n    \"description\": \"Updated description for node at West Plant\",\n    \"enable\": true\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/nodes/fef0a0d3-acad-4611-ac03-1fd842d72505",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"nodes",
+								"fef0a0d3-acad-4611-ac03-1fd842d72505"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "projects",
+			"item": [
+				{
+					"name": "[Projects] List all projects (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/projects",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Projects] Create or update a project with detailed info (read–write)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"99\",\n    \"title\": \"My Project - Updated\"\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/projects",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Projects] Get project details by id (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/projects/99",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"projects",
+								"99"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "qr-codes",
+			"item": [
+				{
+					"name": "[QR codes] Generate QR code linking to an asset in the frontend (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/qr-codes/assets/4711",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"qr-codes",
+								"assets",
+								"4711"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tags",
+			"item": [
+				{
+					"name": "[Tags] List all tags (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/tags",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Tags] Create or update a tag with extra parameters (read–write)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Support\",\n    \"colorId\": 3,\n    \"custom\": true\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/tags",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Tags] Get a tag by name (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/tags/Support",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"tags",
+								"Support"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "versions",
+			"item": [
+				{
+					"name": "[Version] Get API version (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/version",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"version"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Version] Get OpenAPI specification (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/version/openapi.json",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"version",
+								"openapi.json"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "widgets",
+			"item": [
+				{
+					"name": "[Widgets] Add a widget to a dashboard with detailed element data (read–write)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"widgetTypeName\": \"Weather\",\n    \"assetId\": 64384,\n    \"details\": {\n        \"title\": \"Current Weather\"\n    },\n    \"data\": [\n        {\n            \"elementSequence\": 1,\n            \"data\": {\n                \"subtype\": \"input\",\n                \"attribute\": \"temperature\",\n                \"key\": \"temp\"\n            },\n            \"assetId\": 64384\n        },\n        {\n            \"elementSequence\": 2,\n            \"data\": {\n                \"subtype\": \"input\",\n                \"attribute\": \"humidity\",\n                \"key\": \"humidity\"\n            },\n            \"assetId\": 64384\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/dashboards/505/widgets",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"dashboards",
+								"505",
+								"widgets"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "widget-types",
+			"item": [
+				{
+					"name": "[Widget types] List widget types (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/widget-types",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"widget-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Widget types] Create or update a new widget type with multiple elements (read–write)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Weather\",\n    \"custom\": true,\n    \"translation\": {\n        \"en\": \"Weather Widget\",\n        \"de\": \"Wetter Widget\"\n    },\n    \"icon\": \"weather\",\n    \"elements\": [\n        {\n            \"sequence\": 1,\n            \"category\": \"weather\",\n            \"config\": {\n                \"variant\": \"todayAndForecast\"\n            }\n        },\n        {\n            \"sequence\": 2,\n            \"category\": \"trend\",\n            \"config\": {\n                \"timeSpan\": \"24h\"\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/widget-types",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"widget-types"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "agents",
+			"item": [
+				{
+					"name": "[Agents] List all IOSYS agents (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/agents/iosys",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"agents",
+								"iosys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Agents] Create a new IOSYS agent (read–write)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"assetId\": 62682,\n    \"description\": \"New IOSYS agent for East Plant\",\n    \"class\": \"iosys\",\n    \"enable\": true,\n    \"config\": {\n        \"ip\": \"192.168.0.10\",\n        \"port\": 8080\n    }\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/agents/iosys",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"agents",
+								"iosys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Agents] Get agent by class and id with optional expansions (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/agents/iosys/336",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"agents",
+								"iosys",
+								"336"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Agents] Update an agent (read–write)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"assetId\": 62682,\n    \"description\": \"Updated IOSYS agent: now with enhanced monitoring\",\n    \"class\": \"iosys\",\n    \"enable\": true,\n    \"config\": {\n        \"ip\": \"192.168.0.10\",\n        \"port\": 8080,\n        \"monitoringInterval\": 60\n    }\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/agents/iosys/336",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"agents",
+								"iosys",
+								"336"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Agents] List devices for an agent with paging (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/agents/iosys/336/devices",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"agents",
+								"iosys",
+								"336",
+								"devices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Agents] Create a new device for an agent (read–write)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"enable\": true,\n    \"class\": \"iosys\",\n    \"certificate\": \"CERTIFICATE\",\n    \"key\": \"PRIVATE\",\n    \"port\": 15,\n    \"timeout\": 30,\n    \"reconnect\": 10\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/agents/iosys/336/devices",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"agents",
+								"iosys",
+								"336",
+								"devices"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "alarm-rules",
+			"item": [
+				{
+					"name": "[Alarm rules] List alarm rules (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/alarm-rules?expansions=AlarmRule.assetInfo",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"alarm-rules"
+							],
+							"query": [
+								{
+									"key": "expansions",
+									"value": "AlarmRule.assetInfo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Alarm rules] List alarm rules with filter parameters (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/alarm-rules?assetId=61894&alarmRuleIds=4621,4620&expansions=AlarmRule.assetInfo",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"alarm-rules"
+							],
+							"query": [
+								{
+									"key": "assetId",
+									"value": "61894"
+								},
+								{
+									"key": "alarmRuleIds",
+									"value": "4621,4620"
+								},
+								{
+									"key": "expansions",
+									"value": "AlarmRule.assetInfo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Alarm rules] Create a new alarm rule with detailed parameters (read–write)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"assetId\": 61894,\n    \"subtype\": \"input\",\n    \"attribute\": \"temperature\",\n    \"enable\": true,\n    \"priority\": 2,\n    \"requiresAcknowledge\": false,\n    \"equal\": 38.7,\n    \"low\": 38.0,\n    \"high\": 39.5,\n    \"message\": {\n        \"come\": {\n            \"en\": \"Warning: Temperature out of range!\"\n        },\n        \"fallback\": {\n            \"en\": \"Please check the sensor.\"\n        }\n    },\n    \"tags\": [\n        \"critical\",\n        \"sensor\"\n    ],\n    \"notifyOn\": \"R\",\n    \"dontMask\": false\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/alarm-rules",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"alarm-rules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Alarm rules] Get an alarm rule by id with expansions (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/alarm-rules/4623?expansions=AlarmRule.assetInfo",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"alarm-rules",
+								"4623"
+							],
+							"query": [
+								{
+									"key": "expansions",
+									"value": "AlarmRule.assetInfo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Alarm rules] Update an alarm rule (read–write)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"assetId\": 61894,\n    \"subtype\": \"input\",\n    \"attribute\": \"temperature\",\n    \"enable\": true,\n    \"priority\": 1,\n    \"requiresAcknowledge\": true,\n    \"equal\": 39.0,\n    \"low\": 38.5,\n    \"high\": 40.0,\n    \"message\": {\n        \"come\": {\n            \"en\": \"Critical: Temperature threshold exceeded\"\n        }\n    },\n    \"tags\": [\n        \"critical\",\n        \"update\"\n    ],\n    \"notifyOn\": \"R\",\n    \"dontMask\": false\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/alarm-rules/4623",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"alarm-rules",
+								"4623"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Alarm rules] Delete an alarm rule by id (read–write)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/alarm-rules/4623",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"alarm-rules",
+								"4623"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "alarms",
+			"item": [
+				{
+					"name": "[Alarms] List alarms (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/alarms?expansions=Alarm.assetInfo,Alarm.ruleInfo",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"alarms"
+							],
+							"query": [
+								{
+									"key": "expansions",
+									"value": "Alarm.assetInfo,Alarm.ruleInfo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Alarms] List alarms with tag filter and date filters (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{api-server}}/v2/alarms?projectId=99&fromDate=2025-01-01T09:00:00.000Z&toDate=2025-12-31T23:00:00.000Z&tags=critical,warning&expansions=Alarm.assetInfo",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"alarms"
+							],
+							"query": [
+								{
+									"key": "projectId",
+									"value": "99"
+								},
+								{
+									"key": "fromDate",
+									"value": "2025-01-01T09:00:00.000Z"
+								},
+								{
+									"key": "toDate",
+									"value": "2025-12-31T23:00:00.000Z"
+								},
+								{
+									"key": "tags",
+									"value": "critical,warning"
+								},
+								{
+									"key": "expansions",
+									"value": "Alarm.assetInfo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Alarms] Mark an alarm as gone (DELETE) (read–write)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/alarms/4618",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"alarms",
+								"4618"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "apps",
+			"item": [
+				{
+					"name": "[Apps] Get app details by name (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/apps/booking",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"apps",
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Apps] Get details for a specific patch (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/apps/booking/patches/2.0.0",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"apps",
+								"booking",
+								"patches",
+								"2.0.0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "assets",
+			"item": [
+				{
+					"name": "[Assets] List assets with filters and expansions (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/assets",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"assets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Assets] Create a new asset with optional fields (read–write)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"globalAssetIdentifier\": \"zurich_swiss\",\n    \"name\": \"Station Zurich\",\n    \"assetType\": \"weather_location\",\n    \"latitude\": 47.3667,\n    \"longitude\": 8.55,\n    \"projectId\": \"99\",\n    \"tags\": [\n        \"weather\",\n        \"location\"\n    ],\n    \"resourceId\": \"123e4567-e89b-12d3-a456-426655440000\"\n}"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/assets",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"assets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Assets] Get asset by id with expansions (read-only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/assets/64378?expansions=Asset.childrenInfo",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"assets",
+								"64378"
+							],
+							"query": [
+								{
+									"key": "expansions",
+									"value": "Asset.childrenInfo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Assets] Delete an asset by id (read–write)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api-server}}/v2/assets/64378",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"assets",
+								"64378"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Assets] Delete a list of assets in bulk (read–write)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    \"64380\",\n    \"64379\"\n]"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/assets-bulk?identifyBy=id",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"assets-bulk"
+							],
+							"query": [
+								{
+									"key": "identifyBy",
+									"value": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Assets] Create or update a list of assets in bulk (read–write)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"globalAssetIdentifier\": \"asset_1\",\n        \"name\": \"Asset One\",\n        \"assetType\": \"weather_location\",\n        \"latitude\": 47.123,\n        \"longitude\": 8.456,\n        \"projectId\": \"99\",\n        \"resourceId\": \"device-001\"\n    },\n    {\n        \"globalAssetIdentifier\": \"asset_2\",\n        \"name\": \"Asset Two\",\n        \"assetType\": \"weather_location\",\n        \"latitude\": 47.124,\n        \"longitude\": 8.457,\n        \"projectId\": \"99\",\n        \"resourceId\": \"device-002\"\n    }\n]"
+						},
+						"url": {
+							"raw": "{{api-server}}/v2/assets-bulk?identifyBy=gai-projId",
+							"host": [
+								"{{api-server}}"
+							],
+							"path": [
+								"v2",
+								"assets-bulk"
+							],
+							"query": [
+								{
+									"key": "identifyBy",
+									"value": "gai-projId"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{read-write-token}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "X-Api-Key",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api-server",
+			"value": "https://example.com",
+			"type": "string"
+		},
+		{
+			"key": "read-write-token",
+			"value": "secret",
+			"type": "string"
+		}		
+	]
+}

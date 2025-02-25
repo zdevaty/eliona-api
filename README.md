@@ -10,6 +10,9 @@ In view of a simplified editing the specification is partitioned into multiple f
 
 [See Eliona APIv2 Documentation](https://api.eliona.io/)
 
+This repository contains HTTP request examples for IntelliJ IDEA and Postman.
+The [usage examples](./examples) folder includes `.http` files, and `postman_collection.json` provides an importable Postman collection.
+
 ## Generation ##
 
 Each new version of the Eliona REST API specification requires a list of further generation steps. These steps ensure, that the version is available in the API implementation itself and in all dependent modules.
@@ -34,6 +37,6 @@ The Eliona App SDK provides predefined clients for use in apps. The clients simp
 
 The following clients exists:
 - [Go API client](https://github.com/eliona-smart-building-assistant/go-eliona-api-client)
-- [Python API client](https://github.com/eliona-smart-building-assistant/python-eliona-api-client)
+- [Python API client](https://github.com/eliona-smart-building-assistant/python-eliona-api-client2)
 
 After generating the clients the repositories should be tagged with the current API version (e.g. `v2.4.1`).
