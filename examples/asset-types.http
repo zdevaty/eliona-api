@@ -1,139 +1,108 @@
-### Get type
-GET {{api-server}}/v2/asset-types/niagara_station?expansions=AssetType.attributes
-X-Api-Key: {{read-write-token}}
+### [Asset types] List all asset types with attributes (read-only)
+GET {{api-server}}/v2/asset-types?expansions=AssetType.attributes HTTP/1.1
+X-Api-Key: {{read-only-token}}
 
-### Delete type
-DELETE {{api-server}}/v2/asset-types/Niagara Test
-X-Api-Key: {{read-write-token}}
-
-### Selects asset type
-GET {{api-server}}/v2/asset-types/Niagara Watchdog?expansions=AssetType.attributes
-X-Api-Key: {{read-write-token}}
-
-### Inserts
-POST {{api-server}}/v2/asset-types?expansions=AssetType.attributes
+### [Asset types] Create or update a new asset type (read–write)
+PUT {{api-server}}/v2/asset-types?expansions=AssetType.attributes HTTP/1.1
 X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
-  "name": "Test Type",
+  "name": "weather_location2",
   "custom": true,
+  "vendor": "Acme Weather Inc.",
+  "model": "WX-100",
   "translation": {
-    "de": "Test Typ",
-    "en": "Test Type"
+    "en": "Weather Location",
+    "de": "Wetter Ort"
   },
-  "icon": "vibration",
+  "urldoc": "https://example.com/docs/weather_location",
+  "icon": "weather",
+  "payloadFunction": "PLS",
+  "allowedInactivity": "0 hours 5 mins",
+  "isTracker": false,
   "attributes": [
     {
-      "assetTypeName": "Test Type",
-      "name": "test_attr",
+      "name": "temperature",
       "subtype": "input",
-      "type": "pressure",
+      "type": "temperature",
       "enable": true,
+      "virtual": false,
+      "unit": "°C",
+      "precision": 1,
+      "min": 0.0,
+      "max": 50.0,
       "translation": {
-        "de": "Test Attribut",
-        "en": "Test Attribute"
-      },
-      "viewer": false,
-      "ar": false,
-      "isDigital": false
-    }
-  ]
-}
-
-
-### Upserts new asset type
-PUT {{api-server}}/v2/asset-types?expansions=AssetType.attributes
-X-Api-Key: {{read-write-token}}
-Content-Type: application/json
-
-{
-  "attributes": [
-    {
-      "enable": true,
-      "name": "switch_state",
-      "subtype": "input",
-      "type": "inputs-and-switches",
-      "translation": {
-        "de": "Schalterzustand",
-        "en": "Switch state"
+        "en": "Temperature",
+        "de": "Temperatur"
       }
     },
     {
+      "name": "humidity",
+      "subtype": "input",
+      "type": "humidity",
       "enable": true,
-      "name": "switch",
-      "subtype": "output",
-      "type": "inputs-and-switches",
+      "virtual": false,
+      "unit": "%",
+      "precision": 0,
+      "min": 0,
+      "max": 100,
       "translation": {
-        "de": "Schalter",
-        "en": "Switch"
-      },
-      "map": [
-        {
-          "value": 0,
-          "text": "OFF"
-        },
-        {
-          "value": 1,
-          "text": "ON"
-        }
-      ]
-    }
-  ],
-  "custom": false,
-  "icon": null,
-  "name": "abb_free_at_home_switch_sensor",
-  "translation": {
-    "de": "ABB-free@home Schaltsensor",
-    "en": "ABB-free@home Switch sensor"
-  },
-  "urldoc": "https://apim.eu.mybuildings.abb.com/adtg-api/v1/graphiql/?doc#definition-Channel",
-  "vendor": "ABB"
-}
-
-### Insert new asset type
-POST {{api-server}}/v2/asset-types?expansions=attributes
-X-Api-Key: {{read-write-token}}
-Content-Type: application/json
-
-{
-  "vendor": "vendor",
-  "custom": true,
-  "name": "weather_location",
-  "translation": {
-    "de": "Das ist eine deutsche Beschreibung",
-    "en": "This is an english description",
-    "it": "Questa è una descrizione italiana",
-    "fr": "Ceci est une description français"
-  },
-  "icon": "weather",
-  "urldoc": "urldoc",
-  "model": "model",
-  "attributes": [
-    {
-      "enable": true,
-      "name": "test",
-      "subtype": "input"
+        "en": "Humidity",
+        "de": "Luftfeuchtigkeit"
+      }
     }
   ]
 }
 
-### Update new asset type
-PUT {{api-server}}/v2/asset-types/weather_location
+### [Asset types] Get an asset type by name with expansions (read-only)
+GET {{api-server}}/v2/asset-types/weather_location?expansions=attributes HTTP/1.1
+X-Api-Key: {{read-only-token}}
+
+### [Asset types] Delete an asset type by name (read–write)
+DELETE {{api-server}}/v2/asset-types/weather_location HTTP/1.1
+X-Api-Key: {{read-write-token}}
+
+### [Asset types] Create a new attribute for an asset type (read–write)
+POST {{api-server}}/v2/asset-types/weather_location/attributes HTTP/1.1
 X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
-  "vendor": "vendor",
-  "custom": true,
-  "name": "weather_location",
+  "name": "pressure",
+  "subtype": "input",
+  "type": "pressure",
+  "enable": true,
+  "virtual": false,
+  "unit": "hPa",
+  "precision": 0,
+  "min": 950,
+  "max": 1050,
   "translation": {
-    "de": "Das ist eine deutsche Beschreibung",
-    "en": "This is an english description",
-    "it": "Questa è una descrizione italiana",
-    "fr": "Ceci est une description français"
+    "en": "Pressure",
+    "de": "Luftdruck"
   },
-  "icon": "weather",
-  "urldoc": "urldoc",
-  "model": "model"
+  "formula": "value * 1.0"
+}
+
+### [Asset types] Update an attribute for an asset type (read–write)
+PUT {{api-server}}/v2/asset-types/weather_location/attributes HTTP/1.1
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "name": "pressure",
+  "subtype": "input",
+  "type": "pressure",
+  "enable": true,
+  "virtual": false,
+  "unit": "hPa",
+  "precision": 0,
+  "min": 960,
+  "max": 1040,
+  "translation": {
+    "en": "Pressure Updated",
+    "de": "Luftdruck Aktualisiert"
+  },
+  "formula": "value * 1.0"
 }

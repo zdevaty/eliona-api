@@ -1,126 +1,60 @@
-### Select assets
-GET {{api-server}}/v2/assets
-X-Api-Key: {{read-write-token}}
-
-### Select asset with id
-GET {{api-server}}/v2/assets/7
-X-Api-Key: {{read-write-token}}
-
-### Select asset with id and attachments
-GET {{api-server}}/v2/assets?expansions=Asset.attributes
+### [Assets] List assets with filters and expansions (read-only)
+GET {{api-server}}/v2/assets HTTP/1.1
 X-Api-Key: {{read-only-token}}
 
-### Select asset with id and attachments
-GET {{api-server}}/v2/attribute-display
+### [Assets] Create a new asset with optional fields (read–write)
+PUT {{api-server}}/v2/assets HTTP/1.1
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "globalAssetIdentifier": "zurich_swiss",
+  "name": "Station Zurich",
+  "assetType": "weather_location",
+  "latitude": 47.3667,
+  "longitude": 8.55,
+  "projectId": "99",
+  "tags": ["weather", "location"],
+  "resourceId": "123e4567-e89b-12d3-a456-426655440000"
+}
+
+### [Assets] Get asset by id with expansions (read-only)
+GET {{api-server}}/v2/assets/64378?expansions=Asset.childrenInfo HTTP/1.1
 X-Api-Key: {{read-only-token}}
 
-### Upserts asset by project and gai
-PUT {{api-server}}/v2/assets
+### [Assets] Delete an asset by id (read–write)
+DELETE {{api-server}}/v2/assets/64378 HTTP/1.1
+X-Api-Key: {{read-write-token}}
+
+### [Assets] Delete a list of assets in bulk (read–write)
+DELETE {{api-server}}/v2/assets-bulk?identifyBy=id HTTP/1.1
 X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
-{
-  "projectId": "404",
-  "globalAssetIdentifier": "GAI 4711112 404 3",
-  "name": "Test Asset",
-  "assetType": "Space",
-  "parentFunctionalAssetId": 47724
-}
+[ "64380", "64379" ]
 
-### Insert asset
-POST {{api-server}}/v2/assets
-X-Api-Key: {{read-write-token}}
-Content-Type: application/json
-
-{
-  "projectId": "10",
-  "globalAssetIdentifier": "1234567890",
-  "name": "Test Asset",
-  "assetType": "Space"
-}
-
-### Update asset
-PUT {{api-server}}/v2/assets
-X-Api-Key: {{read-write-token}}
-Content-Type: application/json
-
-{
-  "projectId": "10",
-  "globalAssetIdentifier": "1234567890",
-  "name": "Test Asset 1",
-  "assetType": "Space"
-}
-
-### Insert asset with attachment
-POST {{api-server}}/v2/assets?expansions=Asset.attachments
-X-Api-Key: {{read-write-token}}
-Content-Type: application/json
-
-{
-  "projectId": "99",
-  "globalAssetIdentifier": "12345",
-  "name": "Test Asset",
-  "assetType": "thingdust_space",
-  "attachments": [
-    {
-      "name": "example.gif",
-      "encoding": "base64",
-      "contentType": "image/png",
-      "content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
-    }
-  ]
-}
-
-### Update new asset
-PUT {{api-server}}/v2/assets/255
-X-Api-Key: {{read-write-token}}
-Content-Type: application/json
-
-{
-  "projectId": "99",
-  "globalAssetIdentifier": "GAI 4711",
-  "name": "Test Asset",
-  "assetType": "weather_location"
-}
-
-### Update new asset with attachment
-PUT {{api-server}}/v2/assets/255?expansions=Asset.attachments
-X-Api-Key: {{read-write-token}}
-Content-Type: application/json
-
-{
-  "projectId": "404",
-  "globalAssetIdentifier": "GAI 4711#1",
-  "name": "Test Asset",
-  "assetType": "Space",
-  "attachments": [
-    {
-      "name": "example.gif",
-      "encoding": "base64",
-      "contentType": "image/png",
-      "content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
-    }
-  ]
-}
-
-
-### Update new asset in bulk
-PUT {{api-server}}/v2/assets-bulk
+### [Assets] Create or update a list of assets in bulk (read–write)
+PUT {{api-server}}/v2/assets-bulk?identifyBy=gai-projId HTTP/1.1
 X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 [
   {
-    "projectId": "404",
-    "globalAssetIdentifier": "GAI 4711",
-    "name": "Test Asset",
-    "assetType": "VIRTUAL Light"
+    "globalAssetIdentifier": "asset_1",
+    "name": "Asset One",
+    "assetType": "weather_location",
+    "latitude": 47.123,
+    "longitude": 8.456,
+    "projectId": "99",
+    "resourceId": "device-001"
   },
   {
-    "projectId": "404",
-    "globalAssetIdentifier": "GAI 4712",
-    "name": "Test Asset",
-    "assetType": "VIRTUAL Light",
-    "parentFunctionalIdentifier": "GAI 4711"
+    "globalAssetIdentifier": "asset_2",
+    "name": "Asset Two",
+    "assetType": "weather_location",
+    "latitude": 47.124,
+    "longitude": 8.457,
+    "projectId": "99",
+    "resourceId": "device-002"
   }
 ]

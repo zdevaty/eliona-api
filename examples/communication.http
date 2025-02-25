@@ -1,0 +1,40 @@
+### [Communication] Send an e-mail with attachments (read–write)
+POST {{api-server}}/v2/send-mail HTTP/1.1
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "recipients": [
+    "peter.fox@example.com"
+  ],
+  "subject": "This is an example message",
+  "content": "Hello!<br><br>This is a test message.<br><br>Regards",
+  "attachments" : [
+    {
+      "name": "example.gif",
+      "encoding": "base64",
+      "contentType": "image/png",
+      "content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+    }
+  ]
+}
+
+### [Communication] Send a notification with project scoping (read–write)
+POST {{api-server}}/v2/send-notification
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "message": {
+    "de": "Das ist ein deutscher Text",
+    "en": "This is an english text",
+    "it": "Questo è nel testo inglese",
+    "fr": "Ceci est en texte anglais"
+  },
+  "user": "90",
+  "projectId": "10"
+}
+
+### [Communication] Get message receipt by message id (read-only)
+GET {{api-server}}/v2/message-receipts/N317901 HTTP/1.1
+X-Api-Key: {{read-only-token}}
