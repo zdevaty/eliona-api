@@ -2,6 +2,10 @@
 GET {{api-server}}/v2/alarms?expansions=Alarm.assetInfo,Alarm.ruleInfo,Alarm.acknowledgeUserInfo HTTP/1.1
 X-Api-Key: {{read-only-token}}
 
+### [Alarms] List alarm history (read-only)
+GET {{api-server}}/v2/alarms-history?fromDate=2025-03-19T09:00:00.000Z&toDate=2025-03-19T23:00:00.000Z&expansions=Alarm.assetInfo,Alarm.ruleInfo,Alarm.acknowledgeUserInfo HTTP/1.1
+X-Api-Key: {{read-only-token}}
+
 ### [Alarms] List alarms with tag filter and date filters (read-only)
 GET {{api-server}}/v2/alarms?projectId=99&fromDate=2025-01-01T09:00:00.000Z&toDate=2025-12-31T23:00:00.000Z&tags=critical,warning&expansions=Alarm.assetInfo HTTP/1.1
 X-Api-Key: {{read-only-token}}
