@@ -1,5 +1,5 @@
 ### [Alarms] List alarms (read-only)
-GET {{api-server}}/v2/alarms?expansions=Alarm.assetInfo,Alarm.ruleInfo HTTP/1.1
+GET {{api-server}}/v2/alarms?expansions=Alarm.assetInfo,Alarm.ruleInfo,Alarm.acknowledgeUserInfo HTTP/1.1
 X-Api-Key: {{read-only-token}}
 
 ### [Alarms] List alarms with tag filter and date filters (read-only)

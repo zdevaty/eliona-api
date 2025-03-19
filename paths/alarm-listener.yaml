@@ -4,6 +4,8 @@ get:
   summary: WebSocket connection for alarm changes
   description: Open a WebSocket connection to get informed when new alarm data is written or anything changes.
   operationId: listenAlarm
+  parameters:
+    - $ref: '../parameters/expansions.yaml'
   responses:
     200:
       description: Successfully opened a connection to alarm WebSocket

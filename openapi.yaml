@@ -2845,6 +2845,19 @@ paths:
       description: Open a WebSocket connection to get informed when new alarm data
         is written or anything changes.
       operationId: listenAlarm
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       responses:
         "200":
           content:
