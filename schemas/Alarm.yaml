@@ -82,6 +82,8 @@ properties:
     type: object
     description: Message.yaml texts for alarm
     example: {}
+  acknowledgeUserInfo:
+    $ref: 'User.yaml'
   assetInfo:
     $ref: 'Asset.yaml'
   ruleInfo:
