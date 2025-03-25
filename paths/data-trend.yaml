@@ -1,0 +1,28 @@
+put:
+  tags:
+    - Data
+  summary: Create or update historical data
+  description: |
+    This creates or updates historical data. The choice between updating or creating depends on whether the historical 
+    data for assetId, subtype, parameter and timestamp already exists.
+  operationId: putDataTrend
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/Data.yaml'
+  responses:
+    200:
+      description: Successfully created a new or updated historical data
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/Data.yaml'
+    422:
+      description:
+        Issues arisen during the creation or updating
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/ErrorMessage422.yaml'

@@ -105,6 +105,9 @@ paths:
   /data-bulk:
     $ref: './paths/data-bulk.yaml'
 
+  /data-trend:
+    $ref: './paths/data-trend.yaml'
+
   /data-trend/{asset-id}:
     $ref: './paths/data-trend-id.yaml'
 

@@ -1306,6 +1306,34 @@ paths:
       summary: Create or update multiple asset data
       tags:
       - Data
+  /data-trend:
+    put:
+      description: "This creates or updates historical data. The choice between updating\
+        \ or creating depends on whether the historical \ndata for assetId, subtype,\
+        \ parameter and timestamp already exists.\n"
+      operationId: putDataTrend
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Data'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Data'
+          description: Successfully created a new or updated historical data
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage422'
+          description: Issues arisen during the creation or updating
+      summary: Create or update historical data
+      tags:
+      - Data
   /data-trend/{asset-id}:
     get:
       description: Gets trend information about historical data for an asset
@@ -1576,33 +1604,6 @@ paths:
                 type: array
           description: Successfully returned historical data for assets
       summary: Get trend of historical data
-      tags:
-      - Data
-    put:
-      description: "This creates or updates historical data. The choice between updating\
-        \ or creating depends on whether the historical \ndata for assetId, subtype,\
-        \ parameter and timestamp already exists.\n"
-      operationId: putDataTrend
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Data'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Data'
-          description: Successfully created a new or updated historical data
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorMessage422'
-          description: Issues arisen during the creation or updating
-      summary: Create or update historical data
       tags:
       - Data
   /data-aggregated:
@@ -5119,7 +5120,8 @@ components:
     Data:
       description: Data for assets
       example:
-        data: {}
+        data:
+          temperature: 42
         subtype: input
         assetId: 4711
         assetTypeName: weather_location
@@ -5139,7 +5141,8 @@ components:
           type: string
         data:
           description: Asset payload
-          example: {}
+          example:
+            temperature: 42
           type: object
         assetTypeName:
           description: The name of the corresponding asset type
@@ -5245,7 +5248,8 @@ components:
         type: object
       - $ref: '#/components/schemas/Data'
       example:
-        data: {}
+        data:
+          temperature: 42
         subtype: input
         assetId: 4711
         assetTypeName: weather_location

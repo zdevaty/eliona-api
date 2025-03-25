@@ -19,7 +19,9 @@ properties:
   data:
     type: object
     description: Asset payload
-    example: {}
+    example: {
+      "temperature": 42
+    }
   assetTypeName:
     type: string
     description: The name of the corresponding asset type
