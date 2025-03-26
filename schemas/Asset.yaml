@@ -110,6 +110,11 @@ properties:
     example:
       - weather
       - location
+  allowedInactivity:
+    type: string
+    format: duration
+    example: 0 hours 5 mins
+    nullable: true
   childrenInfo:
     type: array
     readOnly: true

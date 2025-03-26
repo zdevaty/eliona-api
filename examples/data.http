@@ -12,11 +12,10 @@ X-Api-Key: {{read-write-token}}
 Content-Type: application/json
 
 {
-  "assetId": 4711,
+  "assetId": 64609,
   "subtype": "input",
   "data": {
-    "temperature": 22.5,
-    "humidity": 55
+    "Counter": 1234
   },
   "clientReference": "ABC123"
 }
@@ -28,3 +27,18 @@ X-Api-Key: {{read-only-token}}
 ### [Data] Get aggregated trend of historical data for an asset (data-trend-aggregated)
 GET {{api-server}}/v2/data-trend-aggregated/4711?dataSubtype=input&attributeName=temperature&aggregationRaster=1d&sumMethod=sum&fromDate=2020-01-01T09:00:00.000Z&toDate=2021-12-31T23:00:00.000Z&offset=0&size=20 HTTP/1.1
 X-Api-Key: {{read-only-token}}
+
+### [Data] Put historical data for an asset (data-trend)
+PUT {{api-server}}/v2/data-trend HTTP/1.1
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "assetId": 64609,
+  "subtype": "input",
+  "data": {
+    "Counter": 678
+  },
+  "timestamp": "2025-03-25T13:13:14.000Z",
+  "clientReference": "ABC123"
+}

@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.8.6
+  version: 2.8.7
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -4323,7 +4323,7 @@ components:
           unit: °C
           min: 0.8008281904610115
           subtype: input
-          enable: true
+          enable: false
           name: temperature
           translation:
             de: Das ist ein deutscher Text
@@ -4355,7 +4355,7 @@ components:
           unit: °C
           min: 0.8008281904610115
           subtype: input
-          enable: true
+          enable: false
           name: temperature
           translation:
             de: Das ist ein deutscher Text
@@ -4447,7 +4447,7 @@ components:
         unit: °C
         min: 0.8008281904610115
         subtype: input
-        enable: true
+        enable: false
         name: temperature
         translation:
           de: Das ist ein deutscher Text
@@ -4487,7 +4487,7 @@ components:
           nullable: true
           type: string
         enable:
-          default: true
+          default: false
           description: Is data active or not
           type: boolean
         translation:
@@ -4648,6 +4648,7 @@ components:
           encoding: base64
           contentType: image/png
           content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+        allowedInactivity: 0 hours 5 mins
         latitude: 47.3667
         description: "Weather station Zurich, Swiss"
         parentFunctionalIdentifier: "4712"
@@ -4787,6 +4788,11 @@ components:
             type: string
           nullable: true
           type: array
+        allowedInactivity:
+          example: 0 hours 5 mins
+          format: duration
+          nullable: true
+          type: string
         childrenInfo:
           description: List of children for this asset.
           items:
@@ -4849,6 +4855,7 @@ components:
             encoding: base64
             contentType: image/png
             content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          allowedInactivity: 0 hours 5 mins
           latitude: 47.3667
           description: "Weather station Zurich, Swiss"
           parentFunctionalIdentifier: "4712"
@@ -4890,6 +4897,7 @@ components:
             encoding: base64
             contentType: image/png
             content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          allowedInactivity: 0 hours 5 mins
           latitude: 47.3667
           description: "Weather station Zurich, Swiss"
           parentFunctionalIdentifier: "4712"
@@ -4941,6 +4949,7 @@ components:
           encoding: base64
           contentType: image/png
           content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+        allowedInactivity: 0 hours 5 mins
         latitude: 47.3667
         description: "Weather station Zurich, Swiss"
         parentFunctionalIdentifier: "4712"
@@ -4963,6 +4972,7 @@ components:
             encoding: base64
             contentType: image/png
             content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          allowedInactivity: 0 hours 5 mins
           latitude: 47.3667
           description: "Weather station Zurich, Swiss"
           parentFunctionalIdentifier: "4712"
@@ -5002,6 +5012,7 @@ components:
             encoding: base64
             contentType: image/png
             content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          allowedInactivity: 0 hours 5 mins
           latitude: 47.3667
           description: "Weather station Zurich, Swiss"
           parentFunctionalIdentifier: "4712"
@@ -5746,6 +5757,7 @@ components:
             encoding: base64
             contentType: image/png
             content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          allowedInactivity: 0 hours 5 mins
           latitude: 47.3667
           description: "Weather station Zurich, Swiss"
           parentFunctionalIdentifier: "4712"
@@ -5991,6 +6003,7 @@ components:
               encoding: base64
               contentType: image/png
               content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+            allowedInactivity: 0 hours 5 mins
             latitude: 47.3667
             description: "Weather station Zurich, Swiss"
             parentFunctionalIdentifier: "4712"
@@ -6035,6 +6048,7 @@ components:
             encoding: base64
             contentType: image/png
             content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          allowedInactivity: 0 hours 5 mins
           latitude: 47.3667
           description: "Weather station Zurich, Swiss"
           parentFunctionalIdentifier: "4712"
@@ -6213,6 +6227,7 @@ components:
               encoding: base64
               contentType: image/png
               content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+            allowedInactivity: 0 hours 5 mins
             latitude: 47.3667
             description: "Weather station Zurich, Swiss"
             parentFunctionalIdentifier: "4712"
@@ -6257,6 +6272,7 @@ components:
             encoding: base64
             contentType: image/png
             content: iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+          allowedInactivity: 0 hours 5 mins
           latitude: 47.3667
           description: "Weather station Zurich, Swiss"
           parentFunctionalIdentifier: "4712"

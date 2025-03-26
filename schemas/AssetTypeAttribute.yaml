@@ -22,7 +22,7 @@ properties:
     nullable: true
   enable:
     type: boolean
-    default: true
+    default: false
     description: Is data active or not
   translation:
     $ref: 'Translation.yaml'
