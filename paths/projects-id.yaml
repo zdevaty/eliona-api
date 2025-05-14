@@ -6,6 +6,7 @@ get:
   operationId: getProjectById
   parameters:
     - $ref: '../parameters/project-id.yaml'
+    - $ref: '../parameters/expansions.yaml'
   responses:
     200:
       description: Successfully returned the project by id.
