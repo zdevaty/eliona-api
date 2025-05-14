@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Projects
+  summary: Information about a project role
+  description: Gets information about a specific project role.
+  operationId: getProjectRoleByName
+  parameters:
+    - $ref: '../parameters/role-name.yaml'
+  responses:
+    '200':
+      description: Successfully returned the project role by name.
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/ProjectRole.yaml'
+    '404':
+      description: Project role with name not found

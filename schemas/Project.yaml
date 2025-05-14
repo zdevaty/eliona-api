@@ -13,3 +13,9 @@ properties:
     description: The title of the project
     example: My Project
     nullable: true
+  users:
+    type: array
+    description: List of users with a project role
+    nullable: true
+    items:
+      $ref: 'ProjectUser.yaml'

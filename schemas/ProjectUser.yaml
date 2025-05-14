@@ -1,0 +1,19 @@
+type: object
+description: A project user
+nullable: true
+required:
+  - userName
+  - roleName
+properties:
+  userName:
+    type: string
+    description: The unique identifier for the user, represented as an email address.
+    example: peter.fox@example.com
+  roleName:
+    type: string
+    description: The role assigned to the user within the project (e.g., readonly, admin, contributor).
+    example: readonly
+  enabled:
+    type: boolean
+    description: Whether the user for this project is currently active (true) or disabled (false).
+    nullable: true

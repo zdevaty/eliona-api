@@ -1,0 +1,35 @@
+get:
+  tags:
+    - Projects
+  summary: Information about project roles
+  description: Retrieves a list of roles that can be assigned to users within projects
+  operationId: getProjectRoles
+  responses:
+    '200':
+      description: Successfully returned the list of project roles
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/ProjectRole.yaml'
+
+put:
+  tags:
+    - Projects
+  summary: Create or update a project role
+  description: Creates a new project role if none exists, or updates an existing one by its name
+  operationId: putProjectRole
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/ProjectRole.yaml'
+  responses:
+    '200':
+      description: Successfully created or updated the project role
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/ProjectRole.yaml'

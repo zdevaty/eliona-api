@@ -3688,6 +3688,19 @@ paths:
     get:
       description: Gets a list of projects
       operationId: getProjects
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -3704,6 +3717,19 @@ paths:
       description: Creates a project if no project exists or update it if already
         exists. Uses the id for updating.
       operationId: putProject
+      parameters:
+      - description: "List of referenced data to load, insert or update. Each entry\
+          \ defines the full qualified name of the field to be expanded as follows\
+          \ 'ObjectName.fieldName'."
+        explode: false
+        in: query
+        name: expansions
+        schema:
+          items:
+            type: string
+          nullable: true
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -3742,6 +3768,67 @@ paths:
         "404":
           description: Project with id not found
       summary: Information about a project
+      tags:
+      - Projects
+  /project-roles:
+    get:
+      description: Retrieves a list of roles that can be assigned to users within
+        projects
+      operationId: getProjectRoles
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProjectRole'
+                type: array
+          description: Successfully returned the list of project roles
+      summary: Information about project roles
+      tags:
+      - Projects
+    put:
+      description: "Creates a new project role if none exists, or updates an existing\
+        \ one by its name"
+      operationId: putProjectRole
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRole'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectRole'
+          description: Successfully created or updated the project role
+      summary: Create or update a project role
+      tags:
+      - Projects
+  /project-roles/{role-name}:
+    get:
+      description: Gets information about a specific project role.
+      operationId: getProjectRoleByName
+      parameters:
+      - description: The name of the role
+        example: readonly
+        in: path
+        name: role-name
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectRole'
+          description: Successfully returned the project role by name.
+        "404":
+          description: Project role with name not found
+      summary: Information about a project role
       tags:
       - Projects
   /tags:
@@ -4220,6 +4307,14 @@ components:
       example: 99
       in: path
       name: project-id
+      required: true
+      schema:
+        type: string
+    role-name:
+      description: The name of the role
+      example: readonly
+      in: path
+      name: role-name
       required: true
       schema:
         type: string
@@ -6565,6 +6660,13 @@ components:
       example:
         id: "99"
         title: My Project
+        users:
+        - roleName: readonly
+          userName: peter.fox@example.com
+          enabled: true
+        - roleName: readonly
+          userName: peter.fox@example.com
+          enabled: true
       nullable: true
       properties:
         id:
@@ -6578,6 +6680,25 @@ components:
           example: My Project
           nullable: true
           type: string
+        users:
+          description: List of users with a project role
+          items:
+            $ref: '#/components/schemas/ProjectUser'
+          nullable: true
+          type: array
+      type: object
+    ProjectRole:
+      description: A role that can assigned to users within a project
+      example:
+        name: readonly
+      nullable: true
+      properties:
+        name:
+          description: Display name of the role
+          example: readonly
+          type: string
+      required:
+      - name
       type: object
     Tag:
       description: A tag
@@ -6972,6 +7093,33 @@ components:
         mask:
         - 1
         - 1
+    ProjectUser:
+      description: A project user
+      example:
+        roleName: readonly
+        userName: peter.fox@example.com
+        enabled: true
+      nullable: true
+      properties:
+        userName:
+          description: "The unique identifier for the user, represented as an email\
+            \ address."
+          example: peter.fox@example.com
+          type: string
+        roleName:
+          description: "The role assigned to the user within the project (e.g., readonly,\
+            \ admin, contributor)."
+          example: readonly
+          type: string
+        enabled:
+          description: Whether the user for this project is currently active (true)
+            or disabled (false).
+          nullable: true
+          type: boolean
+      required:
+      - roleName
+      - userName
+      type: object
     AgentDeviceGeneral:
       description: A general device for an agent
       nullable: true

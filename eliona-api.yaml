@@ -225,6 +225,12 @@ paths:
   /projects/{project-id}:
     $ref: './paths/projects-id.yaml'
 
+  /project-roles:
+    $ref: './paths/project-roles.yaml'
+
+  /project-roles/{role-name}:
+    $ref: './paths/project-roles-name.yaml'
+
   /tags:
     $ref: './paths/tags.yaml'
 

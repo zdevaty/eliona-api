@@ -1,0 +1,10 @@
+type: object
+description: A role that can assigned to users within a project
+nullable: true
+required:
+  - name
+properties:
+  name:
+    type: string
+    description: Display name of the role
+    example: readonly
