@@ -15,3 +15,20 @@ Content-Type: application/json
 ### [Projects] Get project details by id (read-only)
 GET {{api-server}}/v2/projects/99 HTTP/1.1
 X-Api-Key: {{read-only-token}}
+
+### [Projects] Get project roles
+GET {{api-server}}/v2/project-roles HTTP/1.1
+X-Api-Key: {{read-only-token}}
+
+### [Projects] Get project role by name
+GET {{api-server}}/v2/project-roles/Project user HTTP/1.1
+X-Api-Key: {{read-only-token}}
+
+### [Projects] Create or update a project role
+PUT {{api-server}}/v2/project-roles HTTP/1.1
+X-Api-Key: {{read-write-token}}
+Content-Type: application/json
+
+{
+  "name": "Test"
+}
