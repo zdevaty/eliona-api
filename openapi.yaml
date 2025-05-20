@@ -9,7 +9,7 @@ info:
   license:
     name: MIT License
   title: Eliona REST API
-  version: 2.9.0
+  version: 2.9.1
 externalDocs:
   description: Find out more about Eliona App SDK
   url: https://github.com/eliona-smart-building-assistant
@@ -3817,6 +3817,21 @@ paths:
                 $ref: '#/components/schemas/ProjectRole'
           description: Successfully created or updated the project role
       summary: Create or update a project role
+      tags:
+      - Projects
+  /project-roles-stream:
+    get:
+      description: Retrieves a list of roles that can be assigned to users within
+        projects
+      operationId: streamProjectRoles
+      responses:
+        "200":
+          content:
+            application/x-ndjson:
+              schema:
+                $ref: '#/components/schemas/ProjectRole'
+          description: Successfully starting stream of project roles
+      summary: Information about project roles as stream
       tags:
       - Projects
   /project-roles/{role-name}:

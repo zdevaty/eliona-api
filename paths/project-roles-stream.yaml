@@ -1,0 +1,13 @@
+get:
+  tags:
+    - Projects
+  summary: Information about project roles as stream
+  description: Retrieves a list of roles that can be assigned to users within projects
+  operationId: streamProjectRoles
+  responses:
+    '200':
+      description: Successfully starting stream of project roles
+      content:
+        application/x-ndjson:
+          schema:
+            $ref: '../schemas/ProjectRole.yaml'
