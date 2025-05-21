@@ -4,6 +4,12 @@ nullable: true
 required:
   - name
 properties:
+  id:
+    type: integer
+    readOnly: true
+    description: The internal Id of role
+    example: 4711
+    nullable: true
   name:
     type: string
     description: Display name of the role

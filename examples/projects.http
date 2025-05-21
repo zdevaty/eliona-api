@@ -20,8 +20,12 @@ X-Api-Key: {{read-only-token}}
 GET {{api-server}}/v2/project-roles HTTP/1.1
 X-Api-Key: {{read-only-token}}
 
+### [Projects] Stream project roles
+GET {{api-server}}/v2/project-roles-stream HTTP/1.1
+X-Api-Key: {{read-only-token}}
+
 ### [Projects] Get project role by name
-GET {{api-server}}/v2/project-roles/Project user HTTP/1.1
+GET {{api-server}}/v2/project-roles/Test HTTP/1.1
 X-Api-Key: {{read-only-token}}
 
 ### [Projects] Create or update a project role

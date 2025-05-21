@@ -6718,8 +6718,15 @@ components:
       description: A role that can assigned to users within a project
       example:
         name: readonly
+        id: 4711
       nullable: true
       properties:
+        id:
+          description: The internal Id of role
+          example: 4711
+          nullable: true
+          readOnly: true
+          type: integer
         name:
           description: Display name of the role
           example: readonly
