@@ -31,12 +31,6 @@ jobs:
           echo "RELEASE_NAME=${{ github.event.release.name }}" >> $GITHUB_OUTPUT
           echo "RELEASE_DESCRIPTION=${{ github.event.release.body }}" >> $GITHUB_OUTPUT
 
-      - name: Extract Version
-        id: extract_version
-        run: |
-          VERSION=$(grep -m 1 'version:' openapi.yaml | awk '{printf("v%s"), $2}')
-          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
-
       - name: Regenerate Go API Client
         run: |
           git clone https://github.com/zdevaty/go-eliona-api-client.git
@@ -46,12 +40,12 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add .
-          git commit -m "Support API version ${{ steps.extract_version.outputs.VERSION }}"
-          git tag ${{ steps.extract_version.outputs.VERSION }}
+          git commit -m "Support API version ${{ steps.release_info.outputs.RELEASE_NAME }}"
+          git tag ${{ steps.release_info.outputs.RELEASE_NAME }}
           git remote set-url origin https://zdevaty:${{ secrets.PAT }}@github.com/zdevaty/go-eliona-api-client.git
           git push
           git push --tags
-          gh release create ${{ steps.extract_version.outputs.VERSION }} --title "${{ steps.release_info.outputs.RELEASE_NAME }}" --notes "${{ steps.release_info.outputs.RELEASE_DESCRIPTION }}" --repo zdevaty/go-eliona-api-client
+          gh release create ${{ steps.release_info.outputs.RELEASE_NAME }} --title "${{ steps.release_info.outputs.RELEASE_NAME }}" --notes "${{ steps.release_info.outputs.RELEASE_DESCRIPTION }}" --repo zdevaty/go-eliona-api-client
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
 
@@ -64,12 +58,12 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add .
-          git commit -m "Support API version ${{ steps.extract_version.outputs.VERSION }}"
-          git tag ${{ steps.extract_version.outputs.VERSION }}
+          git commit -m "Support API version ${{ steps.release_info.outputs.RELEASE_NAME }}"
+          git tag ${{ steps.release_info.outputs.RELEASE_NAME }}
           git remote set-url origin https://zdevaty:${{ secrets.PAT }}@github.com/zdevaty/python-eliona-api-client2.git
           git push
           git push --tags
-          gh release create ${{ steps.extract_version.outputs.VERSION }} --title "${{ steps.release_info.outputs.RELEASE_NAME }}" --notes "${{ steps.release_info.outputs.RELEASE_DESCRIPTION }}" --repo zdevaty/python-eliona-api-client2
+          gh release create ${{ steps.release_info.outputs.RELEASE_NAME }} --title "${{ steps.release_info.outputs.RELEASE_NAME }}" --notes "${{ steps.release_info.outputs.RELEASE_DESCRIPTION }}" --repo zdevaty/python-eliona-api-client2
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
 
