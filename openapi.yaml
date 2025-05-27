@@ -176,7 +176,7 @@ paths:
         required: true
         schema:
           type: string
-      - description: "Marks that the app is now initialized and installed. Further\
+      - description: "Mareks that the app is now initialized and installed. Further\
           \ request to get app information returns { \"registered\": true }"
         in: query
         name: registered
