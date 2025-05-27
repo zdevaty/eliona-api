@@ -919,64 +919,7 @@ paths:
       tags:
       - Assets
   /assets-bulk/dry-run:
-    delete:
-      description: Simulates the process of deleting multiple assets via the 'DELETE
-        /assets-bulk' without actually persisting any changes.
-      operationId: dryRunDeleteBulkAssets
-      parameters:
-      - description: |
-          Serves the field name send in the request body as a unique identifier for the asset, essential for
-          operations like updates or deletions. Please refer to the Asset
-          schema definition for further information about this fields.
-
-          In cases where this parameter isn't defined, all field names
-          are used in the order defined. So if there is no 'resourceId' present in the request body, the 'deviceId' is
-          used and when there is also no deviceId present the 'id' field (assetId) is used.
-        example: resourceId
-        in: query
-        name: identifyBy
-        required: false
-        schema:
-          enum:
-          - resourceId
-          - deviceId
-          - id
-          - gai-projId
-          type: string
-      - description: "List of referenced data to load, insert or update. Each entry\
-          \ defines the full qualified name of the field to be expanded as follows\
-          \ 'ObjectName.fieldName'."
-        explode: false
-        in: query
-        name: expansions
-        schema:
-          items:
-            type: string
-          nullable: true
-          type: array
-        style: form
-      requestBody:
-        content:
-          application/json:
-            schema:
-              items:
-                $ref: '#/components/schemas/Identifier'
-              type: array
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/AssetDryRun'
-                type: array
-          description: The list of expected results if the request is actually performed.
-            The content displays the list of expected results in the same order as
-            the initial request.
-      summary: Dry-run for deleting a list of assets
-      tags:
-      - Assets
+    
     post:
       description: Simulates the process of creating assets via the 'POST /assets-bulk'
         endpoint without actually persisting any changes.
