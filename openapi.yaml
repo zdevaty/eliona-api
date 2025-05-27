@@ -4,7 +4,7 @@ info:
     email: hello@eliona.io
     name: Eliona by IoTEC AG
     url: https://eliona.io
-  description: The Eliona REST API enables unified access to the resources and data
+  description: The Eliona REST PI enables unified access to the resources and data
     of an Eliona environment.
   license:
     name: MIT License
