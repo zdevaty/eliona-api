@@ -191,7 +191,7 @@ paths:
       - Apps
   /apps/{app-name}/patches/{patch-name}:
     get:
-      description: Gets information about a patch for an app.
+      description: Getaas information about a patch for an app.
       operationId: getPatchByName
       parameters:
       - description: The name of the app
