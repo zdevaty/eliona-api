@@ -39,6 +39,7 @@ jobs:
           git add .
           git commit -m "Regenerate Go API client from latest openapi.yaml"
           git tag $(grep -m 1 'version:' ../openapi.yaml | awk '{printf("v%s"), $2}')
+          git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/zdevaty/go-eliona-api-client.git
           git push
           git push --tags
 
@@ -53,5 +54,6 @@ jobs:
           git add .
           git commit -m "Regenerate Python API client from latest openapi.yaml"
           git tag $(grep -m 1 'version:' ../openapi.yaml | awk '{printf("v%s"), $2}')
+          git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/zdevaty/python-eliona-api-client2.git
           git push
           git push --tags
