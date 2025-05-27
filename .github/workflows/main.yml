@@ -38,7 +38,7 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add .
           git commit -m "Regenerate Go API client from latest openapi.yaml"
-          git tag $(grep -m 1 'version:' openapi.yaml | awk '{printf("v%s"), $2}')
+          git tag $(grep -m 1 'version:' ../openapi.yaml | awk '{printf("v%s"), $2}')
           git push
           git push --tags
 
@@ -52,6 +52,6 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add .
           git commit -m "Regenerate Python API client from latest openapi.yaml"
-          git tag $(grep -m 1 'version:' openapi.yaml | awk '{printf("v%s"), $2}')
+          git tag $(grep -m 1 'version:' ../openapi.yaml | awk '{printf("v%s"), $2}')
           git push
           git push --tags
