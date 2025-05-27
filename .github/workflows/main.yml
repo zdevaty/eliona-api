@@ -1,0 +1,49 @@
+name: Regenerate API Clients
+
+on:
+  push:
+    branches:
+      - main
+    #paths:
+     # - 'openapi.yaml'
+
+jobs:
+  regenerate-clients:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout eliona-api repository
+        uses: actions/checkout@v4
+        with:
+          repository: zdevaty/eliona-api
+          ref: main
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: Regenerate Go API Client
+        run: |
+          git clone https://github.com/zdevaty/go-eliona-api-client.git
+          cd go-eliona-api-client
+          chmod +x generate.sh
+          ./generate.sh
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add .
+          git commit -m "Regenerate Go API client from latest openapi.yaml"
+          git tag $(grep 'version:' ../openapi.yaml | awk '{print $2}')
+          git push
+          git push --tags
+
+      - name: Regenerate Python API Client
+        run: |
+          git clone https://github.com/zdevaty/python-eliona-api-client2.git
+          cd python-eliona-api-client2
+          chmod +x generate.sh
+          ./generate.sh
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add .
+          git commit -m "Regenerate Python API client from latest openapi.yaml"
+          git tag $(grep 'version:' ../openapi.yaml | awk '{print $2}')
+          git push
+          git push --tags
